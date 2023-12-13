@@ -91,7 +91,7 @@ class ComputeDownSampledSFS():
         downsampled_sfs = \
            '{0}{1}downsampled_sfs.txt'.format(
                 args['outprefix'], underscore)
-        logfile = '{0}{1}downsampling.log'.format(
+        logfile = '{0}{1}downsampled.log'.format(
             args['outprefix'], underscore)
         to_remove = [logfile, downsampled_sfs]
         for f in to_remove:
