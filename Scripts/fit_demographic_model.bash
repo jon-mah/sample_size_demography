@@ -6,24 +6,11 @@
 #$ -t 1-30
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_demographic_model_gut_accessory
+#$ -N fit_demographic_model
+#$ -t 14
 
-# SGE_TASK_ID=1
+# SGE_TASK_ID=14
 
-i=0
-while read line;
-do
-  i=$((i+1))
-  if [ $i -eq $SGE_TASK_ID ]
-    then
-      species=$line
-  fi
-done < ../Data/good_species_list.txt
+sample_size=$SGE_TASK_ID
 
-### Comment out the appropriate line to perform analysis over core genes vs. over accessory genes
-
-# Core genes
-# python fit_demographic_model.py ../Analysis/${species}_downsampled_14/core_empirical_syn_downsampled_sfs.txt ../Analysis/${species}_downsampled_14/core
-
-# Accessory genes
-# python fit_demographic_model.py ../Analysis/${species}_downsampled_14/accessory_empirical_syn_downsampled_sfs.txt ../Analysis/${species}_downsampled_14/accessory
+python fit_demographic_model.py ../Analysis/p_copri_core_${sample_size}/syn_downsampled_sfs.txt ../Analysis/p_copri_core_${sample_size}/
