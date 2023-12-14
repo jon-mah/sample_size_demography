@@ -122,7 +122,7 @@ class ComputeDownSampledSFS():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         logger.info('Parsing input SFS.')
-        input_spectrum =  dadi.Spectrum.from_file(input_sfs)
+        input_spectrum =  dadi.Spectrum.fromfile(input_sfs)
 
         logger.info('Formatting output SFS.')
         output_spectrum = input_spectrum.project([sample_size])

@@ -6,7 +6,7 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_demographic_model
-#$ -t 5
+#$ -t 14
 
 # SGE_TASK_ID=5
 
