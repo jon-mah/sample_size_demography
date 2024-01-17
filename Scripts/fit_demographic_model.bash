@@ -8,7 +8,7 @@
 #$ -N fit_demographic_model
 #$ -t 10-800:20
 
-# SGE_TASK_ID=5
+SGE_TASK_ID=530
 
 sample_size=$SGE_TASK_ID
 
