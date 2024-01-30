@@ -1,16 +1,16 @@
 #!/bin/bash
 #$ -cwd
 #$ -V
-#$ -l h_data=30G
-#$ -l h_rt=2:00:00
+#$ -l h_data=50G
+#$ -l h_rt=4:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_demographic_model
-#$ -t 10-100
+#$ -t 79-99
 
 ## -t 10-800:20
 
-SGE_TASK_ID=100
+SGE_TASK_ID=93
 
 sample_size=$SGE_TASK_ID
 
