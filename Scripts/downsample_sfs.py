@@ -126,7 +126,7 @@ class ComputeDownSampledSFS():
 
         logger.info('Formatting output SFS.')
         output_spectrum = input_spectrum.project([sample_size])
-        output_spectrum.fold()
+        # output_spectrum.fold()
         output_spectrum.to_file(downsampled_sfs)
 
         logger.info('Finished downsampling.')

@@ -404,7 +404,7 @@ class DemographicInference():
 
         # Construct initial Spectrum object from input synonymous sfs.
         syn_data = dadi.Spectrum.from_file(syn_input_sfs)
-        syn_data = syn_data.fold()
+        # syn_data = syn_data.fold()
         if mask_singletons:
             syn_data.mask[1] = True
         if mask_doubletons:
@@ -414,8 +414,8 @@ class DemographicInference():
 
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
-        # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
-        model_list = ['three_epoch']
+        model_list = ['one_epoch', 'two_epoch', 'three_epoch']
+        # model_list = ['three_epoch']
         # model_list = ['two_epoch']
         # model_list = ['two_epoch', 'three_epoch']
         # Fit different epoch models and compute likelihood
@@ -602,7 +602,7 @@ class DemographicInference():
                         p0=p0, data=syn_data, model_func=func_ex, pts=pts_l,
                         lower_bound=None,
                         upper_bound=None,
-                        verbose=len(p0), maxiter=50)
+                        verbose=len(p0), maxiter=25)
                     logger.info(
                         'Finished optimization with guess, ' + str(p0) + '.')
                     logger.info('Best fit parameters: {0}.'.format(popt))
