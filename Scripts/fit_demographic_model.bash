@@ -6,11 +6,11 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_demographic_model
-#$ -t 730
+#$ -t 570
 
 ## -t 10-800:20
 
-# SGE_TASK_ID=15
+SGE_TASK_ID=570
 
 sample_size=$SGE_TASK_ID
 
