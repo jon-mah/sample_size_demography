@@ -6,7 +6,7 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_demographic_model
-#$ -t 11-19
+#$ -t 730
 
 ## -t 10-800:20
 
