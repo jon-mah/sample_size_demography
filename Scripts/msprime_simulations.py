@@ -108,21 +108,21 @@ class msPrimeSimulate():
         dem2 = msprime.Demography()
         dem3 = msprime.Demography()
         # Two epoch contraction, population 0
-        dem0.add_population(name="TwoEpC", description="Two epoch contraction", initial_size=10000)
+        dem0.add_population(name="TwoEpC", description="Two epoch contraction", initial_size=5000)
         # Two epoch expansion, population 1
-        dem1.add_population(name="TwoEpE", description="Two epoch expansion", initial_size=10000)
+        dem1.add_population(name="TwoEpE", description="Two epoch expansion", initial_size=20000)
         # Three epoch double contraction, population 2
-        dem2.add_population(name="ThreeEpC", description="Three epoch contraction", initial_size=10000)
+        dem2.add_population(name="ThreeEpC", description="Three epoch contraction", initial_size=2500)
         # Three epoch double expansion, population 3
-        dem3.add_population(name="ThreeEpE", description="Three epoch expansion", initial_size=10000)
+        dem3.add_population(name="ThreeEpE", description="Three epoch expansion", initial_size=40000)
 
         # Demographic events
-        dem0.add_population_parameters_change(time=2000, initial_size=5000, population=0)
-        dem1.add_population_parameters_change(time=200, initial_size=20000, population=0)
-        dem2.add_population_parameters_change(time=200, initial_size=2500, population=0)
-        dem2.add_population_parameters_change(time=2000, initial_size=5000, population=0)
-        dem3.add_population_parameters_change(time=200, initial_size=40000, population=0)
-        dem3.add_population_parameters_change(time=2000, initial_size=20000, population=0)
+        dem0.add_population_parameters_change(time=2000, initial_size=10000, population=0)
+        dem1.add_population_parameters_change(time=200, initial_size=10000, population=0)
+        dem2.add_population_parameters_change(time=200, initial_size=5000, population=0)
+        dem2.add_population_parameters_change(time=2000, initial_size=10000, population=0)
+        dem3.add_population_parameters_change(time=200, initial_size=20000, population=0)
+        dem3.add_population_parameters_change(time=2000, initial_size=10000, population=0)
 
         dem0.sort_events()
         dem1.sort_events()
