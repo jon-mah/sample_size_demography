@@ -1,5 +1,5 @@
 #!/bin/bash
-#$ -N downsample_sfs.bash
+#$ -N msprime_simulations
 #$ -cwd # Run qsub script from desired working directory
 #$ -V
 #$ -e /u/home/j/jonmah/postproc_error
@@ -10,7 +10,7 @@
 
 replicate=$SGE_TASK_ID
 
-python msprime_simulations.py ../Simulations/simple_simulations/
+python msprime_simulations.py ${replicate} ../Simulations/simple_simulations/
 
 easySFS.py -a -f -i ../Simulations/simple_simulations/TwoEpochContraction_${replicate}.vcf -p sample_1000_pops.txt -o ../Simulations/simple_simulations/TwoEpochContraction_${replicate} --proj 864
 easySFS.py -a -f -i ../Simulations/simple_simulations/TwoEpochExpansion_${replicate}.vcf -p sample_1000_pops.txt -o ../Simulations/simple_simulations/TwoEpochExpansion_${replicate} --proj 864

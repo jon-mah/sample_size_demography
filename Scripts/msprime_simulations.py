@@ -74,7 +74,7 @@ class msPrimeSimulate():
         underscore = '' if args['outprefix'][-1] == '/' else '_'
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
         output_TwoEpC = '{0}{1}TwoEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, replicate)
-        output_TwoEpE = '{0}{1}TwoEpochExpansion.vcf_{2}'.format(args['outprefix'], underscore, replicate)
+        output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         to_remove = [logfile]
