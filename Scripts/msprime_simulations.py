@@ -77,6 +77,7 @@ class msPrimeSimulate():
         output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
+        output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -110,6 +111,7 @@ class msPrimeSimulate():
         dem1 = msprime.Demography()
         dem2 = msprime.Demography()
         dem3 = msprime.Demography()
+        dem4 = msprime.Demography()
         # Two epoch contraction, population 0
         dem0.add_population(name="TwoEpC", description="Two epoch contraction", initial_size=5000)
         # Two epoch expansion, population 1
@@ -118,6 +120,8 @@ class msPrimeSimulate():
         dem2.add_population(name="ThreeEpC", description="Three epoch contraction", initial_size=2500)
         # Three epoch double expansion, population 3
         dem3.add_population(name="ThreeEpE", description="Three epoch expansion", initial_size=40000)
+        # Three epoch ancient bottleneck, population 4
+        dem4.add_population(name="ThreeEpB", description="Three epcoh bottleneck", initial_size=50000)
 
         # Demographic events
         dem0.add_population_parameters_change(time=2000, initial_size=10000, population=0)
@@ -126,11 +130,14 @@ class msPrimeSimulate():
         dem2.add_population_parameters_change(time=2000, initial_size=10000, population=0)
         dem3.add_population_parameters_change(time=200, initial_size=20000, population=0)
         dem3.add_population_parameters_change(time=2000, initial_size=10000, population=0)
+        dem4.add_population_parameters_change(time=200, initial_size=1000, population=0)
+        dem4.add_population_parameters_change(time=2000, initial_size=10000, population=0)
 
         dem0.sort_events()
         dem1.sort_events()
         dem2.sort_events()
         dem3.sort_events()
+        dem4.sort_events()
 
         with open(output_TwoEpC, "w+") as f0:
             ts0 = msprime.sim_ancestry(samples={"TwoEpC" : 1000},
@@ -155,6 +162,12 @@ class msPrimeSimulate():
                 demography=dem3, sequence_length=1000000, recombination_rate=1e-8)
             mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
             mts3.write_vcf(f3)
+
+        with open(output_ThreeEpB, "w+") as f4:
+            ts4 = msprime.sim_ancestry(samples={"ThreeEpB": 1000},
+                demography=dem4, sequence_length=1000000, recombination_rate=1e-8)
+            mts3 = msprime.sim_mutations(ts4, rate=1.5E-8)
+            mts3.write_vcf(f4)
 
 
         logger.info('Pipeline executed succesfully.')
