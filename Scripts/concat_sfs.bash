@@ -5,6 +5,10 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=45G
-#$ -l h_rt=00:30:00
+#$ -l h_rt=00:15:00
 
-python concat_sfs.py ../Simulations/simple_simulations/
+python concat_sfs.py ../Simulations/simple_simulations/TwoEpochContraction
+python concat_sfs.py ../Simulations/simple_simulations/TwoEpochExpansion
+python concat_sfs.py ../Simulations/simple_simulations/ThreeEpochContraction
+python concat_sfs.py ../Simulations/simple_simulations/ThreeEpochExpansion
+python concat_sfs.py ../Simulations/simple_simulations/ThreeEpochBottleneck

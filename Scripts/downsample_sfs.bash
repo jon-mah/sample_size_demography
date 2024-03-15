@@ -6,7 +6,7 @@
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=15G
 #$ -l h_rt=00:10:00
-#$ -t 10-730:80
+#$ -t 10-800:10
 
 # SGE_TASK_ID=10
 
@@ -24,7 +24,8 @@ sample_size=$SGE_TASK_ID
 # python downsample_sfs.py ../Simulations/ooa_864_sfs/dadi/pop1.sfs ${sample_size} ../Analysis/ooa_simulated_${sample_size}/syn
 
 # Simple simulations
-python downsample_sfs.py ../Simulations/simple_simulations/TwoEpochContraction/dadi/pop1.sfs ${sample_size} ../Analysis/TwoEpochContraction_${sample_size}/syn
-python downsample_sfs.py ../Simulations/simple_simulations/ThreeEpochContraction/dadi/pop1.sfs ${sample_size} ../Analysis/ThreeEpochContraction_${sample_size}/syn
-python downsample_sfs.py ../Simulations/simple_simulations/TwoEpochExpansion/dadi/pop1.sfs ${sample_size} ../Analysis/TwoEpochExpansion_${sample_size}/syn
-python downsample_sfs.py ../Simulations/simple_simulations/ThreeEpochExpansion/dadi/pop1.sfs ${sample_size} ../Analysis/ThreeEpochExpansion_${sample_size}/syn
+python downsample_sfs.py ../Simulations/simple_simulations/TwoEpochContraction_concat.sfs ${sample_size} ../Analysis/TwoEpochContraction_${sample_size}/syn
+python downsample_sfs.py ../Simulations/simple_simulations/ThreeEpochContraction_concat.pop1.sfs ${sample_size} ../Analysis/ThreeEpochContraction_${sample_size}/syn
+python downsample_sfs.py ../Simulations/simple_simulations/TwoEpochExpansion_concat.sfs ${sample_size} ../Analysis/TwoEpochExpansion_${sample_size}/syn
+python downsample_sfs.py ../Simulations/simple_simulations/ThreeEpochExpansion_concat.sfs ${sample_size} ../Analysis/ThreeEpochExpansion_${sample_size}/syn
+python downsample_sfs.py ../Simulations/simple_simulations/ThreeEpochBottleneck_concat.sfs ${sample_size} ../Analysis/ThreeEpochBottleneck_${sample_size}/syn

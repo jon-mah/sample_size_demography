@@ -39,13 +39,8 @@ class concatSFS():
         """Return *argparse.ArgumentParser* for ``fitdadi_infer_DFE.py``."""
         parser = ArgumentParserNoArgHelp(
             description=(
-                'Given the number of individuals in population one and two, '
-                'this script outputs a `*pops_file.txt` in the format '
-                'specified for use by the python package, `easySFS.py`.'),
+                'Concatenates a given list of `*.sfs` files.'),
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-        parser.add_argument(
-            'replicate', type=str,
-            help='An integer indexing the replicate.')
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
@@ -60,7 +55,8 @@ class concatSFS():
 
         # Assign arguments
         outprefix = args['outprefix']
-        file_pattern = f'*{outprefix}'
+        outprefix_string = str(outprefix)
+        matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
 
         # create output directory if needed
         outdir = os.path.dirname(args['outprefix'])
@@ -74,7 +70,7 @@ class concatSFS():
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
-        output_sfs = '{0}{1}concat.sfs'.format(args['outprefix'], underscore, replicate)
+        output_sfs = '{0}{1}concat.sfs'.format(args['outprefix'], underscore)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -104,10 +100,13 @@ class concatSFS():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Grab all files which begin with outprefix
-        matching_files = set(glob.glob(file_pattern))
-        output_spectrum = dadi.Spectrum([0] * 1000)
+        output_spectrum = dadi.Spectrum([0] * 1001)
+        output_spectrum = output_spectrum.fold()
         for file in matching_files:
-            print(file)
+            temp_sfs = dadi.Spectrum.from_file(file)
+            output_spectrum += temp_sfs
+
+        output_spectrum.to_file(output_sfs)
 
         logger.info('Pipeline executed succesfully.')
 
