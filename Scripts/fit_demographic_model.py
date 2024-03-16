@@ -590,7 +590,7 @@ class DemographicInference():
                             'demographic model.')
             with open(file, 'w') as f:
                 max_likelihood = -1e25
-                for i in range(25):
+                for i in range(5):
                     # Start at initial guess
                     p0 = initial_guesses[i]
                     # Randomly perturb parameters before optimization.
@@ -603,7 +603,7 @@ class DemographicInference():
                         p0=p0, data=syn_data, model_func=func_ex, pts=pts_l,
                         lower_bound=None,
                         upper_bound=None,
-                        verbose=len(p0), maxiter=25)
+                        verbose=len(p0), maxiter=5)
                     logger.info(
                         'Finished optimization with guess, ' + str(p0) + '.')
                     logger.info('Best fit parameters: {0}.'.format(popt))

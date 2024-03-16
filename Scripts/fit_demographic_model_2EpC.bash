@@ -9,7 +9,7 @@
 #$ -t 10-800:10
 #$ -tc 5
 
-# SGE_TASK_ID=15
+SGE_TASK_ID=770
 
 sample_size=$SGE_TASK_ID
 
