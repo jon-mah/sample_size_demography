@@ -2,14 +2,14 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=00:30:00
+#$ -l h_rt=24:30:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_2EpC
-#$ -t 10-800:10
-#$ -tc 5
+#$ -t 300-700:200
+#$ -l highp
 
-SGE_TASK_ID=770
+# SGE_TASK_ID=770
 
 sample_size=$SGE_TASK_ID
 
