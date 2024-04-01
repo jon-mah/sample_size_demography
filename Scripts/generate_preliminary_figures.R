@@ -2003,3 +2003,85 @@ ggplot(data=NAnc_df, aes(x=sample_size, y=value, color=variable)) + geom_line() 
   geom_hline(yintercept=12378, color='black', linetype='dashed') +
   scale_x_continuous(breaks=sample_size)
 
+# Simple simulations
+two_EpC_singletons = c()
+two_EpE_singletons = c()
+three_EpB_singletons = c()
+three_EpC_singletons = c()
+three_EpE_singletons = c()
+one_epoch_singletons = c()
+
+# Loop through subdirectories and get relevant files
+for (i in seq(10, 800, 10)) {
+  two_EpC_subdirectory <- paste0("../Analysis/TwoEpochContraction_", i)
+  two_EpE_subdirectory <- paste0("../Analysis/TwoEpochExpansion_", i)
+  three_EpB_subdirectory <- paste0("../Analysis/ThreeEpochBottleneck_", i)
+  three_EpC_subdirectory <- paste0("../Analysis/ThreeEpochContraction_", i)
+  three_EpE_subdirectory <- paste0("../Analysis/ThreeEpochExpansion_", i)
+  two_EpC_empirical_file_path = file.path(two_EpC_subdirectory, "syn_downsampled_sfs.txt")
+  one_epoch_empirical_file_path = file.path(two_EpC_subdirectory, "one_epoch_demography.txt")
+  two_EpE_empirical_file_path = file.path(two_EpE_subdirectory, "syn_downsampled_sfs.txt")
+  three_EpB_empirical_file_path = file.path(three_EpB_subdirectory, "syn_downsampled_sfs.txt")
+  three_EpC_empirical_file_path = file.path(three_EpC_subdirectory, "syn_downsampled_sfs.txt")
+  three_EpE_empirical_file_path = file.path(three_EpE_subdirectory, "syn_downsampled_sfs.txt")
+  # p_copri_empirical_file_path <- file.path(subdirectory, "syn_downsampled_sfs.txt")
+  # p_copri_one_epoch_file_path <- file.path(subdirectory, "one_epoch_demography.txt")
+  # p_copri_two_epoch_file_path <- file.path(subdirectory, "two_epoch_demography.txt")
+  # p_copri_three_epoch_file_path <- file.path(subdirectory, "three_epoch_demography.txt")
+  
+  if (file.exists(two_EpC_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(two_EpC_empirical_file_path))
+    two_EpC_singletons = c(two_EpC_singletons, this_SFS[1])
+    one_epoch_SFS = proportional_sfs(sfs_from_demography(one_epoch_empirical_file_path))
+    one_epoch_singletons = c(one_epoch_singletons, one_epoch_SFS[1])
+  }
+  if (file.exists(two_EpE_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(two_EpE_empirical_file_path))
+    two_EpE_singletons = c(two_EpE_singletons, this_SFS[1])
+  }
+  if (file.exists(three_EpB_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(three_EpB_empirical_file_path))
+    three_EpB_singletons = c(three_EpB_singletons, this_SFS[1])
+  }
+  if (file.exists(three_EpC_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(three_EpC_empirical_file_path))
+    three_EpC_singletons = c(three_EpC_singletons, this_SFS[1])
+  }
+  if (file.exists(three_EpE_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(three_EpE_empirical_file_path))
+    three_EpE_singletons = c(three_EpE_singletons, this_SFS[1])
+  }
+}
+
+sample_size = seq(10, 800, 10)
+
+
+singletons_df = data.frame(
+  "Sample size" = sample_size,
+  "Two Epoch Contraction" = two_EpC_singletons,
+  "Two Epoch Expansion" = two_EpE_singletons,
+  "Three Epoch Bottleneck" = three_EpB_singletons,
+  "Three Epoch Contraction" = three_EpC_singletons,
+  "Three Epoch Expansion" = three_EpE_singletons,
+  "Neural Demography" = one_epoch_singletons)
+
+singletons_df = melt(singletons_df, id="Sample.size")
+
+plot_singleton_proportion = ggplot(singletons_df, aes(x=Sample.size, y=value, color=variable)) +
+  geom_line() +
+  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black'),
+    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
+      'Three Epoch Bottleneck',
+      'Three Epoch Contraction',
+      'Three Epoch Expansion',
+      'Neutral Demography'),
+    name='Simulated Demography') +
+  theme_bw() +
+  xlab('Sample size') +
+  ylab('Singleton proportion') +
+  ggtitle('Proportion of SFS comprised of singletons by simulated demographic history')
+
+plot_singleton_proportion
+
+
+### Three Epoch Bottleneck Demography
