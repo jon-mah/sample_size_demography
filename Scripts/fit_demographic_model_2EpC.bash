@@ -2,11 +2,11 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=24:30:00
+#$ -l h_rt=36:30:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_2EpC
-#$ -t 300-700:200
+#$ -t 10-30:10
 #$ -l highp
 
 # SGE_TASK_ID=770
