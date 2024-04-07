@@ -580,7 +580,7 @@ class DemographicInference():
                             'demographic model.')
             with open(file, 'w') as f:
                 max_likelihood = -1e25
-                for i in range(5):
+                for i in range(25):
                     # Start at initial guess
                     p0 = initial_guesses[i]
                     # Randomly perturb parameters before optimization.
