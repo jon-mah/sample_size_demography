@@ -7,9 +7,9 @@
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_3EpB
 #$ -l highp
-#$ -t 500-700:200
+#$ -t 700
 
-# SGE_TASK_ID=15
+SGE_TASK_ID=700
 
 sample_size=$SGE_TASK_ID
 
