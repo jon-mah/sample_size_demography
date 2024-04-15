@@ -18,14 +18,6 @@ three_EpE_singletons = c()
 one_epoch_singletons = c()
 sim_ooa_singletons = c()
 EUR_1kg_singletons = c()
-two_EpC_doubletons = c()
-two_EpE_doubletons = c()
-three_EpB_doubletons = c()
-three_EpC_doubletons = c()
-three_EpE_doubletons = c()
-one_epoch_doubletons = c()
-sim_ooa_doubletons = c()
-EUR_1kg_doubletons = c()
 
 # Loop through subdirectories and get relevant files
 for (i in seq(10, 800, 10)) {
@@ -48,40 +40,32 @@ for (i in seq(10, 800, 10)) {
   if (file.exists(two_EpC_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(two_EpC_empirical_file_path))
     two_EpC_singletons = c(two_EpC_singletons, this_SFS[1])
-    two_EpC_doubletons = c(two_EpC_doubletons, this_SFS[2])
     one_epoch_SFS = proportional_sfs(sfs_from_demography(one_epoch_empirical_file_path))
     one_epoch_singletons = c(one_epoch_singletons, one_epoch_SFS[1])
-    one_epoch_doubletons = c(one_epoch_doubletons, one_epoch_SFS[2])
   }
   if (file.exists(two_EpE_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(two_EpE_empirical_file_path))
     two_EpE_singletons = c(two_EpE_singletons, this_SFS[1])
-    two_EpE_doubletons = c(two_EpE_doubletons, this_SFS[2])
   }
   if (file.exists(three_EpB_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(three_EpB_empirical_file_path))
     three_EpB_singletons = c(three_EpB_singletons, this_SFS[1])
-    three_EpB_doubletons = c(three_EpB_doubletons, this_SFS[2])
   }
   if (file.exists(three_EpC_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(three_EpC_empirical_file_path))
     three_EpC_singletons = c(three_EpC_singletons, this_SFS[1])
-    three_EpC_doubletons = c(three_EpC_doubletons, this_SFS[2])
   }
   if (file.exists(three_EpE_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(three_EpE_empirical_file_path))
     three_EpE_singletons = c(three_EpE_singletons, this_SFS[1])
-    three_EpE_doubletons = c(three_EpE_doubletons, this_SFS[2])
   }
   if (file.exists(sim_ooa_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(sim_ooa_empirical_file_path))
     sim_ooa_singletons = c(sim_ooa_singletons, this_SFS[1])
-    sim_ooa_doubletons = c(sim_ooa_doubletons, this_SFS[2])
   }
   if (file.exists(EUR_1kg_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(EUR_1kg_empirical_file_path))
     EUR_1kg_singletons = c(EUR_1kg_singletons, this_SFS[1])
-    EUR_1kg_doubletons = c(EUR_1kg_doubletons, this_SFS[2])
   }
   
 }
@@ -119,37 +103,6 @@ plot_singleton_proportion = ggplot(singletons_df, aes(x=Sample.size, y=value, co
   ggtitle('Proportion of SFS comprised of singletons by simulated demographic history')
 
 plot_singleton_proportion
-
-doubletons_df = data.frame(
-  "Sample size" = sample_size,
-  "Two Epoch Contraction" = two_EpC_doubletons,
-  "Two Epoch Expansion" = two_EpE_doubletons,
-  "Three Epoch Bottleneck" = three_EpB_doubletons,
-  "Three Epoch Contraction" = three_EpC_doubletons,
-  "Three Epoch Expansion" = three_EpE_doubletons,
-  "Neural Demography" = one_epoch_doubletons,
-  "Simulated OOA" = sim_ooa_doubletons,
-  "1KG EUR" = EUR_1kg_doubletons)
-
-doubletons_df = melt(doubletons_df, id="Sample.size")
-
-plot_doubleton_proportion = ggplot(doubletons_df, aes(x=Sample.size, y=value, color=variable)) +
-  geom_line() +
-  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen'),
-    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
-      'Three Epoch Bottleneck',
-      'Three Epoch Contraction',
-      'Three Epoch Expansion',
-      'Neutral Demography',
-      'Simulated EUR',
-      'Empirical EUR'),
-    name='Simulated Demography') +
-  theme_bw() +
-  xlab('Sample size') +
-  ylab('doubleton proportion') +
-  ggtitle('Proportion of SFS comprised of doubletons by simulated demographic history')
-
-plot_doubleton_proportion
 
 ### Figure 3
 
@@ -349,11 +302,11 @@ ThreeEpochB_three_epoch_TimeBottleEnd = 2 * 25 * ThreeEpochB_three_epoch_tauF * 
 ThreeEpochB_three_epoch_TimeBottleStart = 2 * 25 * ThreeEpochB_three_epoch_tauB * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum) + ThreeEpochB_three_epoch_TimeBottleEnd
 ThreeEpochB_three_epoch_TimeTotal = ThreeEpochB_three_epoch_TimeBottleStart + ThreeEpochB_three_epoch_TimeBottleEnd
 
-# two_epoch_max_time = max(ThreeEpochB_two_epoch_Time)
+two_epoch_max_time = max(ThreeEpochB_two_epoch_Time)
 # three_epoch_max_time = max(ThreeEpochB_three_epoch_TimeBottleStart)
 # three_epoch_max_time = 10872124400
-three_epoch_max_time = 602651335 + 1
-two_epoch_max_time = 602651335 + 1
+three_epoch_max_time = two_epoch_max_time
+# two_epoch_max_time = 10872124400
 ThreeEpochB_two_epoch_max_time = rep(two_epoch_max_time, 10)
 # ThreeEpochB_two_epoch_max_time = rep(2E4, 10)
 ThreeEpochB_two_epoch_current_time = rep(0, 10)

@@ -126,6 +126,10 @@ class ComputeDownSampledSFS():
 
         logger.info('Formatting output SFS.')
         output_spectrum = input_spectrum.project([sample_size])
+        logger.info('Calculating summary statistics.')
+        logger.info("Watterson's Theta: {0}".format(output_spectrum.Watterson_theta()))
+        logger.info("Heterozygosity: {0}".format(output_spectrum.pi()))
+        logger.info("Tajima's D: {0}".format(output_spectrum.Tajima_D()))
         # output_spectrum.fold()
         output_spectrum.to_file(downsampled_sfs)
 
