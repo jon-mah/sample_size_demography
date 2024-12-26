@@ -18,6 +18,7 @@ three_EpE_singletons = c()
 one_epoch_singletons = c()
 sim_ooa_singletons = c()
 EUR_1kg_singletons = c()
+EVS_singletons = c()
 two_EpC_doubletons = c()
 two_EpE_doubletons = c()
 three_EpB_doubletons = c()
@@ -26,6 +27,7 @@ three_EpE_doubletons = c()
 one_epoch_doubletons = c()
 sim_ooa_doubletons = c()
 EUR_1kg_doubletons = c()
+EVS_doubletons = c()
 
 # Loop through subdirectories and get relevant files
 for (i in seq(10, 800, 10)) {
@@ -44,6 +46,7 @@ for (i in seq(10, 800, 10)) {
   three_EpE_empirical_file_path = file.path(three_EpE_subdirectory, "syn_downsampled_sfs.txt")
   sim_ooa_empirical_file_path = file.path(sim_ooa_subdirectory, "syn_downsampled_sfs.txt")
   EUR_1kg_empirical_file_path = file.path(EUR_1kg_subdirectory, "syn_downsampled_sfs.txt")
+  EVS_empirical_file_path = file.path(EUR_1kg_subdirectory, "nonsyn_downsampled_sfs.txt")
   
   if (file.exists(two_EpC_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(two_EpC_empirical_file_path))
@@ -83,7 +86,11 @@ for (i in seq(10, 800, 10)) {
     EUR_1kg_singletons = c(EUR_1kg_singletons, this_SFS[1])
     EUR_1kg_doubletons = c(EUR_1kg_doubletons, this_SFS[2])
   }
-  
+  if (file.exists(EVS_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(EVS_empirical_file_path))
+    EVS_singletons = c(EVS_singletons, this_SFS[1])
+    EVS_doubletons = c(EVS_doubletons, this_SFS[2])
+  }
 }
 
 sample_size = seq(10, 800, 10)
@@ -98,27 +105,9 @@ singletons_df = data.frame(
   "Three Epoch Expansion" = three_EpE_singletons,
   "Neural Demography" = one_epoch_singletons,
   "Simulated OOA" = sim_ooa_singletons,
-  "1KG EUR" = EUR_1kg_singletons)
-
-singletons_df = melt(singletons_df, id="Sample.size")
-
-plot_singleton_proportion = ggplot(singletons_df, aes(x=Sample.size, y=value, color=variable)) +
-  geom_line() +
-  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen'),
-    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
-      'Three Epoch Bottleneck',
-      'Three Epoch Contraction',
-      'Three Epoch Expansion',
-      'Neutral Demography',
-      'Simulated EUR',
-      'Empirical EUR'),
-    name='Simulated Demography') +
-  theme_bw() +
-  xlab('Sample size') +
-  ylab('Singleton proportion') +
-  ggtitle('Proportion of SFS comprised of singletons by simulated demographic history')
-
-plot_singleton_proportion
+  "1KG EUR" = EUR_1kg_singletons,
+  "EVS" = EVS_singletons,
+  "LuCamp" = (sim_ooa_singletons + EVS_singletons) / 2)
 
 doubletons_df = data.frame(
   "Sample size" = sample_size,
@@ -129,20 +118,61 @@ doubletons_df = data.frame(
   "Three Epoch Expansion" = three_EpE_doubletons,
   "Neural Demography" = one_epoch_doubletons,
   "Simulated OOA" = sim_ooa_doubletons,
-  "1KG EUR" = EUR_1kg_doubletons)
+  "1KG EUR" = EUR_1kg_doubletons,
+  "EVS" = EVS_doubletons,
+  "LuCamp" = (sim_ooa_doubletons + EVS_doubletons) / 2)
 
+
+single_plus_doubletons_df = data.frame(
+  "Sample size" = sample_size,
+  "Two Epoch Contraction" = two_EpC_singletons + two_EpC_doubletons,
+  "Two Epoch Expansion" = two_EpE_singletons + two_EpE_doubletons,
+  "Three Epoch Bottleneck" = three_EpB_singletons + three_EpB_doubletons,
+  "Three Epoch Contraction" = three_EpC_singletons + three_EpC_doubletons,
+  "Three Epoch Expansion" = three_EpE_singletons + three_EpE_doubletons,
+  "Neural Demography" = one_epoch_singletons + one_epoch_doubletons,
+  "Simulated OOA" = sim_ooa_singletons + sim_ooa_doubletons,
+  "1KG EUR" = EUR_1kg_singletons + EUR_1kg_doubletons,
+  "EVS" = EVS_singletons + EVS_doubletons,
+  "LuCamp" = (sim_ooa_singletons + EVS_singletons) / 2 + (sim_ooa_doubletons + EVS_doubletons) / 2
+)
+
+singletons_df = melt(singletons_df, id="Sample.size")
 doubletons_df = melt(doubletons_df, id="Sample.size")
+single_plus_doubletons_df = melt(single_plus_doubletons_df, id="Sample.size")
 
-plot_doubleton_proportion = ggplot(doubletons_df, aes(x=Sample.size, y=value, color=variable)) +
+plot_singleton_proportion = ggplot(singletons_df, aes(x=Sample.size, y=value, color=variable)) +
   geom_line() +
-  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen'),
+  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen', 'cyan', 'darkcyan'),
     labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
       'Three Epoch Bottleneck',
       'Three Epoch Contraction',
       'Three Epoch Expansion',
       'Neutral Demography',
       'Simulated EUR',
-      'Empirical EUR'),
+      'Empirical EUR',
+      'EVS',
+      'LuCamp'),
+    name='Simulated Demography') +
+  theme_bw() +
+  xlab('Sample size') +
+  ylab('Singleton proportion') +
+  ggtitle('Proportion of SFS comprised of singletons by simulated demographic history')
+
+plot_singleton_proportion
+
+plot_doubleton_proportion = ggplot(doubletons_df, aes(x=Sample.size, y=value, color=variable)) +
+  geom_line() +
+  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen', 'cyan', 'darkcyan'),
+    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
+      'Three Epoch Bottleneck',
+      'Three Epoch Contraction',
+      'Three Epoch Expansion',
+      'Neutral Demography',
+      'Simulated EUR',
+      'Empirical EUR',
+      'EVS',
+      'LuCamp'),
     name='Simulated Demography') +
   theme_bw() +
   xlab('Sample size') +
@@ -150,6 +180,166 @@ plot_doubleton_proportion = ggplot(doubletons_df, aes(x=Sample.size, y=value, co
   ggtitle('Proportion of SFS comprised of doubletons by simulated demographic history')
 
 plot_doubleton_proportion
+
+plot_single_plus_doubleton_proportion = ggplot(single_plus_doubletons_df, aes(x=Sample.size, y=value, color=variable)) +
+  geom_line() +
+  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen', 'cyan', 'darkcyan'),
+    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
+      'Three Epoch Bottleneck',
+      'Three Epoch Contraction',
+      'Three Epoch Expansion',
+      'Neutral Demography',
+      'Simulated EUR',
+      'Empirical EUR',
+      'EVS',
+      'LuCamp'),
+    name='Simulated Demography') +
+  theme_bw() +
+  xlab('Sample size') +
+  ylab('doubleton proportion') +
+  ggtitle('Proportion of SFS comprised of singletons and doubletons by simulated demographic history')
+
+plot_single_plus_doubleton_proportion
+
+# Simple simulations
+two_EpC_watterson_theta = c()
+two_EpE_watterson_theta = c()
+three_EpB_watterson_theta = c()
+three_EpC_watterson_theta = c()
+three_EpE_watterson_theta = c()
+sim_ooa_watterson_theta = c()
+EUR_1kg_watterson_theta = c()
+EVS_watterson_theta = c()
+two_EpC_heterozygosity = c()
+two_EpE_heterozygosity = c()
+three_EpB_heterozygosity = c()
+three_EpC_heterozygosity = c()
+three_EpE_heterozygosity = c()
+sim_ooa_heterozygosity = c()
+EUR_1kg_heterozygosity = c()
+EVS_heterozygosity = c()
+two_EpC_tajima_D = c()
+two_EpE_tajima_D = c()
+three_EpB_tajima_D = c()
+three_EpC_tajima_D = c()
+three_EpE_tajima_D = c()
+sim_ooa_tajima_D = c()
+EUR_1kg_tajima_D = c()
+EVS_tajima_D = c()
+# Loop through subdirectories and get relevant files
+for (i in seq(10, 800, 10)) {
+  two_EpC_subdirectory <- paste0("../Analysis/TwoEpochContraction_", i)
+  two_EpE_subdirectory <- paste0("../Analysis/TwoEpochExpansion_", i)
+  three_EpB_subdirectory <- paste0("../Analysis/ThreeEpochBottleneck_", i)
+  three_EpC_subdirectory <- paste0("../Analysis/ThreeEpochContraction_", i)
+  three_EpE_subdirectory <- paste0("../Analysis/ThreeEpochExpansion_", i)
+  sim_ooa_subdirectory <- paste0("../Analysis/ooa_simulated_", i)
+  EUR_1kg_subdirectory <- paste0("../Analysis/1kg_EUR_", i)
+  two_EpC_empirical_file_path = file.path(two_EpC_subdirectory, "syn_downsampled.log")
+  two_EpE_empirical_file_path = file.path(two_EpE_subdirectory, "syn_downsampled.log")
+  three_EpB_empirical_file_path = file.path(three_EpB_subdirectory, "syn_downsampled.log")
+  three_EpC_empirical_file_path = file.path(three_EpC_subdirectory, "syn_downsampled.log")
+  three_EpE_empirical_file_path = file.path(three_EpE_subdirectory, "syn_downsampled.log")
+  sim_ooa_empirical_file_path = file.path(sim_ooa_subdirectory, "syn_downsampled.log")
+  EUR_1kg_empirical_file_path = file.path(EUR_1kg_subdirectory, "syn_downsampled.log")
+  EVS_empirical_file_path = file.path(EUR_1kg_subdirectory, "nonsyn_downsampled.log")
+  
+  if (file.exists(two_EpC_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(two_EpC_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(two_EpC_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(two_EpC_empirical_file_path)
+    two_EpC_watterson_theta = c(two_EpC_watterson_theta, this_watterson_theta)
+    two_EpC_heterozygosity = c(two_EpC_heterozygosity, this_heterozygosity)
+    two_EpC_tajima_D = c(two_EpC_tajima_D, this_tajima_D)
+  }
+  if (file.exists(two_EpE_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(two_EpE_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(two_EpE_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(two_EpE_empirical_file_path)
+    two_EpE_watterson_theta = c(two_EpE_watterson_theta, this_watterson_theta)
+    two_EpE_heterozygosity = c(two_EpE_heterozygosity, this_heterozygosity)
+    two_EpE_tajima_D = c(two_EpE_tajima_D, this_tajima_D)
+  }
+  if (file.exists(three_EpB_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(three_EpB_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(three_EpB_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(three_EpB_empirical_file_path)
+    three_EpB_watterson_theta = c(three_EpB_watterson_theta, this_watterson_theta)
+    three_EpB_heterozygosity = c(three_EpB_heterozygosity, this_heterozygosity)
+    three_EpB_tajima_D = c(three_EpB_tajima_D, this_tajima_D)
+  }
+  if (file.exists(three_EpC_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(three_EpC_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(three_EpC_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(three_EpC_empirical_file_path)
+    three_EpC_watterson_theta = c(three_EpC_watterson_theta, this_watterson_theta)
+    three_EpC_heterozygosity = c(three_EpC_heterozygosity, this_heterozygosity)
+    three_EpC_tajima_D = c(three_EpC_tajima_D, this_tajima_D)
+  }
+  if (file.exists(three_EpE_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(three_EpE_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(three_EpE_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(three_EpE_empirical_file_path)
+    three_EpE_watterson_theta = c(three_EpE_watterson_theta, this_watterson_theta)
+    three_EpE_heterozygosity = c(three_EpE_heterozygosity, this_heterozygosity)
+    three_EpE_tajima_D = c(three_EpE_tajima_D, this_tajima_D)
+  }
+  if (file.exists(sim_ooa_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(sim_ooa_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(sim_ooa_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(sim_ooa_empirical_file_path)
+    sim_ooa_watterson_theta = c(sim_ooa_watterson_theta, this_watterson_theta)
+    sim_ooa_heterozygosity = c(sim_ooa_heterozygosity, this_heterozygosity)
+    sim_ooa_tajima_D = c(sim_ooa_tajima_D, this_tajima_D)
+  }
+  if (file.exists(EUR_1kg_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(EUR_1kg_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(EUR_1kg_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(EUR_1kg_empirical_file_path)
+    EUR_1kg_watterson_theta = c(EUR_1kg_watterson_theta, this_watterson_theta)
+    EUR_1kg_heterozygosity = c(EUR_1kg_heterozygosity, this_heterozygosity)
+    EUR_1kg_tajima_D = c(EUR_1kg_tajima_D, this_tajima_D)
+  }
+  if (file.exists(EVS_empirical_file_path)) {
+    this_watterson_theta = watterson_theta_from_sfs(EVS_empirical_file_path)
+    this_heterozygosity = heterozygosity_from_sfs(EVS_empirical_file_path)
+    this_tajima_D = tajima_D_from_sfs(EVS_empirical_file_path)
+    EVS_watterson_theta = c(EVS_watterson_theta, this_watterson_theta)
+    EVS_heterozygosity = c(EVS_heterozygosity, this_heterozygosity)
+    EVS_tajima_D = c(EVS_tajima_D, this_tajima_D)
+  }
+}
+
+sample_size = seq(10, 800, 10)
+
+tajima_D_df = data.frame(
+  "Sample size" = sample_size,
+  "Two Epoch Contraction" = two_EpC_tajima_D,
+  "Two Epoch Expansion" = two_EpE_tajima_D,
+  "Three Epoch Bottleneck" = three_EpB_tajima_D,
+  "Three Epoch Contraction" = three_EpC_tajima_D,
+  "Three Epoch Expansion" = three_EpE_tajima_D,
+  "Simulated OOA" = sim_ooa_tajima_D,
+  "1KG EUR" = EUR_1kg_tajima_D)
+
+tajima_D_df = melt(tajima_D_df, id="Sample.size")
+
+plot_tajima_D = ggplot(tajima_D_df, aes(x=Sample.size, y=value, color=variable)) +
+  geom_line() +
+  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'lightgreen', 'darkgreen'),
+    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
+      'Three Epoch Bottleneck',
+      'Three Epoch Contraction',
+      'Three Epoch Expansion',
+      'Simulated EUR',
+      'Empirical EUR'),
+    name='Simulated Demography') +
+  theme_bw() +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D by simulated demographic history")
+
+plot_tajima_D
 
 ### Figure 3
 

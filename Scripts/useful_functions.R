@@ -235,3 +235,30 @@ tauF_from_demography = function(input_file) {
   tauF = floats[4]
   return(tauF)
 }
+
+watterson_theta_from_sfs = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  watterson_theta_string = readLines(this_file)[13]
+  floats <- as.numeric(str_extract_all(watterson_theta_string, "\\d+\\.\\d+")[[1]])
+  watterson_theta = floats[1]
+  return(watterson_theta)
+}
+
+heterozygosity_from_sfs = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  heterozygosity_string = readLines(this_file)[14]
+  floats <- as.numeric(str_extract_all(heterozygosity_string, "\\d+\\.\\d+")[[1]])
+  heterozygosity = floats[1]
+  return(heterozygosity)
+}
+
+tajima_D_from_sfs = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  tajima_D_string = readLines(this_file)[15]
+  floats <- as.numeric(str_extract_all(tajima_D_string, "[+-]?\\d+\\.\\d+")[[1]])
+  tajima_D = floats[1]
+  return(tajima_D)
+}

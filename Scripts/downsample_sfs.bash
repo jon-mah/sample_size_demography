@@ -9,7 +9,7 @@
 #$ -t 10-800:10
 #$ -tc 25
 
-# SGE_TASK_ID=10
+SGE_TASK_ID=10
 
 sample_size=$SGE_TASK_ID
 
@@ -19,7 +19,11 @@ sample_size=$SGE_TASK_ID
 
 # 1000Genomes EUR data
 # python downsample_sfs.py ../Data/kim_et_al_2017_1kg_syn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/syn
-python downsample_sfs.py ../Data/kim_et_al_2017_1kg_nonsyn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/nonsyn
+# python downsample_sfs.py ../Data/kim_et_al_2017_1kg_nonsyn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/nonsyn
+
+# gnomAD EUR data
+python downsample_sfs.py ../Data/gnomAD_empirical_syn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/syn
+
 
 # Simulated Tennessen data
 # python downsample_sfs.py ../Simulations/ooa_864_sfs/dadi/pop1.sfs ${sample_size} ../Analysis/ooa_simulated_${sample_size}/syn
