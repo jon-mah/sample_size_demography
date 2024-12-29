@@ -13,9 +13,8 @@ import argparse
 import warnings
 import random
 
-import numpy
+import numpy as np
 import pandas as pd
-import numpy
 import dadi
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
@@ -59,11 +58,9 @@ class ComputeEmpiricalGnomADSFS():
 
         # Assign arguments
         outprefix = args['outprefix']
-        input_tsv = args['input_tsv']
-        random.seed(1)
 
         # Numpy options
-        numpy.set_printoptions(linewidth=numpy.inf)
+        np.set_printoptions(linewidth=np.inf)
 
         # create output directory if needed
         outdir = os.path.dirname(args['outprefix'])
@@ -129,6 +126,11 @@ class ComputeEmpiricalGnomADSFS():
         # print('There are ' + str(int(allele_frequency_sum[25:].sum())) + ' higher frequency variants.')
 
         syn_data = dadi.Spectrum(data=allele_frequency_sum)
+        syn_data = syn_data.fold()
         syn_data.to_file(empirical_sfs)
         logger.info('Finished downsampling.')
         logger.info('Pipeline executed succesfully.')
+
+
+if __name__ == '__main__':
+    ComputeEmpiricalGnomADSFS().main()

@@ -7,4 +7,4 @@
 #$ -l h_data=15G
 #$ -l h_rt=00:10:00
 
-python gomAD_sfs.py ../Data/
+python gnomAD_sfs.py ../Data/

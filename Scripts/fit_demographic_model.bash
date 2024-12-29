@@ -2,18 +2,18 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=4:00:00
+#$ -l h_rt=48:00:00
+#$ -l highp
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_demographic_model
-#$ -t 570
+#$ -N fit_gnomAD_700
+#$ -t 700
 
-## -t 10-800:20
-
-SGE_TASK_ID=570
+# SGE_TASK_ID=700
 
 sample_size=$SGE_TASK_ID
 
 # python fit_demographic_model.py ../Analysis/p_copri_core_${sample_size}/syn_downsampled_sfs.txt ../Analysis/p_copri_core_${sample_size}/
 # python fit_demographic_model.py ../Analysis/1kg_EUR_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_${sample_size}/
-python fit_demographic_model.py ../Analysis/ooa_simulated_${sample_size}/syn_downsampled_sfs.txt ../Analysis/ooa_simulated_${sample_size}/
+# python fit_demographic_model.py ../Analysis/ooa_simulated_${sample_size}/syn_downsampled_sfs.txt ../Analysis/ooa_simulated_${sample_size}/
+python fit_demographic_model.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/

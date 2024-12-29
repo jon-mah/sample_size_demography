@@ -9,7 +9,7 @@
 #$ -t 10-800:10
 #$ -tc 25
 
-SGE_TASK_ID=10
+# SGE_TASK_ID=10
 
 sample_size=$SGE_TASK_ID
 
@@ -23,7 +23,6 @@ sample_size=$SGE_TASK_ID
 
 # gnomAD EUR data
 python downsample_sfs.py ../Data/gnomAD_empirical_syn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/syn
-
 
 # Simulated Tennessen data
 # python downsample_sfs.py ../Simulations/ooa_864_sfs/dadi/pop1.sfs ${sample_size} ../Analysis/ooa_simulated_${sample_size}/syn
