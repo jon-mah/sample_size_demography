@@ -107,17 +107,26 @@ class ComputeEmpiricalGnomADSFS():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Load the data from the .tsv file
-        file_path = '../Data/gnomAD_sfs.tsv.txt'
-        data = pd.read_csv(file_path, sep='\t')
+        # file_path = '../Data/gnomAD_sfs.tsv.txt'
+        file_path = '..Data/full_sfs.tsv.gz'
+
+        logger.info('Loading in data')
+        data = pd.read_csv(file_path, sep='\t', compression='gzip')
+        logger.info('Data succesfully loaded in')
+        # Group by the desired column
+        grouped_df = df.groupby('AC_nfe')
+
+        # Perform an aggregation on the grouped data (e.g., calculate the sum)
+        result = grouped_df.count()
 
         # Initialize an array of zeros with length 1001
-        allele_frequency_sum = np.zeros(1001)
+        # allele_frequency_sum = np.zeros(1001)
 
         # Iterate through the DataFrame and sum up 'n' for each 'AC'
-        for _, row in data.iterrows():
-            ac_value = row['AC']
-            n_value = row['n']
-            allele_frequency_sum[ac_value] += n_value
+        # for _, row in data.iterrows():
+        #     ac_value = row['AC']
+        #     n_value = row['n']
+        #     allele_frequency_sum[ac_value] += n_value
 
         # Print the resulting array
         # for i in range(25):
@@ -125,10 +134,10 @@ class ComputeEmpiricalGnomADSFS():
 
         # print('There are ' + str(int(allele_frequency_sum[25:].sum())) + ' higher frequency variants.')
 
-        syn_data = dadi.Spectrum(data=allele_frequency_sum)
-        syn_data = syn_data.fold()
-        syn_data.to_file(empirical_sfs)
-        logger.info('Finished downsampling.')
+        # syn_data = dadi.Spectrum(data=allele_frequency_sum)
+        # syn_data = syn_data.fold()
+        # syn_data.to_file(empirical_sfs)
+        # logger.info('Finished downsampling.')
         logger.info('Pipeline executed succesfully.')
 
 
