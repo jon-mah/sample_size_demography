@@ -2,14 +2,14 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=48:00:00
+#$ -l h_rt=72:00:00
 #$ -l highp
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_gnomAD_700
 #$ -t 700
 
-# SGE_TASK_ID=700
+# SGE_TASK_ID=nnn
 
 sample_size=$SGE_TASK_ID
 

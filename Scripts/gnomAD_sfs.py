@@ -108,36 +108,49 @@ class ComputeEmpiricalGnomADSFS():
 
         # Load the data from the .tsv file
         # file_path = '../Data/gnomAD_sfs.tsv.txt'
-        file_path = '..Data/full_sfs.tsv.gz'
+        file_path = '../Data/SFS.tsv.gz'
 
         logger.info('Loading in data')
-        data = pd.read_csv(file_path, sep='\t', compression='gzip')
+        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['type', 'AC_nfe'])
         logger.info('Data succesfully loaded in')
+        # print(df)
+
+        # Only include synonymous variants
+        df = df.loc[df['type'] == 'synonymous_variant']
+
+        logger.info('Only including synonymous variants.')
+        # print(df)
+
         # Group by the desired column
-        grouped_df = df.groupby('AC_nfe')
+        logger.info('Summing across alternative allele counts to generate SFS.')
+        df = df.groupby('AC_nfe')
 
         # Perform an aggregation on the grouped data (e.g., calculate the sum)
-        result = grouped_df.count()
+        allele_sum = df.count()
 
-        # Initialize an array of zeros with length 1001
-        # allele_frequency_sum = np.zeros(1001)
+        allele_sum = allele_sum.rename(columns={'type': 'unfolded frequency'})
+        allele_sum.index.names = ['n-ton']
 
-        # Iterate through the DataFrame and sum up 'n' for each 'AC'
-        # for _, row in data.iterrows():
-        #     ac_value = row['AC']
-        #     n_value = row['n']
-        #     allele_frequency_sum[ac_value] += n_value
+        # print(allele_sum)
 
-        # Print the resulting array
-        # for i in range(25):
-        #     print('There are ' + str(int(allele_frequency_sum[i])) + ' ' + str(i) + '-tons.')
+        max_n_ton = allele_sum.index[-1]
+        logger.info('Computing maximum n-ton.')
+        # print(max_n_ton)
+        # print(allele_sum.index[-1])
 
-        # print('There are ' + str(int(allele_frequency_sum[25:].sum())) + ' higher frequency variants.')
+        # Initialize an array of zeros with length equal to max n ton
+        logger.info('Convertin SFS to Dadi format.')
+        allele_frequency_sum = np.zeros(max_n_ton)
+        for i in range(max_n_ton):
+            if i in allele_sum.index:
+                allele_frequency_sum[i] = allele_sum.loc[i, 'unfolded frequency']
+            else:
+                allele_frequency_sum[i] = 0
 
-        # syn_data = dadi.Spectrum(data=allele_frequency_sum)
-        # syn_data = syn_data.fold()
-        # syn_data.to_file(empirical_sfs)
-        # logger.info('Finished downsampling.')
+        # print(allele_frequency_sum)
+        syn_data = dadi.Spectrum(data=allele_frequency_sum)
+        syn_data = syn_data.fold()
+        syn_data.to_file(empirical_sfs)
         logger.info('Pipeline executed succesfully.')
 
 

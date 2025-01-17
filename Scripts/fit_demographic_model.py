@@ -454,11 +454,11 @@ class DemographicInference():
                             'growth demographic model.')
             elif model == 'two_epoch':
                 initial_guesses = []
-                initial_guesses.append([1, 1])
-                initial_guesses.append([2, 1])
-                initial_guesses.append([3, 1])
-                initial_guesses.append([4, 1])
-                initial_guesses.append([5, 1])
+                initial_guesses.append([0.1, 1])
+                initial_guesses.append([0.2, 1])
+                initial_guesses.append([0.3, 1])
+                initial_guesses.append([0.4, 1])
+                initial_guesses.append([0.5, 1])
                 initial_guesses.append([6, 1])
                 initial_guesses.append([7, 1])
                 initial_guesses.append([8, 1])
@@ -517,11 +517,11 @@ class DemographicInference():
                             'growth demographic model.')
             elif model == 'three_epoch':
                 initial_guesses = []
-                initial_guesses.append([1, 1, 1, 1])
-                initial_guesses.append([2, 2, 1, 1])
-                initial_guesses.append([3, 3, 1, 1])
-                initial_guesses.append([4, 4, 1, 1])
-                initial_guesses.append([5, 5, 1, 1])
+                initial_guesses.append([0.1, 0.1, 1, 1])
+                initial_guesses.append([0.2, 0.2, 1, 1])
+                initial_guesses.append([0.3, 0.3, 1, 1])
+                initial_guesses.append([0.4, 0.4, 1, 1])
+                initial_guesses.append([0.5, 0.5, 1, 1])
                 initial_guesses.append([6, 6, 1, 1])
                 initial_guesses.append([7, 7, 1, 1])
                 initial_guesses.append([8, 8, 1, 1])
