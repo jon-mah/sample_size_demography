@@ -1,13 +1,12 @@
 #!/bin/bash
 #$ -cwd
 #$ -V
-#$ -l h_data=50G
-#$ -l h_rt=72:00:00
-#$ -l highp
+#$ -l h_data=15G
+#$ -l h_rt=2:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_gnomAD_700
-#$ -t 700
+#$ -N fit_gnomAD_one_epoch
+#$ -t 110-700:10
 
 # SGE_TASK_ID=nnn
 
