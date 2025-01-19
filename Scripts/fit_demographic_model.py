@@ -417,8 +417,8 @@ class DemographicInference():
         # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
         # model_list = ['three_epoch']
         # model_list = ['two_epoch']
-        # model_list = ['two_epoch', 'three_epoch']
-        model_list = ['one_epoch']
+        model_list = ['two_epoch', 'three_epoch']
+        # model_list = ['one_epoch']
         # Fit different epoch models and compute likelihood
         for model in model_list:
             if model == 'exponential_growth':
@@ -454,11 +454,11 @@ class DemographicInference():
                             'growth demographic model.')
             elif model == 'two_epoch':
                 initial_guesses = []
+                initial_guesses.append([0.01, 1])
+                initial_guesses.append([0.05, 1])
                 initial_guesses.append([0.1, 1])
-                initial_guesses.append([0.2, 1])
-                initial_guesses.append([0.3, 1])
-                initial_guesses.append([0.4, 1])
                 initial_guesses.append([0.5, 1])
+                initial_guesses.append([0.75, 1])
                 initial_guesses.append([6, 1])
                 initial_guesses.append([7, 1])
                 initial_guesses.append([8, 1])
@@ -517,11 +517,11 @@ class DemographicInference():
                             'growth demographic model.')
             elif model == 'three_epoch':
                 initial_guesses = []
+                initial_guesses.append([0.01, 0.01, 1, 1])
                 initial_guesses.append([0.1, 0.1, 1, 1])
-                initial_guesses.append([0.2, 0.2, 1, 1])
-                initial_guesses.append([0.3, 0.3, 1, 1])
-                initial_guesses.append([0.4, 0.4, 1, 1])
+                initial_guesses.append([0.25, 0.25, 1, 1])
                 initial_guesses.append([0.5, 0.5, 1, 1])
+                initial_guesses.append([0.75, 0.75, 1, 1])
                 initial_guesses.append([6, 6, 1, 1])
                 initial_guesses.append([7, 7, 1, 1])
                 initial_guesses.append([8, 8, 1, 1])
@@ -589,11 +589,11 @@ class DemographicInference():
                         lower_bound=None)
                     logger.info(
                         'Beginning optimization with guess, {0}.'.format(p0))
-                    popt = dadi.Inference.optimize_log_fmin(
+                    popt = dadi.Inference.optimize_log_lbfgsb(
                         p0=p0, data=syn_data, model_func=func_ex, pts=pts_l,
                         lower_bound=None,
                         upper_bound=None,
-                        verbose=len(p0), maxiter=25)
+                        verbose=len(p0), maxiter=10)
                     logger.info(
                         'Finished optimization with guess, ' + str(p0) + '.')
                     logger.info('Best fit parameters: {0}.'.format(popt))

@@ -1,14 +1,15 @@
 #!/bin/bash
 #$ -cwd
 #$ -V
-#$ -l h_data=15G
-#$ -l h_rt=2:00:00
+#$ -l h_data=50G
+#$ -l h_rt=24:00:00
+#$ -l highp
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_gnomAD_one_epoch
-#$ -t 110-700:10
+#$ -t 50
 
-# SGE_TASK_ID=nnn
+# SGE_TASK_ID=100
 
 sample_size=$SGE_TASK_ID
 
