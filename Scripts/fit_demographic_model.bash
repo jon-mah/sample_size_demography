@@ -9,7 +9,7 @@
 #$ -N fit_gnomAD_700
 #$ -t 700
 
-# SGE_TASK_ID=30
+# SGE_TASK_ID=50
 
 sample_size=$SGE_TASK_ID
 
