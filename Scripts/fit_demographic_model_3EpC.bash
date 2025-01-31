@@ -7,7 +7,7 @@
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_3EpC
 #$ -l highp
-#$ -t 20
+#$ -t 700
 
 # SGE_TASK_ID=30
 
