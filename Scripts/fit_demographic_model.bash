@@ -7,7 +7,7 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_gnomAD_700
-#$ -t 700
+#$ -t 300
 
 # SGE_TASK_ID=50
 
