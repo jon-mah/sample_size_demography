@@ -4,6 +4,10 @@
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source('useful_functions.R')
+source('ThreeEpochContraction_figures.R')
+source('ThreeEpochExpansion_figures.R')
+source('TwoEpochContraction_figures.R')
+source('TwoEpochExpansion_figures.R')
 
 ### Figure 1 is a summarizing schematic
 
@@ -18,7 +22,7 @@ three_EpE_singletons = c()
 one_epoch_singletons = c()
 sim_ooa_singletons = c()
 EUR_1kg_singletons = c()
-EVS_singletons = c()
+gnomAD_singletons = c()
 two_EpC_doubletons = c()
 two_EpE_doubletons = c()
 three_EpB_doubletons = c()
@@ -27,10 +31,10 @@ three_EpE_doubletons = c()
 one_epoch_doubletons = c()
 sim_ooa_doubletons = c()
 EUR_1kg_doubletons = c()
-EVS_doubletons = c()
+gnomAD_doubletons = c()
 
 # Loop through subdirectories and get relevant files
-for (i in seq(10, 800, 10)) {
+for (i in seq(10, 200, 10)) {
   two_EpC_subdirectory <- paste0("../Analysis/TwoEpochContraction_", i)
   two_EpE_subdirectory <- paste0("../Analysis/TwoEpochExpansion_", i)
   three_EpB_subdirectory <- paste0("../Analysis/ThreeEpochBottleneck_", i)
@@ -38,6 +42,7 @@ for (i in seq(10, 800, 10)) {
   three_EpE_subdirectory <- paste0("../Analysis/ThreeEpochExpansion_", i)
   sim_ooa_subdirectory <- paste0("../Analysis/ooa_simulated_", i)
   EUR_1kg_subdirectory <- paste0("../Analysis/1kg_EUR_", i)
+  gnomAD_subdirectory <- paste0("../Analysis/gnomAD_", i)
   two_EpC_empirical_file_path = file.path(two_EpC_subdirectory, "syn_downsampled_sfs.txt")
   one_epoch_empirical_file_path = file.path(two_EpC_subdirectory, "one_epoch_demography.txt")
   two_EpE_empirical_file_path = file.path(two_EpE_subdirectory, "syn_downsampled_sfs.txt")
@@ -46,8 +51,8 @@ for (i in seq(10, 800, 10)) {
   three_EpE_empirical_file_path = file.path(three_EpE_subdirectory, "syn_downsampled_sfs.txt")
   sim_ooa_empirical_file_path = file.path(sim_ooa_subdirectory, "syn_downsampled_sfs.txt")
   EUR_1kg_empirical_file_path = file.path(EUR_1kg_subdirectory, "syn_downsampled_sfs.txt")
-  EVS_empirical_file_path = file.path(EUR_1kg_subdirectory, "nonsyn_downsampled_sfs.txt")
-  
+  gnomAD_file_path = file.path(gnomAD_subdirectory, "syn_downsampled_sfs.txt")
+
   if (file.exists(two_EpC_empirical_file_path)) {
     this_SFS = proportional_sfs(read_input_sfs(two_EpC_empirical_file_path))
     two_EpC_singletons = c(two_EpC_singletons, this_SFS[1])
@@ -86,14 +91,14 @@ for (i in seq(10, 800, 10)) {
     EUR_1kg_singletons = c(EUR_1kg_singletons, this_SFS[1])
     EUR_1kg_doubletons = c(EUR_1kg_doubletons, this_SFS[2])
   }
-  if (file.exists(EVS_empirical_file_path)) {
-    this_SFS = proportional_sfs(read_input_sfs(EVS_empirical_file_path))
-    EVS_singletons = c(EVS_singletons, this_SFS[1])
-    EVS_doubletons = c(EVS_doubletons, this_SFS[2])
+  if (file.exists(gnomAD_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(gnomAD_file_path))
+    gnomAD_singletons = c(gnomAD_singletons, this_SFS[1])
+    gnomAD_doubletons = c(gnomAD_doubletons, this_SFS[2])
   }
 }
 
-sample_size = seq(10, 800, 10)
+sample_size = seq(10, 200, 10)
 
 
 singletons_df = data.frame(
@@ -106,8 +111,7 @@ singletons_df = data.frame(
   "Neural Demography" = one_epoch_singletons,
   "Simulated OOA" = sim_ooa_singletons,
   "1KG EUR" = EUR_1kg_singletons,
-  "EVS" = EVS_singletons,
-  "LuCamp" = (sim_ooa_singletons + EVS_singletons) / 2)
+  "gnomAD" = gnomAD_singletons)
 
 doubletons_df = data.frame(
   "Sample size" = sample_size,
@@ -119,9 +123,7 @@ doubletons_df = data.frame(
   "Neural Demography" = one_epoch_doubletons,
   "Simulated OOA" = sim_ooa_doubletons,
   "1KG EUR" = EUR_1kg_doubletons,
-  "EVS" = EVS_doubletons,
-  "LuCamp" = (sim_ooa_doubletons + EVS_doubletons) / 2)
-
+  "gnomAD" = gnomAD_doubletons)
 
 single_plus_doubletons_df = data.frame(
   "Sample size" = sample_size,
@@ -133,73 +135,190 @@ single_plus_doubletons_df = data.frame(
   "Neural Demography" = one_epoch_singletons + one_epoch_doubletons,
   "Simulated OOA" = sim_ooa_singletons + sim_ooa_doubletons,
   "1KG EUR" = EUR_1kg_singletons + EUR_1kg_doubletons,
-  "EVS" = EVS_singletons + EVS_doubletons,
-  "LuCamp" = (sim_ooa_singletons + EVS_singletons) / 2 + (sim_ooa_doubletons + EVS_doubletons) / 2
-)
+  "gnomAD" = gnomAD_singletons + gnomAD_doubletons)
 
 singletons_df = melt(singletons_df, id="Sample.size")
 doubletons_df = melt(doubletons_df, id="Sample.size")
 single_plus_doubletons_df = melt(single_plus_doubletons_df, id="Sample.size")
 
 plot_singleton_proportion = ggplot(singletons_df, aes(x=Sample.size, y=value, color=variable)) +
-  geom_line() +
-  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen', 'cyan', 'darkcyan'),
+  geom_line(linewidth=1, aes(linetype=variable)) +
+    scale_color_manual(values=c('#d73027', '#f46d43', '#fdae61', '#fee090', '#e0f3f8', 
+    'black', '#abd9e9', '#74add1', '#4575b4'),
     labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
       'Three Epoch Bottleneck',
       'Three Epoch Contraction',
       'Three Epoch Expansion',
       'Neutral Demography',
-      'Simulated EUR',
-      'Empirical EUR',
-      'EVS',
-      'LuCamp'),
-    name='Simulated Demography') +
+      'Tennessen et al.',
+      '1000Genomes',
+      'gnomAD'),
+    name='Simulated or empirical demography') +
+  scale_linetype_manual(values=c('dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'solid', 'solid')) +
   theme_bw() +
+  guides(linetype = 'none') +
+  guides(linewidth = 'none') +
   xlab('Sample size') +
   ylab('Singleton proportion') +
-  ggtitle('Proportion of SFS comprised of singletons by simulated demographic history')
+  ggtitle('Proportion of SFS comprised of singletons')
 
 plot_singleton_proportion
 
 plot_doubleton_proportion = ggplot(doubletons_df, aes(x=Sample.size, y=value, color=variable)) +
-  geom_line() +
-  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen', 'cyan', 'darkcyan'),
+  geom_line(linewidth=1, aes(linetype=variable)) +
+    scale_color_manual(values=c('#d73027', '#f46d43', '#fdae61', '#fee090', '#e0f3f8', 
+    'black', '#abd9e9', '#74add1', '#4575b4'),
     labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
       'Three Epoch Bottleneck',
       'Three Epoch Contraction',
       'Three Epoch Expansion',
       'Neutral Demography',
-      'Simulated EUR',
-      'Empirical EUR',
-      'EVS',
-      'LuCamp'),
-    name='Simulated Demography') +
+      'Tennessen et al.',
+      '1000Genomes',
+      'gnomAD'),
+    name='Simulated or empirical demography') +
+  scale_linetype_manual(values=c('dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'solid', 'solid')) +
   theme_bw() +
+  guides(linetype = 'none') +
+  guides(linewidth = 'none') +
   xlab('Sample size') +
-  ylab('doubleton proportion') +
-  ggtitle('Proportion of SFS comprised of doubletons by simulated demographic history')
+  ylab('Doubleton proportion') +
+  ggtitle('Proportion of SFS comprised of singletons')
 
 plot_doubleton_proportion
 
 plot_single_plus_doubleton_proportion = ggplot(single_plus_doubletons_df, aes(x=Sample.size, y=value, color=variable)) +
-  geom_line() +
-  scale_color_manual(values=c('red', 'blue', 'green', 'orange', 'lightblue', 'black', 'lightgreen', 'darkgreen', 'cyan', 'darkcyan'),
+  geom_line(linewidth=1, aes(linetype=variable)) +
+    scale_color_manual(values=c('#d73027', '#f46d43', '#fdae61', '#fee090', '#e0f3f8', 
+    'black', '#abd9e9', '#74add1', '#4575b4'),
     labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
       'Three Epoch Bottleneck',
       'Three Epoch Contraction',
       'Three Epoch Expansion',
       'Neutral Demography',
-      'Simulated EUR',
-      'Empirical EUR',
-      'EVS',
-      'LuCamp'),
-    name='Simulated Demography') +
+      'Tennessen et al.',
+      '1000Genomes',
+      'gnomAD'),
+    name='Simulated or empirical demography') +
+  scale_linetype_manual(values=c('dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'solid', 'solid')) +
   theme_bw() +
+  guides(linetype = 'none') +
+  guides(linewidth = 'none') +
   xlab('Sample size') +
-  ylab('doubleton proportion') +
-  ggtitle('Proportion of SFS comprised of singletons and doubletons by simulated demographic history')
+  ylab('Singleton+doubleton proportion') +
+  ggtitle('Proportion of SFS comprised of singletons')
 
 plot_single_plus_doubleton_proportion
+
+### Figure 3 Rare variants
+
+# Simple simulations
+two_EpC_rare_variants = c()
+two_EpE_rare_variants = c()
+three_EpB_rare_variants = c()
+three_EpC_rare_variants = c()
+three_EpE_rare_variants = c()
+one_epoch_rare_variants = c()
+sim_ooa_rare_variants = c()
+EUR_1kg_rare_variants = c()
+gnomAD_rare_variants = c()
+
+
+# Loop through subdirectories and get relevant files
+for (i in seq(10, 100, 10)) {
+  two_EpC_subdirectory <- paste0("../Analysis/TwoEpochContraction_", i)
+  two_EpE_subdirectory <- paste0("../Analysis/TwoEpochExpansion_", i)
+  three_EpB_subdirectory <- paste0("../Analysis/ThreeEpochBottleneck_", i)
+  three_EpC_subdirectory <- paste0("../Analysis/ThreeEpochContraction_", i)
+  three_EpE_subdirectory <- paste0("../Analysis/ThreeEpochExpansion_", i)
+  sim_ooa_subdirectory <- paste0("../Analysis/ooa_simulated_", i)
+  EUR_1kg_subdirectory <- paste0("../Analysis/1kg_EUR_", i)
+  gnomAD_subdirectory <- paste0("../Analysis/gnomAD_", i)
+  two_EpC_empirical_file_path = file.path(two_EpC_subdirectory, "syn_downsampled_sfs.txt")
+  one_epoch_empirical_file_path = file.path(two_EpC_subdirectory, "one_epoch_demography.txt")
+  two_EpE_empirical_file_path = file.path(two_EpE_subdirectory, "syn_downsampled_sfs.txt")
+  three_EpB_empirical_file_path = file.path(three_EpB_subdirectory, "syn_downsampled_sfs.txt")
+  three_EpC_empirical_file_path = file.path(three_EpC_subdirectory, "syn_downsampled_sfs.txt")
+  three_EpE_empirical_file_path = file.path(three_EpE_subdirectory, "syn_downsampled_sfs.txt")
+  sim_ooa_empirical_file_path = file.path(sim_ooa_subdirectory, "syn_downsampled_sfs.txt")
+  EUR_1kg_empirical_file_path = file.path(EUR_1kg_subdirectory, "syn_downsampled_sfs.txt")
+  gnomAD_file_path = file.path(gnomAD_subdirectory, "syn_downsampled_sfs.txt")
+
+  if (file.exists(two_EpC_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(two_EpC_empirical_file_path))
+    two_EpC_rare_variants = c(two_EpC_rare_variants, calculate_rare_variant_proportion(this_SFS))
+    one_epoch_SFS = proportional_sfs(sfs_from_demography(one_epoch_empirical_file_path))
+    one_epoch_rare_variants = c(one_epoch_rare_variants, calculate_rare_variant_proportion(one_epoch_SFS))
+  }
+  if (file.exists(two_EpE_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(two_EpE_empirical_file_path))
+    two_EpE_rare_variants = c(two_EpE_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+  if (file.exists(three_EpB_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(three_EpB_empirical_file_path))
+    three_EpB_rare_variants = c(three_EpB_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+  if (file.exists(three_EpC_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(three_EpC_empirical_file_path))
+    three_EpC_rare_variants = c(three_EpC_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+  if (file.exists(three_EpE_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(three_EpE_empirical_file_path))
+    three_EpE_rare_variants = c(three_EpE_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+  if (file.exists(sim_ooa_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(sim_ooa_empirical_file_path))
+    sim_ooa_rare_variants = c(sim_ooa_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+  if (file.exists(EUR_1kg_empirical_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(EUR_1kg_empirical_file_path))
+    EUR_1kg_rare_variants = c(EUR_1kg_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+  if (file.exists(gnomAD_file_path)) {
+    this_SFS = proportional_sfs(read_input_sfs(gnomAD_file_path))
+    gnomAD_rare_variants = c(gnomAD_rare_variants, calculate_rare_variant_proportion(this_SFS))
+  }
+}
+
+sample_size = seq(10, 100, 10)
+
+rare_variants_df = data.frame(
+  "Sample size" = sample_size,
+  "Two Epoch Contraction" = two_EpC_rare_variants,
+  "Two Epoch Expansion" = two_EpE_rare_variants,
+  "Three Epoch Bottleneck" = three_EpB_rare_variants,
+  "Three Epoch Contraction" = three_EpC_rare_variants,
+  "Three Epoch Expansion" = three_EpE_rare_variants,
+  "Neural Demography" = one_epoch_rare_variants,
+  "Simulated OOA" = sim_ooa_rare_variants,
+  "1KG EUR" = EUR_1kg_rare_variants,
+  "gnomAD" = gnomAD_rare_variants)
+
+rare_variants_df = melt(rare_variants_df, id="Sample.size")
+
+plot_rare_variants_proportion = ggplot(rare_variants_df, aes(x=Sample.size, y=value, color=variable)) +
+  geom_line(linewidth=1, aes(linetype=variable)) +
+    scale_color_manual(values=c('#d73027', '#f46d43', '#fdae61', '#fee090', '#e0f3f8', 
+    'black', '#abd9e9', '#74add1', '#4575b4'),
+    labels=c('Two Epoch Contraction', 'Two Epoch Expansion', 
+      'Three Epoch Bottleneck',
+      'Three Epoch Contraction',
+      'Three Epoch Expansion',
+      'Neutral Demography',
+      'Tennessen et al.',
+      '1000Genomes',
+      'gnomAD'),
+    name='Simulated or empirical demography') +
+  scale_linetype_manual(values=c('dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'dashed', 'solid', 'solid')) +
+  theme_bw() +
+  guides(linetype = 'none') +
+  guides(linewidth = 'none') +
+  xlab('Sample size') +
+  ylab('Rare variant proportion') +
+  ggtitle('Proportion of SFS comprised of rare variants')
+
+plot_rare_variants_proportion
+
 
 # Simple simulations
 two_EpC_watterson_theta = c()
@@ -342,6 +461,14 @@ plot_tajima_D = ggplot(tajima_D_df, aes(x=Sample.size, y=value, color=variable))
 plot_tajima_D
 
 ### Figure 3
+
+### Figure 4 Simulation summarizing figures
+
+best_fit_2EpC + theme(legend.position="none") +
+  best_fit_2EpE + 
+  best_fit_3EpC + theme(legend.position="none") +
+  best_fit_3EpE + theme(legend.position="none") +
+  plot_layout(nrow=2)
 
 ### Figure 5 Three Epoch Bottleneck Demography
 
