@@ -305,7 +305,7 @@ ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoch_Time_10, TwoEp
   theme_bw() +
   ylab('Effective Population Size') +
   xlab('Time in Years') +
-  ggtitle('Simulated 2EpC two Epoch Demography')
+  ggtitle('Simulated two-epoch contraction')
 
 best_fit_2EpC = ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoch_Time_10, TwoEpochC_two_epoch_NEffective_10, color='N=10')) + geom_step(linewidth=1, linetype='dashed') + 
   geom_step(data=TwoEpochC_two_epoch_demography_20, aes(TwoEpochC_two_epoch_Time_20, TwoEpochC_two_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='dashed') +

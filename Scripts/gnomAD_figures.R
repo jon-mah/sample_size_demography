@@ -530,6 +530,8 @@ compare_1kg_gnomad_null_proportional_cutoff(EUR_empirical_300, gnomAD_empirical_
 compare_1kg_gnomad_null_proportional_cutoff(EUR_empirical_500, gnomAD_empirical_500, gnomAD_one_epoch_500) + ggtitle('Sample size = 500')
 compare_1kg_gnomad_null_proportional_cutoff(EUR_empirical_700, gnomAD_empirical_700, gnomAD_one_epoch_700) + ggtitle('Sample size = 700')
 
+compare_1kg_gnomad_proportional_cutoff(EUR_empirical_700, gnomAD_empirical_700) + ggtitle('1000Genomes vs. gnomAD, N=700 samples')
+
 # Simple simulations
 empirical_singletons = c()
 empirical_doubletons = c()
