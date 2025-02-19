@@ -34,7 +34,7 @@ class ArgumentParserNoArgHelp(argparse.ArgumentParser):
         sys.exit(2)
 
 
-class ComputeDownSampledSFS():
+class ConvertVCFtoSFS():
     """Wrapper class to allow functions to reference each other."""
 
     def ExistingFile(self, fname):
@@ -44,11 +44,11 @@ class ComputeDownSampledSFS():
         else:
             raise ValueError("%s must specify a valid file name" % fname)
 
-    def downsampleSFSParser(self):
+    def VCFtoSFSParser(self):
         """Return *argparse.ArgumentParser* for ``fitdadi_infer_DFE.py``."""
         parser = ArgumentParserNoArgHelp(
             description=(
-                'Computes a downsampled SFS for a given species.'),
+                'Converts a given VCF to dadi SFS format.'),
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument(
             'input_vcf', type=self.ExistingFile,
@@ -64,7 +64,7 @@ class ComputeDownSampledSFS():
     def main(self):
         """Execute main function."""
         # Parse command line arguments
-        parser = self.downsampleSFSParser()
+        parser = self.VCFtoSFSParser()
         args = vars(parser.parse_args())
         prog = parser.prog
 
@@ -72,7 +72,6 @@ class ComputeDownSampledSFS():
         outprefix = args['outprefix']
         input_vcf = args['input_vcf']
         input_popfile = args['input_popfile']
-        sample_size = args['sample_size']
         random.seed(1)
 
         # Numpy options
@@ -90,9 +89,9 @@ class ComputeDownSampledSFS():
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
         output_sfs = \
-           '{0}{1}_sfs.txt'.format(
+           '{0}{1}sfs.txt'.format(
                 args['outprefix'], underscore)
-        logfile = '{0}{1}downsampled.log'.format(
+        logfile = '{0}{1}VCFtoSFS.log'.format(
             args['outprefix'], underscore)
         to_remove = [logfile, output_sfs]
         for f in to_remove:
@@ -122,10 +121,10 @@ class ComputeDownSampledSFS():
         logger.info('Parsed the following arguments:\n{0}\n'.format(
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
-        input_popname = 'EUR'
+        pop_ids = ['EUR']
         projection_num = 100
-        dd = dadi.Misc.make_data_dict_vcf(inputvcf, inputpopfile)
-        output_spectrum = dadi.Spectrum.from_data_dict(dd, [input_popname],
+        dd = dadi.Misc.make_data_dict_vcf(input_vcf, input_popfile)
+        output_spectrum = dadi.Spectrum.from_data_dict(dd, pop_ids,
             projections = [projection_num], polarized = False)
         output_spectrum.to_file(output_sfs)
 
@@ -133,4 +132,4 @@ class ComputeDownSampledSFS():
 
 
 if __name__ == '__main__':
-    ComputeDownSampledSFS().main()
+    ConvertVCFtoSFS().main()

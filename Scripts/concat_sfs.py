@@ -1,4 +1,4 @@
-""" Uses MSPrime to simulate four demographic scenarios.
+""" Concatenates all SFSs within a given directory.
 
 JCM 20240207
 """
@@ -56,7 +56,8 @@ class concatSFS():
         # Assign arguments
         outprefix = args['outprefix']
         outprefix_string = str(outprefix)
-        matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
+        # matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
+        matching_files = glob.glob(outprefix_string + '*sfs.txt', recursive=True)
 
         # create output directory if needed
         outdir = os.path.dirname(args['outprefix'])
@@ -100,7 +101,8 @@ class concatSFS():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Grab all files which begin with outprefix
-        output_spectrum = dadi.Spectrum([0] * 1001)
+        # output_spectrum = dadi.Spectrum([0] * 1001)
+        output_spectrum = dadi.Spectrum([0] * 101)
         output_spectrum = output_spectrum.fold()
         for file in matching_files:
             temp_sfs = dadi.Spectrum.from_file(file)
