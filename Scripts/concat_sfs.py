@@ -102,7 +102,7 @@ class concatSFS():
 
         # Grab all files which begin with outprefix
         # output_spectrum = dadi.Spectrum([0] * 1001)
-        output_spectrum = dadi.Spectrum([0] * 101)
+        output_spectrum = dadi.Spectrum([0] * 306)
         output_spectrum = output_spectrum.fold()
         for file in matching_files:
             temp_sfs = dadi.Spectrum.from_file(file)
