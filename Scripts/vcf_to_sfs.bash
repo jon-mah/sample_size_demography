@@ -12,5 +12,6 @@
 
 VCF=$SGE_TASK_ID
 
-python vcf_to_sfs.py ../Data/temp_bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/chr${VCF}
+# python vcf_to_sfs.py ../Data/temp_bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/chr${VCF}
 
+python vcf_to_sfs.py ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/chr${VCF}

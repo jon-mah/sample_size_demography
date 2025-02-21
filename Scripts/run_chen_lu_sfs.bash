@@ -13,7 +13,7 @@
 chr='chr'$SGE_TASK_ID
 dirvcf='/u/project/klohmuel/DataRepository/NYGC_1KG/genotype'
 inputvcf=$dirvcf"/20201028_CCDG_14151_B01_GRM_WGS_2020-08-05_"$chr".recalibrated_variants.vcf.gz"
-maskfile='/u/project/klohmuel/cdi/noncdoingdfe/data/vcf_1kg220425/originalfile/originalfile/20160622.allChr.mask.bed'
+maskfile='/u/project/klohmuel/cdi/noncdoingdfe/data/vcf_1kg220425/originalfile/20160622.allChr.mask.bed'
 inputsample='../Data/samples_EUR.txt'
 dirout='../Data/'
 
