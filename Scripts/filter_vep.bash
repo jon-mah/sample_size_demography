@@ -12,8 +12,11 @@
 
 VCF=$SGE_TASK_ID
 
-# filter_vep -i ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf -o ../Data/syn.bisnp.EUR.1kGP.chr${VCF}.vcf --vcf --ontology --filter "Consequence is synonymous_variant" --force_overwrite
-# filter_vep -i ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf -o ../Data/nonsyn.bisnp.EUR.1kGP.chr${VCF}.vcf --vcf --ontology --filter "Consequence is missense_variant" --force_overwrite
+gzip -d ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf
+
+filter_vep -i ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf -o ../Data/syn.bisnp.EUR.1kGP.chr${VCF}.vcf --format vcf --ontology --filter "Consequence is synonymous_variant" --only_match --force_overwrite
+filter_vep -i ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf -o ../Data/nonsyn.bisnp.EUR.1kGP.chr${VCF}.vcf --format vcf --ontology --filter "Consequence is missense_variant" --only_match --force_overwrite
 
 gzip ../Data/syn.bisnp.EUR.1kGP.chr${VCF}.vcf
 gzip ../Data/nonsyn.bisnp.EUR.1kGP.chr${VCF}.vcf
+gzip ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf
