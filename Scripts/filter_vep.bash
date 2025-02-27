@@ -5,10 +5,10 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=25G
-#$ -l h_rt=01:00:00
+#$ -l h_rt=02:00:00
 #$ -t 1-22
 
-# SGE_TASK_ID=12
+# SGE_TASK_ID=3
 
 VCF=$SGE_TASK_ID
 
