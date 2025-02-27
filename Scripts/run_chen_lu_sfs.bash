@@ -6,7 +6,7 @@
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_rt=12:00:00
 #$ -l highp
-#$ -t 2
+#$ -t 1-22
 
 # SGE_TASK_ID='21'
 

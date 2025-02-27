@@ -12,9 +12,9 @@
 
 VCF=$SGE_TASK_ID
 
-# gzip -d ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf.gz
+gzip -d ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf.gz
 
-# vep -i ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf -o ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf --vcf --offline --format vcf --force_overwrite
+vep -i ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf -o ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf --vcf --offline --format vcf --force_overwrite
 
-# gzip ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf
+gzip ../Data/mask.bisnp.EUR.1kGP.chr${VCF}.vcf
 gzip ../Data/vep.bisnp.EUR.1kGP.chr${VCF}.vcf
