@@ -82,7 +82,7 @@ inputsample_fn="${inputsample_fn#*_}"
 
 ### Name the output file by samples and chr.
 output1=$dirtemp$inputsample_fn".1kGP."$chr".vcf.gz" # vcf file for given samples
-output2=$dirout'poly.'$input2_name # biallelic vcf file
+output2=$dirout'poly.'$inputsample_fn".1kGP."$chr".vcf.gz" # biallelic vcf file
 output3=$dirout'mask.bisnp.'$inputsample_fn".1kGP."$chr".vcf.gz" # pass mask file to get high quality sites 
 output5=$dirout'csites.'$chr.tab # record the number of sites in different steps
 
