@@ -418,8 +418,8 @@ class DemographicInference():
 
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
-        model_list = ['one_epoch', 'two_epoch', 'three_epoch']
-        # model_list = ['three_epoch']
+        # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
+        model_list = ['three_epoch']
         # model_list = ['two_epoch']
         # model_list = ['two_epoch', 'three_epoch']
         # model_list = ['one_epoch']

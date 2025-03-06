@@ -9,7 +9,7 @@
 #$ -N fit_updated_1KG_300
 #$ -t 300
 
-# SGE_TASK_ID=10
+# SGE_TASK_ID=300
 
 sample_size=$SGE_TASK_ID
 
