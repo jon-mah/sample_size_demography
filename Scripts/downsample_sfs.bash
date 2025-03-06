@@ -17,12 +17,12 @@ sample_size=$SGE_TASK_ID
 # python downsample_sfs.py ../Data/p_copri_core_empirical_nonsyn_sfs.txt ${sample_size} ../Analysis/p_copri_core_${sample_size}/nonsyn
 
 # 1000Genomes EUR data
-# python downsample_sfs.py ../Data/kim_et_al_2017_1kg_syn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/syn
-# python downsample_sfs.py ../Data/kim_et_al_2017_1kg_nonsyn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/nonsyn
+python downsample_sfs.py ../Data/kim_et_al_2017_1kg_syn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/syn
+python downsample_sfs.py ../Data/kim_et_al_2017_1kg_nonsyn.txt ${sample_size} ../Analysis/1kg_EUR_${sample_size}/nonsyn
 
 # 1000Genomes EUR 2020 data
-python downsample_sfs.py ../Data/1KG_2020/syn_chr_concat.sfs ${sample_size} ../Data/1KG_2020/${sample_size}_syn
-python downsample_sfs.py ../Data/1KG_2020/nonsyn_chr_concat.sfs ${sample_size} ../Data/1KG_2020/${sample_size}_nonsyn
+python downsample_sfs.py ../Data/1KG_2020/syn_chr_concat.sfs ${sample_size} ../Analysis/1kg_EUR_2020_${sample_size}/syn
+python downsample_sfs.py ../Data/1KG_2020/nonsyn_chr_concat.sfs ${sample_size} ../Analysis/1kg_EUR_2020_${sample_size}/nonsyn
 
 # gnomAD EUR data
 # python downsample_sfs.py ../Data/gnomAD_empirical_syn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/syn
