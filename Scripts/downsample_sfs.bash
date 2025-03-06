@@ -26,6 +26,7 @@ python downsample_sfs.py ../Data/1KG_2020/nonsyn_chr_concat.sfs ${sample_size} .
 
 # gnomAD EUR data
 # python downsample_sfs.py ../Data/gnomAD_empirical_syn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/syn
+python downsample_sfs.py ../Data/gnomAD_empirical_nonsyn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/nonsyn
 
 # Simulated Tennessen data
 # python downsample_sfs.py ../Simulations/ooa_864_sfs/dadi/pop1.sfs ${sample_size} ../Analysis/ooa_simulated_${sample_size}/syn
