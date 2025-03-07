@@ -1,55 +1,26 @@
 #!/bin/bash
 #$ -cwd
 #$ -V
-#$ -m a
 #$ -l h_data=50G
-#$ -l h_rt=12:00:00
+#$ -l h_rt=72:00:00
 #$ -l highp
-#$ -t 21
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_dfe_FD_accessory
+#$ -N fit_updated_1KG_300
+#$ -t 10
 
-SGE_TASK_ID=21
-#### Python 3
-# i=0
-# while read line;
-# do
-#   i=$((i+1))
-#   if [ $i -eq $SGE_TASK_ID ]
-#    then
-#      species=$line
-#   fi
-# done < ../Data/good_species_list.txt
+SGE_TASK_ID=300
 
-# i=0
-# while read line;
-# do
-#   i=$((i+1))
-#   if [ $i -eq $SGE_TASK_ID ]
-#     then
-#       species=$line
-#   fi
-# done < ../HighRecombinationData/good_species_list.txt
+sample_size=$SGE_TASK_ID
 
-i=0
-while read line;
-do
-  i=$((i+1))
-  if [ $i -eq $SGE_TASK_ID ]
-   then
-     species=$line
-  fi
-done < ../SupplementaryAnalysis/supplementary_species_list.txt
+## 1KG EUR (2017)
+# python fit_dfe.py ../Analysis/1kg_EUR_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/1kg_EUR_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/1kg_EUR_${sample_size}/
+# python fit_dfe.py ../Analysis/1kg_EUR_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/1kg_EUR_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/1kg_EUR_${sample_size}/
 
-sample_size=14
+## 1KG EUR (2020)
+# python fit_dfe.py ../Analysis/1kg_EUR_2020_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/1kg_EUR_2020_${sample_size}/
+# python fit_dfe.py ../Analysis/1kg_EUR_2020_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/1kg_EUR_2020_${sample_size}/
 
-
-# Core FD
-# python fit_dfe.py ../SupplementaryAnalysis/${species}/core_empirical_syn_downsampled_sfs.txt ../SupplementaryAnalysis/${species}/core_empirical_nonsyn_downsampled_sfs.txt ../SupplementaryAnalysis/${species}/two_epoch_demography.txt two_epoch ../SupplementaryAnalysis/${species}/core
-
-# Accessory FD
-# python fit_dfe.py ../SupplementaryAnalysis/${species}/accessory_empirical_syn_downsampled_sfs.txt ../SupplementaryAnalysis/${species}/accessory_empirical_nonsyn_downsampled_sfs.txt ../SupplementaryAnalysis/${species}/accessory_two_epoch_demography.txt two_epoch ../SupplementaryAnalysis/${species}/accessory
-
-# HR core
-# python fit_dfe.py ../HighRecombinationAnalysis/${species}/core_0.5_empirical_syn_14_downsampled_sfs.txt ../HighRecombinationAnalysis/${species}/core_0.5_empirical_nonsyn_14_downsampled_sfs.txt ../HighRecombinationAnalysis/${species}/core_0.5_two_epoch_demography.txt two_epoch ../HighRecombinationAnalysis/${species}/core_0.5
+## gnomAD
+# python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/gnomAD_${sample_size}/
+# python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/gnomAD_${sample_size}/

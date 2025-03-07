@@ -154,8 +154,8 @@ class DFEInference():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Construct initial Spectrum object from input sfs's.
-        syn_data = dadi.Spectrum.from_file(syn_input_sfs).fold()
-        nonsyn_data = dadi.Spectrum.from_file(nonsyn_input_sfs).fold()
+        syn_data = dadi.Spectrum.from_file(syn_input_sfs)
+        nonsyn_data = dadi.Spectrum.from_file(nonsyn_input_sfs)
 
         syn_ns = syn_data.sample_sizes # Number of samples.
         nonsyn_ns = nonsyn_data.sample_sizes # Number of samples
@@ -177,7 +177,10 @@ class DFEInference():
         logger.info('Input theta_syn is: ' + str(theta_syn) + '.')
         theta_nonsyn = theta_syn * 2.21
 
-        pts_l = [20, 40, 60]
+        pts_l_1 = int(nonsyn_ns * 3)
+        pts_l_2 = int(nonsyn_ns * 4)
+        pts_l_3 = int(nonsyn_ns * 5)
+        pts_l = [pts_l_1, pts_l_2, pts_l_3]
         logger.info('Generating spectrum from input demography.')
         # input_model = 'two_epoch'
         if input_model == 'two_epoch':
