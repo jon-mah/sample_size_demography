@@ -190,6 +190,30 @@ compare_one_two_three_proportional_sfs_cutoff = function(empirical, one_epoch, t
   return(p_input_comparison)
 }
 
+compare_syn_nonsyn_count = function(empirical_syn, empirical_nonsyn) {
+  x_axis = 1:20
+  input_df = data.frame(empirical_syn[1:20],
+                        empirical_nonsyn[1:20],
+                        x_axis)
+  
+  names(input_df) = c('Empirical synonymous',
+                      'Empirical nonsynonymous',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Number of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
 compare_null_sfs = function(empirical, one_epoch) {
   x_axis = 1:length(empirical)
   input_df = data.frame(empirical,
@@ -270,6 +294,40 @@ compare_1kg_gnomad_null_proportional_cutoff = function(empirical_1kg, empirical_
   return(p_input_comparison)
 }
 
+compare_1kg_gnomad_null_proportional_cutoff = function(old_1kg, empirical_1kg, empirical_gnomad, one_epoch) {
+  x_axis = 1:10
+  old_1kg = proportional_sfs(old_1kg)[1:10]
+  empirical_1kg = proportional_sfs(empirical_1kg)[1:10]
+  empirical_gnomad = proportional_sfs(empirical_gnomad)[1:10]
+  one_epoch = proportional_sfs(one_epoch)[1:10]
+  input_df = data.frame(old_1kg,
+                        empirical_1kg,
+                        empirical_gnomad,
+                        one_epoch,
+                        x_axis)
+  
+  names(input_df) = c('Empirical 1KG (2017)',
+                      'Empirical 1KG (2020',
+                      'Empirical gnomAD',
+                      'One-epoch',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
+  
+  return(p_input_comparison)
+}
+
+
 compare_1kg_gnomad_proportional_cutoff = function(empirical_1kg, empirical_gnomad) {
   x_axis = 1:10
   empirical_1kg = proportional_sfs(empirical_1kg)[1:10]
@@ -294,6 +352,64 @@ compare_1kg_gnomad_proportional_cutoff = function(empirical_1kg, empirical_gnoma
                        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
     ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
   
+  return(p_input_comparison)
+}
+
+compare_1kg_gnomad_syn_proportional_cutoff = function(empirical_1kg_2017, empirical_1kg_2020, empirical_gnomad) {
+  x_axis = 1:10
+  empirical_1kg_2017 = proportional_sfs(empirical_1kg_2017)[1:10]
+  empirical_1kg_2020 = proportional_sfs(empirical_1kg_2020)[1:10]
+  empirical_gnomad = proportional_sfs(empirical_gnomad)[1:10]
+  input_df = data.frame(empirical_1kg_2017,
+                        empirical_1kg_2020,
+                        empirical_gnomad,
+                        x_axis)
+  
+  names(input_df) = c('1KG (2017), syn',
+                      '1KG (2020), syn',
+                      'gnomAD, syn',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
+compare_1kg_gnomad_nonsyn_proportional_cutoff = function(empirical_1kg_2017, empirical_1kg_2020, empirical_gnomad) {
+  x_axis = 1:10
+  empirical_1kg_2017 = proportional_sfs(empirical_1kg_2017)[1:10]
+  empirical_1kg_2020 = proportional_sfs(empirical_1kg_2020)[1:10]
+  empirical_gnomad = proportional_sfs(empirical_gnomad)[1:10]
+  input_df = data.frame(empirical_1kg_2017,
+                        empirical_1kg_2020,
+                        empirical_gnomad,
+                        x_axis)
+  
+  names(input_df) = c('1KG (2017), nonsyn',
+                      '1KG (2020), nonsyn',
+                      'gnomAD, nonsyn',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
   return(p_input_comparison)
 }
 
