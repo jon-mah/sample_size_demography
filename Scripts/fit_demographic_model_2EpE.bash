@@ -5,9 +5,9 @@
 #$ -l h_rt=36:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_2EpE
+#$ -N fit_2EpE_100
 #$ -l highp
-#$ -t 700
+#$ -t 100
 
 # SGE_TASK_ID=10
 

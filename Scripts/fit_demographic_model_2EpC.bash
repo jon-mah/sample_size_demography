@@ -5,11 +5,11 @@
 #$ -l h_rt=36:30:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_2EpC
+#$ -N fit_2EpC_10
 #$ -l highp
-#$ -t 700
+#$ -t 10
 
-# SGE_TASK_ID=770
+SGE_TASK_ID=10
 
 sample_size=$SGE_TASK_ID
 

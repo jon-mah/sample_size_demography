@@ -419,9 +419,9 @@ class DemographicInference():
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
         # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
-        model_list = ['three_epoch']
+        # model_list = ['three_epoch']
         # model_list = ['two_epoch']
-        # model_list = ['two_epoch', 'three_epoch']
+        model_list = ['two_epoch', 'three_epoch']
         # model_list = ['one_epoch']
         # Fit different epoch models and compute likelihood
         for model in model_list:
@@ -642,6 +642,47 @@ class DemographicInference():
                     syn_data))
                 f.write('Scaled best-fit model spectrum: {0}.\n'.format(
                     best_scaled_spectrum))
+            logger.info('Converting and interpreting Tau estimates.')
+            sequence_length = 1000000
+            simulation_mu = 1.5E-8
+            if model_type == 'one_epoch':
+                f.write(
+                    'Low estimate for ancestral population size is ' +
+                    str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
+                f.write(
+                    'High estimate for ancestral population size is ' +
+                    str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
+            elif model_type == 'two_epoch':
+                best_nu = best_params[0]
+                best_tau = best_params[1]
+                generations = 2 * best_tau * theta_syn / (4 * simulation_mu * sequence_length)
+                f.write(
+                    'Estimate for time is ' + str(generations) + 
+                    'generations.')
+                f.write(
+                    'Estimated ancestral population size is ' +
+                    str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
+            else:
+                best_nu_b = best_params[0]
+                best_nu_f = best_params[1]
+                best_tau_b = best_params[2]
+                best_tau_f = best_params[3]
+                # Correct the algebra
+                generations_b = 2 * best_tau_b * theta_syn / (4 * simulation_mu * sequence_length)
+                generations_f = 2 * best_tau_f * theta_syn / (4 * simulation_mu * sequence_length)
+                generations_total = generations_b + generations_f
+                f.write(
+                    'Estimate for bottleneck length in generations is ' +
+                    str(generations_b) + ' generations.\n')
+                f.write(
+                    'Estimate for time since bottleneck in generations is ' +
+                    str(generations_f) + ' generations.\n')
+                f.write(
+                    'Estimate for total time in generations is ' +
+                    str(generations_total) + '.\n')
+                f.write(
+                    'Estimate for ancestral population size is ' +
+                    str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
         logger.info('Finished demographic inference.')
         logger.info('Pipeline executed succesfully.')
 
