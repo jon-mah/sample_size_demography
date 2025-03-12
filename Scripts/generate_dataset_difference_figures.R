@@ -1,0 +1,656 @@
+# generate_dataset_difference_figures.R
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+source('useful_functions.R')
+
+global_mu = 1.5E-8
+global_allele_sum = 60000000
+
+## Define figure input params
+# Define EUR 2017 empirical data
+EUR_2017_syn_10 = read_input_sfs('../Analysis/1kg_EUR_10/syn_downsampled_sfs.txt')
+EUR_2017_nonsyn_10 = read_input_sfs('../Analysis/1kg_EUR_10/nonsyn_downsampled_sfs.txt')
+
+EUR_2017_syn_100 = read_input_sfs('../Analysis/1kg_EUR_100/syn_downsampled_sfs.txt')
+EUR_2017_nonsyn_100 = read_input_sfs('../Analysis/1kg_EUR_100/nonsyn_downsampled_sfs.txt')
+
+EUR_2017_syn_300 = read_input_sfs('../Analysis/1kg_EUR_300/syn_downsampled_sfs.txt')
+EUR_2017_nonsyn_300 = read_input_sfs('../Analysis/1kg_EUR_300/nonsyn_downsampled_sfs.txt')
+
+# Define EUR 2020 empirical data
+EUR_2020_syn_10 = read_input_sfs('../Analysis/1kg_EUR_2020_10/syn_downsampled_sfs.txt')
+EUR_2020_nonsyn_10 = read_input_sfs('../Analysis/1kg_EUR_2020_10/nonsyn_downsampled_sfs.txt')
+
+EUR_2020_syn_100 = read_input_sfs('../Analysis/1kg_EUR_2020_100/syn_downsampled_sfs.txt')
+EUR_2020_nonsyn_100 = read_input_sfs('../Analysis/1kg_EUR_2020_100/nonsyn_downsampled_sfs.txt')
+
+EUR_2020_syn_300 = read_input_sfs('../Analysis/1kg_EUR_2020_300/syn_downsampled_sfs.txt')
+EUR_2020_nonsyn_300 = read_input_sfs('../Analysis/1kg_EUR_2020_300/nonsyn_downsampled_sfs.txt')
+
+# Define gnomAD empirical data
+gnomAD_syn_10 = read_input_sfs('../Analysis/gnomAD_10/syn_downsampled_sfs.txt')
+gnomAD_nonsyn_10 = read_input_sfs('../Analysis/gnomAD_10/nonsyn_downsampled_sfs.txt')
+
+gnomAD_syn_100 = read_input_sfs('../Analysis/gnomAD_100/syn_downsampled_sfs.txt')
+gnomAD_nonsyn_100 = read_input_sfs('../Analysis/gnomAD_100/nonsyn_downsampled_sfs.txt')
+
+gnomAD_syn_300 = read_input_sfs('../Analysis/gnomAD_300/syn_downsampled_sfs.txt')
+gnomAD_nonsyn_300 = read_input_sfs('../Analysis/gnomAD_300/nonsyn_downsampled_sfs.txt')
+
+# Define EUR 2017 demographic model fits
+EUR_2017_10_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_10/one_epoch_demography.txt')
+EUR_2017_10_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_10/one_epoch_demography.txt')
+# EUR_2017_10_one_epoch_allele_sum = sum(EUR_2017_10_one_epoch)
+EUR_2017_10_one_epoch_NAnc = EUR_2017_10_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+EUR_2017_10_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_10/two_epoch_demography.txt')
+EUR_2017_10_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_10/two_epoch_demography.txt')
+# EUR_2017_10_two_epoch_allele_sum = sum(EUR_2017_10_two_epoch)
+EUR_2017_10_two_epoch_nu = nu_from_demography('../Analysis/1kg_EUR_10/two_epoch_demography.txt')
+EUR_2017_10_two_epoch_tau = tau_from_demography('../Analysis/1kg_EUR_10/two_epoch_demography.txt')
+EUR_2017_10_two_epoch_NAnc = EUR_2017_10_two_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_10_two_epoch_NCurr = EUR_2017_10_two_epoch_nu / EUR_2017_10_two_epoch_NAnc
+EUR_2017_10_two_epoch_Time = 2 * 25 * EUR_2017_10_two_epoch_tau * EUR_2017_10_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+EUR_2017_10_three_epoch = sfs_from_demography('../Analysis/1kg_EUR_10/three_epoch_demography.txt')
+EUR_2017_10_three_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_10/three_epoch_demography.txt')
+# EUR_2017_10_three_epoch_allele_sum = sum(EUR_2017_10_three_epoch)
+EUR_2017_10_three_epoch_nuB = nuB_from_demography('../Analysis/1kg_EUR_10/three_epoch_demography.txt')
+EUR_2017_10_three_epoch_nuF = nuF_from_demography('../Analysis/1kg_EUR_10/three_epoch_demography.txt')
+EUR_2017_10_three_epoch_tauB = tauB_from_demography('../Analysis/1kg_EUR_10/three_epoch_demography.txt')
+EUR_2017_10_three_epoch_tauF = tauF_from_demography('../Analysis/1kg_EUR_10/three_epoch_demography.txt')
+EUR_2017_10_three_epoch_NAnc = EUR_2017_10_three_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_10_three_epoch_NBottle = EUR_2017_10_three_epoch_nuB * EUR_2017_10_three_epoch_NAnc
+EUR_2017_10_three_epoch_NCurr = EUR_2017_10_three_epoch_nuF * EUR_2017_10_three_epoch_NAnc
+EUR_2017_10_three_epoch_TimeBottleEnd = 2 * 25 * EUR_2017_10_three_epoch_tauF * EUR_2017_10_three_epoch_theta / (4 * global_mu * global_allele_sum)
+EUR_2017_10_three_epoch_TimeBottleStart = 2 * 25 * EUR_2017_10_three_epoch_tauB * EUR_2017_10_three_epoch_theta / (4 * global_mu * global_allele_sum) + EUR_2017_10_three_epoch_TimeBottleEnd
+EUR_2017_10_three_epoch_TimeTotal = EUR_2017_10_three_epoch_TimeBottleEnd + EUR_2017_10_three_epoch_TimeBottleStart
+
+EUR_2017_100_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_100/one_epoch_demography.txt')
+EUR_2017_100_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_100/one_epoch_demography.txt')
+# EUR_2017_100_one_epoch_allele_sum = sum(EUR_2017_100_one_epoch)
+EUR_2017_100_one_epoch_NAnc = EUR_2017_100_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+EUR_2017_100_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_100/two_epoch_demography.txt')
+EUR_2017_100_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_100/two_epoch_demography.txt')
+# EUR_2017_100_two_epoch_allele_sum = sum(EUR_2017_100_two_epoch)
+EUR_2017_100_two_epoch_nu = nu_from_demography('../Analysis/1kg_EUR_100/two_epoch_demography.txt')
+EUR_2017_100_two_epoch_tau = tau_from_demography('../Analysis/1kg_EUR_100/two_epoch_demography.txt')
+EUR_2017_100_two_epoch_NAnc = EUR_2017_100_two_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_100_two_epoch_NCurr = EUR_2017_100_two_epoch_nu / EUR_2017_100_two_epoch_NAnc
+EUR_2017_100_two_epoch_Time = 2 * 25 * EUR_2017_100_two_epoch_tau * EUR_2017_100_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+EUR_2017_100_three_epoch = sfs_from_demography('../Analysis/1kg_EUR_100/three_epoch_demography.txt')
+EUR_2017_100_three_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_100/three_epoch_demography.txt')
+# EUR_2017_100_three_epoch_allele_sum = sum(EUR_2017_100_three_epoch)
+EUR_2017_100_three_epoch_nuB = nuB_from_demography('../Analysis/1kg_EUR_100/three_epoch_demography.txt')
+EUR_2017_100_three_epoch_nuF = nuF_from_demography('../Analysis/1kg_EUR_100/three_epoch_demography.txt')
+EUR_2017_100_three_epoch_tauB = tauB_from_demography('../Analysis/1kg_EUR_100/three_epoch_demography.txt')
+EUR_2017_100_three_epoch_tauF = tauF_from_demography('../Analysis/1kg_EUR_100/three_epoch_demography.txt')
+EUR_2017_100_three_epoch_NAnc = EUR_2017_100_three_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_100_three_epoch_NBottle = EUR_2017_100_three_epoch_nuB * EUR_2017_100_three_epoch_NAnc
+EUR_2017_100_three_epoch_NCurr = EUR_2017_100_three_epoch_nuF * EUR_2017_100_three_epoch_NAnc
+EUR_2017_100_three_epoch_TimeBottleEnd = 2 * 25 * EUR_2017_100_three_epoch_tauF * EUR_2017_100_three_epoch_theta / (4 * global_mu * global_allele_sum)
+EUR_2017_100_three_epoch_TimeBottleStart = 2 * 25 * EUR_2017_100_three_epoch_tauB * EUR_2017_100_three_epoch_theta / (4 * global_mu * global_allele_sum) + EUR_2017_10_three_epoch_TimeBottleEnd
+EUR_2017_100_three_epoch_TimeTotal = EUR_2017_100_three_epoch_TimeBottleEnd + EUR_2017_100_three_epoch_TimeBottleStart
+
+EUR_2017_300_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_300/one_epoch_demography.txt')
+EUR_2017_300_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_300/one_epoch_demography.txt')
+# EUR_2017_300_one_epoch_allele_sum = sum(EUR_2017_300_one_epoch)
+EUR_2017_300_one_epoch_NAnc = EUR_2017_300_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+EUR_2017_300_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_300/two_epoch_demography.txt')
+EUR_2017_300_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_300/two_epoch_demography.txt')
+# EUR_2017_300_two_epoch_allele_sum = sum(EUR_2017_300_two_epoch)
+EUR_2017_300_two_epoch_nu = nu_from_demography('../Analysis/1kg_EUR_300/two_epoch_demography.txt')
+EUR_2017_300_two_epoch_tau = tau_from_demography('../Analysis/1kg_EUR_300/two_epoch_demography.txt')
+EUR_2017_300_two_epoch_NAnc = EUR_2017_300_two_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_300_two_epoch_NCurr = EUR_2017_300_two_epoch_nu / EUR_2017_300_two_epoch_NAnc
+EUR_2017_300_two_epoch_Time = 2 * 25 * EUR_2017_300_two_epoch_tau * EUR_2017_300_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+EUR_2017_300_three_epoch = sfs_from_demography('../Analysis/1kg_EUR_300/three_epoch_demography.txt')
+EUR_2017_300_three_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_300/three_epoch_demography.txt')
+# EUR_2017_300_three_epoch_allele_sum = sum(EUR_2017_300_three_epoch)
+EUR_2017_300_three_epoch_nuB = nuB_from_demography('../Analysis/1kg_EUR_300/three_epoch_demography.txt')
+EUR_2017_300_three_epoch_nuF = nuF_from_demography('../Analysis/1kg_EUR_300/three_epoch_demography.txt')
+EUR_2017_300_three_epoch_tauB = tauB_from_demography('../Analysis/1kg_EUR_300/three_epoch_demography.txt')
+EUR_2017_300_three_epoch_tauF = tauF_from_demography('../Analysis/1kg_EUR_300/three_epoch_demography.txt')
+EUR_2017_300_three_epoch_NAnc = EUR_2017_300_three_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_300_three_epoch_NBottle = EUR_2017_300_three_epoch_nuB * EUR_2017_300_three_epoch_NAnc
+EUR_2017_300_three_epoch_NCurr = EUR_2017_300_three_epoch_nuF * EUR_2017_300_three_epoch_NAnc
+EUR_2017_300_three_epoch_TimeBottleEnd = 2 * 25 * EUR_2017_300_three_epoch_tauF * EUR_2017_300_three_epoch_theta / (4 * global_mu * global_allele_sum)
+EUR_2017_300_three_epoch_TimeBottleStart = 2 * 25 * EUR_2017_300_three_epoch_tauB * EUR_2017_300_three_epoch_theta / (4 * global_mu * global_allele_sum) + EUR_2017_10_three_epoch_TimeBottleEnd
+EUR_2017_300_three_epoch_TimeTotal = EUR_2017_300_three_epoch_TimeBottleEnd + EUR_2017_300_three_epoch_TimeBottleStart
+
+# Define EUR 2020 demographic model fits
+EUR_2020_10_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_10/one_epoch_demography.txt')
+EUR_2020_10_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_10/one_epoch_demography.txt')
+# EUR_2020_10_one_epoch_allele_sum = sum(EUR_2020_10_one_epoch)
+EUR_2020_10_one_epoch_NAnc = EUR_2020_10_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+EUR_2020_10_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_10/two_epoch_demography.txt')
+EUR_2020_10_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_10/two_epoch_demography.txt')
+# EUR_2020_10_two_epoch_allele_sum = sum(EUR_2020_10_two_epoch)
+EUR_2020_10_two_epoch_nu = nu_from_demography('../Analysis/1kg_EUR_2020_10/two_epoch_demography.txt')
+EUR_2020_10_two_epoch_tau = tau_from_demography('../Analysis/1kg_EUR_2020_10/two_epoch_demography.txt')
+EUR_2020_10_two_epoch_NAnc = EUR_2020_10_two_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2020_10_two_epoch_NCurr = EUR_2020_10_two_epoch_nu / EUR_2020_10_two_epoch_NAnc
+EUR_2020_10_two_epoch_Time = 2 * 25 * EUR_2020_10_two_epoch_tau * EUR_2020_10_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+EUR_2020_10_three_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_10/three_epoch_demography.txt')
+EUR_2020_10_three_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_10/three_epoch_demography.txt')
+# EUR_2020_10_three_epoch_allele_sum = sum(EUR_2020_10_three_epoch)
+EUR_2020_10_three_epoch_nuB = nuB_from_demography('../Analysis/1kg_EUR_2020_10/three_epoch_demography.txt')
+EUR_2020_10_three_epoch_nuF = nuF_from_demography('../Analysis/1kg_EUR_2020_10/three_epoch_demography.txt')
+EUR_2020_10_three_epoch_tauB = tauB_from_demography('../Analysis/1kg_EUR_2020_10/three_epoch_demography.txt')
+EUR_2020_10_three_epoch_tauF = tauF_from_demography('../Analysis/1kg_EUR_2020_10/three_epoch_demography.txt')
+EUR_2020_10_three_epoch_NAnc = EUR_2020_10_three_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2020_10_three_epoch_NBottle = EUR_2020_10_three_epoch_nuB * EUR_2020_10_three_epoch_NAnc
+EUR_2020_10_three_epoch_NCurr = EUR_2020_10_three_epoch_nuF * EUR_2020_10_three_epoch_NAnc
+EUR_2020_10_three_epoch_TimeBottleEnd = 2 * 25 * EUR_2020_10_three_epoch_tauF * EUR_2020_10_three_epoch_theta / (4 * global_mu * global_allele_sum)
+EUR_2020_10_three_epoch_TimeBottleStart = 2 * 25 * EUR_2020_10_three_epoch_tauB * EUR_2020_10_three_epoch_theta / (4 * global_mu * global_allele_sum) + EUR_2020_10_three_epoch_TimeBottleEnd
+EUR_2020_10_three_epoch_TimeTotal = EUR_2020_10_three_epoch_TimeBottleEnd + EUR_2020_10_three_epoch_TimeBottleStart
+
+EUR_2020_100_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_100/one_epoch_demography.txt')
+EUR_2020_100_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_100/one_epoch_demography.txt')
+# EUR_2020_100_one_epoch_allele_sum = sum(EUR_2020_100_one_epoch)
+EUR_2020_100_one_epoch_NAnc = EUR_2020_100_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+EUR_2020_100_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_100/two_epoch_demography.txt')
+EUR_2020_100_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_100/two_epoch_demography.txt')
+# EUR_2020_100_two_epoch_allele_sum = sum(EUR_2020_100_two_epoch)
+EUR_2020_100_two_epoch_nu = nu_from_demography('../Analysis/1kg_EUR_2020_100/two_epoch_demography.txt')
+EUR_2020_100_two_epoch_tau = tau_from_demography('../Analysis/1kg_EUR_2020_100/two_epoch_demography.txt')
+EUR_2020_100_two_epoch_NAnc = EUR_2020_100_two_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2020_100_two_epoch_NCurr = EUR_2020_100_two_epoch_nu / EUR_2020_100_two_epoch_NAnc
+EUR_2020_100_two_epoch_Time = 2 * 25 * EUR_2020_100_two_epoch_tau * EUR_2020_100_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+EUR_2020_100_three_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_100/three_epoch_demography.txt')
+EUR_2020_100_three_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_100/three_epoch_demography.txt')
+# EUR_2020_100_three_epoch_allele_sum = sum(EUR_2020_100_three_epoch)
+EUR_2020_100_three_epoch_nuB = nuB_from_demography('../Analysis/1kg_EUR_2020_100/three_epoch_demography.txt')
+EUR_2020_100_three_epoch_nuF = nuF_from_demography('../Analysis/1kg_EUR_2020_100/three_epoch_demography.txt')
+EUR_2020_100_three_epoch_tauB = tauB_from_demography('../Analysis/1kg_EUR_2020_100/three_epoch_demography.txt')
+EUR_2020_100_three_epoch_tauF = tauF_from_demography('../Analysis/1kg_EUR_2020_100/three_epoch_demography.txt')
+EUR_2020_100_three_epoch_NAnc = EUR_2020_100_three_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2020_100_three_epoch_NBottle = EUR_2020_100_three_epoch_nuB * EUR_2020_100_three_epoch_NAnc
+EUR_2020_100_three_epoch_NCurr = EUR_2020_100_three_epoch_nuF * EUR_2020_100_three_epoch_NAnc
+EUR_2020_100_three_epoch_TimeBottleEnd = 2 * 25 * EUR_2020_100_three_epoch_tauF * EUR_2020_100_three_epoch_theta / (4 * global_mu * global_allele_sum)
+EUR_2020_100_three_epoch_TimeBottleStart = 2 * 25 * EUR_2020_100_three_epoch_tauB * EUR_2020_100_three_epoch_theta / (4 * global_mu * global_allele_sum) + EUR_2020_100_three_epoch_TimeBottleEnd
+EUR_2020_100_three_epoch_TimeTotal = EUR_2020_100_three_epoch_TimeBottleEnd + EUR_2020_100_three_epoch_TimeBottleStart
+
+EUR_2020_300_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_300/one_epoch_demography.txt')
+EUR_2020_300_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_300/one_epoch_demography.txt')
+# EUR_2020_300_one_epoch_allele_sum = sum(EUR_2020_300_one_epoch)
+EUR_2020_300_one_epoch_NAnc = EUR_2020_300_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+EUR_2020_300_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_300/two_epoch_demography.txt')
+EUR_2020_300_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_300/two_epoch_demography.txt')
+# EUR_2020_300_two_epoch_allele_sum = sum(EUR_2020_300_two_epoch)
+EUR_2020_300_two_epoch_nu = nu_from_demography('../Analysis/1kg_EUR_2020_300/two_epoch_demography.txt')
+EUR_2020_300_two_epoch_tau = tau_from_demography('../Analysis/1kg_EUR_2020_300/two_epoch_demography.txt')
+EUR_2020_300_two_epoch_NAnc = EUR_2020_300_two_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2020_300_two_epoch_NCurr = EUR_2020_300_two_epoch_nu / EUR_2020_300_two_epoch_NAnc
+EUR_2020_300_two_epoch_Time = 2 * 25 * EUR_2020_300_two_epoch_tau * EUR_2020_300_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+EUR_2020_300_three_epoch = sfs_from_demography('../Analysis/1kg_EUR_2020_300/three_epoch_demography.txt')
+EUR_2020_300_three_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_2020_300/three_epoch_demography.txt')
+# EUR_2020_300_three_epoch_allele_sum = sum(EUR_2020_300_three_epoch)
+EUR_2020_300_three_epoch_nuB = nuB_from_demography('../Analysis/1kg_EUR_2020_300/three_epoch_demography.txt')
+EUR_2020_300_three_epoch_nuF = nuF_from_demography('../Analysis/1kg_EUR_2020_300/three_epoch_demography.txt')
+EUR_2020_300_three_epoch_tauB = tauB_from_demography('../Analysis/1kg_EUR_2020_300/three_epoch_demography.txt')
+EUR_2020_300_three_epoch_tauF = tauF_from_demography('../Analysis/1kg_EUR_2020_300/three_epoch_demography.txt')
+EUR_2020_300_three_epoch_NAnc = EUR_2020_300_three_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2020_300_three_epoch_NBottle = EUR_2020_300_three_epoch_nuB * EUR_2020_300_three_epoch_NAnc
+EUR_2020_300_three_epoch_NCurr = EUR_2020_300_three_epoch_nuF * EUR_2020_300_three_epoch_NAnc
+EUR_2020_300_three_epoch_TimeBottleEnd = 2 * 25 * EUR_2020_300_three_epoch_tauF * EUR_2020_300_three_epoch_theta / (4 * global_mu * global_allele_sum)
+EUR_2020_300_three_epoch_TimeBottleStart = 2 * 25 * EUR_2020_300_three_epoch_tauB * EUR_2020_300_three_epoch_theta / (4 * global_mu * global_allele_sum) + EUR_2020_300_three_epoch_TimeBottleEnd
+EUR_2020_300_three_epoch_TimeTotal = EUR_2020_300_three_epoch_TimeBottleEnd + EUR_2020_300_three_epoch_TimeBottleStart
+
+# Define gnomAD demographic model fits
+gnomAD_10_one_epoch = sfs_from_demography('../Analysis/gnomAD_10/one_epoch_demography.txt')
+gnomAD_10_one_epoch_theta = theta_from_demography('../Analysis/gnomAD_10/one_epoch_demography.txt')
+# gnomAD_10_one_epoch_allele_sum = sum(gnomAD_10_one_epoch)
+gnomAD_10_one_epoch_NAnc = gnomAD_10_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+gnomAD_10_two_epoch = sfs_from_demography('../Analysis/gnomAD_10/two_epoch_demography.txt')
+gnomAD_10_two_epoch_theta = theta_from_demography('../Analysis/gnomAD_10/two_epoch_demography.txt')
+# gnomAD_10_two_epoch_allele_sum = sum(gnomAD_10_two_epoch)
+gnomAD_10_two_epoch_nu = nu_from_demography('../Analysis/gnomAD_10/two_epoch_demography.txt')
+gnomAD_10_two_epoch_tau = tau_from_demography('../Analysis/gnomAD_10/two_epoch_demography.txt')
+gnomAD_10_two_epoch_NAnc = gnomAD_10_two_epoch_theta / (4 * global_allele_sum * global_mu)
+gnomAD_10_two_epoch_NCurr = gnomAD_10_two_epoch_nu / gnomAD_10_two_epoch_NAnc
+gnomAD_10_two_epoch_Time = 2 * 25 * gnomAD_10_two_epoch_tau * gnomAD_10_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+gnomAD_10_three_epoch = sfs_from_demography('../Analysis/gnomAD_10/three_epoch_demography.txt')
+gnomAD_10_three_epoch_theta = theta_from_demography('../Analysis/gnomAD_10/three_epoch_demography.txt')
+# gnomAD_10_three_epoch_allele_sum = sum(gnomAD_10_three_epoch)
+gnomAD_10_three_epoch_nuB = nuB_from_demography('../Analysis/gnomAD_10/three_epoch_demography.txt')
+gnomAD_10_three_epoch_nuF = nuF_from_demography('../Analysis/gnomAD_10/three_epoch_demography.txt')
+gnomAD_10_three_epoch_tauB = tauB_from_demography('../Analysis/gnomAD_10/three_epoch_demography.txt')
+gnomAD_10_three_epoch_tauF = tauF_from_demography('../Analysis/gnomAD_10/three_epoch_demography.txt')
+gnomAD_10_three_epoch_NAnc = gnomAD_10_three_epoch_theta / (4 * global_allele_sum * global_mu)
+gnomAD_10_three_epoch_NBottle = gnomAD_10_three_epoch_nuB * gnomAD_10_three_epoch_NAnc
+gnomAD_10_three_epoch_NCurr = gnomAD_10_three_epoch_nuF * gnomAD_10_three_epoch_NAnc
+gnomAD_10_three_epoch_TimeBottleEnd = 2 * 25 * gnomAD_10_three_epoch_tauF * gnomAD_10_three_epoch_theta / (4 * global_mu * global_allele_sum)
+gnomAD_10_three_epoch_TimeBottleStart = 2 * 25 * gnomAD_10_three_epoch_tauB * gnomAD_10_three_epoch_theta / (4 * global_mu * global_allele_sum) + gnomAD_10_three_epoch_TimeBottleEnd
+gnomAD_10_three_epoch_TimeTotal = gnomAD_10_three_epoch_TimeBottleEnd + gnomAD_10_three_epoch_TimeBottleStart
+
+gnomAD_100_one_epoch = sfs_from_demography('../Analysis/gnomAD_100/one_epoch_demography.txt')
+gnomAD_100_one_epoch_theta = theta_from_demography('../Analysis/gnomAD_100/one_epoch_demography.txt')
+# gnomAD_100_one_epoch_allele_sum = sum(gnomAD_100_one_epoch)
+gnomAD_100_one_epoch_NAnc = gnomAD_100_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+gnomAD_100_two_epoch = sfs_from_demography('../Analysis/gnomAD_100/two_epoch_demography.txt')
+gnomAD_100_two_epoch_theta = theta_from_demography('../Analysis/gnomAD_100/two_epoch_demography.txt')
+# gnomAD_100_two_epoch_allele_sum = sum(gnomAD_100_two_epoch)
+gnomAD_100_two_epoch_nu = nu_from_demography('../Analysis/gnomAD_100/two_epoch_demography.txt')
+gnomAD_100_two_epoch_tau = tau_from_demography('../Analysis/gnomAD_100/two_epoch_demography.txt')
+gnomAD_100_two_epoch_NAnc = gnomAD_100_two_epoch_theta / (4 * global_allele_sum * global_mu)
+gnomAD_100_two_epoch_NCurr = gnomAD_100_two_epoch_nu / gnomAD_100_two_epoch_NAnc
+gnomAD_100_two_epoch_Time = 2 * 25 * gnomAD_100_two_epoch_tau * gnomAD_100_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+gnomAD_100_three_epoch = sfs_from_demography('../Analysis/gnomAD_100/three_epoch_demography.txt')
+gnomAD_100_three_epoch_theta = theta_from_demography('../Analysis/gnomAD_100/three_epoch_demography.txt')
+# gnomAD_100_three_epoch_allele_sum = sum(gnomAD_100_three_epoch)
+gnomAD_100_three_epoch_nuB = nuB_from_demography('../Analysis/gnomAD_100/three_epoch_demography.txt')
+gnomAD_100_three_epoch_nuF = nuF_from_demography('../Analysis/gnomAD_100/three_epoch_demography.txt')
+gnomAD_100_three_epoch_tauB = tauB_from_demography('../Analysis/gnomAD_100/three_epoch_demography.txt')
+gnomAD_100_three_epoch_tauF = tauF_from_demography('../Analysis/gnomAD_100/three_epoch_demography.txt')
+gnomAD_100_three_epoch_NAnc = gnomAD_100_three_epoch_theta / (4 * global_allele_sum * global_mu)
+gnomAD_100_three_epoch_NBottle = gnomAD_100_three_epoch_nuB * gnomAD_100_three_epoch_NAnc
+gnomAD_100_three_epoch_NCurr = gnomAD_100_three_epoch_nuF * gnomAD_100_three_epoch_NAnc
+gnomAD_100_three_epoch_TimeBottleEnd = 2 * 25 * gnomAD_100_three_epoch_tauF * gnomAD_100_three_epoch_theta / (4 * global_mu * global_allele_sum)
+gnomAD_100_three_epoch_TimeBottleStart = 2 * 25 * gnomAD_100_three_epoch_tauB * gnomAD_100_three_epoch_theta / (4 * global_mu * global_allele_sum) + gnomAD_100_three_epoch_TimeBottleEnd
+gnomAD_100_three_epoch_TimeTotal = gnomAD_100_three_epoch_TimeBottleEnd + gnomAD_100_three_epoch_TimeBottleStart
+
+gnomAD_300_one_epoch = sfs_from_demography('../Analysis/gnomAD_300/one_epoch_demography.txt')
+gnomAD_300_one_epoch_theta = theta_from_demography('../Analysis/gnomAD_300/one_epoch_demography.txt')
+# gnomAD_300_one_epoch_allele_sum = sum(gnomAD_300_one_epoch)
+gnomAD_300_one_epoch_NAnc = gnomAD_300_one_epoch_theta / (4 * global_allele_sum * global_mu)
+
+gnomAD_300_two_epoch = sfs_from_demography('../Analysis/gnomAD_300/two_epoch_demography.txt')
+gnomAD_300_two_epoch_theta = theta_from_demography('../Analysis/gnomAD_300/two_epoch_demography.txt')
+# gnomAD_300_two_epoch_allele_sum = sum(gnomAD_300_two_epoch)
+gnomAD_300_two_epoch_nu = nu_from_demography('../Analysis/gnomAD_300/two_epoch_demography.txt')
+gnomAD_300_two_epoch_tau = tau_from_demography('../Analysis/gnomAD_300/two_epoch_demography.txt')
+gnomAD_300_two_epoch_NAnc = gnomAD_300_two_epoch_theta / (4 * global_allele_sum * global_mu)
+gnomAD_300_two_epoch_NCurr = gnomAD_300_two_epoch_nu / gnomAD_300_two_epoch_NAnc
+gnomAD_300_two_epoch_Time = 2 * 25 * gnomAD_300_two_epoch_tau * gnomAD_300_two_epoch_theta / (4 * global_mu * global_allele_sum)
+
+gnomAD_300_three_epoch = sfs_from_demography('../Analysis/gnomAD_300/three_epoch_demography.txt')
+gnomAD_300_three_epoch_theta = theta_from_demography('../Analysis/gnomAD_300/three_epoch_demography.txt')
+# gnomAD_300_three_epoch_allele_sum = sum(gnomAD_300_three_epoch)
+gnomAD_300_three_epoch_nuB = nuB_from_demography('../Analysis/gnomAD_300/three_epoch_demography.txt')
+gnomAD_300_three_epoch_nuF = nuF_from_demography('../Analysis/gnomAD_300/three_epoch_demography.txt')
+gnomAD_300_three_epoch_tauB = tauB_from_demography('../Analysis/gnomAD_300/three_epoch_demography.txt')
+gnomAD_300_three_epoch_tauF = tauF_from_demography('../Analysis/gnomAD_300/three_epoch_demography.txt')
+gnomAD_300_three_epoch_NAnc = gnomAD_300_three_epoch_theta / (4 * global_allele_sum * global_mu)
+gnomAD_300_three_epoch_NBottle = gnomAD_300_three_epoch_nuB * gnomAD_300_three_epoch_NAnc
+gnomAD_300_three_epoch_NCurr = gnomAD_300_three_epoch_nuF * gnomAD_300_three_epoch_NAnc
+gnomAD_300_three_epoch_TimeBottleEnd = 2 * 25 * gnomAD_300_three_epoch_tauF * gnomAD_300_three_epoch_theta / (4 * global_mu * global_allele_sum)
+gnomAD_300_three_epoch_TimeBottleStart = 2 * 25 * gnomAD_300_three_epoch_tauB * gnomAD_300_three_epoch_theta / (4 * global_mu * global_allele_sum) + gnomAD_300_three_epoch_TimeBottleEnd
+gnomAD_300_three_epoch_TimeTotal = gnomAD_300_three_epoch_TimeBottleEnd + gnomAD_300_three_epoch_TimeBottleStart
+
+# Define EUR 2017 DFE fits
+EUR_2017_10_gamma_sfs = gamma_sfs_from_dfe('../Analysis/1kg_EUR_10/inferred_DFE.txt')
+EUR_2017_10_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/1kg_EUR_10/inferred_DFE.txt')
+
+EUR_2017_100_gamma_sfs = gamma_sfs_from_dfe('../Analysis/1kg_EUR_100/inferred_DFE.txt')
+EUR_2017_100_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/1kg_EUR_100/inferred_DFE.txt')
+
+EUR_2017_300_gamma_sfs = gamma_sfs_from_dfe('../Analysis/1kg_EUR_300/inferred_DFE.txt')
+EUR_2017_300_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/1kg_EUR_300/inferred_DFE.txt')
+
+# Define EUR 2020 DFE fits
+EUR_2020_10_gamma_sfs = gamma_sfs_from_dfe('../Analysis/1kg_EUR_2020_10/inferred_DFE.txt')
+EUR_2020_10_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/1kg_EUR_2020_10/inferred_DFE.txt')
+
+EUR_2020_100_gamma_sfs = gamma_sfs_from_dfe('../Analysis/1kg_EUR_2020_100/inferred_DFE.txt')
+EUR_2020_100_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/1kg_EUR_2020_100/inferred_DFE.txt')
+
+EUR_2020_300_gamma_sfs = gamma_sfs_from_dfe('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt')
+EUR_2020_300_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt')
+
+# Define gnomAD DFE fits
+gnomAD_10_gamma_sfs = gamma_sfs_from_dfe('../Analysis/gnomAD_10/inferred_DFE.txt')
+gnomAD_10_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/gnomAD_10/inferred_DFE.txt')
+
+gnomAD_100_gamma_sfs = gamma_sfs_from_dfe('../Analysis/gnomAD_100/inferred_DFE.txt')
+gnomAD_100_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/gnomAD_100/inferred_DFE.txt')
+
+gnomAD_300_gamma_sfs = gamma_sfs_from_dfe('../Analysis/gnomAD_300/inferred_DFE.txt')
+gnomAD_300_neugamma_sfs = neugamma_sfs_from_dfe('../Analysis/gnomAD_300/inferred_DFE.txt')
+
+demography_max_time = rep(max(EUR_2017_10_three_epoch_TimeTotal,
+  EUR_2017_100_three_epoch_TimeTotal,
+  EUR_2017_300_three_epoch_TimeTotal,
+  EUR_2020_10_three_epoch_TimeTotal,
+  EUR_2020_100_three_epoch_TimeTotal,
+  EUR_2020_300_three_epoch_TimeTotal,
+  gnomAD_10_three_epoch_TimeTotal,
+  gnomAD_100_three_epoch_TimeTotal,
+  gnomAD_300_three_epoch_TimeTotal), 3)
+
+demography_current_time = rep(0, 3)
+
+## Plot demography plots.
+# Best-fits:
+# EUR 2017 n=10 --> two-epoch
+# EUR 2017 n=100 --> three-epoch
+# EUR 2017 n=300 --> three-epoch
+# EUR 2020 n=10 --> three-epoch
+# EUR 2020 n=100 --> three-epoch
+# EUR 2020 n=300 --> three-epoch
+# gnomAD n=10 --> three-epoch
+# gnomAD n=100 --> three-epoch
+# gnomAD n=300 --> three-epoch
+
+EUR_2017_10_three_epoch_demography = data.frame(EUR_2017_10_three_epoch_NAnc, demography_max_time,
+  EUR_2017_10_three_epoch_NBottle, EUR_2017_10_three_epoch_TimeBottleStart,
+  EUR_2017_10_three_epoch_NCurr, EUR_2017_10_three_epoch_TimeBottleEnd,
+  EUR_2017_10_three_epoch_NCurr, demography_current_time)
+
+EUR_2017_10_three_epoch_NEffective = c(EUR_2017_10_three_epoch_demography[2, 1], EUR_2017_10_three_epoch_demography[2, 3], EUR_2017_10_three_epoch_demography[2, 5], EUR_2017_10_three_epoch_demography[2, 7])
+EUR_2017_10_three_epoch_Time = c(-EUR_2017_10_three_epoch_demography[2, 2], -EUR_2017_10_three_epoch_demography[2, 4], -EUR_2017_10_three_epoch_demography[2, 6], EUR_2017_10_three_epoch_demography[2, 8])
+EUR_2017_10_three_epoch_demography_10 = data.frame(EUR_2017_10_three_epoch_Time, EUR_2017_10_three_epoch_NEffective)
+
+EUR_2017_100_three_epoch_demography = data.frame(EUR_2017_100_three_epoch_NAnc, 
+  demography_max_time,
+  EUR_2017_100_three_epoch_NBottle,
+  EUR_2017_100_three_epoch_TimeBottleStart,
+  EUR_2017_100_three_epoch_NCurr,
+  EUR_2017_100_three_epoch_TimeBottleEnd,
+  EUR_2017_100_three_epoch_NCurr,
+  demography_current_time)
+
+EUR_2017_100_three_epoch_NEffective = c(EUR_2017_100_three_epoch_demography[2, 1], EUR_2017_100_three_epoch_demography[2, 3], EUR_2017_100_three_epoch_demography[2, 5], EUR_2017_100_three_epoch_demography[2, 7])
+EUR_2017_100_three_epoch_Time = c(-EUR_2017_100_three_epoch_demography[2, 2], -EUR_2017_100_three_epoch_demography[2, 4], -EUR_2017_100_three_epoch_demography[2, 6], EUR_2017_100_three_epoch_demography[2, 8])
+EUR_2017_100_three_epoch_demography_100 = data.frame(EUR_2017_100_three_epoch_Time, EUR_2017_100_three_epoch_NEffective)
+
+EUR_2017_300_three_epoch_demography = data.frame(EUR_2017_300_three_epoch_NAnc, 
+  demography_max_time,
+  EUR_2017_300_three_epoch_NBottle,
+  EUR_2017_300_three_epoch_TimeBottleStart,
+  EUR_2017_300_three_epoch_NCurr,
+  EUR_2017_300_three_epoch_TimeBottleEnd,
+  EUR_2017_300_three_epoch_NCurr,
+  demography_current_time)
+
+EUR_2017_300_three_epoch_NEffective = c(EUR_2017_300_three_epoch_demography[3, 1], EUR_2017_300_three_epoch_demography[3, 3], EUR_2017_300_three_epoch_demography[3, 5], EUR_2017_300_three_epoch_demography[3, 7])
+EUR_2017_300_three_epoch_Time = c(-EUR_2017_300_three_epoch_demography[3, 2], -EUR_2017_300_three_epoch_demography[3, 4], -EUR_2017_300_three_epoch_demography[3, 6], EUR_2017_300_three_epoch_demography[3, 8])
+EUR_2017_300_three_epoch_demography_300 = data.frame(EUR_2017_300_three_epoch_Time, EUR_2017_300_three_epoch_NEffective)
+
+EUR_2020_10_three_epoch_demography = data.frame(EUR_2020_10_three_epoch_NAnc, 
+  demography_max_time,
+  EUR_2020_10_three_epoch_NBottle,
+  EUR_2020_10_three_epoch_TimeBottleStart,
+  EUR_2020_10_three_epoch_NCurr,
+  EUR_2020_10_three_epoch_TimeBottleEnd,
+  EUR_2020_10_three_epoch_NCurr,
+  demography_current_time)
+
+EUR_2020_10_three_epoch_NEffective = c(EUR_2020_10_three_epoch_demography[3, 1], EUR_2020_10_three_epoch_demography[3, 3], EUR_2020_10_three_epoch_demography[3, 5], EUR_2020_10_three_epoch_demography[3, 7])
+EUR_2020_10_three_epoch_Time = c(-EUR_2020_10_three_epoch_demography[3, 2], -EUR_2020_10_three_epoch_demography[3, 4], -EUR_2020_10_three_epoch_demography[3, 6], EUR_2020_10_three_epoch_demography[3, 8])
+EUR_2020_10_three_epoch_demography_10 = data.frame(EUR_2020_10_three_epoch_Time, EUR_2020_10_three_epoch_NEffective)
+
+EUR_2020_100_three_epoch_demography = data.frame(EUR_2020_100_three_epoch_NAnc, 
+  demography_max_time,
+  EUR_2020_100_three_epoch_NBottle,
+  EUR_2020_100_three_epoch_TimeBottleStart,
+  EUR_2020_100_three_epoch_NCurr,
+  EUR_2020_100_three_epoch_TimeBottleEnd,
+  EUR_2020_100_three_epoch_NCurr,
+  demography_current_time)
+
+EUR_2020_100_three_epoch_NEffective = c(EUR_2020_100_three_epoch_demography[3, 1], EUR_2020_100_three_epoch_demography[3, 3], EUR_2020_100_three_epoch_demography[3, 5], EUR_2020_100_three_epoch_demography[3, 7])
+EUR_2020_100_three_epoch_Time = c(-EUR_2020_100_three_epoch_demography[3, 2], -EUR_2020_100_three_epoch_demography[3, 4], -EUR_2020_100_three_epoch_demography[3, 6], EUR_2020_100_three_epoch_demography[3, 8])
+EUR_2020_100_three_epoch_demography_100 = data.frame(EUR_2020_100_three_epoch_Time, EUR_2020_100_three_epoch_NEffective)
+
+EUR_2020_300_three_epoch_demography = data.frame(EUR_2020_300_three_epoch_NAnc, 
+  demography_max_time,
+  EUR_2020_300_three_epoch_NBottle,
+  EUR_2020_300_three_epoch_TimeBottleStart,
+  EUR_2020_300_three_epoch_NCurr,
+  EUR_2020_300_three_epoch_TimeBottleEnd,
+  EUR_2020_300_three_epoch_NCurr,
+  demography_current_time)
+
+EUR_2020_300_three_epoch_NEffective = c(EUR_2020_300_three_epoch_demography[3, 1], EUR_2020_300_three_epoch_demography[3, 3], EUR_2020_300_three_epoch_demography[3, 5], EUR_2020_300_three_epoch_demography[3, 7])
+EUR_2020_300_three_epoch_Time = c(-EUR_2020_300_three_epoch_demography[3, 2], -EUR_2020_300_three_epoch_demography[3, 4], -EUR_2020_300_three_epoch_demography[3, 6], EUR_2020_300_three_epoch_demography[3, 8])
+EUR_2020_300_three_epoch_demography_300 = data.frame(EUR_2020_300_three_epoch_Time, EUR_2020_300_three_epoch_NEffective)
+
+gnomAD_10_three_epoch_demography = data.frame(gnomAD_10_three_epoch_NAnc, 
+  demography_max_time,
+  gnomAD_10_three_epoch_NBottle,
+  gnomAD_10_three_epoch_TimeBottleStart,
+  gnomAD_10_three_epoch_NCurr,
+  gnomAD_10_three_epoch_TimeBottleEnd,
+  gnomAD_10_three_epoch_NCurr,
+  demography_current_time)
+
+gnomAD_10_three_epoch_NEffective = c(gnomAD_10_three_epoch_demography[3, 1], gnomAD_10_three_epoch_demography[3, 3], gnomAD_10_three_epoch_demography[3, 5], gnomAD_10_three_epoch_demography[3, 7])
+gnomAD_10_three_epoch_Time = c(-gnomAD_10_three_epoch_demography[3, 2], -gnomAD_10_three_epoch_demography[3, 4], -gnomAD_10_three_epoch_demography[3, 6], gnomAD_10_three_epoch_demography[3, 8])
+gnomAD_10_three_epoch_demography_10 = data.frame(gnomAD_10_three_epoch_Time, gnomAD_10_three_epoch_NEffective)
+
+gnomAD_100_three_epoch_demography = data.frame(gnomAD_100_three_epoch_NAnc, 
+  demography_max_time,
+  gnomAD_100_three_epoch_NBottle,
+  gnomAD_100_three_epoch_TimeBottleStart,
+  gnomAD_100_three_epoch_NCurr,
+  gnomAD_100_three_epoch_TimeBottleEnd,
+  gnomAD_100_three_epoch_NCurr,
+  demography_current_time)
+
+gnomAD_100_three_epoch_NEffective = c(gnomAD_100_three_epoch_demography[3, 1], gnomAD_100_three_epoch_demography[3, 3], gnomAD_100_three_epoch_demography[3, 5], gnomAD_100_three_epoch_demography[3, 7])
+gnomAD_100_three_epoch_Time = c(-gnomAD_100_three_epoch_demography[3, 2], -gnomAD_100_three_epoch_demography[3, 4], -gnomAD_100_three_epoch_demography[3, 6], gnomAD_100_three_epoch_demography[3, 8])
+gnomAD_100_three_epoch_demography_100 = data.frame(gnomAD_100_three_epoch_Time, gnomAD_100_three_epoch_NEffective)
+
+gnomAD_300_three_epoch_demography = data.frame(gnomAD_300_three_epoch_NAnc, 
+  demography_max_time,
+  gnomAD_300_three_epoch_NBottle,
+  gnomAD_300_three_epoch_TimeBottleStart,
+  gnomAD_300_three_epoch_NCurr,
+  gnomAD_300_three_epoch_TimeBottleEnd,
+  gnomAD_300_three_epoch_NCurr,
+  demography_current_time)
+
+gnomAD_300_three_epoch_NEffective = c(gnomAD_300_three_epoch_demography[3, 1], gnomAD_300_three_epoch_demography[3, 3], gnomAD_300_three_epoch_demography[3, 5], gnomAD_300_three_epoch_demography[3, 7])
+gnomAD_300_three_epoch_Time = c(-gnomAD_300_three_epoch_demography[3, 2], -gnomAD_300_three_epoch_demography[3, 4], -gnomAD_300_three_epoch_demography[3, 6], gnomAD_300_three_epoch_demography[3, 8])
+gnomAD_300_three_epoch_demography_300 = data.frame(gnomAD_300_three_epoch_Time, gnomAD_300_three_epoch_NEffective)
+
+## Demography Plot
+
+ggplot(EUR_2017_10_three_epoch_demography_10, aes(EUR_2017_10_three_epoch_Time, EUR_2017_10_three_epoch_NEffective, color='2017_n_10')) + geom_step(linewidth=1.1, linetype='solid') +
+  geom_step(data=EUR_2017_100_three_epoch_demography_100, aes(EUR_2017_100_three_epoch_Time, EUR_2017_100_three_epoch_NEffective, color='2017_n_100'), linewidth=1.1, linetype='solid') +
+  geom_step(data=EUR_2017_300_three_epoch_demography_300, aes(EUR_2017_300_three_epoch_Time, EUR_2017_300_three_epoch_NEffective, color='2017_n_300'), linewidth=1.1, linetype='solid') +
+  geom_step(data=EUR_2020_10_three_epoch_demography_10, aes(EUR_2020_10_three_epoch_Time, EUR_2020_10_three_epoch_NEffective, color='2020_n_10'), linewidth=1.1, linetype='solid') +
+  geom_step(data=EUR_2020_100_three_epoch_demography_100, aes(EUR_2020_100_three_epoch_Time, EUR_2020_100_three_epoch_NEffective, color='2020_n_100'), linewidth=1.1, linetype='solid') +
+  geom_step(data=EUR_2020_300_three_epoch_demography_300, aes(EUR_2020_300_three_epoch_Time, EUR_2020_300_three_epoch_NEffective, color='2020_n_300'), linewidth=1.1, linetype='solid') +
+  geom_step(data=gnomAD_10_three_epoch_demography_10, aes(gnomAD_10_three_epoch_Time, gnomAD_10_three_epoch_NEffective, color='gnomAD_n_10'), linewidth=1.1, linetype='solid') +
+  geom_step(data=gnomAD_100_three_epoch_demography_100, aes(gnomAD_300_three_epoch_Time, gnomAD_300_three_epoch_NEffective, color='gnomAD_n_100'), linewidth=1.1, linetype='solid') +
+  geom_step(data=gnomAD_300_three_epoch_demography_300, aes(gnomAD_300_three_epoch_Time, gnomAD_300_three_epoch_NEffective, color='gnomAD_n_300'), linewidth=1.1, linetype='solid') +
+  scale_color_manual(name='Dataset and sample size',
+                     breaks=c('2017_n_10', 
+                       '2017_n_100', 
+                       '2017_n_300', 
+                       '2020_n_10', 
+                       '2020_n_100', 
+                       '2020_n_300', 
+                       'gnomAD_n_10', 
+                       'gnomAD_n_100', 
+                       'gnomAD_n_300'),
+                     values=c('2017_n_10'='#99d8c9',
+                       '2017_n_100'='#41ae76',
+                       '2017_n_300'='#006d2c',
+                       '2020_n_10'='#bcbddc',
+                       '2020_n_100'='#807dba',
+                       '2020_n_300'='#54278f',
+                       'gnomAD_n_10'='#fc9272',
+                       'gnomAD_n_100'='#ef3b2c',
+                       'gnomAD_n_300'='#a50f15'),
+                     labels=c('1KG (2017), n=10',
+                       '1KG (2017), n=100',
+                       '1KG (2017), n=300',
+                       '1KG (2020), n=10',
+                       '1KG (2020), n=100',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=10',
+                       'gnomAD, n=100',
+                       'gnomAD, n=300')) +
+  theme_bw() +
+  ylab('Effective Population Size (logscale)') +
+  xlab('Approximate Time in Years') +
+  #scale_y_log10() +
+  ggtitle('Best-fit demography for European Human data')
+
+compare_demographic_models_proportional_cutoff(EUR_2017_10_three_epoch, EUR_2020_10_three_epoch, gnomAD_10_three_epoch) + 
+  ggtitle('Best-fit models by data, n=10') +
+  scale_fill_manual(values=c('#99d8c9', '#bcbddc', '#fc9272'))
+compare_demographic_models_proportional_cutoff(EUR_2017_100_three_epoch, EUR_2020_100_three_epoch, gnomAD_100_three_epoch) +
+  ggtitle('Best-fit models by data, n=100') +
+  scale_fill_manual(values=c('#41ae76', '#807dba', '#ef3b2c'))
+compare_demographic_models_proportional_cutoff(EUR_2017_300_three_epoch, EUR_2020_300_three_epoch, gnomAD_300_three_epoch) +
+  ggtitle('Best-fit models by data, n=300') +
+  scale_fill_manual(values=c('#006d2c', '#54278f', '#a50f15'))
+
+## DFE SFS comparison
+# 1KG (2017)
+compare_dfe_sfs_cutoff(EUR_2017_nonsyn_10, EUR_2017_10_gamma_sfs, EUR_2017_10_neugamma_sfs) + 
+  ggtitle('1KG (2017) DFE SFS, n=10') # Gamma fits best
+
+compare_dfe_sfs_cutoff(EUR_2017_nonsyn_100, EUR_2017_100_gamma_sfs, EUR_2017_100_neugamma_sfs) + 
+  ggtitle('1KG (2017) DFE SFS, n=100') # Gamma fits best
+
+compare_dfe_sfs_cutoff(EUR_2017_nonsyn_300, EUR_2017_300_gamma_sfs, EUR_2017_300_neugamma_sfs) + 
+  ggtitle('1KG (2017) DFE SFS, n=300') # Gamma fits best
+
+# 1KG (2020)
+compare_dfe_sfs_cutoff(EUR_2020_nonsyn_10, EUR_2020_10_gamma_sfs, EUR_2020_10_neugamma_sfs) + 
+  ggtitle('1KG (2020) DFE SFS, n=10') # Gamma fits best
+
+compare_dfe_sfs_cutoff(EUR_2020_nonsyn_100, EUR_2020_100_gamma_sfs, EUR_2020_100_neugamma_sfs) + 
+  ggtitle('1KG (2020) DFE SFS, n=100') # Neugamma fits best
+
+compare_dfe_sfs_cutoff(EUR_2020_nonsyn_300, EUR_2020_300_gamma_sfs, EUR_2020_300_neugamma_sfs) + 
+  ggtitle('1KG (2020) DFE SFS, n=300') # Neugamma fits best
+
+
+# gnomAD
+compare_dfe_sfs_cutoff(gnomAD_nonsyn_10, gnomAD_10_gamma_sfs, gnomAD_10_neugamma_sfs) + 
+  ggtitle('gnomAD DFE SFS, n=10') # Gamma fits best
+
+compare_dfe_sfs_cutoff(gnomAD_nonsyn_100, gnomAD_100_gamma_sfs, gnomAD_100_neugamma_sfs) + 
+  ggtitle('gnomAD DFE SFS, n=100') # Neugamma fits best
+
+compare_dfe_sfs_cutoff(gnomAD_nonsyn_300, gnomAD_300_gamma_sfs, gnomAD_300_neugamma_sfs) + 
+  ggtitle('gnomAD DFE SFS, n=300') # Neugamma fits best
+
+## DFE Comparison
+
+dataset_levels = c(
+  '1KG (2017), n=10',
+  '1KG (2017), n=100',
+  '1KG (2017), n=300',
+  '1KG (2020), n=10',
+  '1KG (2020), n=100*',
+  '1KG (2020), n=300*',
+  'gnomAD, n=10',
+  'gnomAD, n=100*',
+  'gnomAD, n=300*'
+)
+# 
+# )
+# 
+# FD_phylogenetic_levels_MIDAS = c(
+#   'Alistipes_sp_60764',
+# 
+# )
+# 
+# supplementary_species_list = c(
+#   'Akkermansia muciniphila',
+# 
+# )
+# 
+# # FD DFE comparison (core)
+# 
+# a_muciniphila_fd_core_dfe_params = read_dfe_params('../SupplementaryAnalysis/Akkermansia_muciniphila_55290/core_inferred_DFE.txt')
+# a_muciniphila_fd_core_dfe_params$species = 'Akkermansia muciniphila'
+
+EUR_2017_10_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_10/inferred_DFE.txt')
+EUR_2017_10_dfe_params$dataset = '1KG (2017), n=10'
+EUR_2017_100_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_100/inferred_DFE.txt')
+EUR_2017_100_dfe_params$dataset = '1KG (2017), n=100'
+EUR_2017_300_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_300/inferred_DFE.txt')
+EUR_2017_300_dfe_params$dataset = '1KG (2017), n=300'
+
+EUR_2020_10_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_2020_10/inferred_DFE.txt')
+EUR_2020_10_dfe_params$dataset = '1KG (2020), n=10'
+EUR_2020_100_dfe_params = read_neugamma_dfe_params('../Analysis/1kg_EUR_2020_100/inferred_DFE.txt')
+EUR_2020_100_dfe_params$dataset = '1KG (2020), n=100*'
+EUR_2020_300_dfe_params = read_neugamma_dfe_params('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt')
+EUR_2020_300_dfe_params$dataset = '1KG (2020), n=300*'
+
+gnomAD_10_dfe_params = read_gamma_dfe_params('../Analysis/gnomAD_10/inferred_DFE.txt')
+gnomAD_10_dfe_params$dataset = 'gnomAD, n=10'
+gnomAD_100_dfe_params = read_neugamma_dfe_params('../Analysis/gnomAD_100/inferred_DFE.txt')
+gnomAD_100_dfe_params$dataset = 'gnomAD, n=100*'
+gnomAD_300_dfe_params = read_neugamma_dfe_params('../Analysis/gnomAD_300/inferred_DFE.txt')
+gnomAD_300_dfe_params$dataset = 'gnomAD, n=300*'
+
+dfe_df = rbind(
+  melt(EUR_2017_10_dfe_params),
+  melt(EUR_2017_100_dfe_params),
+  melt(EUR_2017_300_dfe_params),
+  melt(EUR_2020_10_dfe_params),
+  melt(EUR_2020_100_dfe_params),
+  melt(EUR_2020_300_dfe_params),
+  melt(gnomAD_10_dfe_params),
+  melt(gnomAD_100_dfe_params),
+  melt(gnomAD_300_dfe_params)
+)
+
+# dfe_df
+
+dfe_df$dataset = factor(dfe_df$dataset, levels=dataset_levels)
+
+dfe_df <- dfe_df[order(dfe_df$dataset), ]
+
+# fd_core_dfe_df <- fd_core_dfe_df[order(fd_core_dfe_df$species), ]
+
+# fd_core_dfe_df
+
+dfe_df$value[dfe_df$value <= 1e-11] = 1e-11
+dfe_df$value[dfe_df$value >= 0.5] = 0.5
+
+### Figure 3
+# 600 x 1000
+
+ggplot(dfe_df[dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
+  geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
+  theme_ridges() +
+  scale_x_log10(limits=c(1e-12, 1e1)) +
+  ylab('Proportion of Sites') +
+  theme(axis.text.y = element_text(face='italic', hjust=0, size=18)) +
+  theme(axis.text.x = element_text(size=18)) + 
+  theme(legend.position = "none") + 
+  xlab('Selection Coefficient') +
+  scale_fill_manual(values=c('1KG (2017), n=10'='#99d8c9',
+                       '1KG (2017), n=100'='#41ae76',
+                       '1KG (2017), n=300'='#006d2c',
+                       '1KG (2020), n=10'='#bcbddc',
+                       '1KG (2020), n=100*'='#807dba',
+                       '1KG (2020), n=300*'='#54278f',
+                       'gnomAD, n=10'='#fc9272',
+                       'gnomAD, n=100*'='#ef3b2c',
+                       'gnomAD, n=300*'='#a50f15'),
+                     labels=c('1KG (2017), n=10',
+                       '1KG (2017), n=100',
+                       '1KG (2017), n=300',
+                       '1KG (2020), n=10',
+                       '1KG (2020), n=100*',
+                       '1KG (2020), n=300*',
+                       'gnomAD, n=10',
+                       'gnomAD, n=100*',
+                       'gnomAD, n=300*')) +
+  ggtitle('Best-fit DFE for European Human data')

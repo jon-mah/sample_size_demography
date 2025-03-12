@@ -3,6 +3,8 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source('useful_functions.R')
 
+global_allele_sum = 1000000
+
 # 2EpC 10,20,30,50,100,150,200,300,500,700
 TwoEpochC_empirical_file_list = list()
 TwoEpochC_one_epoch_file_list = list()
@@ -11,13 +13,13 @@ TwoEpochC_three_epoch_file_list = list()
 TwoEpochC_one_epoch_AIC = c()
 TwoEpochC_one_epoch_LL = c()
 TwoEpochC_one_epoch_theta = c()
-TwoEpochC_one_epoch_allele_sum = c()
+TwoEpochC_one_epoch_allele_sum = global_allele_sum
 TwoEpochC_two_epoch_AIC = c()
 TwoEpochC_two_epoch_LL = c()
 TwoEpochC_two_epoch_theta = c()
 TwoEpochC_two_epoch_nu = c()
 TwoEpochC_two_epoch_tau = c()
-TwoEpochC_two_epoch_allele_sum = c()
+TwoEpochC_two_epoch_allele_sum = global_allele_sum
 TwoEpochC_three_epoch_AIC = c()
 TwoEpochC_three_epoch_LL = c()
 TwoEpochC_three_epoch_theta = c()
@@ -25,7 +27,7 @@ TwoEpochC_three_epoch_nuB = c()
 TwoEpochC_three_epoch_nuF = c()
 TwoEpochC_three_epoch_tauB = c()
 TwoEpochC_three_epoch_tauF = c()
-TwoEpochC_three_epoch_allele_sum = c()
+TwoEpochC_three_epoch_allele_sum = global_allele_sum
 
 # Loop through subdirectories and get relevant files
 for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
@@ -46,7 +48,7 @@ for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
     TwoEpochC_one_epoch_AIC = c(TwoEpochC_one_epoch_AIC, AIC_from_demography(TwoEpochC_one_epoch_file_path))
     TwoEpochC_one_epoch_LL = c(TwoEpochC_one_epoch_LL, LL_from_demography(TwoEpochC_one_epoch_file_path))
     TwoEpochC_one_epoch_theta = c(TwoEpochC_one_epoch_theta, theta_from_demography(TwoEpochC_one_epoch_file_path))
-    TwoEpochC_one_epoch_allele_sum = c(TwoEpochC_one_epoch_allele_sum, sum(this_one_epoch_sfs))
+    # TwoEpochC_one_epoch_allele_sum = c(TwoEpochC_one_epoch_allele_sum, sum(this_one_epoch_sfs))
   }
   if (file.exists(TwoEpochC_two_epoch_file_path)) {
     this_two_epoch_sfs = sfs_from_demography(TwoEpochC_two_epoch_file_path)
@@ -56,7 +58,7 @@ for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
     TwoEpochC_two_epoch_theta = c(TwoEpochC_two_epoch_theta, theta_from_demography(TwoEpochC_two_epoch_file_path))
     TwoEpochC_two_epoch_nu = c(TwoEpochC_two_epoch_nu, nu_from_demography(TwoEpochC_two_epoch_file_path))
     TwoEpochC_two_epoch_tau = c(TwoEpochC_two_epoch_tau, tau_from_demography(TwoEpochC_two_epoch_file_path))
-    TwoEpochC_two_epoch_allele_sum = c(TwoEpochC_two_epoch_allele_sum, sum(this_two_epoch_sfs))
+    # TwoEpochC_two_epoch_allele_sum = c(TwoEpochC_two_epoch_allele_sum, sum(this_two_epoch_sfs))
   }
   if (file.exists(TwoEpochC_three_epoch_file_path)) {
     this_three_epoch_sfs = sfs_from_demography(TwoEpochC_three_epoch_file_path)
@@ -68,7 +70,7 @@ for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
     TwoEpochC_three_epoch_nuF = c(TwoEpochC_three_epoch_nuF, nuF_from_demography(TwoEpochC_three_epoch_file_path))
     TwoEpochC_three_epoch_tauB = c(TwoEpochC_three_epoch_tauB, tauB_from_demography(TwoEpochC_three_epoch_file_path))
     TwoEpochC_three_epoch_tauF = c(TwoEpochC_three_epoch_tauF, tauF_from_demography(TwoEpochC_three_epoch_file_path))
-    TwoEpochC_three_epoch_allele_sum = c(TwoEpochC_three_epoch_allele_sum, sum(this_three_epoch_sfs))
+    # TwoEpochC_three_epoch_allele_sum = c(TwoEpochC_three_epoch_allele_sum, sum(this_three_epoch_sfs))
   }  
 }
 
@@ -180,29 +182,38 @@ TwoEpochC_mu = 1.5E-8
 
 # NAnc = theta / (4 * allele_sum * mu)
 # generations = 2 * tau * theta / (4 * mu * allele_sum)
-# years = generations / 365
 # NCurr = nu * NAnc
 # generations_b = 2 * tauB * theta / (4 * mu * allele_sum)
 # generations_f = 2 * tauF * theta / (4 * mu * allele_sum)
 # NBottle = nuB * NAnc
 # NSince = nuF * NAnc
 
+TwoEpochC_true_NAnc = 10000
+TwoEpochC_true_NCurr = 5000
+TwoEpochC_true_Time = 2000
+
 TwoEpochC_one_epoch_NAnc = TwoEpochC_one_epoch_theta / (4 * TwoEpochC_one_epoch_allele_sum * TwoEpochC_mu)
 TwoEpochC_two_epoch_NAnc = TwoEpochC_two_epoch_theta / (4 * TwoEpochC_two_epoch_allele_sum * TwoEpochC_mu)
 TwoEpochC_two_epoch_NCurr = TwoEpochC_two_epoch_nu * TwoEpochC_two_epoch_NAnc
-TwoEpochC_two_epoch_Time = 2 * 25 * TwoEpochC_two_epoch_tau * TwoEpochC_two_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_two_epoch_allele_sum)
+TwoEpochC_two_epoch_Time = 2 * TwoEpochC_two_epoch_tau * TwoEpochC_two_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_two_epoch_allele_sum)
 TwoEpochC_three_epoch_NAnc = TwoEpochC_three_epoch_theta / (4 * TwoEpochC_three_epoch_allele_sum * TwoEpochC_mu)
 TwoEpochC_three_epoch_NBottle = TwoEpochC_three_epoch_nuB * TwoEpochC_three_epoch_NAnc
 TwoEpochC_three_epoch_NCurr = TwoEpochC_three_epoch_nuF * TwoEpochC_three_epoch_NAnc
-TwoEpochC_three_epoch_TimeBottleEnd = 2 * 25 * TwoEpochC_three_epoch_tauF * TwoEpochC_three_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_three_epoch_allele_sum)
-TwoEpochC_three_epoch_TimeBottleStart = 2 * 25 * TwoEpochC_three_epoch_tauB * TwoEpochC_three_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_three_epoch_allele_sum) + TwoEpochC_three_epoch_TimeBottleEnd
+TwoEpochC_three_epoch_TimeBottleEnd = 2 * TwoEpochC_three_epoch_tauF * TwoEpochC_three_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_three_epoch_allele_sum)
+TwoEpochC_three_epoch_TimeBottleStart = 2 * TwoEpochC_three_epoch_tauB * TwoEpochC_three_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_three_epoch_allele_sum) + TwoEpochC_three_epoch_TimeBottleEnd
 TwoEpochC_three_epoch_TimeTotal = TwoEpochC_three_epoch_TimeBottleStart + TwoEpochC_three_epoch_TimeBottleEnd
 
-max_time = max(TwoEpochC_two_epoch_Time, TwoEpochC_three_epoch_TimeTotal) + 1
-two_epoch_max_time = max(TwoEpochC_two_epoch_Time)
+max_time = max(TwoEpochC_two_epoch_Time, TwoEpochC_three_epoch_TimeTotal, TwoEpochC_true_Time) * 1.1
+two_epoch_max_time = max(TwoEpochC_two_epoch_Time, TwoEpochC_true_Time) * 1.1
 three_epoch_max_time = max(TwoEpochC_three_epoch_TimeTotal)
 
 TwoEpochC_two_epoch_max_time = rep(two_epoch_max_time, 10)
+TwoEpochC_two_epoch_current_time = rep(0, 10)
+
+TwoEpochC_true_demography = data.frame(TwoEpochC_true_NAnc, TwoEpochC_two_epoch_max_time,
+  TwoEpochC_true_NCurr, TwoEpochC_true_Time,
+  TwoEpochC_true_NCurr, TwoEpochC_two_epoch_current_time)
+
 # TwoEpochC_two_epoch_max_time = rep(2E4, 10)
 TwoEpochC_two_epoch_current_time = rep(0, 10)
 TwoEpochC_two_epoch_demography = data.frame(TwoEpochC_two_epoch_NAnc, TwoEpochC_two_epoch_max_time, 
@@ -217,6 +228,10 @@ TwoEpochC_three_epoch_demography = data.frame(TwoEpochC_three_epoch_NAnc, TwoEpo
   TwoEpochC_three_epoch_NBottle, TwoEpochC_three_epoch_TimeBottleStart,
   TwoEpochC_three_epoch_NCurr, TwoEpochC_three_epoch_TimeBottleEnd,
   TwoEpochC_three_epoch_NCurr, TwoEpochC_three_epoch_current_time)
+
+TwoEpochC_true_NEffective_params = c(TwoEpochC_true_demography[1, 1], TwoEpochC_true_demography[1, 3], TwoEpochC_true_demography[1, 5])
+TwoEpochC_true_Time_params = c(-TwoEpochC_true_demography[1, 2], -TwoEpochC_true_demography[1, 4], TwoEpochC_true_demography[1, 6])
+TwoEpochC_true_demography_params = data.frame(TwoEpochC_true_Time_params, TwoEpochC_true_NEffective_params)
 
 TwoEpochC_two_epoch_NEffective_10 = c(TwoEpochC_two_epoch_demography[1, 1], TwoEpochC_two_epoch_demography[1, 3], TwoEpochC_two_epoch_demography[1, 5])
 TwoEpochC_two_epoch_Time_10 = c(-TwoEpochC_two_epoch_demography[1, 2], -TwoEpochC_two_epoch_demography[1, 4], TwoEpochC_two_epoch_demography[1, 6])
@@ -280,16 +295,17 @@ TwoEpochC_three_epoch_NEffective_700 = c(TwoEpochC_three_epoch_demography[10, 1]
 TwoEpochC_three_epoch_Time_700 = c(-TwoEpochC_three_epoch_demography[10, 2], -TwoEpochC_three_epoch_demography[10, 4], -TwoEpochC_three_epoch_demography[10, 6], TwoEpochC_three_epoch_demography[10, 8])
 TwoEpochC_three_epoch_demography_700 = data.frame(TwoEpochC_three_epoch_Time_700, TwoEpochC_three_epoch_NEffective_700)
 
-ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoch_Time_10, TwoEpochC_two_epoch_NEffective_10, color='N=10')) + geom_step(linewidth=1, linetype='dotted') + 
-  geom_step(data=TwoEpochC_two_epoch_demography_20, aes(TwoEpochC_two_epoch_Time_20, TwoEpochC_two_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_30, aes(TwoEpochC_two_epoch_Time_30, TwoEpochC_two_epoch_NEffective_30, color='N=30'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_50, aes(TwoEpochC_two_epoch_Time_50, TwoEpochC_two_epoch_NEffective_50, color='N=50'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_100, aes(TwoEpochC_two_epoch_Time_100, TwoEpochC_two_epoch_NEffective_100, color='N=100'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_150, aes(TwoEpochC_two_epoch_Time_150, TwoEpochC_two_epoch_NEffective_150, color='N=150'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_200, aes(TwoEpochC_two_epoch_Time_200, TwoEpochC_two_epoch_NEffective_200, color='N=200'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_300, aes(TwoEpochC_two_epoch_Time_300, TwoEpochC_two_epoch_NEffective_300, color='N=300'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_500, aes(TwoEpochC_two_epoch_Time_500, TwoEpochC_two_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='dotted') +
-  geom_step(data=TwoEpochC_two_epoch_demography_700, aes(TwoEpochC_two_epoch_Time_700, TwoEpochC_two_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='dotted') +
+ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoch_Time_10, TwoEpochC_two_epoch_NEffective_10, color='N=10')) + geom_step(linewidth=1, linetype='dashed') + 
+  geom_step(data=TwoEpochC_two_epoch_demography_20, aes(TwoEpochC_two_epoch_Time_20, TwoEpochC_two_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_30, aes(TwoEpochC_two_epoch_Time_30, TwoEpochC_two_epoch_NEffective_30, color='N=30'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_50, aes(TwoEpochC_two_epoch_Time_50, TwoEpochC_two_epoch_NEffective_50, color='N=50'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_100, aes(TwoEpochC_two_epoch_Time_100, TwoEpochC_two_epoch_NEffective_100, color='N=100'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_150, aes(TwoEpochC_two_epoch_Time_150, TwoEpochC_two_epoch_NEffective_150, color='N=150'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_200, aes(TwoEpochC_two_epoch_Time_200, TwoEpochC_two_epoch_NEffective_200, color='N=200'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_300, aes(TwoEpochC_two_epoch_Time_300, TwoEpochC_two_epoch_NEffective_300, color='N=300'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_500, aes(TwoEpochC_two_epoch_Time_500, TwoEpochC_two_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_700, aes(TwoEpochC_two_epoch_Time_700, TwoEpochC_two_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_true_demography_params, aes(TwoEpochC_true_Time_params, TwoEpochC_true_NEffective_params, color='True'), linewidth=1, linetype='longdash') +
   scale_color_manual(name='Sample Size',
                      breaks=c('N=10', 'N=20', 'N=30', 'N=50', 'N=100', 'N=150', 'N=200', 'N=300', 'N=500', 'N=700'),
                      values=c('N=10'='#7f3b08',
@@ -301,10 +317,12 @@ ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoch_Time_10, TwoEp
                        'N=200'='#b2abd2',
                        'N=300'='#8073ac',
                        'N=500'='#542788',
-                       'N=700'='#2d004b')) +
+                       'N=700'='#2d004b',
+                       'True'='darkgreen')) +
   theme_bw() +
+  scale_y_log10() +
   ylab('Effective Population Size') +
-  xlab('Time in Years') +
+  xlab('Time in Generations') +
   ggtitle('Simulated two-epoch contraction')
 
 best_fit_2EpC = ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoch_Time_10, TwoEpochC_two_epoch_NEffective_10, color='N=10')) + geom_step(linewidth=1, linetype='dashed') + 
@@ -313,22 +331,23 @@ best_fit_2EpC = ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoc
   geom_step(data=TwoEpochC_two_epoch_demography_50, aes(TwoEpochC_two_epoch_Time_50, TwoEpochC_two_epoch_NEffective_50, color='N=50'), linewidth=1, linetype='dashed') +
   geom_step(data=TwoEpochC_two_epoch_demography_100, aes(TwoEpochC_two_epoch_Time_100, TwoEpochC_two_epoch_NEffective_100, color='N=100'), linewidth=1, linetype='dashed') +
   geom_step(data=TwoEpochC_two_epoch_demography_150, aes(TwoEpochC_two_epoch_Time_150, TwoEpochC_two_epoch_NEffective_150, color='N=150'), linewidth=1, linetype='dashed') +
-  # geom_step(data=TwoEpochC_two_epoch_demography_200, aes(TwoEpochC_two_epoch_Time_200, TwoEpochC_two_epoch_NEffective_200, color='N=200'), linewidth=1, linetype='dashed') +
-  # geom_step(data=TwoEpochC_two_epoch_demography_300, aes(TwoEpochC_two_epoch_Time_300, TwoEpochC_two_epoch_NEffective_300, color='N=300'), linewidth=1, linetype='dashed') +
-  # geom_step(data=TwoEpochC_two_epoch_demography_500, aes(TwoEpochC_two_epoch_Time_500, TwoEpochC_two_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='dashed') +
-  # geom_step(data=TwoEpochC_two_epoch_demography_700, aes(TwoEpochC_two_epoch_Time_700, TwoEpochC_two_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_200, aes(TwoEpochC_two_epoch_Time_200, TwoEpochC_two_epoch_NEffective_200, color='N=200'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_300, aes(TwoEpochC_two_epoch_Time_300, TwoEpochC_two_epoch_NEffective_300, color='N=300'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_500, aes(TwoEpochC_two_epoch_Time_500, TwoEpochC_two_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='dashed') +
+  geom_step(data=TwoEpochC_two_epoch_demography_700, aes(TwoEpochC_two_epoch_Time_700, TwoEpochC_two_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='dashed') +
   # geom_step(data=TwoEpochC_three_epoch_demography_10, aes(TwoEpochC_three_epoch_Time_10, TwoEpochC_three_epoch_NEffective_10, color='N=10'), linewidth=1, linetype='solid') +
   # geom_step(data=TwoEpochC_three_epoch_demography_20, aes(TwoEpochC_three_epoch_Time_20, TwoEpochC_three_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='solid') +
   # geom_step(data=TwoEpochC_three_epoch_demography_30, aes(TwoEpochC_three_epoch_Time_30, TwoEpochC_three_epoch_NEffective_30, color='N=30'), linewidth=1, linetype='solid') +
   # geom_step(data=TwoEpochC_three_epoch_demography_50, aes(TwoEpochC_three_epoch_Time_50, TwoEpochC_three_epoch_NEffective_50, color='N=50'), linewidth=1, linetype='solid') +
   # geom_step(data=TwoEpochC_three_epoch_demography_100, aes(TwoEpochC_three_epoch_Time_100, TwoEpochC_three_epoch_NEffective_100, color='N=100'), linewidth=1, linetype='solid') +
   # geom_step(data=TwoEpochC_three_epoch_demography_150, aes(TwoEpochC_three_epoch_Time_150, TwoEpochC_three_epoch_NEffective_150, color='N=150'), linewidth=1, linetype='solid') +
-  geom_step(data=TwoEpochC_three_epoch_demography_200, aes(TwoEpochC_three_epoch_Time_200, TwoEpochC_three_epoch_NEffective_200, color='N=200'), linewidth=1, linetype='solid') +
-  geom_step(data=TwoEpochC_three_epoch_demography_300, aes(TwoEpochC_three_epoch_Time_300, TwoEpochC_three_epoch_NEffective_300, color='N=300'), linewidth=1, linetype='solid') +
-  geom_step(data=TwoEpochC_three_epoch_demography_500, aes(TwoEpochC_three_epoch_Time_500, TwoEpochC_three_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='solid') +
-  geom_step(data=TwoEpochC_three_epoch_demography_700, aes(TwoEpochC_three_epoch_Time_700, TwoEpochC_three_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='solid') +
+  # geom_step(data=TwoEpochC_three_epoch_demography_200, aes(TwoEpochC_three_epoch_Time_200, TwoEpochC_three_epoch_NEffective_200, color='N=200'), linewidth=1, linetype='solid') +
+  # geom_step(data=TwoEpochC_three_epoch_demography_300, aes(TwoEpochC_three_epoch_Time_300, TwoEpochC_three_epoch_NEffective_300, color='N=300'), linewidth=1, linetype='solid') +
+  # geom_step(data=TwoEpochC_three_epoch_demography_500, aes(TwoEpochC_three_epoch_Time_500, TwoEpochC_three_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='solid') +
+  # geom_step(data=TwoEpochC_three_epoch_demography_700, aes(TwoEpochC_three_epoch_Time_700, TwoEpochC_three_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='solid') +
+  geom_step(data=TwoEpochC_true_demography_params, aes(TwoEpochC_true_Time_params, TwoEpochC_true_NEffective_params, color='True'), linewidth=1.5, linetype='longdash') +
   scale_color_manual(name='Sample Size',
-                     breaks=c('N=10', 'N=20', 'N=30', 'N=50', 'N=100', 'N=150', 'N=200', 'N=300', 'N=500', 'N=700'),
+                     breaks=c('N=10', 'N=20', 'N=30', 'N=50', 'N=100', 'N=150', 'N=200', 'N=300', 'N=500', 'N=700', 'True'),
                      values=c('N=10'='#7f3b08',
                        'N=20'='#b35806',
                        'N=30'='#e08250',
@@ -338,11 +357,15 @@ best_fit_2EpC = ggplot(TwoEpochC_two_epoch_demography_10, aes(TwoEpochC_two_epoc
                        'N=200'='#b2abd2',
                        'N=300'='#8073ac',
                        'N=500'='#542788',
-                       'N=700'='#2d004b')) +
+                       'N=700'='#2d004b',
+                       'True'='darkgreen')) +
   theme_bw() +
+  scale_y_log10() +
   ylab('Effective Population Size') +
-  xlab('Time in Years') +
+  xlab('Time in Generations') +
   ggtitle('Simulated 2EpC Best-fitting Demography')
+
+best_fit_2EpC
 
 ggplot(TwoEpochC_three_epoch_demography_10, aes(TwoEpochC_three_epoch_Time_10, TwoEpochC_three_epoch_NEffective_10, color='N=10')) + geom_step(linewidth=1, linetype='solid') + 
   geom_step(data=TwoEpochC_three_epoch_demography_20, aes(TwoEpochC_three_epoch_Time_20, TwoEpochC_three_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='solid') +
@@ -368,7 +391,7 @@ ggplot(TwoEpochC_three_epoch_demography_10, aes(TwoEpochC_three_epoch_Time_10, T
                        'N=700'='#2d004b')) +
   theme_bw() +
   ylab('Effective Population Size') +
-  xlab('Time in Years') +
+  xlab('Time in Generations') +
   ggtitle('Simulated 2EpC Three Epoch Demography')
 
 
@@ -450,17 +473,17 @@ TwoEpochC_one_epoch_700 = sfs_from_demography('../Analysis/TwoEpochContraction_7
 TwoEpochC_two_epoch_700 = sfs_from_demography('../Analysis/TwoEpochContraction_700/two_epoch_demography.txt')
 TwoEpochC_three_epoch_700 = sfs_from_demography('../Analysis/TwoEpochContraction_700/three_epoch_demography.txt')
 
-compare_one_two_three_sfs(TwoEpochC_empirical_10, TwoEpochC_one_epoch_10, TwoEpochC_two_epoch_10, TwoEpochC_three_epoch_10) + ggtitle('TwoEpochC, sample size = 10') + 
-  compare_one_two_three_proportional_sfs(TwoEpochC_empirical_10, TwoEpochC_one_epoch_10, TwoEpochC_two_epoch_10, TwoEpochC_three_epoch_10) + 
-  plot_layout(nrow=2)
-
-compare_one_two_three_sfs(TwoEpochC_empirical_20, TwoEpochC_one_epoch_20, TwoEpochC_two_epoch_20, TwoEpochC_three_epoch_20) + ggtitle('TwoEpochC, sample size = 20') + 
-  compare_one_two_three_proportional_sfs(TwoEpochC_empirical_20, TwoEpochC_one_epoch_20, TwoEpochC_two_epoch_20, TwoEpochC_three_epoch_20) + 
-  plot_layout(nrow=2)
-
-compare_one_two_three_sfs(TwoEpochC_empirical_30, TwoEpochC_one_epoch_30, TwoEpochC_two_epoch_30, TwoEpochC_three_epoch_30) + ggtitle('TwoEpochC, sample size = 30') + 
-  compare_one_two_three_proportional_sfs(TwoEpochC_empirical_30, TwoEpochC_one_epoch_30, TwoEpochC_two_epoch_30, TwoEpochC_three_epoch_30) + 
-  plot_layout(nrow=2)
+# compare_one_two_three_sfs(TwoEpochC_empirical_10, TwoEpochC_one_epoch_10, TwoEpochC_two_epoch_10, TwoEpochC_three_epoch_10) + ggtitle('TwoEpochC, sample size = 10') + 
+#   compare_one_two_three_proportional_sfs(TwoEpochC_empirical_10, TwoEpochC_one_epoch_10, TwoEpochC_two_epoch_10, TwoEpochC_three_epoch_10) + 
+#   plot_layout(nrow=2)
+# 
+# compare_one_two_three_sfs(TwoEpochC_empirical_20, TwoEpochC_one_epoch_20, TwoEpochC_two_epoch_20, TwoEpochC_three_epoch_20) + ggtitle('TwoEpochC, sample size = 20') + 
+#   compare_one_two_three_proportional_sfs(TwoEpochC_empirical_20, TwoEpochC_one_epoch_20, TwoEpochC_two_epoch_20, TwoEpochC_three_epoch_20) + 
+#   plot_layout(nrow=2)
+# 
+# compare_one_two_three_sfs(TwoEpochC_empirical_30, TwoEpochC_one_epoch_30, TwoEpochC_two_epoch_30, TwoEpochC_three_epoch_30) + ggtitle('TwoEpochC, sample size = 30') + 
+#   compare_one_two_three_proportional_sfs(TwoEpochC_empirical_30, TwoEpochC_one_epoch_30, TwoEpochC_two_epoch_30, TwoEpochC_three_epoch_30) + 
+#   plot_layout(nrow=2)
 # 
 # compare_one_two_three_sfs(TwoEpochC_empirical_50, TwoEpochC_one_epoch_50, TwoEpochC_two_epoch_50, TwoEpochC_three_epoch_50) + ggtitle('TwoEpochC, sample size = 50') + 
 #   compare_one_two_three_proportional_sfs(TwoEpochC_empirical_50, TwoEpochC_one_epoch_50, TwoEpochC_two_epoch_50, TwoEpochC_three_epoch_50) + 

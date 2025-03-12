@@ -327,6 +327,35 @@ compare_1kg_gnomad_null_proportional_cutoff = function(old_1kg, empirical_1kg, e
   return(p_input_comparison)
 }
 
+compare_demographic_models_proportional_cutoff = function(old_1kg, model_1kg, model_gnomad) {
+  x_axis = 1:10
+  old_1kg = proportional_sfs(old_1kg)[1:10]
+  model_1kg = proportional_sfs(model_1kg)[1:10]
+  model_gnomad = proportional_sfs(model_gnomad)[1:10]
+  input_df = data.frame(old_1kg,
+                        model_1kg,
+                        model_gnomad,
+                        x_axis)
+  
+  names(input_df) = c('1KG (2017) best-fit',
+                      '1KG (2020) best-fit',
+                      'gnomAD best-fit',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
+  
+  return(p_input_comparison)
+}
 
 compare_1kg_gnomad_proportional_cutoff = function(empirical_1kg, empirical_gnomad) {
   x_axis = 1:10
@@ -533,4 +562,128 @@ tajima_D_from_sfs = function(input_file) {
   floats <- as.numeric(str_extract_all(tajima_D_string, "[+-]?\\d+\\.\\d+")[[1]])
   tajima_D = floats[1]
   return(tajima_D)
+}
+
+gamma_sfs_from_dfe = function(input_file) {
+  ## Reads input SFS from output *demography.txt
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  sfs_string = readLines(this_file)[7]
+  output_sfs = strsplit(sfs_string, '-- ')
+  output_sfs = unlist(output_sfs)[2]
+  output_sfs = unlist(strsplit(output_sfs, ' '))
+  # output_sfs = output_sfs[-length(output_sfs)]
+  ## output_sfs = output_sfs[-1]
+  output_sfs = as.numeric(output_sfs)
+  return(output_sfs)
+}
+
+neugamma_sfs_from_dfe = function(input_file) {
+  ## Reads input SFS from output *demography.txt
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  sfs_string = readLines(this_file)[14]
+  output_sfs = strsplit(sfs_string, '-- ')
+  output_sfs = unlist(output_sfs)[2]
+  output_sfs = unlist(strsplit(output_sfs, ' '))
+  # output_sfs = output_sfs[-length(output_sfs)]
+  ## output_sfs = output_sfs[-1]
+  output_sfs = as.numeric(output_sfs)
+  return(output_sfs)
+}
+
+empirical_sfs_from_dfe = function(input_file) {
+  ## Reads input SFS from output *demography.txt
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  sfs_string = readLines(this_file)[6]
+  output_sfs = strsplit(sfs_string, '-- ')
+  output_sfs = unlist(output_sfs)[2]
+  output_sfs = unlist(strsplit(output_sfs, ' '))
+  # output_sfs = output_sfs[-length(output_sfs)]
+  ## output_sfs = output_sfs[-1]
+  output_sfs = as.numeric(output_sfs)
+  return(output_sfs)
+}
+
+compare_dfe_sfs_cutoff = function(empirical_nonsyn_sfs, model_nonsyn_sfs, neugamma_nonsyn_sfs) {
+  x_axis = 1:10
+  
+  input_df = data.frame(proportional_sfs(empirical_nonsyn_sfs)[1:10],
+                        proportional_sfs(model_nonsyn_sfs)[1:10],
+                        proportional_sfs(neugamma_nonsyn_sfs)[1:10],
+                        x_axis)
+  
+  names(input_df) = c('Empirical nonsynonymous',
+                      'Gamma-distributed DFE',
+                      'Neu-gamma-distributed DFE',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                               aes(x=x_axis, 
+                                   y=value,
+                                   fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)  
+}
+
+read_gamma_dfe_params = function(input_dfe_file) {
+  ## Reads input DFE from output *inferred_DFE.txt
+  this_file = file(input_dfe_file) # Open file
+  on.exit(close(this_file)) # Close when done
+  # Parse file and string manipulation
+  param_string_high = readLines(this_file)[4]
+
+  # Extract the two floats using regular expression
+  floats <- str_extract_all(param_string_high, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
+  
+  # Convert the extracted strings to numeric values
+  gamma_shape <- as.numeric(floats[[1]][1])
+  gamma_scale_high <- as.numeric(floats[[1]][2])
+
+  param_string_low = readLines(this_file)[5]
+  # Extract the two floats using regular expression
+  floats <- str_extract_all(param_string_low, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
+  
+  # Convert the extracted strings to numeric values
+  gamma_scale_low <- as.numeric(floats[[1]][2])
+  
+  return_data_frame = rgamma(10000, shape=gamma_shape, scale=gamma_scale_low)
+  return_data_frame = data.frame(return_data_frame)
+  return(return_data_frame)
+}
+
+read_neugamma_dfe_params = function(input_dfe_file) {
+  ## Reads input DFE from output *inferred_DFE.txt
+  this_file = file(input_dfe_file) # Open file
+  on.exit(close(this_file)) # Close when done
+  # Parse file and string manipulation
+  param_string_high = readLines(this_file)[11]
+  # Extract the two floats using regular expression
+  floats <- str_extract_all(param_string_high, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
+  
+  # Convert the extracted strings to numeric values
+  neugamma_proportion = as.numeric(floats[[1]][1])
+  neugamma_shape = as.numeric(floats[[1]][2])
+  neugamma_scale_high = as.numeric(floats[[1]][3])
+  
+  param_string_low = readLines(this_file)[12]
+  # Extract the two floats using regular expression
+  floats <- str_extract_all(param_string_low, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
+  
+  neugamma_scale_low <- as.numeric(floats[[1]][2])
+
+  return_data_frame = rgamma(10000, shape=neugamma_shape, scale=neugamma_scale_low)
+  
+  zeroed_sites = as.integer(10000 * neugamma_proportion)
+  
+  return_data_frame[1:zeroed_sites] = 0
+  return_data_frame = data.frame(return_data_frame)
+  return(return_data_frame)
 }
