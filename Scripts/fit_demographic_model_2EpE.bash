@@ -2,12 +2,12 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=36:00:00
+#$ -l h_rt=72:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_2EpE_100
+#$ -N fit_2EpE_700
 #$ -l highp
-#$ -t 100
+#$ -t 700
 
 # SGE_TASK_ID=10
 

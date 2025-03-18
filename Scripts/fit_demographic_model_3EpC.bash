@@ -2,10 +2,10 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=36:30:00
+#$ -l h_rt=72:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N fit_3EpC
+#$ -N fit_3EpC_700
 #$ -l highp
 #$ -t 700
 
