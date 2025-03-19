@@ -654,7 +654,7 @@ read_gamma_dfe_params = function(input_dfe_file) {
   # Convert the extracted strings to numeric values
   gamma_scale_low <- as.numeric(floats[[1]][2])
   
-  return_data_frame = rgamma(10000, shape=gamma_shape, scale=gamma_scale_low)
+  return_data_frame = rgamma(100000, shape=gamma_shape, scale=gamma_scale_low)
   return_data_frame = data.frame(return_data_frame)
   return(return_data_frame)
 }
@@ -679,9 +679,9 @@ read_neugamma_dfe_params = function(input_dfe_file) {
   
   neugamma_scale_low <- as.numeric(floats[[1]][2])
 
-  return_data_frame = rgamma(10000, shape=neugamma_shape, scale=neugamma_scale_low)
+  return_data_frame = rgamma(100000, shape=neugamma_shape, scale=neugamma_scale_low)
   
-  zeroed_sites = as.integer(10000 * neugamma_proportion)
+  zeroed_sites = as.integer(100000 * neugamma_proportion)
   
   return_data_frame[1:zeroed_sites] = 0
   return_data_frame = data.frame(return_data_frame)

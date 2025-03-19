@@ -553,78 +553,70 @@ dataset_levels = c(
   '1KG (2017), n=100',
   '1KG (2017), n=300',
   '1KG (2020), n=10',
-  '1KG (2020), n=100*',
-  '1KG (2020), n=300*',
+  '1KG (2020), n=100',
+  '1KG (2020), n=300',
   'gnomAD, n=10',
-  'gnomAD, n=100*',
-  'gnomAD, n=300*'
+  'gnomAD, n=100',
+  'gnomAD, n=300'
 )
-# 
-# )
-# 
-# FD_phylogenetic_levels_MIDAS = c(
-#   'Alistipes_sp_60764',
-# 
-# )
-# 
-# supplementary_species_list = c(
-#   'Akkermansia muciniphila',
-# 
-# )
-# 
-# # FD DFE comparison (core)
-# 
-# a_muciniphila_fd_core_dfe_params = read_dfe_params('../SupplementaryAnalysis/Akkermansia_muciniphila_55290/core_inferred_DFE.txt')
-# a_muciniphila_fd_core_dfe_params$species = 'Akkermansia muciniphila'
 
-EUR_2017_10_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_10/inferred_DFE.txt')
-EUR_2017_10_dfe_params$dataset = '1KG (2017), n=10'
-EUR_2017_100_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_100/inferred_DFE.txt')
-EUR_2017_100_dfe_params$dataset = '1KG (2017), n=100'
-EUR_2017_300_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_300/inferred_DFE.txt')
-EUR_2017_300_dfe_params$dataset = '1KG (2017), n=300'
+EUR_2017_10_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_10/inferred_DFE.txt'))
+EUR_2017_10_gamma_dfe_params$dataset = '1KG (2017), n=10'
+EUR_2017_10_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_10/inferred_DFE.txt'))
+EUR_2017_10_neugamma_dfe_params$dataset = '1KG (2017), n=10'
+EUR_2017_100_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_100/inferred_DFE.txt'))
+EUR_2017_100_gamma_dfe_params$dataset = '1KG (2017), n=100'
+EUR_2017_100_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_100/inferred_DFE.txt'))
+EUR_2017_100_neugamma_dfe_params$dataset = '1KG (2017), n=100'
+EUR_2017_300_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_300/inferred_DFE.txt'))
+EUR_2017_300_gamma_dfe_params$dataset = '1KG (2017), n=300'
+EUR_2017_300_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_300/inferred_DFE.txt'))
+EUR_2017_300_neugamma_dfe_params$dataset = '1KG (2017), n=300'
 
-EUR_2020_10_dfe_params = read_gamma_dfe_params('../Analysis/1kg_EUR_2020_10/inferred_DFE.txt')
-EUR_2020_10_dfe_params$dataset = '1KG (2020), n=10'
-EUR_2020_100_dfe_params = read_neugamma_dfe_params('../Analysis/1kg_EUR_2020_100/inferred_DFE.txt')
-EUR_2020_100_dfe_params$dataset = '1KG (2020), n=100*'
-EUR_2020_300_dfe_params = read_neugamma_dfe_params('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt')
-EUR_2020_300_dfe_params$dataset = '1KG (2020), n=300*'
+EUR_2020_10_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_2020_10/inferred_DFE.txt'))
+EUR_2020_10_gamma_dfe_params$dataset = '1KG (2020), n=10'
+EUR_2020_10_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_2020_10/inferred_DFE.txt'))
+EUR_2020_10_neugamma_dfe_params$dataset = '1KG (2020), n=10'
+EUR_2020_100_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_2020_100/inferred_DFE.txt'))
+EUR_2020_100_gamma_dfe_params$dataset = '1KG (2020), n=100'
+EUR_2020_100_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_2020_100/inferred_DFE.txt'))
+EUR_2020_100_neugamma_dfe_params$dataset = '1KG (2020), n=100'
+EUR_2020_300_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt'))
+EUR_2020_300_gamma_dfe_params$dataset = '1KG (2020), n=300'
+EUR_2020_300_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt'))
+EUR_2020_300_neugamma_dfe_params$dataset = '1KG (2020), n=300'
 
-gnomAD_10_dfe_params = read_gamma_dfe_params('../Analysis/gnomAD_10/inferred_DFE.txt')
-gnomAD_10_dfe_params$dataset = 'gnomAD, n=10'
-gnomAD_100_dfe_params = read_neugamma_dfe_params('../Analysis/gnomAD_100/inferred_DFE.txt')
-gnomAD_100_dfe_params$dataset = 'gnomAD, n=100*'
-gnomAD_300_dfe_params = read_neugamma_dfe_params('../Analysis/gnomAD_300/inferred_DFE.txt')
-gnomAD_300_dfe_params$dataset = 'gnomAD, n=300*'
+gnomAD_10_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/gnomAD_10/inferred_DFE.txt'))
+gnomAD_10_gamma_dfe_params$dataset = 'gnomAD, n=10'
+gnomAD_10_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/gnomAD_10/inferred_DFE.txt'))
+gnomAD_10_neugamma_dfe_params$dataset = 'gnomAD, n=10'
+gnomAD_100_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/gnomAD_100/inferred_DFE.txt'))
+gnomAD_100_gamma_dfe_params$dataset = 'gnomAD, n=100'
+gnomAD_100_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/gnomAD_100/inferred_DFE.txt'))
+gnomAD_100_neugamma_dfe_params$dataset = 'gnomAD, n=100'
+gnomAD_300_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/gnomAD_300/inferred_DFE.txt'))
+gnomAD_300_gamma_dfe_params$dataset = 'gnomAD, n=300'
+gnomAD_300_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/gnomAD_300/inferred_DFE.txt'))
+gnomAD_300_neugamma_dfe_params$dataset = 'gnomAD, n=300'
 
 dfe_df = rbind(
-  melt(EUR_2017_10_dfe_params),
-  melt(EUR_2017_100_dfe_params),
-  melt(EUR_2017_300_dfe_params),
-  melt(EUR_2020_10_dfe_params),
-  melt(EUR_2020_100_dfe_params),
-  melt(EUR_2020_300_dfe_params),
-  melt(gnomAD_10_dfe_params),
-  melt(gnomAD_100_dfe_params),
-  melt(gnomAD_300_dfe_params)
+  melt(EUR_2017_10_gamma_dfe_params),
+  melt(EUR_2017_100_gamma_dfe_params),
+  melt(EUR_2017_300_gamma_dfe_params),
+  melt(EUR_2020_10_gamma_dfe_params),
+  melt(EUR_2020_100_neugamma_dfe_params),
+  melt(EUR_2020_300_neugamma_dfe_params),
+  melt(gnomAD_10_gamma_dfe_params),
+  melt(gnomAD_100_neugamma_dfe_params),
+  melt(gnomAD_300_neugamma_dfe_params)
 )
-
-# dfe_df
 
 dfe_df$dataset = factor(dfe_df$dataset, levels=dataset_levels)
 
 dfe_df <- dfe_df[order(dfe_df$dataset), ]
 
-# fd_core_dfe_df <- fd_core_dfe_df[order(fd_core_dfe_df$species), ]
-
-# fd_core_dfe_df
-
 dfe_df$value[dfe_df$value <= 1e-11] = 1e-11
 dfe_df$value[dfe_df$value >= 0.5] = 0.5
-
-### Figure 3
-# 600 x 1000
 
 ggplot(dfe_df[dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
   geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
@@ -639,18 +631,115 @@ ggplot(dfe_df[dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(
                        '1KG (2017), n=100'='#41ae76',
                        '1KG (2017), n=300'='#006d2c',
                        '1KG (2020), n=10'='#bcbddc',
-                       '1KG (2020), n=100*'='#807dba',
-                       '1KG (2020), n=300*'='#54278f',
+                       '1KG (2020), n=100'='#807dba',
+                       '1KG (2020), n=300'='#54278f',
                        'gnomAD, n=10'='#fc9272',
-                       'gnomAD, n=100*'='#ef3b2c',
-                       'gnomAD, n=300*'='#a50f15'),
+                       'gnomAD, n=100'='#ef3b2c',
+                       'gnomAD, n=300'='#a50f15'),
                      labels=c('1KG (2017), n=10',
                        '1KG (2017), n=100',
                        '1KG (2017), n=300',
                        '1KG (2020), n=10',
-                       '1KG (2020), n=100*',
-                       '1KG (2020), n=300*',
+                       '1KG (2020), n=100',
+                       '1KG (2020), n=300',
                        'gnomAD, n=10',
-                       'gnomAD, n=100*',
-                       'gnomAD, n=300*')) +
+                       'gnomAD, n=100',
+                       'gnomAD, n=300')) +
   ggtitle('Best-fit DFE for European Human data')
+
+gamma_dfe_df = rbind(
+  melt(EUR_2017_10_gamma_dfe_params),
+  melt(EUR_2017_100_gamma_dfe_params),
+  melt(EUR_2017_300_gamma_dfe_params),
+  melt(EUR_2020_10_gamma_dfe_params),
+  melt(EUR_2020_100_gamma_dfe_params),
+  melt(EUR_2020_300_gamma_dfe_params),
+  melt(gnomAD_10_gamma_dfe_params),
+  melt(gnomAD_100_gamma_dfe_params),
+  melt(gnomAD_300_gamma_dfe_params)
+)
+
+gamma_dfe_df$dataset = factor(gamma_dfe_df$dataset, levels=dataset_levels)
+
+gamma_dfe_df <- gamma_dfe_df[order(gamma_dfe_df$dataset), ]
+
+gamma_dfe_df$value[gamma_dfe_df$value <= 1e-11] = 1e-11
+gamma_dfe_df$value[gamma_dfe_df$value >= 0.5] = 0.5
+
+ggplot(gamma_dfe_df[gamma_dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
+  geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
+  theme_ridges() +
+  scale_x_log10(limits=c(1e-12, 1e1)) +
+  ylab('Proportion of Sites') +
+  theme(axis.text.y = element_text(face='italic', hjust=0, size=18)) +
+  theme(axis.text.x = element_text(size=18)) + 
+  theme(legend.position = "none") + 
+  xlab('Selection Coefficient') +
+  scale_fill_manual(values=c('1KG (2017), n=10'='#99d8c9',
+                       '1KG (2017), n=100'='#41ae76',
+                       '1KG (2017), n=300'='#006d2c',
+                       '1KG (2020), n=10'='#bcbddc',
+                       '1KG (2020), n=100'='#807dba',
+                       '1KG (2020), n=300'='#54278f',
+                       'gnomAD, n=10'='#fc9272',
+                       'gnomAD, n=100'='#ef3b2c',
+                       'gnomAD, n=300'='#a50f15'),
+                     labels=c('1KG (2017), n=10',
+                       '1KG (2017), n=100',
+                       '1KG (2017), n=300',
+                       '1KG (2020), n=10',
+                       '1KG (2020), n=100',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=10',
+                       'gnomAD, n=100',
+                       'gnomAD, n=300')) +
+  ggtitle('Best-fit Gamma DFE for European Human data')
+
+neugamma_dfe_df = rbind(
+  melt(EUR_2017_10_neugamma_dfe_params),
+  melt(EUR_2017_100_neugamma_dfe_params),
+  melt(EUR_2017_300_neugamma_dfe_params),
+  melt(EUR_2020_10_neugamma_dfe_params),
+  melt(EUR_2020_100_neugamma_dfe_params),
+  melt(EUR_2020_300_neugamma_dfe_params),
+  melt(gnomAD_10_neugamma_dfe_params),
+  melt(gnomAD_100_neugamma_dfe_params),
+  melt(gnomAD_300_neugamma_dfe_params)
+)
+
+neugamma_dfe_df$dataset = factor(neugamma_dfe_df$dataset, levels=dataset_levels)
+
+neugamma_dfe_df <- neugamma_dfe_df[order(neugamma_dfe_df$dataset), ]
+
+neugamma_dfe_df$value[neugamma_dfe_df$value <= 1e-11] = 1e-11
+neugamma_dfe_df$value[neugamma_dfe_df$value >= 0.5] = 0.5
+
+ggplot(neugamma_dfe_df[neugamma_dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
+  geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
+  theme_ridges() +
+  scale_x_log10(limits=c(1e-12, 1e1)) +
+  ylab('Proportion of Sites') +
+  theme(axis.text.y = element_text(face='italic', hjust=0, size=18)) +
+  theme(axis.text.x = element_text(size=18)) + 
+  theme(legend.position = "none") + 
+  xlab('Selection Coefficient') +
+  scale_fill_manual(values=c('1KG (2017), n=10'='#99d8c9',
+                       '1KG (2017), n=100'='#41ae76',
+                       '1KG (2017), n=300'='#006d2c',
+                       '1KG (2020), n=10'='#bcbddc',
+                       '1KG (2020), n=100'='#807dba',
+                       '1KG (2020), n=300'='#54278f',
+                       'gnomAD, n=10'='#fc9272',
+                       'gnomAD, n=100'='#ef3b2c',
+                       'gnomAD, n=300'='#a50f15'),
+                     labels=c('1KG (2017), n=10',
+                       '1KG (2017), n=100',
+                       '1KG (2017), n=300',
+                       '1KG (2020), n=10',
+                       '1KG (2020), n=100',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=10',
+                       'gnomAD, n=100',
+                       'gnomAD, n=300')) +
+  ggtitle('Best-fit Neu-gamma DFE for European Human data')
+
