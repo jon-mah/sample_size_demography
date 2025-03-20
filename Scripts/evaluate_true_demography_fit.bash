@@ -43,7 +43,7 @@ python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_10/syn_do
 python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_20/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_20/ --params_list 2.0 4.0 0.09 0.01
 python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_30/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_30/ --params_list 2.0 4.0 0.09 0.01
 python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_50/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_50/ --params_list 2.0 4.0 0.09 0.01
-python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_1000/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_100/ --params_list 2.0 4.0 0.09 0.01
+python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_100/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_100/ --params_list 2.0 4.0 0.09 0.01
 python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_150/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_150/ --params_list 2.0 4.0 0.09 0.01
 python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_200/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_200/ --params_list 2.0 4.0 0.09 0.01
 python evaluate_true_demography_fit.py ../Analysis/ThreeEpochExpansion_300/syn_downsampled_sfs.txt three_epoch ../Analysis/ThreeEpochExpansion_300/ --params_list 2.0 4.0 0.09 0.01
