@@ -499,14 +499,14 @@ class EvaluateDemography():
                 'Maximum poisson log composite likelihood: {0}.\n'.format(
                     poisson_ll))
             f.write('Non-scaled best-fit model spectrum: {0}.\n'.format(
-                non_scaled_spectrum))
+                non_scaled_spectrum.fold()))
             f.write('Optimal value of theta_syn: {0}.\n'.format(theta_syn))
             f.write('Optimal value of theta_nonsyn: {0}.\n'.format(
                 theta_nonsyn))
             f.write('Empirical synonymous sfs: {0}.\n'.format(
                 syn_data))
             f.write('Scaled best-fit model spectrum: {0}.\n'.format(
-                scaled_spectrum))
+                scaled_spectrum.fold()))
             logger.info('Converting and interpreting Tau estimates.')
             allele_sum = self.compute_allele_sum(syn_input_sfs)
             # Don't hard  code in mu as value
