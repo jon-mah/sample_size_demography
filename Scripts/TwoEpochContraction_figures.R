@@ -10,6 +10,7 @@ TwoEpochC_empirical_file_list = list()
 TwoEpochC_one_epoch_file_list = list()
 TwoEpochC_two_epoch_file_list = list()
 TwoEpochC_three_epoch_file_list = list()
+TwoEpochC_true_demography_file_list = list()
 TwoEpochC_one_epoch_AIC = c()
 TwoEpochC_one_epoch_LL = c()
 TwoEpochC_one_epoch_theta = c()
@@ -28,6 +29,12 @@ TwoEpochC_three_epoch_nuF = c()
 TwoEpochC_three_epoch_tauB = c()
 TwoEpochC_three_epoch_tauF = c()
 TwoEpochC_three_epoch_allele_sum = global_allele_sum
+TwoEpochC_true_demography_AIC = c()
+TwoEpochC_true_demography_LL = c()
+TwoEpochC_true_demography_theta = c()
+TwoEpochC_true_demography_allele_sum = global_allele_sum
+TwoEpochC_true_demography_nu = c()
+TwoEpochC_true_demography_tau = c()
 
 # Loop through subdirectories and get relevant files
 for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
@@ -36,6 +43,7 @@ for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
   TwoEpochC_one_epoch_file_path <- file.path(subdirectory, "one_epoch_demography.txt")
   TwoEpochC_two_epoch_file_path <- file.path(subdirectory, "two_epoch_demography.txt")
   TwoEpochC_three_epoch_file_path <- file.path(subdirectory, "three_epoch_demography.txt")
+  TwoEpochC_true_demography_file_path <- file.path(subdirectory, 'true_demography.txt')
   
   # Check if the file exists before attempting to read and print its contents
   if (file.exists(TwoEpochC_empirical_file_path)) {
@@ -72,14 +80,23 @@ for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
     TwoEpochC_three_epoch_tauF = c(TwoEpochC_three_epoch_tauF, tauF_from_demography(TwoEpochC_three_epoch_file_path))
     # TwoEpochC_three_epoch_allele_sum = c(TwoEpochC_three_epoch_allele_sum, sum(this_three_epoch_sfs))
   }  
+  if (file.exists(TwoEpochC_true_demography_file_path)) {
+    this_true_demography_sfs = sfs_from_demography(TwoEpochC_true_demography_file_path)
+    TwoEpochC_true_demography_file_list[[subdirectory]] = this_true_demography_sfs
+    TwoEpochC_true_demography_AIC = c(TwoEpochC_true_demography_AIC, AIC_from_demography(TwoEpochC_true_demography_file_path))
+    TwoEpochC_true_demography_LL = c(TwoEpochC_true_demography_LL, LL_from_demography(TwoEpochC_true_demography_file_path))
+    TwoEpochC_true_demography_theta = c(TwoEpochC_true_demography_theta, theta_from_demography(TwoEpochC_true_demography_file_path))
+    TwoEpochC_true_demography_nu = c(TwoEpochC_true_demography_nu, nu_from_demography(TwoEpochC_true_demography_file_path))
+    TwoEpochC_true_demography_tau = c(TwoEpochC_true_demography_tau, tau_from_demography(TwoEpochC_true_demography_file_path))
+  }
 }
 
-TwoEpochC_AIC_df = data.frame(TwoEpochC_one_epoch_AIC, TwoEpochC_two_epoch_AIC, TwoEpochC_three_epoch_AIC)
+TwoEpochC_AIC_df = data.frame(TwoEpochC_one_epoch_AIC, TwoEpochC_two_epoch_AIC, TwoEpochC_three_epoch_AIC, TwoEpochC_true_demography_AIC)
 # Reshape the data from wide to long format
 TwoEpochC_df_long <- tidyr::gather(TwoEpochC_AIC_df, key = "Epoch", value = "AIC", TwoEpochC_one_epoch_AIC:TwoEpochC_three_epoch_AIC)
 
 # Increase the x-axis index by 4
-TwoEpochC_df_long$Index <- rep(c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700), times = 3)
+TwoEpochC_df_long$Index <- rep(c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700), times = 4)
 
 # Create the line plot with ggplot2
 ggplot(TwoEpochC_df_long, aes(x = Index, y = AIC, color = Epoch)) +
@@ -90,8 +107,8 @@ ggplot(TwoEpochC_df_long, aes(x = Index, y = AIC, color = Epoch)) +
        y = "AIC") +
   scale_y_log10() +
   scale_x_continuous(breaks=TwoEpochC_df_long$Index) +
-  scale_color_manual(values = c("blue", "green", "red"),
-    label=c('One-epoch', 'Three-epoch', 'Two-epoch')) +
+  scale_color_manual(values = c("blue", "green", "red", 'black'),
+    label=c('One-epoch', 'Three-epoch', 'Two-epoch', 'True demography')) +
   theme_bw()
 
 TwoEpochC_lambda_two_one = 2 * (TwoEpochC_two_epoch_LL - TwoEpochC_one_epoch_LL)
