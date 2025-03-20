@@ -384,8 +384,8 @@ class EvaluateDemography():
         underscore = '' if args['outprefix'][-1] == '/' else '_'
         logfile = '{0}{1}evaluate_demography.log'.format(args['outprefix'], underscore)
         output_file = \
-            '{0}{1}{2}_true_demography_fit.txt'.format(
-                args['outprefix'], underscore, model_type)
+            '{0}{1}true_demography.txt'.format(
+                args['outprefix'], underscore)
         to_remove = [logfile, output_file]
         for f in to_remove:
             if os.path.isfile(f):
