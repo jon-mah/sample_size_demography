@@ -3,7 +3,7 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source('useful_functions.R')
 
-global_allele_sum = 1000000
+global_allele_sum = 20 * 1000000
 
 # 2EpC 10,20,30,50,100,150,200,300,500,700
 TwoEpochC_empirical_file_list = list()
@@ -91,12 +91,14 @@ for (i in c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700)) {
   }
 }
 
-TwoEpochC_AIC_df = data.frame(TwoEpochC_one_epoch_AIC, TwoEpochC_two_epoch_AIC, TwoEpochC_three_epoch_AIC, TwoEpochC_true_demography_AIC)
+TwoEpochC_AIC_df = data.frame(TwoEpochC_one_epoch_AIC, TwoEpochC_two_epoch_AIC, TwoEpochC_three_epoch_AIC, TwoEpochC_three_epoch_AIC)
+#TwoEpochC_AIC_df = data.frame(TwoEpochC_two_epoch_AIC, TwoEpochC_three_epoch_AIC, TwoEpochC_true_demography_AIC)
 # Reshape the data from wide to long format
 TwoEpochC_df_long <- tidyr::gather(TwoEpochC_AIC_df, key = "Epoch", value = "AIC", TwoEpochC_one_epoch_AIC:TwoEpochC_three_epoch_AIC)
+#TwoEpochC_df_long <- tidyr::gather(TwoEpochC_AIC_df, key = "Model", value = "AIC", TwoEpochC_two_epoch_AIC:TwoEpochC_true_demography_AIC)
 
 # Increase the x-axis index by 4
-TwoEpochC_df_long$Index <- rep(c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700), times = 4)
+TwoEpochC_df_long$Index <- rep(c(10, 20, 30, 50, 100, 150, 200, 300, 500, 700), times = 3)
 
 # Create the line plot with ggplot2
 ggplot(TwoEpochC_df_long, aes(x = Index, y = AIC, color = Epoch)) +
@@ -107,9 +109,27 @@ ggplot(TwoEpochC_df_long, aes(x = Index, y = AIC, color = Epoch)) +
        y = "AIC") +
   scale_y_log10() +
   scale_x_continuous(breaks=TwoEpochC_df_long$Index) +
-  scale_color_manual(values = c("blue", "green", "red", 'black'),
-    label=c('One-epoch', 'Three-epoch', 'Two-epoch', 'True demography')) +
+  scale_color_manual(values = c("blue", "green", "red"),
+    label=c('One-epoch', 'Three-epoch', 'Two-epoch')) +
   theme_bw()
+
+# ggplot(TwoEpochC_df_long, aes(x = Index, y = AIC, color = Model)) +
+#   geom_line() +
+#   geom_point() +
+#   labs(title = "Simulated 2EpC AIC values by sample size",
+#        x = "Sample Size",
+#        y = "AIC") +
+#   scale_y_log10() +
+#   scale_x_continuous(breaks=TwoEpochC_df_long$Index) +
+#   scale_color_manual(values = c("green", "red", 'black'),
+#     label=c('Three-epoch', 'Two-epoch', 'True demography')) +
+#   theme_bw()
+
+# compare_two_three_true_proportional_sfs_cutoff(this_empirical_sfs,
+#   this_two_epoch_sfs,
+#   this_three_epoch_sfs,
+#   this_true_demography_sfs) +
+#   ggtitle('Comparison of inferred and modeled SFSs, n=700')
 
 TwoEpochC_lambda_two_one = 2 * (TwoEpochC_two_epoch_LL - TwoEpochC_one_epoch_LL)
 TwoEpochC_lambda_three_one = 2 * (TwoEpochC_three_epoch_LL - TwoEpochC_one_epoch_LL)
@@ -427,7 +447,7 @@ ggplot(data=NAnc_df, aes(x=sample_size, y=value, color=variable)) + geom_line() 
   scale_color_manual(
     labels=c('One-epoch', 'Two-epoch', 'Three-epoch'),
     values=c('red', 'blue', 'green')) +
-  geom_hline(yintercept=30378, color='black', linetype='dashed') +
+  geom_hline(yintercept=10000, color='black', linetype='dashed') +
   scale_x_continuous(breaks=sample_size)
 
 EUR_empirical_10 = read_input_sfs('../Analysis/1kg_EUR_10/syn_downsampled_sfs.txt')

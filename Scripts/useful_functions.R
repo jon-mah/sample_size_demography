@@ -190,6 +190,39 @@ compare_one_two_three_proportional_sfs_cutoff = function(empirical, one_epoch, t
   return(p_input_comparison)
 }
 
+compare_two_three_true_proportional_sfs_cutoff = function(empirical, two_epoch, three_epoch, true_demography) {
+  x_axis = 1:10
+  empirical = proportional_sfs(empirical)[1:10]
+  two_epoch = proportional_sfs(two_epoch)[1:10]
+  three_epoch = proportional_sfs(three_epoch)[1:10]
+  true_demography = proportional_sfs(true_demography)[1:10]
+  input_df = data.frame(empirical,
+                        two_epoch,
+                        three_epoch,
+                        true_demography,
+                        x_axis)
+  
+  names(input_df) = c('Empirical',
+                      'Two-epoch',
+                      'Three-epoch',
+                      'True demography',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) +
+    scale_fill_manual(values=c("blue", "red", "green", "black"))
+  
+  return(p_input_comparison)
+}
+
 compare_syn_nonsyn_count = function(empirical_syn, empirical_nonsyn) {
   x_axis = 1:20
   input_df = data.frame(empirical_syn[1:20],

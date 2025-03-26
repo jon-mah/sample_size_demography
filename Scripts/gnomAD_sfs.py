@@ -114,6 +114,8 @@ class ComputeEmpiricalGnomADSFS():
 
         logger.info('Loading in data')
         df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['type', 'AC_nfe'])
+        print(df['type'].unique())
+        exit()
         logger.info('Data succesfully loaded in')
 
         # Only include synonymous variants

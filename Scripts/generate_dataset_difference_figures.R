@@ -4,7 +4,11 @@ setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source('useful_functions.R')
 
 global_mu = 1.5E-8
-global_allele_sum = 60000000
+# global_allele_sum = 60000000
+
+EUR_allele_sum = 8058343
+gnomad_allele_sum
+
 
 ## Define figure input params
 # Define EUR 2017 empirical data
@@ -41,7 +45,7 @@ gnomAD_nonsyn_300 = read_input_sfs('../Analysis/gnomAD_300/nonsyn_downsampled_sf
 EUR_2017_10_one_epoch = sfs_from_demography('../Analysis/1kg_EUR_10/one_epoch_demography.txt')
 EUR_2017_10_one_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_10/one_epoch_demography.txt')
 # EUR_2017_10_one_epoch_allele_sum = sum(EUR_2017_10_one_epoch)
-EUR_2017_10_one_epoch_NAnc = EUR_2017_10_one_epoch_theta / (4 * global_allele_sum * global_mu)
+EUR_2017_10_one_epoch_NAnc = EUR_2017_10_one_epoch_theta / (4 * EUR_allele_sum * global_mu)
 
 EUR_2017_10_two_epoch = sfs_from_demography('../Analysis/1kg_EUR_10/two_epoch_demography.txt')
 EUR_2017_10_two_epoch_theta = theta_from_demography('../Analysis/1kg_EUR_10/two_epoch_demography.txt')

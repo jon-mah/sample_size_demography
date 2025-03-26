@@ -87,6 +87,11 @@ class DFEInference():
             help=('Float value for initial beta of gamma-DFE.'),
             default=0.1)
         parser.add_argument(
+            '--L_syn', type=float,
+            dest='L_syn',
+            help=('Sum of allele counts for synonymous SFS.'),
+            default=8058343)
+        parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
         return parser
@@ -106,6 +111,7 @@ class DFEInference():
         input_model = args['input_model']
         initial_alpha = args['initial_alpha']
         initial_beta = args['initial_beta']
+        L_syn = args
 
         # Numpy options
         np.set_printoptions(linewidth=np.inf)
@@ -301,26 +307,25 @@ class DFEInference():
 
         logger.info('Computing intermediate summary statistics.')
 
+        # Deprecated code
         # Compute L_syn from input_syn_sfs
         # L_syn is given as the sum of allele counts for the input
         # synonymous SFS.
-        with open(syn_input_sfs, 'r') as f:
-            syn_sfs_lines = [line for line in f]
-            syn_sfs_array = syn_sfs_lines[1].split(' ')
-            syn_sfs_array = [float(i) for i in syn_sfs_array]
+        # with open(syn_input_sfs, 'r') as f:
+        #     syn_sfs_lines = [line for line in f]
+        #     syn_sfs_array = syn_sfs_lines[1].split(' ')
+        #     syn_sfs_array = [float(i) for i in syn_sfs_array]
 
         # Compute scaling factor of params, i.e., 2 * Na
         L_syn = np.sum(syn_sfs_array)
         # L_syn = 1
+        mu = 1.5E-8
         mu_high = 6.93E-10 # High estimate of mutation rate
         mu_low = 4.08E-10 # Low estimate of mutation rate
-        Na_low = theta_syn / (4 * L_syn * mu_high) # Low estimate of N_anc
-        Na_high = theta_syn / (4 * L_syn * mu_low) # High estimate of N_anc
+        Na = theta_syn / (4 * L_syn * mu) # Estimate of N_anc
         #  Theta is given in terms of 4 * L_syn * mu * Na, thus,
         #  we don't need to divide by nu in order to get ancestral popultion
         #
-        # Na_low = Ne_low / float(demog_params[0])
-        # Na_high = Ne_high / float(demog_params[0])
 
         logger.info('Outputting results.')
 
@@ -333,17 +338,11 @@ class DFEInference():
                     'as: ' + str(best_params)  + '.\n')
             # Non-scaled params are divided by
             f.write(
-                'The maximum likelihood parameters have a high '
+                'The maximum likelihood parameters have an '
                 'estimate of: '
                 '{0}.\n'.format(
                     np.divide(best_params,
-                              np.array([1, 2 * Na_low]))))
-            f.write(
-                'The maximum likelihood parameters have a low '
-                'estimate of: '
-                '{0}.\n'.format(
-                    np.divide(best_params,
-                              np.array([1, 2 * Na_high]))))
+                              np.array([1, 2 * Na]))))
             f.write('The empirical nonsynonymous SFS is: ' +
                     str(nonsyn_data) + '.\n')
             f.write('The best fit model SFS is: ' +
@@ -356,17 +355,11 @@ class DFEInference():
                     'as: ' + str(ng_best_params)  + '.\n')
             # Non-scaled params are divided by
             f.write(
-                'The maximum likelihood parameters have a high '
+                'The maximum likelihood parameters have an '
                 'estimate of: '
                 '{0}.\n'.format(
                     np.divide(ng_best_params,
-                              np.array([1, 1, 2 * Na_low]))))
-            f.write(
-                'The maximum likelihood parameters have a low '
-                'estimate of: '
-                '{0}.\n'.format(
-                    np.divide(ng_best_params,
-                              np.array([1, 1, 2 * Na_high]))))
+                              np.array([1, 1, 2 * Na]))))
             f.write('The empirical nonsynonymous SFS is: ' +
                     str(nonsyn_data) + '.\n')
             f.write('The best fit model SFS is: ' +
