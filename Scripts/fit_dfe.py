@@ -90,7 +90,7 @@ class DFEInference():
             '--L_syn', type=float,
             dest='L_syn',
             help=('Sum of allele counts for synonymous SFS.'),
-            default=8058343)
+            default=8058343.0)
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
@@ -111,7 +111,7 @@ class DFEInference():
         input_model = args['input_model']
         initial_alpha = args['initial_alpha']
         initial_beta = args['initial_beta']
-        L_syn = args
+        L_syn = args['L_syn']
 
         # Numpy options
         np.set_printoptions(linewidth=np.inf)
@@ -317,11 +317,9 @@ class DFEInference():
         #     syn_sfs_array = [float(i) for i in syn_sfs_array]
 
         # Compute scaling factor of params, i.e., 2 * Na
-        L_syn = np.sum(syn_sfs_array)
+        # L_syn = np.sum(syn_sfs_array)
         # L_syn = 1
         mu = 1.5E-8
-        mu_high = 6.93E-10 # High estimate of mutation rate
-        mu_low = 4.08E-10 # Low estimate of mutation rate
         Na = theta_syn / (4 * L_syn * mu) # Estimate of N_anc
         #  Theta is given in terms of 4 * L_syn * mu * Na, thus,
         #  we don't need to divide by nu in order to get ancestral popultion

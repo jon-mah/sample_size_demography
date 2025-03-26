@@ -1,28 +1,29 @@
-2025-03-07 11:40:06,985 - INFO - Beginning execution of fit_dfe.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-03-26 07:30:20,033 - INFO - Beginning execution of fit_dfe.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-03-07 11:40:06,985 - INFO - Progress is being logged to ../Analysis/gnomAD_10/log.log
+2025-03-26 07:30:20,033 - INFO - Progress is being logged to ../Analysis/gnomAD_10/log.log
 
-2025-03-07 11:40:06,986 - INFO - Parsed the following arguments:
+2025-03-26 07:30:20,033 - INFO - Parsed the following arguments:
 	syn_input_sfs = ../Analysis/gnomAD_10/syn_downsampled_sfs.txt
 	nonsyn_input_sfs = ../Analysis/gnomAD_10/nonsyn_downsampled_sfs.txt
 	input_demography = ../Analysis/gnomAD_10/three_epoch_demography.txt
 	input_model = three_epoch
 	initial_alpha = 0.2
 	initial_beta = 0.1
+	L_syn = 18343593.0
 	outprefix = ../Analysis/gnomAD_10/
 
-2025-03-07 11:40:07,017 - INFO - Loading input demography.
-2025-03-07 11:40:07,029 - INFO - Input demographic parameters are: [0.36718845, 0.93741198, 0.25257419, 0.08110281].
-2025-03-07 11:40:07,030 - INFO - Input theta_syn is: 7743.5753155964785.
-2025-03-07 11:40:07,030 - INFO - Generating spectrum from input demography.
-2025-03-07 11:40:11,349 - INFO - Fitting DFE.
-2025-03-07 11:40:22,032 - WARNING - The algorithm does not converge.  Roundoff error is detected
+2025-03-26 07:30:20,035 - INFO - Loading input demography.
+2025-03-26 07:30:20,037 - INFO - Input demographic parameters are: [0.36718845, 0.93741198, 0.25257419, 0.08110281].
+2025-03-26 07:30:20,037 - INFO - Input theta_syn is: 7743.5753155964785.
+2025-03-26 07:30:20,037 - INFO - Generating spectrum from input demography.
+2025-03-26 07:30:24,301 - INFO - Fitting DFE.
+2025-03-26 07:30:35,160 - WARNING - The algorithm does not converge.  Roundoff error is detected
   in the extrapolation table.  It is assumed that the requested tolerance
   cannot be achieved, and that the returned result (if full_output = 1) is 
   the best which can be obtained.
-2025-03-07 11:40:22,080 - WARNING - The integral is probably divergent, or slowly convergent.
-2025-03-07 11:41:26,674 - WARNING - Warning: converting a masked element to nan.
-2025-03-07 11:41:27,829 - INFO - Fitting Neutral + Gamma DFE
-2025-03-07 11:42:13,613 - INFO - Computing intermediate summary statistics.
-2025-03-07 11:42:13,624 - INFO - Outputting results.
-2025-03-07 11:42:13,631 - INFO - Pipeline executed succesfully.
+2025-03-26 07:30:35,210 - WARNING - The integral is probably divergent, or slowly convergent.
+2025-03-26 07:31:40,663 - WARNING - Warning: converting a masked element to nan.
+2025-03-26 07:31:41,829 - INFO - Fitting Neutral + Gamma DFE
+2025-03-26 07:32:27,378 - INFO - Computing intermediate summary statistics.
+2025-03-26 07:32:27,378 - INFO - Outputting results.
+2025-03-26 07:32:27,389 - INFO - Pipeline executed succesfully.

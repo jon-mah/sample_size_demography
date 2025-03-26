@@ -1,27 +1,29 @@
-2025-03-07 11:47:38,943 - INFO - Beginning execution of fit_dfe.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-03-26 07:23:47,765 - INFO - Beginning execution of fit_dfe.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-03-07 11:47:38,943 - INFO - Progress is being logged to ../Analysis/1kg_EUR_10/log.log
+2025-03-26 07:23:47,765 - INFO - Progress is being logged to ../Analysis/1kg_EUR_10/log.log
 
-2025-03-07 11:47:38,943 - INFO - Parsed the following arguments:
+2025-03-26 07:23:47,765 - INFO - Parsed the following arguments:
 	syn_input_sfs = ../Analysis/1kg_EUR_10/syn_downsampled_sfs.txt
 	nonsyn_input_sfs = ../Analysis/1kg_EUR_10/nonsyn_downsampled_sfs.txt
-	input_demography = ../Analysis/1kg_EUR_10/two_epoch_demography.txt
-	input_model = two_epoch
+	input_demography = ../Analysis/1kg_EUR_10/three_epoch_demography.txt
+	input_model = three_epoch
 	initial_alpha = 0.2
 	initial_beta = 0.1
+	L_syn = 8058343.0
 	outprefix = ../Analysis/1kg_EUR_10/
 
-2025-03-07 11:47:38,947 - INFO - Loading input demography.
-2025-03-07 11:47:38,949 - INFO - Input demographic parameters are: [0.02134804, 0.10739016].
-2025-03-07 11:47:38,949 - INFO - Input theta_syn is: 195078.76138163664.
-2025-03-07 11:47:38,950 - INFO - Generating spectrum from input demography.
-2025-03-07 11:47:41,666 - INFO - Fitting DFE.
-2025-03-07 11:48:21,491 - WARNING - The integral is probably divergent, or slowly convergent.
-2025-03-07 11:48:21,601 - WARNING - The algorithm does not converge.  Roundoff error is detected
+2025-03-26 07:23:47,767 - INFO - Loading input demography.
+2025-03-26 07:23:47,769 - INFO - Input demographic parameters are: [0.31889112, 0.78282986, 0.06689317, 0.09801683].
+2025-03-26 07:23:47,769 - INFO - Input theta_syn is: 6302.155446248301.
+2025-03-26 07:23:47,769 - INFO - Generating spectrum from input demography.
+2025-03-26 07:23:49,924 - INFO - Fitting DFE.
+2025-03-26 07:24:15,686 - WARNING - The integral is probably divergent, or slowly convergent.
+2025-03-26 07:24:31,501 - WARNING - The algorithm does not converge.  Roundoff error is detected
   in the extrapolation table.  It is assumed that the requested tolerance
   cannot be achieved, and that the returned result (if full_output = 1) is 
   the best which can be obtained.
-2025-03-07 11:48:50,222 - INFO - Fitting Neutral + Gamma DFE
-2025-03-07 11:49:54,338 - INFO - Computing intermediate summary statistics.
-2025-03-07 11:49:54,349 - INFO - Outputting results.
-2025-03-07 11:49:54,356 - INFO - Pipeline executed succesfully.
+2025-03-26 07:25:08,115 - WARNING - Warning: converting a masked element to nan.
+2025-03-26 07:25:09,222 - INFO - Fitting Neutral + Gamma DFE
+2025-03-26 07:26:01,172 - INFO - Computing intermediate summary statistics.
+2025-03-26 07:26:01,172 - INFO - Outputting results.
+2025-03-26 07:26:01,185 - INFO - Pipeline executed succesfully.
