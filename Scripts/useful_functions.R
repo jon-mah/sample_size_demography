@@ -601,7 +601,7 @@ gamma_sfs_from_dfe = function(input_file) {
   ## Reads input SFS from output *demography.txt
   this_file = file(input_file)
   on.exit(close(this_file))
-  sfs_string = readLines(this_file)[7]
+  sfs_string = readLines(this_file)[6]
   output_sfs = strsplit(sfs_string, '-- ')
   output_sfs = unlist(output_sfs)[2]
   output_sfs = unlist(strsplit(output_sfs, ' '))
@@ -615,7 +615,7 @@ neugamma_sfs_from_dfe = function(input_file) {
   ## Reads input SFS from output *demography.txt
   this_file = file(input_file)
   on.exit(close(this_file))
-  sfs_string = readLines(this_file)[14]
+  sfs_string = readLines(this_file)[12]
   output_sfs = strsplit(sfs_string, '-- ')
   output_sfs = unlist(output_sfs)[2]
   output_sfs = unlist(strsplit(output_sfs, ' '))
@@ -671,23 +671,16 @@ read_gamma_dfe_params = function(input_dfe_file) {
   this_file = file(input_dfe_file) # Open file
   on.exit(close(this_file)) # Close when done
   # Parse file and string manipulation
-  param_string_high = readLines(this_file)[4]
+  param_string = readLines(this_file)[4]
 
   # Extract the two floats using regular expression
-  floats <- str_extract_all(param_string_high, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
+  floats <- str_extract_all(param_string, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
   
   # Convert the extracted strings to numeric values
   gamma_shape <- as.numeric(floats[[1]][1])
-  gamma_scale_high <- as.numeric(floats[[1]][2])
+  gamma_scale <- as.numeric(floats[[1]][2])
 
-  param_string_low = readLines(this_file)[5]
-  # Extract the two floats using regular expression
-  floats <- str_extract_all(param_string_low, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
-  
-  # Convert the extracted strings to numeric values
-  gamma_scale_low <- as.numeric(floats[[1]][2])
-  
-  return_data_frame = rgamma(100000, shape=gamma_shape, scale=gamma_scale_low)
+  return_data_frame = rgamma(100000, shape=gamma_shape, scale=gamma_scale)
   return_data_frame = data.frame(return_data_frame)
   return(return_data_frame)
 }
@@ -697,22 +690,16 @@ read_neugamma_dfe_params = function(input_dfe_file) {
   this_file = file(input_dfe_file) # Open file
   on.exit(close(this_file)) # Close when done
   # Parse file and string manipulation
-  param_string_high = readLines(this_file)[11]
+  param_string = readLines(this_file)[10]
   # Extract the two floats using regular expression
-  floats <- str_extract_all(param_string_high, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
+  floats <- str_extract_all(param_string, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
   
   # Convert the extracted strings to numeric values
   neugamma_proportion = as.numeric(floats[[1]][1])
   neugamma_shape = as.numeric(floats[[1]][2])
-  neugamma_scale_high = as.numeric(floats[[1]][3])
-  
-  param_string_low = readLines(this_file)[12]
-  # Extract the two floats using regular expression
-  floats <- str_extract_all(param_string_low, "[+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?")
-  
-  neugamma_scale_low <- as.numeric(floats[[1]][2])
+  neugamma_scale = as.numeric(floats[[1]][3])
 
-  return_data_frame = rgamma(100000, shape=neugamma_shape, scale=neugamma_scale_low)
+  return_data_frame = rgamma(100000, shape=neugamma_shape, scale=neugamma_scale)
   
   zeroed_sites = as.integer(100000 * neugamma_proportion)
   

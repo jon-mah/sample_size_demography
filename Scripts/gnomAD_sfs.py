@@ -113,16 +113,26 @@ class ComputeEmpiricalGnomADSFS():
         file_path = '../Data/SFS.tsv.gz'
 
         logger.info('Loading in data')
-        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['type', 'AC_nfe'])
-        # print(df['type'].unique())
-        # exit()
+
+        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['chrom', 'pos', 'type', 'AC_nfe'])
+        df['concat'] = df['chrom'].astype(str) + '_' + df['pos'].astype(str)
+        print(df['concat'])
+        print(df['concat'].unique())
+
+        exit()
+        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['chrom', 'pos', 'type', 'AC_nfe'])
+        df['chrom_pos'] = df['chrom'].astype(str) + '_' + df['pos'].astype(str)
+        df['concat'] = df['chrom'].astype(str) + '_' + df['pos'].astype(str) + '_' + df['type'].astype(str)
         logger.info('Data succesfully loaded in')
 
         # Only include synonymous variants
-        syn_df = df.loc[df['type'] == 'synonymous_variant']
+        syn_df = df.loc[df['concat'].str.contains('synonymous_variant')]
+        syn_df = syn_df.drop_duplicates(subset='chrom_pos')
         print(syn_df)
         # Only include nonsynonymous variants
-        nonsyn_df = df.loc[df['type'] == 'missense_variant']
+        nonsyn_df = df.loc[df['concat'].str.contains('missense_variant')]
+        nonsyn_df = nonsyn_df.drop_duplicates(subset='chrom_pos')
+        # nonsyn_df = df.loc[df['type'] == 'missense_variant']
         print(nonsyn_df)
 
         logger.info('Splitting synonymous and nonsynonymous variants.')
@@ -147,8 +157,6 @@ class ComputeEmpiricalGnomADSFS():
         nonsyn_max_n_ton = nonsyn_allele_sum.index[-1]
         max_n_ton = max(syn_max_n_ton, nonsyn_max_n_ton)
         logger.info('Computing maximum n-ton.')
-        # print(max_n_ton)
-        # print(allele_sum.index[-1])
 
         # Initialize an array of zeros with length equal to max n ton
         logger.info('Convertin SFS to Dadi format.')

@@ -367,7 +367,7 @@ best_fit_2EpE = ggplot(TwoEpochE_two_epoch_demography_10, aes(TwoEpochE_two_epoc
 
 best_fit_2EpE
 
-best_fit_2EpE = ggplot(TwoEpochE_two_epoch_demography_20, aes(TwoEpochE_two_epoch_Time_20, TwoEpochE_two_epoch_NEffective_20, color='N=20')) + geom_step(linewidth=1, linetype='dashed') + 
+best_fit_2EpE = ggplot(TwoEpochE_three_epoch_demography_20, aes(TwoEpochE_three_epoch_Time_20, TwoEpochE_three_epoch_NEffective_20, color='N=20')) + geom_step(linewidth=1, linetype='dashed') + 
   # geom_step(data=TwoEpochE_two_epoch_demography_20, aes(TwoEpochE_two_epoch_Time_20, TwoEpochE_two_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='dashed') +
   # geom_step(data=TwoEpochE_two_epoch_demography_30, aes(TwoEpochE_two_epoch_Time_30, TwoEpochE_two_epoch_NEffective_30, color='N=30'), linewidth=1, linetype='dashed') +
   # geom_step(data=TwoEpochE_two_epoch_demography_50, aes(TwoEpochE_two_epoch_Time_50, TwoEpochE_two_epoch_NEffective_50, color='N=50'), linewidth=1, linetype='dashed') +
@@ -378,7 +378,7 @@ best_fit_2EpE = ggplot(TwoEpochE_two_epoch_demography_20, aes(TwoEpochE_two_epoc
   geom_step(data=TwoEpochE_two_epoch_demography_500, aes(TwoEpochE_two_epoch_Time_500, TwoEpochE_two_epoch_NEffective_500, color='N=500'), linewidth=1, linetype='dashed') +
   geom_step(data=TwoEpochE_two_epoch_demography_700, aes(TwoEpochE_two_epoch_Time_700, TwoEpochE_two_epoch_NEffective_700, color='N=700'), linewidth=1, linetype='dashed') +
   # geom_step(data=TwoEpochE_three_epoch_demography_10, aes(TwoEpochE_three_epoch_Time_10, TwoEpochE_three_epoch_NEffective_10, color='N=10'), linewidth=1, linetype='solid') +
-  geom_step(data=TwoEpochE_three_epoch_demography_20, aes(TwoEpochE_three_epoch_Time_20, TwoEpochE_three_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='solid') +
+  # geom_step(data=TwoEpochE_three_epoch_demography_20, aes(TwoEpochE_three_epoch_Time_20, TwoEpochE_three_epoch_NEffective_20, color='N=20'), linewidth=1, linetype='solid') +
   geom_step(data=TwoEpochE_three_epoch_demography_30, aes(TwoEpochE_three_epoch_Time_30, TwoEpochE_three_epoch_NEffective_30, color='N=30'), linewidth=1, linetype='solid') +
   geom_step(data=TwoEpochE_three_epoch_demography_50, aes(TwoEpochE_three_epoch_Time_50, TwoEpochE_three_epoch_NEffective_50, color='N=50'), linewidth=1, linetype='solid') +
   geom_step(data=TwoEpochE_three_epoch_demography_100, aes(TwoEpochE_three_epoch_Time_100, TwoEpochE_three_epoch_NEffective_100, color='N=100'), linewidth=1, linetype='solid') +
