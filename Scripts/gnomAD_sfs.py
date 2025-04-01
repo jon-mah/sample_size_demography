@@ -114,24 +114,35 @@ class ComputeEmpiricalGnomADSFS():
 
         logger.info('Loading in data')
 
-        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['chrom', 'pos', 'type', 'AC_nfe'])
-        df['concat'] = df['chrom'].astype(str) + '_' + df['pos'].astype(str)
-        print(df['concat'])
-        print(df['concat'].unique())
+        # df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['chrom', 'pos', 'type', 'AC_nfe'])
+        #
+        # logger.info('There are ' + str(df['pos'].nunique()) + ' unique sites ' +
+        #     'when counting from `pos`.')
+        # df_unique = df.drop_duplicates(subset=['chrom', 'pos'])
+        # logger.info('There are ' + str(df_unique['pos'].nunique()) + 
+        #     ' unique sites when filtering by combinations of `chrom` and `pos`.')
+        # df['concat'] = list(zip(df['chrom'], df['pos']))
+        # df['concat'] = df['chrom'] + '_' + df['pos']
+        # print(df['concat'])
+        # print(df['concat'].unique())
 
-        exit()
-        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['chrom', 'pos', 'type', 'AC_nfe'])
-        df['chrom_pos'] = df['chrom'].astype(str) + '_' + df['pos'].astype(str)
-        df['concat'] = df['chrom'].astype(str) + '_' + df['pos'].astype(str) + '_' + df['type'].astype(str)
+        # exit()
+        df = pd.read_csv(file_path, sep='\t', compression='gzip', usecols=['pos', 'type', 'AC_nfe'])
         logger.info('Data succesfully loaded in')
 
+        print(df)
+
         # Only include synonymous variants
-        syn_df = df.loc[df['concat'].str.contains('synonymous_variant')]
-        syn_df = syn_df.drop_duplicates(subset='chrom_pos')
+        syn_df = df.loc[df['type'].str.contains('synonymous_variant')]
+        syn_df = syn_df.drop_duplicates(subset='pos')
+        logger.info('There are ' + str(syn_df['pos'].nunique()) +
+            ' unique synonymous positions.')
         print(syn_df)
         # Only include nonsynonymous variants
-        nonsyn_df = df.loc[df['concat'].str.contains('missense_variant')]
-        nonsyn_df = nonsyn_df.drop_duplicates(subset='chrom_pos')
+        nonsyn_df = df.loc[df['type'].str.contains('missense_variant')]
+        nonsyn_df = nonsyn_df.drop_duplicates(subset='pos')
+        logger.info('There are ' + str(nonsyn_df['pos'].nunique()) +
+            ' unique nonsynonymous positions.')
         # nonsyn_df = df.loc[df['type'] == 'missense_variant']
         print(nonsyn_df)
 
