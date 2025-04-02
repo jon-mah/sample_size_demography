@@ -223,7 +223,7 @@ ThreeEpochC_true_NAnc = 10000
 ThreeEpochC_true_NBottle = 5000
 ThreeEpochC_true_NCurr = 2500
 ThreeEpochC_true_TimeBottleEnd = 200
-ThreeEpochC_true_TimeBottleStart = 1800
+ThreeEpochC_true_TimeBottleStart = 2000
 ThreeEpochC_true_TimeTotal = 2000
 
 ThreeEpochC_one_epoch_NAnc = ThreeEpochC_one_epoch_theta / (4 * ThreeEpochC_one_epoch_allele_sum * ThreeEpochC_mu)
@@ -237,9 +237,10 @@ ThreeEpochC_three_epoch_TimeBottleEnd = 2 * ThreeEpochC_three_epoch_tauF * Three
 ThreeEpochC_three_epoch_TimeBottleStart = 2 * ThreeEpochC_three_epoch_tauB * ThreeEpochC_three_epoch_theta / (4 * ThreeEpochC_mu * ThreeEpochC_three_epoch_allele_sum) + ThreeEpochC_three_epoch_TimeBottleEnd
 ThreeEpochC_three_epoch_TimeTotal = ThreeEpochC_three_epoch_TimeBottleStart + ThreeEpochC_three_epoch_TimeBottleEnd
 
-max_time = max(ThreeEpochC_two_epoch_Time, ThreeEpochC_three_epoch_TimeTotal, ThreeEpochC_true_TimeTotal) * 1.1
+max_time = 2200
 two_epoch_max_time = max_time
 three_epoch_max_time = max_time
+
 
 ThreeEpochC_two_epoch_max_time = rep(max_time, 10)
 ThreeEpochC_two_epoch_current_time = rep(0, 10)
@@ -248,6 +249,9 @@ ThreeEpochC_true_demography = data.frame(ThreeEpochC_true_NAnc, max_time,
   ThreeEpochC_true_NBottle, ThreeEpochC_true_TimeBottleStart,
   ThreeEpochC_true_NCurr, ThreeEpochC_true_TimeBottleEnd,
   ThreeEpochC_true_NCurr, ThreeEpochC_two_epoch_current_time)
+
+ThreeEpochC_one_epoch_demography = data.frame(ThreeEpochC_one_epoch_NAnc, max_time,
+  ThreeEpochC_one_epoch_NAnc, rep(0, 10))
 
 # ThreeEpochC_two_epoch_max_time = rep(2E4, 10)
 ThreeEpochC_two_epoch_current_time = rep(0, 10)
@@ -264,9 +268,40 @@ ThreeEpochC_three_epoch_demography = data.frame(ThreeEpochC_three_epoch_NAnc, Th
   ThreeEpochC_three_epoch_NCurr, ThreeEpochC_three_epoch_TimeBottleEnd,
   ThreeEpochC_three_epoch_NCurr, ThreeEpochC_three_epoch_current_time)
 
-ThreeEpochC_true_NEffective_params = c(ThreeEpochC_true_demography[1, 1], ThreeEpochC_true_demography[1, 3], ThreeEpochC_true_demography[1, 5])
-ThreeEpochC_true_Time_params = c(-ThreeEpochC_true_demography[1, 2], -ThreeEpochC_true_demography[1, 4], ThreeEpochC_true_demography[1, 6])
+ThreeEpochC_true_NEffective_params = c(ThreeEpochC_true_demography[1, 1], ThreeEpochC_true_demography[1, 3], ThreeEpochC_true_demography[1, 5], ThreeEpochC_true_demography[1, 7])
+ThreeEpochC_true_Time_params = c(-ThreeEpochC_true_demography[1, 2], -ThreeEpochC_true_demography[1, 4], -ThreeEpochC_true_demography[1, 6], -ThreeEpochC_true_demography[1, 8])
 ThreeEpochC_true_demography_params = data.frame(ThreeEpochC_true_Time_params, ThreeEpochC_true_NEffective_params)
+
+ThreeEpochC_one_epoch_NEffective_10 = c(ThreeEpochC_one_epoch_demography[1, 1], ThreeEpochC_one_epoch_demography[1, 3])
+ThreeEpochC_one_epoch_Time_10 = c(-ThreeEpochC_one_epoch_demography[1, 2], -ThreeEpochC_one_epoch_demography[1, 4])
+ThreeEpochC_one_epoch_demography_10 = data.frame(ThreeEpochC_one_epoch_Time_10, ThreeEpochC_one_epoch_NEffective_10)
+ThreeEpochC_one_epoch_NEffective_20 = c(ThreeEpochC_one_epoch_demography[2, 1], ThreeEpochC_one_epoch_demography[2, 3])
+ThreeEpochC_one_epoch_Time_20 = c(-ThreeEpochC_one_epoch_demography[2, 2], -ThreeEpochC_one_epoch_demography[2, 4])
+ThreeEpochC_one_epoch_demography_20 = data.frame(ThreeEpochC_one_epoch_Time_20, ThreeEpochC_one_epoch_NEffective_20)
+ThreeEpochC_one_epoch_NEffective_30 = c(ThreeEpochC_one_epoch_demography[3, 1], ThreeEpochC_one_epoch_demography[3, 3])
+ThreeEpochC_one_epoch_Time_30 = c(-ThreeEpochC_one_epoch_demography[3, 2], -ThreeEpochC_one_epoch_demography[3, 4])
+ThreeEpochC_one_epoch_demography_30 = data.frame(ThreeEpochC_one_epoch_Time_30, ThreeEpochC_one_epoch_NEffective_30)
+ThreeEpochC_one_epoch_NEffective_50 = c(ThreeEpochC_one_epoch_demography[4, 1], ThreeEpochC_one_epoch_demography[4, 3])
+ThreeEpochC_one_epoch_Time_50 = c(-ThreeEpochC_one_epoch_demography[4, 2], -ThreeEpochC_one_epoch_demography[4, 4])
+ThreeEpochC_one_epoch_demography_50 = data.frame(ThreeEpochC_one_epoch_Time_50, ThreeEpochC_one_epoch_NEffective_50)
+ThreeEpochC_one_epoch_NEffective_100 = c(ThreeEpochC_one_epoch_demography[5, 1], ThreeEpochC_one_epoch_demography[5, 3])
+ThreeEpochC_one_epoch_Time_100 = c(-ThreeEpochC_one_epoch_demography[5, 2], -ThreeEpochC_one_epoch_demography[5, 4])
+ThreeEpochC_one_epoch_demography_100 = data.frame(ThreeEpochC_one_epoch_Time_100, ThreeEpochC_one_epoch_NEffective_100)
+ThreeEpochC_one_epoch_NEffective_150 = c(ThreeEpochC_one_epoch_demography[6, 1], ThreeEpochC_one_epoch_demography[6, 3])
+ThreeEpochC_one_epoch_Time_150 = c(-ThreeEpochC_one_epoch_demography[6, 2], -ThreeEpochC_one_epoch_demography[6, 4])
+ThreeEpochC_one_epoch_demography_150 = data.frame(ThreeEpochC_one_epoch_Time_150, ThreeEpochC_one_epoch_NEffective_150)
+ThreeEpochC_one_epoch_NEffective_200 = c(ThreeEpochC_one_epoch_demography[7, 1], ThreeEpochC_one_epoch_demography[7, 3])
+ThreeEpochC_one_epoch_Time_200 = c(-ThreeEpochC_one_epoch_demography[7, 2], -ThreeEpochC_one_epoch_demography[7, 4])
+ThreeEpochC_one_epoch_demography_200 = data.frame(ThreeEpochC_one_epoch_Time_200, ThreeEpochC_one_epoch_NEffective_200)
+ThreeEpochC_one_epoch_NEffective_300 = c(ThreeEpochC_one_epoch_demography[8, 1], ThreeEpochC_one_epoch_demography[8, 3])
+ThreeEpochC_one_epoch_Time_300 = c(-ThreeEpochC_one_epoch_demography[8, 2], -ThreeEpochC_one_epoch_demography[8, 4])
+ThreeEpochC_one_epoch_demography_300 = data.frame(ThreeEpochC_one_epoch_Time_300, ThreeEpochC_one_epoch_NEffective_300)
+ThreeEpochC_one_epoch_NEffective_500 = c(ThreeEpochC_one_epoch_demography[9, 1], ThreeEpochC_one_epoch_demography[9, 3])
+ThreeEpochC_one_epoch_Time_500 = c(-ThreeEpochC_one_epoch_demography[9, 2], -ThreeEpochC_one_epoch_demography[9, 4])
+ThreeEpochC_one_epoch_demography_500 = data.frame(ThreeEpochC_one_epoch_Time_500, ThreeEpochC_one_epoch_NEffective_500)
+ThreeEpochC_one_epoch_NEffective_700 = c(ThreeEpochC_one_epoch_demography[10, 1], ThreeEpochC_one_epoch_demography[10, 3])
+ThreeEpochC_one_epoch_Time_700 = c(-ThreeEpochC_one_epoch_demography[10, 2], -ThreeEpochC_one_epoch_demography[10, 4])
+ThreeEpochC_one_epoch_demography_700 = data.frame(ThreeEpochC_one_epoch_Time_700, ThreeEpochC_one_epoch_NEffective_700)
 
 ThreeEpochC_two_epoch_NEffective_10 = c(ThreeEpochC_two_epoch_demography[1, 1], ThreeEpochC_two_epoch_demography[1, 3], ThreeEpochC_two_epoch_demography[1, 5])
 ThreeEpochC_two_epoch_Time_10 = c(-ThreeEpochC_two_epoch_demography[1, 2], -ThreeEpochC_two_epoch_demography[1, 4], ThreeEpochC_two_epoch_demography[1, 6])

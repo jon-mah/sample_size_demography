@@ -639,6 +639,25 @@ empirical_sfs_from_dfe = function(input_file) {
   return(output_sfs)
 }
 
+pi_from_sfs_array <- function(sfs) {
+  n = length(sfs) * 2 # Remember that input is folded
+  i_vals <- 1:(n/2)
+  pi <- sum(2 * i_vals * (n - i_vals) * sfs) / (n * (n - 1))
+  return(pi)
+}
+
+calculate_fu_li_D = function(pi, num_singletons) {
+  numerator = pi - num_singletons
+  denominator = sqrt(var(pi - num_singletons))
+  return(numerator / denominator)
+}
+
+calculate_fu_li_F = function(theta_w, num_singletons) {
+  numerator = theta_w - num_singletons
+  denominator = sqrt(var(theta_w - num_singletons))
+  return(numerator / denominator)
+}
+
 compare_dfe_sfs_cutoff = function(empirical_nonsyn_sfs, model_nonsyn_sfs, neugamma_nonsyn_sfs) {
   x_axis = 1:10
   

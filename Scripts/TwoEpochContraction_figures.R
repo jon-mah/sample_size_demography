@@ -240,9 +240,9 @@ TwoEpochC_three_epoch_TimeBottleEnd = 2 * TwoEpochC_three_epoch_tauF * TwoEpochC
 TwoEpochC_three_epoch_TimeBottleStart = 2 * TwoEpochC_three_epoch_tauB * TwoEpochC_three_epoch_theta / (4 * TwoEpochC_mu * TwoEpochC_three_epoch_allele_sum) + TwoEpochC_three_epoch_TimeBottleEnd
 TwoEpochC_three_epoch_TimeTotal = TwoEpochC_three_epoch_TimeBottleStart + TwoEpochC_three_epoch_TimeBottleEnd
 
-max_time = max(TwoEpochC_two_epoch_Time, TwoEpochC_three_epoch_TimeTotal, TwoEpochC_true_Time) * 1.1
-two_epoch_max_time = max(TwoEpochC_two_epoch_Time, TwoEpochC_true_Time) * 1.1
-three_epoch_max_time = max(TwoEpochC_three_epoch_TimeTotal)
+max_time = 2000 * 1.5
+two_epoch_max_time = max_time
+three_epoch_max_time = max_time
 
 TwoEpochC_two_epoch_max_time = rep(two_epoch_max_time, 10)
 TwoEpochC_two_epoch_current_time = rep(0, 10)
