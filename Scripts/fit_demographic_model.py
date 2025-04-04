@@ -61,6 +61,11 @@ class DemographicInference():
         parser.set_defaults(mask_singletons=False)
         parser.set_defaults(mask_doubletons=False)
         parser.add_argument(
+            '--L_syn', type=float,
+            dest='L_syn',
+            help=('Sum of allele counts for synonymous SFS.'),
+            default=1000000.0)
+        parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
         return parser
@@ -643,30 +648,29 @@ class DemographicInference():
                 f.write('Scaled best-fit model spectrum: {0}.\n'.format(
                     best_scaled_spectrum))
                 logger.info('Converting and interpreting Tau estimates.')
-                sequence_length = 1000000
                 simulation_mu = 1.5E-8
                 if model == 'one_epoch':
                     f.write(
                         'Estimate for ancestral population size is ' +
-                        str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
+                        str(theta_syn / (4 * L_syn * simulation_mu)) + '.\n')
                 elif model == 'two_epoch':
                     best_nu = best_params[0]
                     best_tau = best_params[1]
-                    generations = 2 * best_tau * theta_syn / (4 * simulation_mu * sequence_length)
+                    generations = 2 * best_tau * theta_syn / (4 * simulation_mu * L_syn)
                     f.write(
                         'Estimate for time is ' + str(generations) + 
                         ' generations.\n')
                     f.write(
                         'Estimated ancestral population size is ' +
-                        str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
+                        str(theta_syn / (4 * L_syn * simulation_mu)) + '.\n')
                 else:
                     best_nu_b = best_params[0]
                     best_nu_f = best_params[1]
                     best_tau_b = best_params[2]
                     best_tau_f = best_params[3]
                     # Correct the algebra
-                    generations_b = 2 * best_tau_b * theta_syn / (4 * simulation_mu * sequence_length)
-                    generations_f = 2 * best_tau_f * theta_syn / (4 * simulation_mu * sequence_length)
+                    generations_b = 2 * best_tau_b * theta_syn / (4 * simulation_mu * L_syn)
+                    generations_f = 2 * best_tau_f * theta_syn / (4 * simulation_mu * L_syn)
                     generations_total = generations_b + generations_f
                     f.write(
                         'Estimate for bottleneck length in generations is ' +
@@ -679,7 +683,7 @@ class DemographicInference():
                         str(generations_total) + '.\n')
                     f.write(
                         'Estimate for ancestral population size is ' +
-                        str(theta_syn / (4 * sequence_length * simulation_mu)) + '.\n')
+                        str(theta_syn / (4 * L_syn * simulation_mu)) + '.\n')
         logger.info('Finished demographic inference.')
         logger.info('Pipeline executed succesfully.')
 
