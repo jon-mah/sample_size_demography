@@ -132,21 +132,22 @@ class ComputeEmpiricalGnomADSFS():
 
         print(df)
 
+        logger.info('Splitting synonymous and nonsynonymous variants.')
+
         # Only include synonymous variants
         syn_df = df.loc[df['type'].str.contains('synonymous_variant')]
-        syn_df = syn_df.drop_duplicates(subset='pos')
+        # Assume that multiple mutations at the same position are new
+        # syn_df = syn_df.drop_duplicates(subset='pos')
         logger.info('There are ' + str(syn_df['pos'].nunique()) +
             ' unique synonymous positions.')
         print(syn_df)
         # Only include nonsynonymous variants
         nonsyn_df = df.loc[df['type'].str.contains('missense_variant')]
-        nonsyn_df = nonsyn_df.drop_duplicates(subset='pos')
+        # Assume that multiple mutations at the same position are new
+        # nonsyn_df = nonsyn_df.drop_duplicates(subset='pos')
         logger.info('There are ' + str(nonsyn_df['pos'].nunique()) +
             ' unique nonsynonymous positions.')
-        # nonsyn_df = df.loc[df['type'] == 'missense_variant']
         print(nonsyn_df)
-
-        logger.info('Splitting synonymous and nonsynonymous variants.')
 
         # Group by the desired column
         logger.info('Summing across alternative allele counts to generate SFS.')

@@ -597,6 +597,24 @@ tajima_D_from_sfs = function(input_file) {
   return(tajima_D)
 }
 
+zeng_E_from_sfs = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  zeng_E_string = readLines(this_file)[16]
+  floats <- as.numeric(str_extract_all(zeng_E_string, "[+-]?\\d+\\.\\d+")[[1]])
+  zeng_E = floats[1]
+  return(zeng_E)
+}
+
+zeng_theta_L_from_sfs = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  zeng_theta_L_string = readLines(this_file)[17]
+  floats <- as.numeric(str_extract_all(zeng_theta_L_string, "[+-]?\\d+\\.\\d+")[[1]])
+  zeng_theta_L = floats[1]
+  return(zeng_theta_L)
+}
+
 gamma_sfs_from_dfe = function(input_file) {
   ## Reads input SFS from output *demography.txt
   this_file = file(input_file)
