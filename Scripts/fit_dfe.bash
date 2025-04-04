@@ -21,5 +21,5 @@ sample_size=$SGE_TASK_ID
 # python fit_dfe.py ../Analysis/1kg_EUR_2020_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/1kg_EUR_2020_${sample_size}/
 
 ## gnomAD
-# python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 18343593.0
-python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 18343593.0
+# python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 9311355.0
+python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 9311355.0
