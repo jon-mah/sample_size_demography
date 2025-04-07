@@ -341,6 +341,7 @@ class DemographicInference():
         outprefix = args['outprefix']
         mask_singletons = args['mask_singletons']
         mask_doubletons = args['mask_doubletons']
+        L_syn = args['L_syn']
 
         # Numpy options
         numpy.set_printoptions(linewidth=numpy.inf)
@@ -423,10 +424,10 @@ class DemographicInference():
 
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
-        # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
+        model_list = ['one_epoch', 'two_epoch', 'three_epoch']
         # model_list = ['three_epoch']
         # model_list = ['two_epoch']
-        model_list = ['two_epoch', 'three_epoch']
+        # model_list = ['two_epoch', 'three_epoch']
         # model_list = ['one_epoch']
         # Fit different epoch models and compute likelihood
         for model in model_list:

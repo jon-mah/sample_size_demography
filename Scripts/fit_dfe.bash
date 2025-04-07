@@ -5,10 +5,10 @@
 #$ -l h_rt=2:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N dfe_gnomAD_10
-#$ -t 10
+#$ -N dfe_gnomAD_300
+#$ -t 300
 
-# SGE_TASK_ID=10
+# SGE_TASK_ID=300
 
 sample_size=$SGE_TASK_ID
 
@@ -21,5 +21,5 @@ sample_size=$SGE_TASK_ID
 # python fit_dfe.py ../Analysis/1kg_EUR_2020_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/1kg_EUR_2020_${sample_size}/
 
 ## gnomAD
-# python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 9311355.0
-python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 9311355.0
+python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/two_epoch_demography.txt two_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 9311355.0
+# python fit_dfe.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/nonsyn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/three_epoch_demography.txt three_epoch ../Analysis/gnomAD_${sample_size}/ --L_syn 9311355.0
