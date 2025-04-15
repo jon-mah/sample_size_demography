@@ -1,28 +1,29 @@
-2025-04-07 15:19:08,966 - INFO - Beginning execution of fit_dfe.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-04-15 07:44:47,973 - INFO - Beginning execution of fit_dfe.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-04-07 15:19:08,967 - INFO - Progress is being logged to ../Analysis/gnomAD_10/log.log
+2025-04-15 07:44:47,973 - INFO - Progress is being logged to ../Analysis/gnomAD_10/log.log
 
-2025-04-07 15:19:08,967 - INFO - Parsed the following arguments:
+2025-04-15 07:44:47,973 - INFO - Parsed the following arguments:
 	syn_input_sfs = ../Analysis/gnomAD_10/syn_downsampled_sfs.txt
 	nonsyn_input_sfs = ../Analysis/gnomAD_10/nonsyn_downsampled_sfs.txt
-	input_demography = ../Analysis/gnomAD_10/two_epoch_demography.txt
-	input_model = two_epoch
+	input_demography = ../Analysis/gnomAD_10/three_epoch_demography.txt
+	input_model = three_epoch
 	initial_alpha = 0.2
 	initial_beta = 0.1
-	L_syn = 9311355.0
+	L_syn = 7505993.0
 	outprefix = ../Analysis/gnomAD_10/
 
-2025-04-07 15:19:08,984 - INFO - Loading input demography.
-2025-04-07 15:19:08,986 - INFO - Input demographic parameters are: [0.0454031, 0.2265682].
-2025-04-07 15:19:08,986 - INFO - Input theta_syn is: 105274.36906916024.
-2025-04-07 15:19:08,986 - INFO - Generating spectrum from input demography.
-2025-04-07 15:19:13,146 - INFO - Fitting DFE.
-2025-04-07 15:19:14,981 - WARNING - The integral is probably divergent, or slowly convergent.
-2025-04-07 15:20:18,058 - WARNING - The algorithm does not converge.  Roundoff error is detected
+2025-04-15 07:44:47,985 - INFO - Loading input demography.
+2025-04-15 07:44:47,987 - INFO - Input demographic parameters are: [0.1907885, 0.81365875, 0.1058581, 0.12285812].
+2025-04-15 07:44:47,987 - INFO - Input theta_syn is: 8078.814086194417.
+2025-04-15 07:44:47,987 - INFO - Generating spectrum from input demography.
+2025-04-15 07:44:51,038 - INFO - Fitting DFE.
+2025-04-15 07:45:01,859 - WARNING - The algorithm does not converge.  Roundoff error is detected
   in the extrapolation table.  It is assumed that the requested tolerance
   cannot be achieved, and that the returned result (if full_output = 1) is 
   the best which can be obtained.
-2025-04-07 15:20:48,339 - INFO - Fitting Neutral + Gamma DFE
-2025-04-07 15:22:06,074 - INFO - Computing intermediate summary statistics.
-2025-04-07 15:22:06,074 - INFO - Outputting results.
-2025-04-07 15:22:06,080 - INFO - Pipeline executed succesfully.
+2025-04-15 07:45:01,897 - WARNING - The integral is probably divergent, or slowly convergent.
+2025-04-15 07:46:04,624 - WARNING - Warning: converting a masked element to nan.
+2025-04-15 07:46:05,768 - INFO - Fitting Neutral + Gamma DFE
+2025-04-15 07:46:55,572 - INFO - Computing intermediate summary statistics.
+2025-04-15 07:46:55,573 - INFO - Outputting results.
+2025-04-15 07:46:55,578 - INFO - Pipeline executed succesfully.
