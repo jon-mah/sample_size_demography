@@ -4,12 +4,11 @@
 #$ -V
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -l h_data=512G
-#$ -l highp
-#$ -l h_rt=04:00:00
-#$ -t 10000
+#$ -l h_data=1G
+#$ -l h_rt=00:10:00
+#$ -t 10-800:10
 
-SGE_TASK_ID=10000
+# SGE_TASK_ID=10000
 
 sample_size=$SGE_TASK_ID
 
@@ -28,8 +27,8 @@ sample_size=$SGE_TASK_ID
 # gnomAD EUR data
 # python downsample_sfs.py ../Data/gnomAD_empirical_syn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/syn
 # python downsample_sfs.py ../Data/gnomAD_empirical_nonsyn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/nonsyn
-python downsample_sfs.py ../Data/gnomAD_empirical_stop_gained_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/stop_gained
-
+# python downsample_sfs.py ../Data/gnomAD_empirical_stop_gained_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/stop_gained
+python downsample_sfs.py ../Analysis/snm_800/snm_sfs.txt ${sample_size} ../Analysis/snm_${sample_size}/snm
 
 # Simulated Tennessen data
 # python downsample_sfs.py ../Simulations/ooa_864_sfs/dadi/pop1.sfs ${sample_size} ../Analysis/ooa_simulated_${sample_size}/syn

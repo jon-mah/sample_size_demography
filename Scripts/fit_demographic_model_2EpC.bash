@@ -9,7 +9,7 @@
 #$ -l highp
 #$ -t 700
 
-# SGE_TASK_ID=10
+SGE_TASK_ID=800
 
 sample_size=$SGE_TASK_ID
 
