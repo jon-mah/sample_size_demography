@@ -79,6 +79,9 @@ class ComputeEmpiricalGnomADSFS():
         empirical_nonsyn_sfs = \
            '{0}{1}gnomAD_empirical_nonsyn_sfs.txt'.format(
                 args['outprefix'], underscore)
+        empirical_stop_gain_sfs = \
+           '{0}{1}gnomAD_empirical_stop_gain_sfs.txt'.format(
+                args['outprefix'], underscore)
         logfile = '{0}{1}compute_gnomAD_sfs.log'.format(
             args['outprefix'], underscore)
         to_remove = [logfile, empirical_syn_sfs, empirical_nonsyn_sfs]
@@ -148,20 +151,26 @@ class ComputeEmpiricalGnomADSFS():
         logger.info('There are ' + str(nonsyn_df['pos'].nunique()) +
             ' unique nonsynonymous positions.')
         print(nonsyn_df)
+        # stop_gained
+        stop_gain_df = df.loc[df['type'].str.contains('stop_gained')]
 
         # Group by the desired column
         logger.info('Summing across alternative allele counts to generate SFS.')
         syn_df = syn_df.groupby('AC_nfe')
         nonsyn_df = nonsyn_df.groupby('AC_nfe')
+        stop_gain_df = stop_gain_df.groupby('AC_nfe')
 
         # Perform an aggregation on the grouped data (e.g., calculate the sum)
         syn_allele_sum = syn_df.count()
         nonsyn_allele_sum = nonsyn_df.count()
+        stop_gain_sum = stop_gain_df.count()
 
         syn_allele_sum = syn_allele_sum.rename(columns={'type': 'unfolded frequency'})
         syn_allele_sum.index.names = ['n-ton']
         nonsyn_allele_sum = nonsyn_allele_sum.rename(columns={'type': 'unfolded frequency'})
         nonsyn_allele_sum.index.names = ['n-ton']
+        stop_gain_allele_sum = stop_gain_sum.rename(columns={'type': 'unfolded frequency'})
+        stop_gain_allele_sum.index.names = ['n-ton']
 
         # print(allele_sum)
 
@@ -174,6 +183,7 @@ class ComputeEmpiricalGnomADSFS():
         logger.info('Convertin SFS to Dadi format.')
         syn_allele_frequency_sum = np.zeros(max_n_ton)
         nonsyn_allele_frequency_sum = np.zeros(max_n_ton)
+        stop_gain_allele_frequency_sum = np.zeros(max_n_ton)
         for i in range(max_n_ton):
             if i in syn_allele_sum.index:
                 syn_allele_frequency_sum[i] = syn_allele_sum.loc[i, 'unfolded frequency']
@@ -186,6 +196,13 @@ class ComputeEmpiricalGnomADSFS():
             else:
                 nonsyn_allele_frequency_sum[i] = 0
 
+        for i in range(max_n_ton):
+            if i in stop_gain_allele_sum.index:
+                stop_gain_allele_frequency_sum[i] = stop_gain_allele_sum.loc[i, 'unfolded frequency']
+            else:
+                stop_gain_allele_frequency_sum[i] = 0
+
+
         # print(allele_frequency_sum)
         syn_data = dadi.Spectrum(data=syn_allele_frequency_sum)
         syn_data = syn_data.fold()
@@ -193,6 +210,8 @@ class ComputeEmpiricalGnomADSFS():
         nonsyn_data = dadi.Spectrum(data=nonsyn_allele_frequency_sum)
         nonsyn_data = nonsyn_data.fold()
         nonsyn_data.to_file(empirical_nonsyn_sfs)
+        stop_gain_data = dadi.Spectrum(data=stop_gain_allele_frequency_sum)
+        stop_gain_data.to_file(empirical_stop_gain_sfs)
         logger.info('Pipeline executed succesfully.')
 
 

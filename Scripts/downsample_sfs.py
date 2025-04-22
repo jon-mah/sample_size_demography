@@ -22,6 +22,8 @@ import dadi
 import scipy.stats.distributions
 import scipy.integrate
 import scipy.optimize
+import gc
+import time
 
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
@@ -64,6 +66,7 @@ class ComputeDownSampledSFS():
     def main(self):
         """Execute main function."""
         # Parse command line arguments
+        start_time = time.time()
         parser = self.downsampleSFSParser()
         args = vars(parser.parse_args())
         prog = parser.prog
@@ -122,10 +125,20 @@ class ComputeDownSampledSFS():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         logger.info('Parsing input SFS.')
-        input_spectrum =  dadi.Spectrum.fromfile(input_sfs)
+
+
+        if sample_size > 1000:
+            input_spectrum = dadi.Spectrum.fromfile(input_sfs).astype(numpy.float32)
+            output_spectrum = dadi.Spectrum(numpy.zeros(sample_size)).astype(numpy.float32)
+            # print(input_spectrum.dtype)
+            # print(output_spectrum.dtype)
+            gc.collect()
+            output_spectrum = input_spectrum.project([sample_size]).astype(numpy.float32)
+        else:
+            input_spectrum = dadi.Spectrum.fromfile(input_sfs)
+            output_spectrum = input_spectrum.project([sample_size])
 
         logger.info('Formatting output SFS.')
-        output_spectrum = input_spectrum.project([sample_size])
         logger.info('Calculating summary statistics.')
         logger.info("Watterson's Theta: {0}".format(output_spectrum.Watterson_theta()))
         logger.info("Nucleotide Diverisity: {0}".format(output_spectrum.pi()))
@@ -136,6 +149,9 @@ class ComputeDownSampledSFS():
         output_spectrum.to_file(downsampled_sfs)
 
         logger.info('Finished downsampling.')
+        end_time = time.time()
+        total_time = end_time - start_time
+        logger.info('Pipeline execution time is: {0}'.format(total_time))
         logger.info('Pipeline executed succesfully.')
 
 
