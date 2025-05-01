@@ -113,43 +113,43 @@ class msPrimeSimulate():
         # Two epoch expansion, population 1
         dem1.add_population(name="TwoEpE", description="Two epoch expansion", initial_size=10000)
         # Three epoch bottleneck, population 2
-        dem2.add_population(name="ThreeEpB", description="Three epcoh bottleneck", initial_size=50000)
+        dem2.add_population(name="ThreeEpB", description="Three epoch bottleneck", initial_size=10000)
 
         # Demographic events
-        dem0.add_population_parameters_change(time=17200, initial_size=10000, population=0) # Contraction
-        dem0.add_population_parameters_change(time=7200, initial_size=10000, population=0) # Contraction
-        dem0.add_population_parameters_change(time=533, initial_size=1000, population=0) # Contraction
-        dem0.add_population_parameters_change(time=200, initial_size=1000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=2000, initial_size=10000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=1500, initial_size=10000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=1000, initial_size=1000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=500, initial_size=1000, population=0) # Contraction
 
-        dem1.add_population_parameters_change(time=7000, initial_size=1000, population=0) # Expansion
-        dem1.add_population_parameters_change(time=6000, initial_size=1000, population=0) # Expansion
-        dem1.add_population_parameters_change(time=5333, initial_size=10000, population=0) # Expansion
-        dem1.add_population_parameters_change(time=2000, initial_size=10000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=2000, initial_size=1000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=1500, initial_size=1000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=1000, initial_size=10000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=500, initial_size=10000, population=0) # Expansion
 
-        dem2.add_population_parameters_change(time=22000, initial_size=10000, population=0) # Bottleneck
-        dem2.add_population_parameters_change(time=12000, initial_size=10000, population=0) # Bottleneck
-        dem2.add_population_parameters_change(time=5333, initial_size=1000, population=0) # Bottleneck
-        dem2.add_population_parameters_change(time=5000, initial_size=50000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=2000, initial_size=5000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=1500, initial_size=5000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=1000, initial_size=1000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=500, initial_size=10000, population=0) # Bottleneck
 
         dem0.sort_events()
         dem1.sort_events()
         dem2.sort_events()
 
 
-        with open(output_TwoEpC, "w+") as f0:
-            ts0 = msprime.sim_ancestry(samples={"TwoEpC" : 1000},
+        with open(output_contraction, "w+") as f0:
+            ts0 = msprime.sim_ancestry(samples={"TwoEpC": 1000},
                 demography=dem0, sequence_length=1000000, recombination_rate=1e-8)
             mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
             mts0.write_vcf(f0)
 
-        with open(output_TwoEpE, "w+") as f1:
-            ts1 = msprime.sim_ancestry(samples={"TwoEpE" : 1000},
+        with open(output_expansion, "w+") as f1:
+            ts1 = msprime.sim_ancestry(samples={"TwoEpE": 10000},
                 demography=dem1, sequence_length=1000000, recombination_rate=1e-8)
             mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
             mts1.write_vcf(f1)
 
-        with open(output_ThreeEpB, "w+") as f2:
-            ts2 = msprime.sim_ancestry(samples={"ThreeEpB": 1000},
+        with open(output_bottleneck, "w+") as f2:
+            ts2 = msprime.sim_ancestry(samples={"ThreeEpB": 10000},
                 demography=dem2, sequence_length=1000000, recombination_rate=1e-8)
             mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
             mts2.write_vcf(f2)

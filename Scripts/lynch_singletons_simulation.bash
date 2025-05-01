@@ -5,13 +5,13 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=45G
-#$ -l h_rt=01:30:00
+#$ -l h_rt=00:30:00
 #$ -t 1-20:1
 
 replicate=$SGE_TASK_ID
 
-# python msprime_simulations.py ${replicate} ../Simulations/singleton_simulations/
+# python lynch_singletons_simulation.py ${replicate} ../Simulations/singleton_simulations/
 
-easySFS.py -a -f -i ../Simulations/singleton_simulations/TwoEpochContraction_${replicate}.vcf -p sample_1000_pops.txt -o ../Simulations/singleton_simulations/TwoEpochContraction_${replicate}
-easySFS.py -a -f -i ../Simulations/singleton_simulations/TwoEpochExpansion_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations/TwoEpochExpansion_${replicate}
-easySFS.py -a -f -i ../Simulations/singleton_simulations/ThreeEpochBottleneck_${replicate}.vcf -p sample_50000_pops.txt -o ../Simulations/singleton_simulations/ThreeEpochBottleneck_${replicate}
+easySFS.py -a -f -i ../Simulations/singleton_simulations/contraction_${replicate}.vcf -p sample_1000_pops.txt -o ../Simulations/singleton_simulations/contraction_${replicate} --proj 1000 --unfolded
+easySFS.py -a -f -i ../Simulations/singleton_simulations/expansion_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations/expansion_${replicate} --proj 10000 --unfolded
+easySFS.py -a -f -i ../Simulations/singleton_simulations/bottleneck_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations/bottleneck_${replicate} --proj 10000 --unfolded
