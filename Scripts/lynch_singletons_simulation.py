@@ -116,20 +116,20 @@ class msPrimeSimulate():
         dem2.add_population(name="ThreeEpB", description="Three epoch bottleneck", initial_size=10000)
 
         # Demographic events
-        dem0.add_population_parameters_change(time=2000, initial_size=10000, population=0) # Contraction
-        dem0.add_population_parameters_change(time=1500, initial_size=10000, population=0) # Contraction
-        dem0.add_population_parameters_change(time=1000, initial_size=1000, population=0) # Contraction
-        dem0.add_population_parameters_change(time=500, initial_size=1000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=200, initial_size=10000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=150, initial_size=10000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=100, initial_size=1000, population=0) # Contraction
+        dem0.add_population_parameters_change(time=50, initial_size=1000, population=0) # Contraction
 
-        dem1.add_population_parameters_change(time=2000, initial_size=1000, population=0) # Expansion
-        dem1.add_population_parameters_change(time=1500, initial_size=1000, population=0) # Expansion
-        dem1.add_population_parameters_change(time=1000, initial_size=10000, population=0) # Expansion
-        dem1.add_population_parameters_change(time=500, initial_size=10000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=200, initial_size=1000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=150, initial_size=1000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=100, initial_size=10000, population=0) # Expansion
+        dem1.add_population_parameters_change(time=50, initial_size=10000, population=0) # Expansion
 
-        dem2.add_population_parameters_change(time=2000, initial_size=5000, population=0) # Bottleneck
-        dem2.add_population_parameters_change(time=1500, initial_size=5000, population=0) # Bottleneck
-        dem2.add_population_parameters_change(time=1000, initial_size=1000, population=0) # Bottleneck
-        dem2.add_population_parameters_change(time=500, initial_size=10000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=200, initial_size=5000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=150, initial_size=5000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=100, initial_size=1000, population=0) # Bottleneck
+        dem2.add_population_parameters_change(time=50, initial_size=10000, population=0) # Bottleneck
 
         dem0.sort_events()
         dem1.sort_events()

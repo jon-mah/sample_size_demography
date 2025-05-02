@@ -10,8 +10,8 @@
 
 replicate=$SGE_TASK_ID
 
-# python lynch_singletons_simulation.py ${replicate} ../Simulations/singleton_simulations/
+# python lynch_singletons_simulation.py ${replicate} ../Simulations/singleton_simulations_short/
 
-easySFS.py -a -f -i ../Simulations/singleton_simulations/contraction_${replicate}.vcf -p sample_1000_pops.txt -o ../Simulations/singleton_simulations/contraction_${replicate} --proj 1000 --unfolded
-easySFS.py -a -f -i ../Simulations/singleton_simulations/expansion_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations/expansion_${replicate} --proj 10000 --unfolded
-easySFS.py -a -f -i ../Simulations/singleton_simulations/bottleneck_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations/bottleneck_${replicate} --proj 10000 --unfolded
+easySFS.py -a -f -i ../Simulations/singleton_simulations_short/contraction_${replicate}.vcf -p sample_1000_pops.txt -o ../Simulations/singleton_simulations_short/contraction_${replicate} --proj 1000 --unfolded
+easySFS.py -a -f -i ../Simulations/singleton_simulations_short/expansion_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations_short/expansion_${replicate} --proj 10000 --unfolded
+easySFS.py -a -f -i ../Simulations/singleton_simulations_short/bottleneck_${replicate}.vcf -p sample_10000_pops.txt -o ../Simulations/singleton_simulations_short/bottleneck_${replicate} --proj 10000 --unfolded
