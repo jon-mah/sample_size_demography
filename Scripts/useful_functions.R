@@ -66,6 +66,17 @@ read_input_sfs = function(input_file)  {
   return(output_sfs)
 }
 
+read_unfolded_input_sfs = function(input_file)  {
+  ## Reads input SFS in Dadi Format
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  sfs_string = readLines(this_file)[2]
+  output_sfs = as.numeric(unlist(strsplit(sfs_string, ' ')))
+  output_sfs = output_sfs[-1] ## Remove 0-tons
+  output_sfs = output_sfs[-length(output_sfs)]
+  return(output_sfs)
+}
+
 sfs_from_demography = function(input_file) {
   ## Reads input SFS from output *demography.txt
   this_file = file(input_file)
