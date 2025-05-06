@@ -1,0 +1,40 @@
+// contraction_sim.slim
+
+// Define constants
+initialize() {
+    initializeMutationRate(1.5e-8);
+    initializeMutationType("m1", 0.5, "f", 0.0);
+    initializeGenomicElementType("g1", m1, 1.0);
+    initializeGenomicElement(g1, 0, 999999);
+    initializeRecombinationRate(1e-8);
+}
+
+// Create the ancestral population of 1000 individuals
+1 {
+    sim.addSubpop("p1", 1000); // Contraction
+    sim.addSubpop("p2", 100); // Expansion
+    sim.addSubpop("p3", 500); // Bottleneck
+}
+
+// Contract the population to 100 at generation 10000 for neutral burn-in
+10000 {
+    p1.setSubpopulationSize(100);
+    p2.setSubpopulationSize(1000);
+    p3.setSubpopulationSize(100);
+}
+
+10050 {
+    p3.setSubpopulationSize(1000); 
+}
+
+// Output VCF at generation 10100
+10100 late() {
+    // Output all individuals in VCF format
+    p1_file = "../Simulations/lynch_singletons/slim_simulations/slim_contraction_" + replicate + ".vcf";
+    p2_file = "../Simulations/lynch_singletons/slim_simulations/slim_expansion_" + replicate + ".vcf";
+    p3_file = "../Simulations/lynch_singletons/slim_simulations/slim_bottleneck_" + replicate + ".vcf";
+    p1.outputVCFSample(100, filePath=p1_file);
+    p2.outputVCFSample(1000, filePath=p2_file);
+    p3.outputVCFSample(1000, filePath=p3_file);
+    sim.simulationFinished();
+}
