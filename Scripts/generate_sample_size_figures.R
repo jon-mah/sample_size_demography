@@ -390,667 +390,146 @@ ggplot(data=rare_variant_proportion_df, aes(x=sample_size, y=TwoEpochC_rare_vari
 
 ## Compute statistics for lynch simulations
 
-T500_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_1/dadi/pop1.sfs')
-T500_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_2/dadi/pop1.sfs')
-T500_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_3/dadi/pop1.sfs')
-T500_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_4/dadi/pop1.sfs')
-T500_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_5/dadi/pop1.sfs')
-T500_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_6/dadi/pop1.sfs')
-T500_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_7/dadi/pop1.sfs')
-T500_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_8/dadi/pop1.sfs')
-T500_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_9/dadi/pop1.sfs')
-T500_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_10/dadi/pop1.sfs')
-T500_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_11/dadi/pop1.sfs')
-T500_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_12/dadi/pop1.sfs')
-T500_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_13/dadi/pop1.sfs')
-T500_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_14/dadi/pop1.sfs')
-T500_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_15/dadi/pop1.sfs')
-T500_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_16/dadi/pop1.sfs')
-T500_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_17/dadi/pop1.sfs')
-T500_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_18/dadi/pop1.sfs')
-T500_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_19/dadi/pop1.sfs')
-T500_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/bottleneck_20/dadi/pop1.sfs')
+k5_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_1/dadi/pop1.sfs')
+k5_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_2/dadi/pop1.sfs')
+k5_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_3/dadi/pop1.sfs')
+k5_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_4/dadi/pop1.sfs')
+k5_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_5/dadi/pop1.sfs')
+k5_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_6/dadi/pop1.sfs')
+k5_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_7/dadi/pop1.sfs')
+k5_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_8/dadi/pop1.sfs')
+k5_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_9/dadi/pop1.sfs')
+k5_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_10/dadi/pop1.sfs')
+k5_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_11/dadi/pop1.sfs')
+k5_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_12/dadi/pop1.sfs')
+k5_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_13/dadi/pop1.sfs')
+k5_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_14/dadi/pop1.sfs')
+k5_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_15/dadi/pop1.sfs')
+k5_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_16/dadi/pop1.sfs')
+k5_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_17/dadi/pop1.sfs')
+k5_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_18/dadi/pop1.sfs')
+k5_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_19/dadi/pop1.sfs')
+k5_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_20/dadi/pop1.sfs')
 
-T500_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_1/dadi/pop1.sfs')
-T500_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_2/dadi/pop1.sfs')
-T500_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_3/dadi/pop1.sfs')
-T500_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_4/dadi/pop1.sfs')
-T500_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_5/dadi/pop1.sfs')
-T500_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_6/dadi/pop1.sfs')
-T500_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_7/dadi/pop1.sfs')
-T500_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_8/dadi/pop1.sfs')
-T500_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_9/dadi/pop1.sfs')
-T500_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_10/dadi/pop1.sfs')
-T500_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_11/dadi/pop1.sfs')
-T500_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_12/dadi/pop1.sfs')
-T500_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_13/dadi/pop1.sfs')
-T500_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_14/dadi/pop1.sfs')
-T500_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_15/dadi/pop1.sfs')
-T500_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_16/dadi/pop1.sfs')
-T500_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_17/dadi/pop1.sfs')
-T500_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_18/dadi/pop1.sfs')
-T500_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_19/dadi/pop1.sfs')
-T500_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/contraction_20/dadi/pop1.sfs')
+k5_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_1/dadi/pop1.sfs')
+k5_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_2/dadi/pop1.sfs')
+k5_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_3/dadi/pop1.sfs')
+k5_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_4/dadi/pop1.sfs')
+k5_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_5/dadi/pop1.sfs')
+k5_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_6/dadi/pop1.sfs')
+k5_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_7/dadi/pop1.sfs')
+k5_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_8/dadi/pop1.sfs')
+k5_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_9/dadi/pop1.sfs')
+k5_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_10/dadi/pop1.sfs')
+k5_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_11/dadi/pop1.sfs')
+k5_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_12/dadi/pop1.sfs')
+k5_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_13/dadi/pop1.sfs')
+k5_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_14/dadi/pop1.sfs')
+k5_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_15/dadi/pop1.sfs')
+k5_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_16/dadi/pop1.sfs')
+k5_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_17/dadi/pop1.sfs')
+k5_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_18/dadi/pop1.sfs')
+k5_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_19/dadi/pop1.sfs')
+k5_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_20/dadi/pop1.sfs')
 
-T500_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_1/dadi/pop1.sfs')
-T500_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_2/dadi/pop1.sfs')
-T500_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_3/dadi/pop1.sfs')
-T500_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_4/dadi/pop1.sfs')
-T500_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_5/dadi/pop1.sfs')
-T500_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_6/dadi/pop1.sfs')
-T500_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_7/dadi/pop1.sfs')
-T500_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_8/dadi/pop1.sfs')
-T500_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_9/dadi/pop1.sfs')
-T500_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_10/dadi/pop1.sfs')
-T500_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_11/dadi/pop1.sfs')
-T500_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_12/dadi/pop1.sfs')
-T500_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_13/dadi/pop1.sfs')
-T500_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_14/dadi/pop1.sfs')
-T500_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_15/dadi/pop1.sfs')
-T500_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_16/dadi/pop1.sfs')
-T500_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_17/dadi/pop1.sfs')
-T500_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_18/dadi/pop1.sfs')
-T500_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_19/dadi/pop1.sfs')
-T500_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T500/expansion_20/dadi/pop1.sfs')
+k5_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_1/dadi/pop1.sfs')
+k5_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_2/dadi/pop1.sfs')
+k5_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_3/dadi/pop1.sfs')
+k5_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_4/dadi/pop1.sfs')
+k5_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_5/dadi/pop1.sfs')
+k5_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_6/dadi/pop1.sfs')
+k5_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_7/dadi/pop1.sfs')
+k5_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_8/dadi/pop1.sfs')
+k5_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_9/dadi/pop1.sfs')
+k5_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_10/dadi/pop1.sfs')
+k5_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_11/dadi/pop1.sfs')
+k5_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_12/dadi/pop1.sfs')
+k5_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_13/dadi/pop1.sfs')
+k5_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_14/dadi/pop1.sfs')
+k5_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_15/dadi/pop1.sfs')
+k5_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_16/dadi/pop1.sfs')
+k5_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_17/dadi/pop1.sfs')
+k5_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_18/dadi/pop1.sfs')
+k5_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_19/dadi/pop1.sfs')
+k5_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_20/dadi/pop1.sfs')
 
-T500_bottleneck_singletons = c(T500_bottleneck_1[1],
-  T500_bottleneck_2[1],
-  T500_bottleneck_3[1],
-  T500_bottleneck_4[1],
-  T500_bottleneck_5[1],
-  T500_bottleneck_6[1],
-  T500_bottleneck_7[1],
-  T500_bottleneck_8[1],
-  T500_bottleneck_9[1],
-  T500_bottleneck_10[1],
-  T500_bottleneck_11[1],
-  T500_bottleneck_12[1],
-  T500_bottleneck_13[1],
-  T500_bottleneck_14[1],
-  T500_bottleneck_15[1],
-  T500_bottleneck_16[1],
-  T500_bottleneck_17[1],
-  T500_bottleneck_18[1],
-  T500_bottleneck_19[1],
-  T500_bottleneck_20[1])
+k5_bottleneck_singletons = c(k5_bottleneck_1[1],
+  k5_bottleneck_2[1],
+  k5_bottleneck_3[1],
+  k5_bottleneck_4[1],
+  k5_bottleneck_5[1],
+  k5_bottleneck_6[1],
+  k5_bottleneck_7[1],
+  k5_bottleneck_8[1],
+  k5_bottleneck_9[1],
+  k5_bottleneck_10[1],
+  k5_bottleneck_11[1],
+  k5_bottleneck_12[1],
+  k5_bottleneck_13[1],
+  k5_bottleneck_14[1],
+  k5_bottleneck_15[1],
+  k5_bottleneck_16[1],
+  k5_bottleneck_17[1],
+  k5_bottleneck_18[1],
+  k5_bottleneck_19[1],
+  k5_bottleneck_20[1])
 
-T500_contraction_singletons = c(T500_contraction_1[1],
-  T500_contraction_2[1],
-  T500_contraction_3[1],
-  T500_contraction_4[1],
-  T500_contraction_5[1],
-  T500_contraction_6[1],
-  T500_contraction_7[1],
-  T500_contraction_8[1],
-  T500_contraction_9[1],
-  T500_contraction_10[1],
-  T500_contraction_11[1],
-  T500_contraction_12[1],
-  T500_contraction_13[1],
-  T500_contraction_14[1],
-  T500_contraction_15[1],
-  T500_contraction_16[1],
-  T500_contraction_17[1],
-  T500_contraction_18[1],
-  T500_contraction_19[1],
-  T500_contraction_20[1])
+k5_contraction_singletons = c(k5_contraction_1[1],
+  k5_contraction_2[1],
+  k5_contraction_3[1],
+  k5_contraction_4[1],
+  k5_contraction_5[1],
+  k5_contraction_6[1],
+  k5_contraction_7[1],
+  k5_contraction_8[1],
+  k5_contraction_9[1],
+  k5_contraction_10[1],
+  k5_contraction_11[1],
+  k5_contraction_12[1],
+  k5_contraction_13[1],
+  k5_contraction_14[1],
+  k5_contraction_15[1],
+  k5_contraction_16[1],
+  k5_contraction_17[1],
+  k5_contraction_18[1],
+  k5_contraction_19[1],
+  k5_contraction_20[1])
 
-T500_expansion_singletons = c(T500_expansion_1[1],
-  T500_expansion_2[1],
-  T500_expansion_3[1],
-  T500_expansion_4[1],
-  T500_expansion_5[1],
-  T500_expansion_6[1],
-  T500_expansion_7[1],
-  T500_expansion_8[1],
-  T500_expansion_9[1],
-  T500_expansion_10[1],
-  T500_expansion_11[1],
-  T500_expansion_12[1],
-  T500_expansion_13[1],
-  T500_expansion_14[1],
-  T500_expansion_15[1],
-  T500_expansion_16[1],
-  T500_expansion_17[1],
-  T500_expansion_18[1],
-  T500_expansion_19[1],
-  T500_expansion_20[1])
+k5_expansion_singletons = c(k5_expansion_1[1],
+  k5_expansion_2[1],
+  k5_expansion_3[1],
+  k5_expansion_4[1],
+  k5_expansion_5[1],
+  k5_expansion_6[1],
+  k5_expansion_7[1],
+  k5_expansion_8[1],
+  k5_expansion_9[1],
+  k5_expansion_10[1],
+  k5_expansion_11[1],
+  k5_expansion_12[1],
+  k5_expansion_13[1],
+  k5_expansion_14[1],
+  k5_expansion_15[1],
+  k5_expansion_16[1],
+  k5_expansion_17[1],
+  k5_expansion_18[1],
+  k5_expansion_19[1],
+  k5_expansion_20[1])
 
-T50_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_1/dadi/pop1.sfs')
-T50_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_2/dadi/pop1.sfs')
-T50_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_3/dadi/pop1.sfs')
-T50_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_4/dadi/pop1.sfs')
-T50_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_5/dadi/pop1.sfs')
-T50_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_6/dadi/pop1.sfs')
-T50_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_7/dadi/pop1.sfs')
-T50_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_8/dadi/pop1.sfs')
-T50_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_9/dadi/pop1.sfs')
-T50_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_10/dadi/pop1.sfs')
-T50_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_11/dadi/pop1.sfs')
-T50_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_12/dadi/pop1.sfs')
-T50_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_13/dadi/pop1.sfs')
-T50_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_14/dadi/pop1.sfs')
-T50_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_15/dadi/pop1.sfs')
-T50_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_16/dadi/pop1.sfs')
-T50_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_17/dadi/pop1.sfs')
-T50_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_18/dadi/pop1.sfs')
-T50_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_19/dadi/pop1.sfs')
-T50_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/bottleneck_20/dadi/pop1.sfs')
+k5_df = melt(data.frame(k5_bottleneck_singletons,
+  k5_contraction_singletons,
+  k5_expansion_singletons))
 
-T50_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_1/dadi/pop1.sfs')
-T50_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_2/dadi/pop1.sfs')
-T50_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_3/dadi/pop1.sfs')
-T50_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_4/dadi/pop1.sfs')
-T50_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_5/dadi/pop1.sfs')
-T50_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_6/dadi/pop1.sfs')
-T50_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_7/dadi/pop1.sfs')
-T50_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_8/dadi/pop1.sfs')
-T50_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_9/dadi/pop1.sfs')
-T50_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_10/dadi/pop1.sfs')
-T50_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_11/dadi/pop1.sfs')
-T50_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_12/dadi/pop1.sfs')
-T50_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_13/dadi/pop1.sfs')
-T50_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_14/dadi/pop1.sfs')
-T50_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_15/dadi/pop1.sfs')
-T50_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_16/dadi/pop1.sfs')
-T50_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_17/dadi/pop1.sfs')
-T50_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_18/dadi/pop1.sfs')
-T50_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_19/dadi/pop1.sfs')
-T50_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/contraction_20/dadi/pop1.sfs')
+k5_df$simulation="k5"
 
-T50_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_1/dadi/pop1.sfs')
-T50_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_2/dadi/pop1.sfs')
-T50_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_3/dadi/pop1.sfs')
-T50_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_4/dadi/pop1.sfs')
-T50_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_5/dadi/pop1.sfs')
-T50_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_6/dadi/pop1.sfs')
-T50_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_7/dadi/pop1.sfs')
-T50_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_8/dadi/pop1.sfs')
-T50_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_9/dadi/pop1.sfs')
-T50_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_10/dadi/pop1.sfs')
-T50_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_11/dadi/pop1.sfs')
-T50_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_12/dadi/pop1.sfs')
-T50_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_13/dadi/pop1.sfs')
-T50_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_14/dadi/pop1.sfs')
-T50_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_15/dadi/pop1.sfs')
-T50_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_16/dadi/pop1.sfs')
-T50_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_17/dadi/pop1.sfs')
-T50_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_18/dadi/pop1.sfs')
-T50_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_19/dadi/pop1.sfs')
-T50_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/T50/expansion_20/dadi/pop1.sfs')
+ggplot(k5_df, aes(x=value, y=variable)) + geom_boxplot() + theme_bw() +
+  xlab('Number of singletons') +
+  ylab('Simulation')
 
-T50_bottleneck_singletons = c(T50_bottleneck_1[1],
-  T50_bottleneck_2[1],
-  T50_bottleneck_3[1],
-  T50_bottleneck_4[1],
-  T50_bottleneck_5[1],
-  T50_bottleneck_6[1],
-  T50_bottleneck_7[1],
-  T50_bottleneck_8[1],
-  T50_bottleneck_9[1],
-  T50_bottleneck_10[1],
-  T50_bottleneck_11[1],
-  T50_bottleneck_12[1],
-  T50_bottleneck_13[1],
-  T50_bottleneck_14[1],
-  T50_bottleneck_15[1],
-  T50_bottleneck_16[1],
-  T50_bottleneck_17[1],
-  T50_bottleneck_18[1],
-  T50_bottleneck_19[1],
-  T50_bottleneck_20[1])
 
-T50_contraction_singletons = c(T50_contraction_1[1],
-  T50_contraction_2[1],
-  T50_contraction_3[1],
-  T50_contraction_4[1],
-  T50_contraction_5[1],
-  T50_contraction_6[1],
-  T50_contraction_7[1],
-  T50_contraction_8[1],
-  T50_contraction_9[1],
-  T50_contraction_10[1],
-  T50_contraction_11[1],
-  T50_contraction_12[1],
-  T50_contraction_13[1],
-  T50_contraction_14[1],
-  T50_contraction_15[1],
-  T50_contraction_16[1],
-  T50_contraction_17[1],
-  T50_contraction_18[1],
-  T50_contraction_19[1],
-  T50_contraction_20[1])
-
-T50_expansion_singletons = c(T50_expansion_1[1],
-  T50_expansion_2[1],
-  T50_expansion_3[1],
-  T50_expansion_4[1],
-  T50_expansion_5[1],
-  T50_expansion_6[1],
-  T50_expansion_7[1],
-  T50_expansion_8[1],
-  T50_expansion_9[1],
-  T50_expansion_10[1],
-  T50_expansion_11[1],
-  T50_expansion_12[1],
-  T50_expansion_13[1],
-  T50_expansion_14[1],
-  T50_expansion_15[1],
-  T50_expansion_16[1],
-  T50_expansion_17[1],
-  T50_expansion_18[1],
-  T50_expansion_19[1],
-  T50_expansion_20[1])
-
-no_r_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_1/dadi/pop1.sfs')
-no_r_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_2/dadi/pop1.sfs')
-no_r_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_3/dadi/pop1.sfs')
-no_r_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_4/dadi/pop1.sfs')
-no_r_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_5/dadi/pop1.sfs')
-no_r_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_6/dadi/pop1.sfs')
-no_r_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_7/dadi/pop1.sfs')
-no_r_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_8/dadi/pop1.sfs')
-no_r_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_9/dadi/pop1.sfs')
-no_r_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_10/dadi/pop1.sfs')
-no_r_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_11/dadi/pop1.sfs')
-no_r_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_12/dadi/pop1.sfs')
-no_r_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_13/dadi/pop1.sfs')
-no_r_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_14/dadi/pop1.sfs')
-no_r_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_15/dadi/pop1.sfs')
-no_r_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_16/dadi/pop1.sfs')
-no_r_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_17/dadi/pop1.sfs')
-no_r_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_18/dadi/pop1.sfs')
-no_r_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_19/dadi/pop1.sfs')
-no_r_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/bottleneck_20/dadi/pop1.sfs')
-
-no_r_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_1/dadi/pop1.sfs')
-no_r_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_2/dadi/pop1.sfs')
-no_r_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_3/dadi/pop1.sfs')
-no_r_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_4/dadi/pop1.sfs')
-no_r_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_5/dadi/pop1.sfs')
-no_r_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_6/dadi/pop1.sfs')
-no_r_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_7/dadi/pop1.sfs')
-no_r_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_8/dadi/pop1.sfs')
-no_r_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_9/dadi/pop1.sfs')
-no_r_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_10/dadi/pop1.sfs')
-no_r_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_11/dadi/pop1.sfs')
-no_r_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_12/dadi/pop1.sfs')
-no_r_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_13/dadi/pop1.sfs')
-no_r_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_14/dadi/pop1.sfs')
-no_r_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_15/dadi/pop1.sfs')
-no_r_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_16/dadi/pop1.sfs')
-no_r_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_17/dadi/pop1.sfs')
-no_r_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_18/dadi/pop1.sfs')
-no_r_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_19/dadi/pop1.sfs')
-no_r_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/contraction_20/dadi/pop1.sfs')
-
-no_r_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_1/dadi/pop1.sfs')
-no_r_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_2/dadi/pop1.sfs')
-no_r_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_3/dadi/pop1.sfs')
-no_r_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_4/dadi/pop1.sfs')
-no_r_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_5/dadi/pop1.sfs')
-no_r_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_6/dadi/pop1.sfs')
-no_r_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_7/dadi/pop1.sfs')
-no_r_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_8/dadi/pop1.sfs')
-no_r_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_9/dadi/pop1.sfs')
-no_r_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_10/dadi/pop1.sfs')
-no_r_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_11/dadi/pop1.sfs')
-no_r_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_12/dadi/pop1.sfs')
-no_r_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_13/dadi/pop1.sfs')
-no_r_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_14/dadi/pop1.sfs')
-no_r_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_15/dadi/pop1.sfs')
-no_r_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_16/dadi/pop1.sfs')
-no_r_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_17/dadi/pop1.sfs')
-no_r_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_18/dadi/pop1.sfs')
-no_r_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_19/dadi/pop1.sfs')
-no_r_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/no_r/expansion_20/dadi/pop1.sfs')
-
-no_r_bottleneck_singletons = c(no_r_bottleneck_1[1],
-  no_r_bottleneck_2[1],
-  no_r_bottleneck_3[1],
-  no_r_bottleneck_4[1],
-  no_r_bottleneck_5[1],
-  no_r_bottleneck_6[1],
-  no_r_bottleneck_7[1],
-  no_r_bottleneck_8[1],
-  no_r_bottleneck_9[1],
-  no_r_bottleneck_10[1],
-  no_r_bottleneck_11[1],
-  no_r_bottleneck_12[1],
-  no_r_bottleneck_13[1],
-  no_r_bottleneck_14[1],
-  no_r_bottleneck_15[1],
-  no_r_bottleneck_16[1],
-  no_r_bottleneck_17[1],
-  no_r_bottleneck_18[1],
-  no_r_bottleneck_19[1],
-  no_r_bottleneck_20[1])
-
-no_r_contraction_singletons = c(no_r_contraction_1[1],
-  no_r_contraction_2[1],
-  no_r_contraction_3[1],
-  no_r_contraction_4[1],
-  no_r_contraction_5[1],
-  no_r_contraction_6[1],
-  no_r_contraction_7[1],
-  no_r_contraction_8[1],
-  no_r_contraction_9[1],
-  no_r_contraction_10[1],
-  no_r_contraction_11[1],
-  no_r_contraction_12[1],
-  no_r_contraction_13[1],
-  no_r_contraction_14[1],
-  no_r_contraction_15[1],
-  no_r_contraction_16[1],
-  no_r_contraction_17[1],
-  no_r_contraction_18[1],
-  no_r_contraction_19[1],
-  no_r_contraction_20[1])
-
-no_r_expansion_singletons = c(no_r_expansion_1[1],
-  no_r_expansion_2[1],
-  no_r_expansion_3[1],
-  no_r_expansion_4[1],
-  no_r_expansion_5[1],
-  no_r_expansion_6[1],
-  no_r_expansion_7[1],
-  no_r_expansion_8[1],
-  no_r_expansion_9[1],
-  no_r_expansion_10[1],
-  no_r_expansion_11[1],
-  no_r_expansion_12[1],
-  no_r_expansion_13[1],
-  no_r_expansion_14[1],
-  no_r_expansion_15[1],
-  no_r_expansion_16[1],
-  no_r_expansion_17[1],
-  no_r_expansion_18[1],
-  no_r_expansion_19[1],
-  no_r_expansion_20[1])
-
-small_nu_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_1/dadi/pop1.sfs')
-small_nu_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_2/dadi/pop1.sfs')
-small_nu_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_3/dadi/pop1.sfs')
-small_nu_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_4/dadi/pop1.sfs')
-small_nu_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_5/dadi/pop1.sfs')
-small_nu_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_6/dadi/pop1.sfs')
-small_nu_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_7/dadi/pop1.sfs')
-small_nu_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_8/dadi/pop1.sfs')
-small_nu_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_9/dadi/pop1.sfs')
-small_nu_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_10/dadi/pop1.sfs')
-small_nu_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_11/dadi/pop1.sfs')
-small_nu_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_12/dadi/pop1.sfs')
-small_nu_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_13/dadi/pop1.sfs')
-small_nu_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_14/dadi/pop1.sfs')
-small_nu_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_15/dadi/pop1.sfs')
-small_nu_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_16/dadi/pop1.sfs')
-small_nu_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_17/dadi/pop1.sfs')
-small_nu_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_18/dadi/pop1.sfs')
-small_nu_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_19/dadi/pop1.sfs')
-small_nu_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/bottleneck_20/dadi/pop1.sfs')
-
-small_nu_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_1/dadi/pop1.sfs')
-small_nu_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_2/dadi/pop1.sfs')
-small_nu_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_3/dadi/pop1.sfs')
-small_nu_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_4/dadi/pop1.sfs')
-small_nu_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_5/dadi/pop1.sfs')
-small_nu_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_6/dadi/pop1.sfs')
-small_nu_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_7/dadi/pop1.sfs')
-small_nu_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_8/dadi/pop1.sfs')
-small_nu_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_9/dadi/pop1.sfs')
-small_nu_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_10/dadi/pop1.sfs')
-small_nu_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_11/dadi/pop1.sfs')
-small_nu_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_12/dadi/pop1.sfs')
-small_nu_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_13/dadi/pop1.sfs')
-small_nu_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_14/dadi/pop1.sfs')
-small_nu_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_15/dadi/pop1.sfs')
-small_nu_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_16/dadi/pop1.sfs')
-small_nu_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_17/dadi/pop1.sfs')
-small_nu_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_18/dadi/pop1.sfs')
-small_nu_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_19/dadi/pop1.sfs')
-small_nu_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/contraction_20/dadi/pop1.sfs')
-
-small_nu_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_1/dadi/pop1.sfs')
-small_nu_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_2/dadi/pop1.sfs')
-small_nu_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_3/dadi/pop1.sfs')
-small_nu_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_4/dadi/pop1.sfs')
-small_nu_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_5/dadi/pop1.sfs')
-small_nu_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_6/dadi/pop1.sfs')
-small_nu_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_7/dadi/pop1.sfs')
-small_nu_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_8/dadi/pop1.sfs')
-small_nu_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_9/dadi/pop1.sfs')
-small_nu_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_10/dadi/pop1.sfs')
-small_nu_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_11/dadi/pop1.sfs')
-small_nu_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_12/dadi/pop1.sfs')
-small_nu_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_13/dadi/pop1.sfs')
-small_nu_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_14/dadi/pop1.sfs')
-small_nu_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_15/dadi/pop1.sfs')
-small_nu_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_16/dadi/pop1.sfs')
-small_nu_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_17/dadi/pop1.sfs')
-small_nu_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_18/dadi/pop1.sfs')
-small_nu_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_19/dadi/pop1.sfs')
-small_nu_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/small_nu/expansion_20/dadi/pop1.sfs')
-
-small_nu_bottleneck_singletons = c(small_nu_bottleneck_1[1],
-  small_nu_bottleneck_2[1],
-  small_nu_bottleneck_3[1],
-  small_nu_bottleneck_4[1],
-  small_nu_bottleneck_5[1],
-  small_nu_bottleneck_6[1],
-  small_nu_bottleneck_7[1],
-  small_nu_bottleneck_8[1],
-  small_nu_bottleneck_9[1],
-  small_nu_bottleneck_10[1],
-  small_nu_bottleneck_11[1],
-  small_nu_bottleneck_12[1],
-  small_nu_bottleneck_13[1],
-  small_nu_bottleneck_14[1],
-  small_nu_bottleneck_15[1],
-  small_nu_bottleneck_16[1],
-  small_nu_bottleneck_17[1],
-  small_nu_bottleneck_18[1],
-  small_nu_bottleneck_19[1],
-  small_nu_bottleneck_20[1])
-
-small_nu_contraction_singletons = c(small_nu_contraction_1[1],
-  small_nu_contraction_2[1],
-  small_nu_contraction_3[1],
-  small_nu_contraction_4[1],
-  small_nu_contraction_5[1],
-  small_nu_contraction_6[1],
-  small_nu_contraction_7[1],
-  small_nu_contraction_8[1],
-  small_nu_contraction_9[1],
-  small_nu_contraction_10[1],
-  small_nu_contraction_11[1],
-  small_nu_contraction_12[1],
-  small_nu_contraction_13[1],
-  small_nu_contraction_14[1],
-  small_nu_contraction_15[1],
-  small_nu_contraction_16[1],
-  small_nu_contraction_17[1],
-  small_nu_contraction_18[1],
-  small_nu_contraction_19[1],
-  small_nu_contraction_20[1])
-
-small_nu_expansion_singletons = c(small_nu_expansion_1[1],
-  small_nu_expansion_2[1],
-  small_nu_expansion_3[1],
-  small_nu_expansion_4[1],
-  small_nu_expansion_5[1],
-  small_nu_expansion_6[1],
-  small_nu_expansion_7[1],
-  small_nu_expansion_8[1],
-  small_nu_expansion_9[1],
-  small_nu_expansion_10[1],
-  small_nu_expansion_11[1],
-  small_nu_expansion_12[1],
-  small_nu_expansion_13[1],
-  small_nu_expansion_14[1],
-  small_nu_expansion_15[1],
-  small_nu_expansion_16[1],
-  small_nu_expansion_17[1],
-  small_nu_expansion_18[1],
-  small_nu_expansion_19[1],
-  small_nu_expansion_20[1])
-
-large_nu_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_1/dadi/pop1.sfs')
-large_nu_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_2/dadi/pop1.sfs')
-large_nu_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_3/dadi/pop1.sfs')
-large_nu_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_4/dadi/pop1.sfs')
-large_nu_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_5/dadi/pop1.sfs')
-large_nu_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_6/dadi/pop1.sfs')
-large_nu_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_7/dadi/pop1.sfs')
-large_nu_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_8/dadi/pop1.sfs')
-large_nu_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_9/dadi/pop1.sfs')
-large_nu_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_10/dadi/pop1.sfs')
-large_nu_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_11/dadi/pop1.sfs')
-large_nu_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_12/dadi/pop1.sfs')
-large_nu_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_13/dadi/pop1.sfs')
-large_nu_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_14/dadi/pop1.sfs')
-large_nu_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_15/dadi/pop1.sfs')
-large_nu_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_16/dadi/pop1.sfs')
-large_nu_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_17/dadi/pop1.sfs')
-large_nu_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_18/dadi/pop1.sfs')
-large_nu_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_19/dadi/pop1.sfs')
-large_nu_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/bottleneck_20/dadi/pop1.sfs')
-
-large_nu_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_1/dadi/pop1.sfs')
-large_nu_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_2/dadi/pop1.sfs')
-large_nu_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_3/dadi/pop1.sfs')
-large_nu_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_4/dadi/pop1.sfs')
-large_nu_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_5/dadi/pop1.sfs')
-large_nu_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_6/dadi/pop1.sfs')
-large_nu_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_7/dadi/pop1.sfs')
-large_nu_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_8/dadi/pop1.sfs')
-large_nu_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_9/dadi/pop1.sfs')
-large_nu_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_10/dadi/pop1.sfs')
-large_nu_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_11/dadi/pop1.sfs')
-large_nu_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_12/dadi/pop1.sfs')
-large_nu_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_13/dadi/pop1.sfs')
-large_nu_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_14/dadi/pop1.sfs')
-large_nu_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_15/dadi/pop1.sfs')
-large_nu_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_16/dadi/pop1.sfs')
-large_nu_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_17/dadi/pop1.sfs')
-large_nu_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_18/dadi/pop1.sfs')
-large_nu_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_19/dadi/pop1.sfs')
-large_nu_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/contraction_20/dadi/pop1.sfs')
-
-large_nu_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_1/dadi/pop1.sfs')
-large_nu_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_2/dadi/pop1.sfs')
-large_nu_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_3/dadi/pop1.sfs')
-large_nu_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_4/dadi/pop1.sfs')
-large_nu_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_5/dadi/pop1.sfs')
-large_nu_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_6/dadi/pop1.sfs')
-large_nu_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_7/dadi/pop1.sfs')
-large_nu_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_8/dadi/pop1.sfs')
-large_nu_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_9/dadi/pop1.sfs')
-large_nu_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_10/dadi/pop1.sfs')
-large_nu_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_11/dadi/pop1.sfs')
-large_nu_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_12/dadi/pop1.sfs')
-large_nu_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_13/dadi/pop1.sfs')
-large_nu_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_14/dadi/pop1.sfs')
-large_nu_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_15/dadi/pop1.sfs')
-large_nu_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_16/dadi/pop1.sfs')
-large_nu_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_17/dadi/pop1.sfs')
-large_nu_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_18/dadi/pop1.sfs')
-large_nu_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_19/dadi/pop1.sfs')
-large_nu_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/large_nu/expansion_20/dadi/pop1.sfs')
-
-large_nu_bottleneck_singletons = c(large_nu_bottleneck_1[1],
-  large_nu_bottleneck_2[1],
-  large_nu_bottleneck_3[1],
-  large_nu_bottleneck_4[1],
-  large_nu_bottleneck_5[1],
-  large_nu_bottleneck_6[1],
-  large_nu_bottleneck_7[1],
-  large_nu_bottleneck_8[1],
-  large_nu_bottleneck_9[1],
-  large_nu_bottleneck_10[1],
-  large_nu_bottleneck_11[1],
-  large_nu_bottleneck_12[1],
-  large_nu_bottleneck_13[1],
-  large_nu_bottleneck_14[1],
-  large_nu_bottleneck_15[1],
-  large_nu_bottleneck_16[1],
-  large_nu_bottleneck_17[1],
-  large_nu_bottleneck_18[1],
-  large_nu_bottleneck_19[1],
-  large_nu_bottleneck_20[1])
-
-large_nu_contraction_singletons = c(large_nu_contraction_1[1],
-  large_nu_contraction_2[1],
-  large_nu_contraction_3[1],
-  large_nu_contraction_4[1],
-  large_nu_contraction_5[1],
-  large_nu_contraction_6[1],
-  large_nu_contraction_7[1],
-  large_nu_contraction_8[1],
-  large_nu_contraction_9[1],
-  large_nu_contraction_10[1],
-  large_nu_contraction_11[1],
-  large_nu_contraction_12[1],
-  large_nu_contraction_13[1],
-  large_nu_contraction_14[1],
-  large_nu_contraction_15[1],
-  large_nu_contraction_16[1],
-  large_nu_contraction_17[1],
-  large_nu_contraction_18[1],
-  large_nu_contraction_19[1],
-  large_nu_contraction_20[1])
-
-large_nu_expansion_singletons = c(large_nu_expansion_1[1],
-  large_nu_expansion_2[1],
-  large_nu_expansion_3[1],
-  large_nu_expansion_4[1],
-  large_nu_expansion_5[1],
-  large_nu_expansion_6[1],
-  large_nu_expansion_7[1],
-  large_nu_expansion_8[1],
-  large_nu_expansion_9[1],
-  large_nu_expansion_10[1],
-  large_nu_expansion_11[1],
-  large_nu_expansion_12[1],
-  large_nu_expansion_13[1],
-  large_nu_expansion_14[1],
-  large_nu_expansion_15[1],
-  large_nu_expansion_16[1],
-  large_nu_expansion_17[1],
-  large_nu_expansion_18[1],
-  large_nu_expansion_19[1],
-  large_nu_expansion_20[1])
-
-T500_df = melt(data.frame(T500_bottleneck_singletons,
-  T500_contraction_singletons,
-  T500_expansion_singletons))
-
-T500_df$simulation="T500"
-
-T50_df = melt(data.frame(T50_bottleneck_singletons,
-  T50_contraction_singletons,
-  T50_expansion_singletons))
-
-T50_df$simulation="T50"
-
-no_r_df = melt(data.frame(no_r_bottleneck_singletons,
-  no_r_contraction_singletons,
-  no_r_expansion_singletons))
-
-no_r_df$simulation="no_r"
-
-small_nu_df = melt(data.frame(small_nu_bottleneck_singletons,
-  small_nu_contraction_singletons,
-  small_nu_expansion_singletons))
-
-small_nu_df$simulation="small_nu"
-
-large_nu_df = melt(data.frame(large_nu_bottleneck_singletons,
-  large_nu_contraction_singletons,
-  large_nu_expansion_singletons))
-
-large_nu_df$simulation="large_nu"
-
-all_sims_df = rbind(T500_df, T50_df, no_r_df, small_nu_df, large_nu_df)
-
-ggplot(all_sims_df, aes(x=value, y=variable, color=simulation)) + geom_boxplot() +
-  theme_bw()
+# 
+# 
+# all_sims_df = rbind(k5_df, T50_df, no_r_df, small_nu_df, large_nu_df)
+# 
+# ggplot(all_sims_df, aes(x=value, y=variable, color=simulation)) + geom_boxplot() +
+#   theme_bw()
