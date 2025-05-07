@@ -72,7 +72,7 @@ class msPrimeSimulate():
         # Output files: logfile
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
-        logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
+        logfile = '{0}{1}msprime_simulations/log_{2}.log'.format(args['outprefix'], underscore, replicate)
         output_contraction_k5 = '{0}{1}msprime_simulations/k5_contraction_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         output_expansion_k5 = '{0}{1}msprime_simulations/k5_expansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
         output_bottleneck_k5 = '{0}{1}msprime_simulations/k5_bottleneck_{2}.vcf'.format(args['outprefix'], underscore, replicate)
@@ -157,23 +157,23 @@ class msPrimeSimulate():
         dem1.sort_events()
         dem2.sort_events()
 
-        # with open(output_contraction_k5, "w+") as f0:
-        #     ts0 = msprime.sim_ancestry(samples={"TwoEpC": 5},
-        #         demography=dem0, sequence_length=1000000, recombination_rate=1e-8)
-        #     mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
-        #     mts0.write_vcf(f0)
+        with open(output_contraction_k5, "w+") as f0:
+            ts0 = msprime.sim_ancestry(samples={"TwoEpC": 5}, ploidy=2,
+                demography=dem0, sequence_length=1000000, recombination_rate=1e-8)
+            mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
+            mts0.write_vcf(f0)
 
         with open(output_expansion_k5, "w+") as f1:
-            ts1 = msprime.sim_ancestry(samples={"TwoEpE": 5},
+            ts1 = msprime.sim_ancestry(samples={"TwoEpE": 5}, ploidy=2,
                 demography=dem1, sequence_length=1000000, recombination_rate=1e-8)
             mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
             mts1.write_vcf(f1)
 
-        # with open(output_bottleneck_k5, "w+") as f2:
-        #     ts2 = msprime.sim_ancestry(samples={"ThreeEpB": 5},
-        #         demography=dem2, sequence_length=1000000, recombination_rate=1e-8)
-        #     mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
-        #     mts2.write_vcf(f2)
+        with open(output_bottleneck_k5, "w+") as f2:
+            ts2 = msprime.sim_ancestry(samples={"ThreeEpB": 5}, ploidy=2,
+                demography=dem2, sequence_length=1000000, recombination_rate=1e-8)
+            mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
+            mts2.write_vcf(f2)
 
         logger.info('Pipeline executed succesfully.')
 
