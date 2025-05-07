@@ -390,146 +390,61 @@ ggplot(data=rare_variant_proportion_df, aes(x=sample_size, y=TwoEpochC_rare_vari
 
 ## Compute statistics for lynch simulations
 
-k5_bottleneck_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_1/dadi/pop1.sfs')
-k5_bottleneck_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_2/dadi/pop1.sfs')
-k5_bottleneck_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_3/dadi/pop1.sfs')
-k5_bottleneck_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_4/dadi/pop1.sfs')
-k5_bottleneck_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_5/dadi/pop1.sfs')
-k5_bottleneck_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_6/dadi/pop1.sfs')
-k5_bottleneck_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_7/dadi/pop1.sfs')
-k5_bottleneck_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_8/dadi/pop1.sfs')
-k5_bottleneck_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_9/dadi/pop1.sfs')
-k5_bottleneck_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_10/dadi/pop1.sfs')
-k5_bottleneck_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_11/dadi/pop1.sfs')
-k5_bottleneck_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_12/dadi/pop1.sfs')
-k5_bottleneck_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_13/dadi/pop1.sfs')
-k5_bottleneck_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_14/dadi/pop1.sfs')
-k5_bottleneck_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_15/dadi/pop1.sfs')
-k5_bottleneck_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_16/dadi/pop1.sfs')
-k5_bottleneck_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_17/dadi/pop1.sfs')
-k5_bottleneck_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_18/dadi/pop1.sfs')
-k5_bottleneck_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_19/dadi/pop1.sfs')
-k5_bottleneck_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_bottleneck_20/dadi/pop1.sfs')
+k5_bottleneck_singletons = c()
+k5_bottleneck_singleton_proportion = c()
 
-k5_contraction_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_1/dadi/pop1.sfs')
-k5_contraction_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_2/dadi/pop1.sfs')
-k5_contraction_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_3/dadi/pop1.sfs')
-k5_contraction_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_4/dadi/pop1.sfs')
-k5_contraction_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_5/dadi/pop1.sfs')
-k5_contraction_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_6/dadi/pop1.sfs')
-k5_contraction_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_7/dadi/pop1.sfs')
-k5_contraction_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_8/dadi/pop1.sfs')
-k5_contraction_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_9/dadi/pop1.sfs')
-k5_contraction_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_10/dadi/pop1.sfs')
-k5_contraction_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_11/dadi/pop1.sfs')
-k5_contraction_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_12/dadi/pop1.sfs')
-k5_contraction_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_13/dadi/pop1.sfs')
-k5_contraction_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_14/dadi/pop1.sfs')
-k5_contraction_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_15/dadi/pop1.sfs')
-k5_contraction_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_16/dadi/pop1.sfs')
-k5_contraction_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_17/dadi/pop1.sfs')
-k5_contraction_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_18/dadi/pop1.sfs')
-k5_contraction_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_19/dadi/pop1.sfs')
-k5_contraction_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_contraction_20/dadi/pop1.sfs')
+for (i in 1:1000) {
+  file_iter = paste0("k5_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_bottleneck_singletons = c(k5_bottleneck_singletons, read_unfolded_input_sfs(file_path)[1])
+  k5_bottleneck_singleton_proportion = c(k5_bottleneck_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
 
-k5_expansion_1 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_1/dadi/pop1.sfs')
-k5_expansion_2 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_2/dadi/pop1.sfs')
-k5_expansion_3 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_3/dadi/pop1.sfs')
-k5_expansion_4 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_4/dadi/pop1.sfs')
-k5_expansion_5 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_5/dadi/pop1.sfs')
-k5_expansion_6 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_6/dadi/pop1.sfs')
-k5_expansion_7 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_7/dadi/pop1.sfs')
-k5_expansion_8 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_8/dadi/pop1.sfs')
-k5_expansion_9 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_9/dadi/pop1.sfs')
-k5_expansion_10 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_10/dadi/pop1.sfs')
-k5_expansion_11 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_11/dadi/pop1.sfs')
-k5_expansion_12 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_12/dadi/pop1.sfs')
-k5_expansion_13 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_13/dadi/pop1.sfs')
-k5_expansion_14 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_14/dadi/pop1.sfs')
-k5_expansion_15 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_15/dadi/pop1.sfs')
-k5_expansion_16 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_16/dadi/pop1.sfs')
-k5_expansion_17 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_17/dadi/pop1.sfs')
-k5_expansion_18 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_18/dadi/pop1.sfs')
-k5_expansion_19 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_19/dadi/pop1.sfs')
-k5_expansion_20 = read_unfolded_input_sfs('../Simulations/lynch_singletons/msprime_simulations/k5_expansion_20/dadi/pop1.sfs')
+k5_contraction_singletons = c()
+k5_contraction_singleton_proportion = c()
 
-k5_bottleneck_singletons = c(k5_bottleneck_1[1],
-  k5_bottleneck_2[1],
-  k5_bottleneck_3[1],
-  k5_bottleneck_4[1],
-  k5_bottleneck_5[1],
-  k5_bottleneck_6[1],
-  k5_bottleneck_7[1],
-  k5_bottleneck_8[1],
-  k5_bottleneck_9[1],
-  k5_bottleneck_10[1],
-  k5_bottleneck_11[1],
-  k5_bottleneck_12[1],
-  k5_bottleneck_13[1],
-  k5_bottleneck_14[1],
-  k5_bottleneck_15[1],
-  k5_bottleneck_16[1],
-  k5_bottleneck_17[1],
-  k5_bottleneck_18[1],
-  k5_bottleneck_19[1],
-  k5_bottleneck_20[1])
+for (i in 1:1000) {
+  file_iter = paste0("k5_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_contraction_singletons = c(k5_contraction_singletons, read_unfolded_input_sfs(file_path)[1])
+  k5_contraction_singleton_proportion = c(k5_contraction_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))  
+}
 
-k5_contraction_singletons = c(k5_contraction_1[1],
-  k5_contraction_2[1],
-  k5_contraction_3[1],
-  k5_contraction_4[1],
-  k5_contraction_5[1],
-  k5_contraction_6[1],
-  k5_contraction_7[1],
-  k5_contraction_8[1],
-  k5_contraction_9[1],
-  k5_contraction_10[1],
-  k5_contraction_11[1],
-  k5_contraction_12[1],
-  k5_contraction_13[1],
-  k5_contraction_14[1],
-  k5_contraction_15[1],
-  k5_contraction_16[1],
-  k5_contraction_17[1],
-  k5_contraction_18[1],
-  k5_contraction_19[1],
-  k5_contraction_20[1])
+k5_expansion_singletons = c()
+k5_expansion_singleton_proportion = c()
 
-k5_expansion_singletons = c(k5_expansion_1[1],
-  k5_expansion_2[1],
-  k5_expansion_3[1],
-  k5_expansion_4[1],
-  k5_expansion_5[1],
-  k5_expansion_6[1],
-  k5_expansion_7[1],
-  k5_expansion_8[1],
-  k5_expansion_9[1],
-  k5_expansion_10[1],
-  k5_expansion_11[1],
-  k5_expansion_12[1],
-  k5_expansion_13[1],
-  k5_expansion_14[1],
-  k5_expansion_15[1],
-  k5_expansion_16[1],
-  k5_expansion_17[1],
-  k5_expansion_18[1],
-  k5_expansion_19[1],
-  k5_expansion_20[1])
+for (i in 1:1000) {
+  file_iter = paste0("k5_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_expansion_singletons = c(k5_expansion_singletons, read_unfolded_input_sfs(file_path)[1])
+  k5_expansion_singleton_proportion = c(k5_expansion_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
 
-k5_df = melt(data.frame(k5_bottleneck_singletons,
+
+k5_singleton_df = melt(data.frame(k5_bottleneck_singletons,
   k5_contraction_singletons,
   k5_expansion_singletons))
 
-k5_df$simulation="k5"
+k5_proportion_df = melt(data.frame(k5_bottleneck_singleton_proportion,
+  k5_contraction_singleton_proportion,
+  k5_expansion_singleton_proportion))
 
-ggplot(k5_df, aes(x=value, y=variable)) + geom_boxplot() + theme_bw() +
+
+ggplot(k5_singleton_df, aes(x=value, y=variable)) + geom_violin() + theme_bw() +
   xlab('Number of singletons') +
-  ylab('Simulation')
+  ylab('Simulation') +
+  stat_summary(fun = "mean",
+               geom = "point",
+               aes(color = "Mean")) +
+  theme(legend.title=element_blank())
 
-
-# 
-# 
-# all_sims_df = rbind(k5_df, T50_df, no_r_df, small_nu_df, large_nu_df)
-# 
-# ggplot(all_sims_df, aes(x=value, y=variable, color=simulation)) + geom_boxplot() +
-#   theme_bw()
+ggplot(k5_proportion_df, aes(x=value, y=variable)) + geom_violin() + theme_bw() +
+  xlab('Proportion of singletons') +
+  ylab('Simulation') +
+  stat_summary(fun = "mean",
+               geom = "point",
+               aes(color = "Mean")) +
+  theme(legend.title=element_blank())
