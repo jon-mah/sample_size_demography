@@ -423,28 +423,96 @@ for (i in 1:1000) {
     read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
 }
 
+k5_snm_singletons = c()
+k5_snm_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k5_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_snm_singletons = c(k5_snm_singletons, read_unfolded_input_sfs(file_path)[1])
+  k5_snm_singleton_proportion = c(k5_snm_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
 
 k5_singleton_df = melt(data.frame(k5_bottleneck_singletons,
   k5_contraction_singletons,
-  k5_expansion_singletons))
+  k5_expansion_singletons,
+  k5_snm_singletons))
 
 k5_proportion_df = melt(data.frame(k5_bottleneck_singleton_proportion,
   k5_contraction_singleton_proportion,
-  k5_expansion_singleton_proportion))
+  k5_expansion_singleton_proportion,
+  k5_snm_singleton_proportion))
 
 
-ggplot(k5_singleton_df, aes(x=value, y=variable)) + geom_violin() + theme_bw() +
+ggplot(k5_singleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+  geom_boxplot(width=0.2) +
   xlab('Number of singletons') +
   ylab('Simulation') +
-  stat_summary(fun = "mean",
-               geom = "point",
-               aes(color = "Mean")) +
-  theme(legend.title=element_blank())
+  theme(legend.title=element_blank()) + 
+  guides(fill="none")
 
-ggplot(k5_proportion_df, aes(x=value, y=variable)) + geom_violin() + theme_bw() +
+ggplot(k5_proportion_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+  geom_boxplot(width=0.2) +
   xlab('Proportion of singletons') +
   ylab('Simulation') +
-  stat_summary(fun = "mean",
-               geom = "point",
-               aes(color = "Mean")) +
-  theme(legend.title=element_blank())
+  theme(legend.title=element_blank()) + 
+  guides(fill="none")
+
+# Doubletons
+
+k5_bottleneck_doubletons = c()
+k5_bottleneck_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k5_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_bottleneck_doubletons = c(k5_bottleneck_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_bottleneck_doubleton_proportion = c(k5_bottleneck_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k5_contraction_doubletons = c()
+k5_contraction_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k5_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_contraction_doubletons = c(k5_contraction_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_contraction_doubleton_proportion = c(k5_contraction_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k5_expansion_doubletons = c()
+k5_expansion_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k5_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_expansion_doubletons = c(k5_expansion_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_expansion_doubleton_proportion = c(k5_expansion_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k5_snm_doubletons = c()
+k5_snm_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k5_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k5_snm_doubletons = c(k5_snm_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_snm_doubleton_proportion = c(k5_snm_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k5_doubleton_df = melt(data.frame(k5_bottleneck_doubletons,
+  k5_contraction_doubletons,
+  k5_expansion_doubletons,
+  k5_snm_doubletons))
+
+ggplot(k5_doubleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+  geom_boxplot(width=0.2) +
+  xlab('Number of doubletons') +
+  ylab('Simulation') +
+  theme(legend.title=element_blank()) + 
+  guides(fill="none")
