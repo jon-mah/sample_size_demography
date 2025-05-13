@@ -12,4 +12,4 @@
 
 replicate=$SGE_TASK_ID
 
-python lynch_singletons_simulation.py ${replicate} 10 ../Simulations/lynch_singletons/
+python lynch_singletons_simulation.py ${replicate} 20 ../Simulations/lynch_singletons/
