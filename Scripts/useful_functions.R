@@ -603,8 +603,11 @@ tajima_D_from_sfs = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   tajima_D_string = readLines(this_file)[15]
-  floats <- as.numeric(str_extract_all(tajima_D_string, "[+-]?\\d+\\.\\d+")[[1]])
-  tajima_D = floats[1]
+  
+  # Extract the float that comes after "Tajima's D: "
+  match <- str_match(tajima_D_string, "Tajima's D:\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  tajima_D <- as.numeric(match[2])
+  
   return(tajima_D)
 }
 

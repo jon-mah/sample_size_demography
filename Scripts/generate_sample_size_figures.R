@@ -445,19 +445,19 @@ k5_proportion_df = melt(data.frame(k5_bottleneck_singleton_proportion,
   k5_snm_singleton_proportion))
 
 
-ggplot(k5_singleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
-  geom_boxplot(width=0.2) +
-  xlab('Number of singletons') +
-  ylab('Simulation') +
-  theme(legend.title=element_blank()) + 
-  guides(fill="none")
-
-ggplot(k5_proportion_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
-  geom_boxplot(width=0.2) +
-  xlab('Proportion of singletons') +
-  ylab('Simulation') +
-  theme(legend.title=element_blank()) + 
-  guides(fill="none")
+# ggplot(k5_singleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Number of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+# 
+# ggplot(k5_proportion_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Proportion of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
 
 # Doubletons
 
@@ -467,7 +467,7 @@ k5_bottleneck_doubleton_proportion = c()
 for (i in 1:1000) {
   file_iter = paste0("k5_bottleneck_", i)
   file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
-  k5_bottleneck_doubletons = c(k5_bottleneck_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_bottleneck_doubletons = c(k5_bottleneck_doubletons, read_unfolded_input_sfs(file_path)[2])
   k5_bottleneck_doubleton_proportion = c(k5_bottleneck_doubleton_proportion, 
     read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
 }
@@ -478,7 +478,7 @@ k5_contraction_doubleton_proportion = c()
 for (i in 1:1000) {
   file_iter = paste0("k5_contraction_", i)
   file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
-  k5_contraction_doubletons = c(k5_contraction_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_contraction_doubletons = c(k5_contraction_doubletons, read_unfolded_input_sfs(file_path)[2])
   k5_contraction_doubleton_proportion = c(k5_contraction_doubleton_proportion, 
     read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))  
 }
@@ -489,7 +489,7 @@ k5_expansion_doubleton_proportion = c()
 for (i in 1:1000) {
   file_iter = paste0("k5_expansion_", i)
   file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
-  k5_expansion_doubletons = c(k5_expansion_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_expansion_doubletons = c(k5_expansion_doubletons, read_unfolded_input_sfs(file_path)[2])
   k5_expansion_doubleton_proportion = c(k5_expansion_doubleton_proportion, 
     read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
 }
@@ -500,7 +500,7 @@ k5_snm_doubleton_proportion = c()
 for (i in 1:1000) {
   file_iter = paste0("k5_snm_", i)
   file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
-  k5_snm_doubletons = c(k5_snm_doubletons, read_unfolded_input_sfs(file_path)[1])
+  k5_snm_doubletons = c(k5_snm_doubletons, read_unfolded_input_sfs(file_path)[2])
   k5_snm_doubleton_proportion = c(k5_snm_doubleton_proportion, 
     read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
 }
@@ -510,9 +510,442 @@ k5_doubleton_df = melt(data.frame(k5_bottleneck_doubletons,
   k5_expansion_doubletons,
   k5_snm_doubletons))
 
+k10_bottleneck_singletons = c()
+k10_bottleneck_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_bottleneck_singletons = c(k10_bottleneck_singletons, read_unfolded_input_sfs(file_path)[1])
+  k10_bottleneck_singleton_proportion = c(k10_bottleneck_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k10_contraction_singletons = c()
+k10_contraction_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_contraction_singletons = c(k10_contraction_singletons, read_unfolded_input_sfs(file_path)[1])
+  k10_contraction_singleton_proportion = c(k10_contraction_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k10_expansion_singletons = c()
+k10_expansion_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_expansion_singletons = c(k10_expansion_singletons, read_unfolded_input_sfs(file_path)[1])
+  k10_expansion_singleton_proportion = c(k10_expansion_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k10_snm_singletons = c()
+k10_snm_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_snm_singletons = c(k10_snm_singletons, read_unfolded_input_sfs(file_path)[1])
+  k10_snm_singleton_proportion = c(k10_snm_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k10_singleton_df = melt(data.frame(k10_bottleneck_singletons,
+  k10_contraction_singletons,
+  k10_expansion_singletons,
+  k10_snm_singletons))
+
+k10_proportion_df = melt(data.frame(k10_bottleneck_singleton_proportion,
+  k10_contraction_singleton_proportion,
+  k10_expansion_singleton_proportion,
+  k10_snm_singleton_proportion))
+
+
+# ggplot(k10_singleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Number of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+# 
+# ggplot(k10_proportion_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Proportion of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+
+# Doubletons
+
+k10_bottleneck_doubletons = c()
+k10_bottleneck_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_bottleneck_doubletons = c(k10_bottleneck_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k10_bottleneck_doubleton_proportion = c(k10_bottleneck_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k10_contraction_doubletons = c()
+k10_contraction_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_contraction_doubletons = c(k10_contraction_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k10_contraction_doubleton_proportion = c(k10_contraction_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k10_expansion_doubletons = c()
+k10_expansion_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_expansion_doubletons = c(k10_expansion_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k10_expansion_doubleton_proportion = c(k10_expansion_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k10_snm_doubletons = c()
+k10_snm_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k10_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k10_snm_doubletons = c(k10_snm_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k10_snm_doubleton_proportion = c(k10_snm_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k10_doubleton_df = melt(data.frame(k10_bottleneck_doubletons,
+  k10_contraction_doubletons,
+  k10_expansion_doubletons,
+  k10_snm_doubletons))
+
+k15_bottleneck_singletons = c()
+k15_bottleneck_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_bottleneck_singletons = c(k15_bottleneck_singletons, read_unfolded_input_sfs(file_path)[1])
+  k15_bottleneck_singleton_proportion = c(k15_bottleneck_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k15_contraction_singletons = c()
+k15_contraction_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_contraction_singletons = c(k15_contraction_singletons, read_unfolded_input_sfs(file_path)[1])
+  k15_contraction_singleton_proportion = c(k15_contraction_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k15_expansion_singletons = c()
+k15_expansion_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_expansion_singletons = c(k15_expansion_singletons, read_unfolded_input_sfs(file_path)[1])
+  k15_expansion_singleton_proportion = c(k15_expansion_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k15_snm_singletons = c()
+k15_snm_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_snm_singletons = c(k15_snm_singletons, read_unfolded_input_sfs(file_path)[1])
+  k15_snm_singleton_proportion = c(k15_snm_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k15_singleton_df = melt(data.frame(k15_bottleneck_singletons,
+  k15_contraction_singletons,
+  k15_expansion_singletons,
+  k15_snm_singletons))
+
+k15_proportion_df = melt(data.frame(k15_bottleneck_singleton_proportion,
+  k15_contraction_singleton_proportion,
+  k15_expansion_singleton_proportion,
+  k15_snm_singleton_proportion))
+
+
+# ggplot(k15_singleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Number of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+# 
+# ggplot(k15_proportion_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Proportion of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+
+# Doubletons
+
+k15_bottleneck_doubletons = c()
+k15_bottleneck_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_bottleneck_doubletons = c(k15_bottleneck_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k15_bottleneck_doubleton_proportion = c(k15_bottleneck_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k15_contraction_doubletons = c()
+k15_contraction_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_contraction_doubletons = c(k15_contraction_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k15_contraction_doubleton_proportion = c(k15_contraction_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k15_expansion_doubletons = c()
+k15_expansion_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_expansion_doubletons = c(k15_expansion_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k15_expansion_doubleton_proportion = c(k15_expansion_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k15_snm_doubletons = c()
+k15_snm_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k15_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k15_snm_doubletons = c(k15_snm_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k15_snm_doubleton_proportion = c(k15_snm_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k15_doubleton_df = melt(data.frame(k15_bottleneck_doubletons,
+  k15_contraction_doubletons,
+  k15_expansion_doubletons,
+  k15_snm_doubletons))
+
+k20_bottleneck_singletons = c()
+k20_bottleneck_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_bottleneck_singletons = c(k20_bottleneck_singletons, read_unfolded_input_sfs(file_path)[1])
+  k20_bottleneck_singleton_proportion = c(k20_bottleneck_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k20_contraction_singletons = c()
+k20_contraction_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_contraction_singletons = c(k20_contraction_singletons, read_unfolded_input_sfs(file_path)[1])
+  k20_contraction_singleton_proportion = c(k20_contraction_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k20_expansion_singletons = c()
+k20_expansion_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_expansion_singletons = c(k20_expansion_singletons, read_unfolded_input_sfs(file_path)[1])
+  k20_expansion_singleton_proportion = c(k20_expansion_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k20_snm_singletons = c()
+k20_snm_singleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_snm_singletons = c(k20_snm_singletons, read_unfolded_input_sfs(file_path)[1])
+  k20_snm_singleton_proportion = c(k20_snm_singleton_proportion, 
+    read_unfolded_input_sfs(file_path)[1] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k20_singleton_df = melt(data.frame(k20_bottleneck_singletons,
+  k20_contraction_singletons,
+  k20_expansion_singletons,
+  k20_snm_singletons))
+
+k20_proportion_df = melt(data.frame(k20_bottleneck_singleton_proportion,
+  k20_contraction_singleton_proportion,
+  k20_expansion_singleton_proportion,
+  k20_snm_singleton_proportion))
+
+
+# ggplot(k20_singleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Number of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+# 
+# ggplot(k20_proportion_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
+#   geom_boxplot(width=0.2) +
+#   xlab('Proportion of singletons') +
+#   ylab('Simulation') +
+#   theme(legend.title=element_blank()) + 
+#   guides(fill="none")
+
+# Doubletons
+
+k20_bottleneck_doubletons = c()
+k20_bottleneck_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_bottleneck_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_bottleneck_doubletons = c(k20_bottleneck_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k20_bottleneck_doubleton_proportion = c(k20_bottleneck_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k20_contraction_doubletons = c()
+k20_contraction_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_contraction_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_contraction_doubletons = c(k20_contraction_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k20_contraction_doubleton_proportion = c(k20_contraction_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))  
+}
+
+k20_expansion_doubletons = c()
+k20_expansion_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_expansion_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_expansion_doubletons = c(k20_expansion_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k20_expansion_doubleton_proportion = c(k20_expansion_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k20_snm_doubletons = c()
+k20_snm_doubleton_proportion = c()
+
+for (i in 1:1000) {
+  file_iter = paste0("k20_snm_", i)
+  file_path = paste0('../Simulations/lynch_singletons/msprime_simulations/', file_iter, '/dadi/pop1.sfs')
+  k20_snm_doubletons = c(k20_snm_doubletons, read_unfolded_input_sfs(file_path)[2])
+  k20_snm_doubleton_proportion = c(k20_snm_doubleton_proportion, 
+    read_unfolded_input_sfs(file_path)[2] / sum(read_unfolded_input_sfs(file_path)))
+}
+
+k20_doubleton_df = melt(data.frame(k20_bottleneck_doubletons,
+  k20_contraction_doubletons,
+  k20_expansion_doubletons,
+  k20_snm_doubletons))
+
+k5_singleton_df$sample_size = 'k=5'
+k10_singleton_df$sample_size = 'k=10'
+k15_singleton_df$sample_size = 'k=15'
+k20_singleton_df$sample_size = 'k=20'
+
+all_msprime_df = rbind(k5_singleton_df,
+  k10_singleton_df,
+  k15_singleton_df,
+  k20_singleton_df)
+
+all_msprime_df <- all_msprime_df %>%
+  mutate(variable = str_replace(variable, "_bottleneck_singletons$", " bottleneck"))
+  
+all_msprime_df <- all_msprime_df %>%
+  mutate(variable = str_replace(variable, "_contraction_singletons$", " contraction"))
+  
+all_msprime_df <- all_msprime_df %>%
+  mutate(variable = str_replace(variable, "_expansion_singletons$", " expansion"))
+  
+all_msprime_df <- all_msprime_df %>%
+  mutate(variable = str_replace(variable, "_snm_singletons$", " snm"))
+
+desired_order <- c("k5 bottleneck", "k10 bottleneck", "k15 bottleneck", "k20 bottleneck",
+  "k5 contraction", "k10 contraction", "k15 contraction", "k20 contraction", 
+  "k5 expansion", "k10 expansion", "k15 expansion", "k20 expansion", 
+  "k5 snm", "k10 snm", "k15 snm", "k20 snm")
+
+all_msprime_df <- all_msprime_df %>%
+  mutate(variable = factor(variable, levels = desired_order))
+
+all_msprime_df$variable = fct_rev(all_msprime_df$variable)
+
+ggplot(all_msprime_df, aes(x=value, y=variable, fill=sample_size)) + geom_violin(aes(fill=sample_size)) + theme_bw() +
+  geom_boxplot(width=0.1, fill='white') +
+  xlab('Number of singletons') +
+  ylab('Simulation') +
+  theme(legend.title=element_blank()) +
+  ggtitle('Number of singletons by simulation and sample size')
+
+k5_proportion_df$sample_size = 'k=5'
+k10_proportion_df$sample_size = 'k=10'
+k15_proportion_df$sample_size = 'k=15'
+k20_proportion_df$sample_size = 'k=20'
+
+all_msprime_proportion_df = rbind(k5_proportion_df,
+  k10_proportion_df,
+  k15_proportion_df,
+  k20_proportion_df)
+
+all_msprime_proportion_df <- all_msprime_proportion_df %>%
+  mutate(variable = str_replace(variable, "_bottleneck_singleton_proportion$", " bottleneck"))
+  
+all_msprime_proportion_df <- all_msprime_proportion_df %>%
+  mutate(variable = str_replace(variable, "_contraction_singleton_proportion$", " contraction"))
+  
+all_msprime_proportion_df <- all_msprime_proportion_df %>%
+  mutate(variable = str_replace(variable, "_expansion_singleton_proportion$", " expansion"))
+  
+all_msprime_proportion_df <- all_msprime_proportion_df %>%
+  mutate(variable = str_replace(variable, "_snm_singleton_proportion$", " snm"))
+
+all_msprime_proportion_df <- all_msprime_proportion_df %>%
+  mutate(variable = factor(variable, levels = desired_order))
+
+all_msprime_proportion_df$variable = fct_rev(all_msprime_proportion_df$variable)
+
+ggplot(all_msprime_proportion_df, aes(x=value, y=variable, fill=sample_size)) + geom_violin(aes(fill=sample_size)) + theme_bw() +
+  geom_boxplot(width=0.1, fill='white') +
+  xlab('Proportion of singletons') +
+  ylab('Simulation') +
+  theme(legend.title=element_blank()) +
+  ggtitle('Proportion of singletons by simulation and sample size')
+
 ggplot(k5_doubleton_df, aes(x=value, y=variable)) + geom_violin(aes(fill=variable)) + theme_bw() +
-  geom_boxplot(width=0.2) +
+  geom_boxplot(width=0.1) +
   xlab('Number of doubletons') +
   ylab('Simulation') +
-  theme(legend.title=element_blank()) + 
+  theme(legend.title=element_blank()) +
   guides(fill="none")
