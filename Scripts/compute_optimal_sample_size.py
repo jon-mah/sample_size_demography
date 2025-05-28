@@ -55,6 +55,24 @@ class ComputeOptimalSampleSize():
         # T_k = (k choose 2) / (2 * N)
         # where k is the sample size and N is the population size.
         return (2 * population_size) / math.comb(sample_size, 2)
+    
+    def ComputeCoalescentTree(self, sample_size, epoch_time_array, epoch_population_array):
+        """Return the coalescent tree for a given sample size and demographic history."""
+        # Initialize the coalescent tree
+        coalescent_tree = []
+        # Iterate through the epochs in reverse order
+        current_time = 0
+        for i in range(k):
+            # Get the current epoch time and population size
+            this_epoch = self.WhichEpoch(epoch_time_array, current_time)
+            this_pop = epoch_population_array[this_epoch]
+            # Compute the coalescent time for this sample size and population size
+            this_coalescent_time = self.ComputeCoalescentTime(sample_size, this_pop)
+            # Append the coalescent time to the tree
+            coalescent_tree.append((current_time, this_coalescent_time, this_pop))
+            # Update the current time
+            current_time += this_coalescent_time
+        return coalescent_tree
 
     def ComputeOptimalSampleSizeParser(self):
         """Return *argparse.ArgumentParser* for ``fitdadi_infer_DFE.py``."""
@@ -154,13 +172,20 @@ class ComputeOptimalSampleSize():
         population_intervals = [epoch_population[-1]]
         notFoundOptimalSampleSize = True
         k = 2
+        this_coalescent_tree = self.ComputeCoalescentTree(
+            k, epoch_time, epoch_population
+        )
+        # Edge case of k = 2
+        if target_time > max(coalescent_intervals):
+            optimal_sample_size = 2
+            notFoundOptimalSampleSize = False
+            logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
+        # Loop until the optimal sample size is found
         while(notFoundOptimalSampleSize):
-            # Check edge case of k=2 being optimal sample size
-            if target_time > max(coalescent_intervals):
-                optimal_sample_size = 2
-                notFoundOptimalSampleSize = False
-                logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
-            # Check starndard case of median of coalescent intervals
+            # Update coalescent intervals and population intervals
+            coalescent_intervals = [element[0] for element in this_coalescent_tree]
+            population_intervals = [element[1] for element in this_coalescent_tree]
+            # Check standard case of median of coalescent intervals
             # Check if the target time is in the range of coalescent intervals
             median_interval_position_1 = int(len(coalescent_intervals) / 2) + 1
             if target_time > sum(coalescent_intervals[0:median_interval_position_1]):
@@ -170,14 +195,18 @@ class ComputeOptimalSampleSize():
                 notFoundOptimalSampleSize = False
             # If previous checks fail, then append more coalescent intervals
             # and increase k
-            k = k + 1
+            k += 1
             # Append the coalescent time for the next sample size
-            coalescent_intervals.insert(0, 
-                self.ComputeCoalescentTime(k, 
-                    epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])])
-            )
-            population_intervals.insert(0, 
-                epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])]
+            # coalescent_intervals.insert(0, 
+            #     self.ComputeCoalescentTime(k, 
+            #         epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])])
+            # )
+            # population_intervals.insert(0, 
+            #     epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])]
+            # )
+            # Compute the coalescent tree for the new sample size
+            this_coalescent_tree = self.ComputeCoalescentTree(
+                k, epoch_time, epoch_population
             )
         logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
         # Write out the expected sfs
