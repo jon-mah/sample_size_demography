@@ -42,18 +42,19 @@ class ComputeOptimalSampleSize():
             raise ValueError("%s must specify a valid file name" % fname)
         
     def WhichEpoch(self, epoch_time_array, current_time):
-        """Return the index of the epoch that contains *current_time*."""
-        for i in range(len(epoch_time_array)):
-            if current_time < epoch_time_array[i]:
+        """Return the index of the epoch that contains *current_time* (iterating backwards)."""
+        rev_time = epoch_time_array[::-1] # slicing method
+        for i in range(len(rev_time)):
+            if current_time > rev_time[i]:
                 return i
-        return len(epoch_time_array) - 1
+        return len(rev_time) - i
     
     def ComputeCoalescentTime(self, sample_size, population_size):
         """Return the coalescent time for a given sample size and population size."""
         # The coalescent time is given by the formula:
         # T_k = (k choose 2) / (2 * N)
         # where k is the sample size and N is the population size.
-        return math.comb(sample_size, 2) / (2 * population_size)
+        return (2 * population_size) / math.comb(sample_size, 2)
 
     def ComputeOptimalSampleSizeParser(self):
         """Return *argparse.ArgumentParser* for ``fitdadi_infer_DFE.py``."""
@@ -149,39 +150,34 @@ class ComputeOptimalSampleSize():
         # Initialize array of tuples of (time, population size)
         logger.info('Finding optimal sample size for inference of ' \
             'evolutionary signal in target time {0}'.format(target_time))
-        coalescent_intervals = [self.ComputeCoalescentTime(2, epoch_population[0])]
-        population_intervals = [epoch_population[0]]
+        coalescent_intervals = [self.ComputeCoalescentTime(2, epoch_population[-1])]
+        population_intervals = [epoch_population[-1]]
         notFoundOptimalSampleSize = True
         k = 2
         while(notFoundOptimalSampleSize):
             # Check edge case of k=2 being optimal sample size
-            if target_time < coalescent_intervals[0]:
+            if target_time > max(coalescent_intervals):
                 optimal_sample_size = 2
                 notFoundOptimalSampleSize = False
                 logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
             # Check starndard case of median of coalescent intervals
             # Check if the target time is in the range of coalescent intervals
-            median_interval_position_1 = int(len(coalescent_intervals) / 2)
-            median_interval_position_2 = int((len(coalescent_intervals) / 2) + 1)
-            if target_time > coalescent_intervals[median_interval_position_1] and \
-               target_time < coalescent_intervals[median_interval_position_2]:
-                # Note that median_interval_2 is the next interval and thus
-                # is guaranteed to include the target time
-                optimal_sample_size = median_interval_position_2
+            median_interval_position_1 = int(len(coalescent_intervals) / 2) + 1
+            if target_time > sum(coalescent_intervals[0:median_interval_position_1]):
+                optimal_sample_size = k
+                # print(coalescent_intervals)
+                # print(population_intervals)
                 notFoundOptimalSampleSize = False
-                logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
             # If previous checks fail, then append more coalescent intervals
             # and increase k
             k = k + 1
             # Append the coalescent time for the next sample size
-            coalescent_intervals.append(
+            coalescent_intervals.insert(0, 
                 self.ComputeCoalescentTime(k, 
-                    epoch_population[self.WhichEpoch(epoch_time, 
-                                                     coalescent_intervals[-1])])
+                    epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])])
             )
-            population_intervals.append(
-                epoch_population[self.WhichEpoch(epoch_time, 
-                                                  coalescent_intervals[-1])]
+            population_intervals.insert(0, 
+                epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])]
             )
         logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
         # Write out the expected sfs
