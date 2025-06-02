@@ -42,12 +42,12 @@ class ComputeOptimalSampleSize():
             raise ValueError("%s must specify a valid file name" % fname)
         
     def WhichEpoch(self, epoch_time_array, current_time):
-        """Return the index of the epoch that contains *current_time* (iterating backwards)."""
-        rev_time = epoch_time_array[::-1] # slicing method
-        for i in range(len(rev_time)):
-            if current_time > rev_time[i]:
-                return i
-        return len(rev_time) - i
+        """Return the index of the epoch that contains *current_time*."""
+        max_index = 0
+        for i in range(len(epoch_time_array)):
+            if current_time >= epoch_time_array[i]:
+                max_index = i
+        return max_index
     
     def ComputeCoalescentTime(self, sample_size, population_size):
         """Return the coalescent time for a given sample size and population size."""
@@ -62,12 +62,12 @@ class ComputeOptimalSampleSize():
         coalescent_tree = []
         # Iterate through the epochs in reverse order
         current_time = 0
-        for i in range(k):
+        for i in reversed(range(2, sample_size + 1)):
             # Get the current epoch time and population size
             this_epoch = self.WhichEpoch(epoch_time_array, current_time)
             this_pop = epoch_population_array[this_epoch]
             # Compute the coalescent time for this sample size and population size
-            this_coalescent_time = self.ComputeCoalescentTime(sample_size, this_pop)
+            this_coalescent_time = self.ComputeCoalescentTime(i, this_pop)
             # Append the coalescent time to the tree
             coalescent_tree.append((current_time, this_coalescent_time, this_pop))
             # Update the current time
@@ -129,6 +129,7 @@ class ComputeOptimalSampleSize():
            '{0}{1}expected_sfs.txt'.format(
                 args['outprefix'], underscore)
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
+        output_tree_file = '{0}{1}output_tree.csv'.format(args['outprefix'], underscore)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -176,39 +177,43 @@ class ComputeOptimalSampleSize():
             k, epoch_time, epoch_population
         )
         # Edge case of k = 2
-        if target_time > max(coalescent_intervals):
+        if target_time >= max(coalescent_intervals):
             optimal_sample_size = 2
             notFoundOptimalSampleSize = False
             logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
         # Loop until the optimal sample size is found
         while(notFoundOptimalSampleSize):
             # Update coalescent intervals and population intervals
-            coalescent_intervals = [element[0] for element in this_coalescent_tree]
-            population_intervals = [element[1] for element in this_coalescent_tree]
+            # total_time = [element[0] for element in this_coalescent_tree]
+            coalescent_intervals = [element[1] for element in this_coalescent_tree]
+            population_intervals = [element[2] for element in this_coalescent_tree]
             # Check standard case of median of coalescent intervals
             # Check if the target time is in the range of coalescent intervals
-            median_interval_position_1 = int(len(coalescent_intervals) / 2) + 1
-            if target_time > sum(coalescent_intervals[0:median_interval_position_1]):
+            # print(total_time)
+            median_position = int(len(coalescent_intervals) / 2) + 1
+            median_time = sum(coalescent_intervals[0:median_position])
+            if target_time > median_time:
                 optimal_sample_size = k
                 # print(coalescent_intervals)
                 # print(population_intervals)
                 notFoundOptimalSampleSize = False
             # If previous checks fail, then append more coalescent intervals
             # and increase k
+            median_time = sum(coalescent_intervals[0:median_position])
             k += 1
-            # Append the coalescent time for the next sample size
-            # coalescent_intervals.insert(0, 
-            #     self.ComputeCoalescentTime(k, 
-            #         epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])])
-            # )
-            # population_intervals.insert(0, 
-            #     epoch_population[self.WhichEpoch(epoch_time, coalescent_intervals[0])]
-            # )
-            # Compute the coalescent tree for the new sample size
+            del this_coalescent_tree
+            # print('this is a test')
             this_coalescent_tree = self.ComputeCoalescentTree(
-                k, epoch_time, epoch_population
-            )
+                k, epoch_time, epoch_population)
+            if (k % 100 == 0):
+                logger.info("Optimal sample size is greater than {0}.".format(k))
+                logger.info("Contemporary median time is {0}".format(median_time))
         logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
+        logger.info('Outputting coalescent tree computed at optimal sample size.')
+        output_tree = pd.DataFrame(
+            this_coalescent_tree, 
+            columns=['Total time', 'Next time interval', 'Population size'])
+        output_tree.to_csv(output_tree_file, index=False)
         # Write out the expected sfs
         logger.info('Computing expected sfs for optimal sample size of {}.'.format(
             optimal_sample_size))
