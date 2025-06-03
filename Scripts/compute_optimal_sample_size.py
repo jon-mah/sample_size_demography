@@ -22,27 +22,37 @@ import math
 
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
-    """Like *argparse.ArgumentParser*, but prints help when no arguments."""
+    """
+    Like *argparse.ArgumentParser*, but prints help when no arguments.
+    """
 
     def error(self, message):
-        """Print error message, then help."""
+        """
+        Print error message, then help.
+        """
         sys.stderr.write('error: %s\n\n' % message)
         self.print_help()
         sys.exit(2)
 
 
 class ComputeOptimalSampleSize():
-    """Wrapper class to allow functions to reference each other."""
+    """
+    Wrapper class to allow functions to reference each other.
+    """
 
     def ExistingFile(self, fname):
-        """Return *fname* if existing file, otherwise raise ValueError."""
+        """
+        Return *fname* if existing file, otherwise raise ValueError.
+        """
         if os.path.isfile(fname):
             return fname
         else:
             raise ValueError("%s must specify a valid file name" % fname)
         
     def WhichEpoch(self, epoch_time_array, current_time):
-        """Return the index of the epoch that contains *current_time*."""
+        """
+        Return the index of the epoch that contains *current_time*.
+        """
         max_index = 0
         for i in range(len(epoch_time_array)):
             if current_time >= epoch_time_array[i]:
@@ -50,14 +60,18 @@ class ComputeOptimalSampleSize():
         return max_index
     
     def ComputeCoalescentTime(self, sample_size, population_size):
-        """Return the coalescent time for a given sample size and population size."""
+        """
+        Return the coalescent time for a given sample size and population size.
+        """
         # The coalescent time is given by the formula:
         # T_k = (k choose 2) / (2 * N)
         # where k is the sample size and N is the population size.
         return (2 * population_size) / math.comb(sample_size, 2)
     
     def ComputeCoalescentTree(self, sample_size, epoch_time_array, epoch_population_array):
-        """Return the coalescent tree for a given sample size and demographic history."""
+        """
+        Return the coalescent tree for a given sample size and demographic history.
+        """
         # Initialize the coalescent tree
         coalescent_tree = []
         # Iterate through the epochs in reverse order
@@ -74,8 +88,28 @@ class ComputeOptimalSampleSize():
             current_time += this_coalescent_time
         return coalescent_tree
 
+    def expected_gr(self, input_df, r):
+        """
+        Compute E[G_r] from a given coalescent interval table and specified r.
+        """
+        n = len(df)  # max sample size = number of intervals
+        if not (1 <= r <= n - 1):
+            raise ValueError(f"r must be between 1 and n-1 (got r={r}, n={n})")
+        
+        numerator_sum = 0
+        for k in range(2, n - r + 2):  # inclusive of n - r + 1
+            binom_term = comb(n - k, r - 1)
+            N_k = df.iloc[k - 1, 2]  # k - 1 because pandas is 0-indexed
+            numerator_sum += binom_term * N_k
+
+        denominator = r * comb(n - 1, r)
+        return numerator_sum / denominator
+
+
     def ComputeOptimalSampleSizeParser(self):
-        """Return *argparse.ArgumentParser* for ``fitdadi_infer_DFE.py``."""
+        """
+        Return *argparse.ArgumentParser* for ``fitdadi_infer_DFE.py``.
+        """
         parser = ArgumentParserNoArgHelp(
             description=(
                 'Given the number of individuals in population one and two, '
@@ -99,7 +133,9 @@ class ComputeOptimalSampleSize():
         return parser
 
     def main(self):
-        """Execute main function."""
+        """
+        Execute main function.
+        """
         # Parse command line arguments
         parser = self.ComputeOptimalSampleSizeParser()
         args = vars(parser.parse_args())
@@ -214,9 +250,22 @@ class ComputeOptimalSampleSize():
             this_coalescent_tree, 
             columns=['Total time', 'Next time interval', 'Population size'])
         output_tree.to_csv(output_tree_file, index=False)
-        # Write out the expected sfs
+        
+        # Compute expected site frequency spectrum (sfs)
         logger.info('Computing expected sfs for optimal sample size of {}.'.format(
             optimal_sample_size))
+        
+        output_sfs = []
+        for r in range(1, optimal_sample_size + 1):
+            expected_gr = self.expected_gr(output_tree, r)
+            logger.info('E[G_{}] = {}'.format(r, expected_gr))
+            output_sfs.append(expected_gr)
+        # Write out the expected sfs
+        output_sfs = dadi.Spectrum(output_sfs, 
+                                   mask=np.zeros(optimal_sample_size, 
+                                                 dtype=bool))
+        output_sfs.to_file(expected_sfs)
+
 
 if __name__ == '__main__':
     ComputeOptimalSampleSize().main()
