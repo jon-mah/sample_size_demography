@@ -102,11 +102,11 @@ class ComputeOptimalSampleSize():
         
         numerator_sum = 0
         for k in range(2, n - r + 2):  # inclusive of n - r + 1
-            binom_term = math.comb(n - k, r - 1)
+            binom_term = scipy.special.comb(n - k, r - 1)
             N_k = input_df.iloc[k - 1, 2]  # k - 1 because pandas is 0-indexed
             numerator_sum += binom_term * N_k
 
-        denominator = r * math.comb(n - 1, r)
+        denominator = r * scipy.special.comb(n - 1, r)
         return numerator_sum / denominator
 
 
