@@ -92,17 +92,21 @@ class ComputeOptimalSampleSize():
         """
         Compute E[G_r] from a given coalescent interval table and specified r.
         """
-        n = len(df)  # max sample size = number of intervals
-        if not (1 <= r <= n - 1):
-            raise ValueError(f"r must be between 1 and n-1 (got r={r}, n={n})")
+        temp_row = pd.DataFrame(
+            {'Total time': 0, 'Next time interval': 0, 'Population size': 0},
+            index=[0])
+        input_df = pd.concat([temp_row, input_df])
+        n = len(input_df) # max sample size = number of intervals
+        if not (1 <= r <= n):
+            raise ValueError(f"r must be between 1 and n (got r={r}, n={n})")
         
         numerator_sum = 0
         for k in range(2, n - r + 2):  # inclusive of n - r + 1
-            binom_term = comb(n - k, r - 1)
-            N_k = df.iloc[k - 1, 2]  # k - 1 because pandas is 0-indexed
+            binom_term = math.comb(n - k, r - 1)
+            N_k = input_df.iloc[k - 1, 2]  # k - 1 because pandas is 0-indexed
             numerator_sum += binom_term * N_k
 
-        denominator = r * comb(n - 1, r)
+        denominator = r * math.comb(n - 1, r)
         return numerator_sum / denominator
 
 
@@ -251,19 +255,19 @@ class ComputeOptimalSampleSize():
             columns=['Total time', 'Next time interval', 'Population size'])
         output_tree.to_csv(output_tree_file, index=False)
         
+        print(output_tree)
+
         # Compute expected site frequency spectrum (sfs)
         logger.info('Computing expected sfs for optimal sample size of {}.'.format(
             optimal_sample_size))
         
-        output_sfs = []
+        output_sfs = [0] # 0-tons
         for r in range(1, optimal_sample_size + 1):
             expected_gr = self.expected_gr(output_tree, r)
             logger.info('E[G_{}] = {}'.format(r, expected_gr))
             output_sfs.append(expected_gr)
         # Write out the expected sfs
-        output_sfs = dadi.Spectrum(output_sfs, 
-                                   mask=np.zeros(optimal_sample_size, 
-                                                 dtype=bool))
+        output_sfs = dadi.Spectrum(output_sfs)
         output_sfs.to_file(expected_sfs)
 
 
