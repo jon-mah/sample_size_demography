@@ -127,6 +127,10 @@ class ComputeOptimalSampleSize():
             'target_time', type=float,
             help='The target time to recover the evolutionary signal.')
         parser.add_argument(
+            '--target_sample_size', dest='target_sample_size',
+            type=int, default=0,
+            help=('The target sample size to recover the evolutionary signal.'))
+        parser.add_argument(
             '--nu_tau', dest='nu_tau',
             help=('Boolean flag for input file type.'),
             action='store_true')
@@ -149,6 +153,7 @@ class ComputeOptimalSampleSize():
         outprefix = args['outprefix']
         input_demography = args['input_demography']
         target_time = args['target_time']
+        target_sample_size = args['target_sample_size']
         nu_tau = args['nu_tau']
 
         # Numpy options
@@ -205,23 +210,31 @@ class ComputeOptimalSampleSize():
         epoch_time = input_demography[0].values
         epoch_population = input_demography[1].values
 
-        # Find optimal sample size
-        # Initialize array of tuples of (time, population size)
-        logger.info('Finding optimal sample size for inference of ' \
-            'evolutionary signal in target time {0}'.format(target_time))
-        coalescent_intervals = [self.ComputeCoalescentTime(2, epoch_population[-1])]
-        population_intervals = [epoch_population[-1]]
         notFoundOptimalSampleSize = True
-        k = 2
-        this_coalescent_tree = self.ComputeCoalescentTree(
-            k, epoch_time, epoch_population
-        )
+        if target_sample_size >= 2:
+            logger.info('Finding time frame of target sample size {0}.'.format(
+                target_sample_size))
+            optimal_sample_size = target_sample_size
+            notFoundOptimalSampleSize = False
+            this_coalescent_tree = self.ComputeCoalescentTree(
+                optimal_sample_size, epoch_time, epoch_population)
+        else:
+            # Find optimal sample size
+            # Initialize array of tuples of (time, population size)
+            logger.info('Finding optimal sample size for inference of ' \
+                'evolutionary signal in target time {0}'.format(target_time))
+            coalescent_intervals = [self.ComputeCoalescentTime(2, epoch_population[-1])]
+            population_intervals = [epoch_population[-1]]
         # Edge case of k = 2
-        if target_time >= max(coalescent_intervals):
+        if target_time >= max(coalescent_intervals) and notFoundOptimalSampleSize:
             optimal_sample_size = 2
             notFoundOptimalSampleSize = False
             logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
+            this_coalescent_tree = self.ComputeCoalescentTree(
+                optimal_sample_size, epoch_time, epoch_population
+            )
         # Loop until the optimal sample size is found
+        k = 2
         while(notFoundOptimalSampleSize):
             # Update coalescent intervals and population intervals
             # total_time = [element[0] for element in this_coalescent_tree]
@@ -255,7 +268,7 @@ class ComputeOptimalSampleSize():
             columns=['Total time', 'Next time interval', 'Population size'])
         output_tree.to_csv(output_tree_file, index=False)
         
-        print(output_tree)
+        logger.info('Output tree: {0}'.format(output_tree))
 
         # Compute expected site frequency spectrum (sfs)
         logger.info('Computing expected sfs for optimal sample size of {}.'.format(
@@ -264,7 +277,8 @@ class ComputeOptimalSampleSize():
         output_sfs = [0] # 0-tons
         for r in range(1, optimal_sample_size + 1):
             expected_gr = self.expected_gr(output_tree, r)
-            logger.info('E[G_{}] = {}'.format(r, expected_gr))
+            if r % 100 == 0:
+                logger.info('E[G_{}] = {}'.format(r, expected_gr))
             output_sfs.append(expected_gr)
         # Write out the expected sfs
         output_sfs = dadi.Spectrum(output_sfs)
