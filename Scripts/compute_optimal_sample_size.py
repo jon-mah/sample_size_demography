@@ -19,6 +19,7 @@ import scipy.integrate
 import scipy.optimize
 import pandas as pd
 import math
+import statistics
 
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
@@ -124,7 +125,7 @@ class ComputeOptimalSampleSize():
             'input_demography', type=self.ExistingFile,
             help='A `.csv` file describing the demographic history.')
         parser.add_argument(
-            'target_time', type=float,
+            '--target_time', type=float, default=0,
             help='The target time to recover the evolutionary signal.')
         parser.add_argument(
             '--target_sample_size', dest='target_sample_size',
@@ -155,6 +156,11 @@ class ComputeOptimalSampleSize():
         target_time = args['target_time']
         target_sample_size = args['target_sample_size']
         nu_tau = args['nu_tau']
+
+        # Ensure either target time or target sample size
+        if target_time == 0 and target_sample_size == 0:
+            raise ValueError('Either a target time or target sample size '
+                'must be provided.')
 
         # Numpy options
         np.set_printoptions(linewidth=np.inf)
@@ -216,25 +222,23 @@ class ComputeOptimalSampleSize():
                 target_sample_size))
             optimal_sample_size = target_sample_size
             notFoundOptimalSampleSize = False
-            this_coalescent_tree = self.ComputeCoalescentTree(
-                optimal_sample_size, epoch_time, epoch_population)
         else:
             # Find optimal sample size
             # Initialize array of tuples of (time, population size)
             logger.info('Finding optimal sample size for inference of ' \
                 'evolutionary signal in target time {0}'.format(target_time))
             coalescent_intervals = [self.ComputeCoalescentTime(2, epoch_population[-1])]
-            population_intervals = [epoch_population[-1]]
-        # Edge case of k = 2
-        if target_time >= max(coalescent_intervals) and notFoundOptimalSampleSize:
+            # Edge case of k = 2
             optimal_sample_size = 2
-            notFoundOptimalSampleSize = False
-            logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
-            this_coalescent_tree = self.ComputeCoalescentTree(
-                optimal_sample_size, epoch_time, epoch_population
-            )
-        # Loop until the optimal sample size is found
+            if target_time >= max(coalescent_intervals) and notFoundOptimalSampleSize:
+                notFoundOptimalSampleSize = False
+                logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
+            # Else loop until the optimal sample size is found
         k = 2
+        # Initialize this coalescent tree
+        this_coalescent_tree = self.ComputeCoalescentTree(
+            optimal_sample_size, epoch_time, epoch_population)
+        # If optimal sample size found, don't loop
         while(notFoundOptimalSampleSize):
             # Update coalescent intervals and population intervals
             # total_time = [element[0] for element in this_coalescent_tree]
@@ -268,7 +272,7 @@ class ComputeOptimalSampleSize():
             columns=['Total time', 'Next time interval', 'Population size'])
         output_tree.to_csv(output_tree_file, index=False)
         
-        logger.info('Output tree: {0}'.format(output_tree))
+        logger.info('Output tree: \n{0}'.format(output_tree))
 
         # Compute expected site frequency spectrum (sfs)
         logger.info('Computing expected sfs for optimal sample size of {}.'.format(
@@ -281,7 +285,14 @@ class ComputeOptimalSampleSize():
                 logger.info('E[G_{}] = {}'.format(r, expected_gr))
             output_sfs.append(expected_gr)
         # Write out the expected sfs
+        logger.info('Expected SFS: {0}'.format(output_sfs))
+        logger.info('Expected relative number of singletons: {0}'.format(
+            output_sfs[1]))
+        logger.info('Arithmetic mean of population intervals: {0}'.format(
+            statistics.mean(output_tree.iloc[:, 2])))
         output_sfs = dadi.Spectrum(output_sfs)
+        # logger.info("Tajima's D of expected SFS: {0}".format(
+        #     output_sfs.fold().Tajima_D()))
         output_sfs.to_file(expected_sfs)
 
 

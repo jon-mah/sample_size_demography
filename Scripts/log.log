@@ -1,27 +1,33 @@
-2025-06-03 08:21:42,521 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-06-03 11:42:10,560 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-06-03 08:21:42,521 - INFO - Progress is being logged to ./log.log
+2025-06-03 11:42:10,560 - INFO - Progress is being logged to ./log.log
 
-2025-06-03 08:21:42,521 - INFO - Parsed the following arguments:
+2025-06-03 11:42:10,560 - INFO - Parsed the following arguments:
 	input_demography = ../Data/compute_optimal_sample_size_example_input.csv
 	target_time = 2000.0
+	target_sample_size = 0
 	nu_tau = False
 	outprefix = ./
 
-2025-06-03 08:21:42,521 - INFO - Reading in the demographic history from ../Data/compute_optimal_sample_size_example_input.csv
-2025-06-03 08:21:42,527 - INFO - Finding optimal sample size for inference of evolutionary signal in target time 2000.0
-2025-06-03 08:21:42,527 - INFO - Optimal sample size is 12.
-2025-06-03 08:21:42,527 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-06-03 08:21:42,535 - INFO - Computing expected sfs for optimal sample size of 12.
-2025-06-03 08:21:42,536 - INFO - E[G_1] = 6583.333333333333
-2025-06-03 08:21:42,537 - INFO - E[G_2] = 4651.515151515152
-2025-06-03 08:21:42,538 - INFO - E[G_3] = 4416.666666666667
-2025-06-03 08:21:42,539 - INFO - E[G_4] = 4333.333333333333
-2025-06-03 08:21:42,540 - INFO - E[G_5] = 4283.333333333333
-2025-06-03 08:21:42,541 - INFO - E[G_6] = 4250.0
-2025-06-03 08:21:42,542 - INFO - E[G_7] = 4226.190476190476
-2025-06-03 08:21:42,543 - INFO - E[G_8] = 4208.333333333333
-2025-06-03 08:21:42,543 - INFO - E[G_9] = 4194.444444444444
-2025-06-03 08:21:42,544 - INFO - E[G_10] = 4183.333333333333
-2025-06-03 08:21:42,545 - INFO - E[G_11] = 4174.242424242424
-2025-06-03 08:21:42,546 - INFO - E[G_12] = 4166.666666666667
+2025-06-03 11:42:10,560 - INFO - Reading in the demographic history from ../Data/compute_optimal_sample_size_example_input.csv
+2025-06-03 11:42:10,567 - INFO - Finding optimal sample size for inference of evolutionary signal in target time 2000.0
+2025-06-03 11:42:10,568 - INFO - Optimal sample size is 12.
+2025-06-03 11:42:10,568 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-03 11:42:10,577 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+0      0.000000         1282.051282            50000
+1   1282.051282           30.303030             1000
+2   1312.354312           36.363636             1000
+3   1348.717949           44.444444             1000
+4   1393.162393           55.555556             1000
+5   1448.717949           71.428571             1000
+6   1520.146520           95.238095             1000
+7   1615.384615          133.333333             1000
+8   1748.717949          200.000000             1000
+9   1948.717949          333.333333             1000
+10  2282.051282         6666.666667            10000
+11  8948.717949         4000.000000             2000
+2025-06-03 11:42:10,577 - INFO - Computing expected sfs for optimal sample size of 12.
+2025-06-03 11:42:10,587 - INFO - Expected SFS: [0, 5916.666666666667, 4651.515151515152, 4416.666666666667, 4333.333333333333, 4283.333333333333, 4250.0, 4226.190476190476, 4208.333333333333, 4194.444444444444, 4183.333333333333, 4174.242424242424, 4166.666666666667]
+2025-06-03 11:42:10,587 - INFO - Expected relative number of singletons: 5916.666666666667
+2025-06-03 11:42:10,587 - INFO - Arithmetic mean of population intervals: 5916.666666666667
