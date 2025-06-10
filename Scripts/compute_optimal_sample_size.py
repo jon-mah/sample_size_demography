@@ -67,7 +67,7 @@ class ComputeOptimalSampleSize():
         # The coalescent time is given by the formula:
         # T_k = (k choose 2) / (2 * N)
         # where k is the sample size and N is the population size.
-        return (2 * population_size) / math.comb(sample_size, 2)
+        return (2 * population_size) / scipy.special.comb(sample_size, 2)
     
     def ComputeCoalescentTree(self, sample_size, epoch_time_array, epoch_population_array):
         """
@@ -246,26 +246,26 @@ class ComputeOptimalSampleSize():
             population_intervals = [element[2] for element in this_coalescent_tree]
             # Check standard case of median of coalescent intervals
             # Check if the target time is in the range of coalescent intervals
-            # print(total_time)
             median_position = int(len(coalescent_intervals) / 2) + 1
             median_time = sum(coalescent_intervals[0:median_position])
             if target_time > median_time:
                 optimal_sample_size = k
-                # print(coalescent_intervals)
-                # print(population_intervals)
                 notFoundOptimalSampleSize = False
             # If previous checks fail, then append more coalescent intervals
             # and increase k
             median_time = sum(coalescent_intervals[0:median_position])
-            k += 1
             del this_coalescent_tree
-            # print('this is a test')
             this_coalescent_tree = self.ComputeCoalescentTree(
                 k, epoch_time, epoch_population)
+            k += 1
             if (k % 100 == 0):
                 logger.info("Optimal sample size is greater than {0}.".format(k))
                 logger.info("Contemporary median time is {0}".format(median_time))
+        coalescent_intervals = [element[1] for element in this_coalescent_tree]
+        median_position = int(len(coalescent_intervals) / 2) + 1
+        median_time = sum(coalescent_intervals[0:median_position])
         logger.info('Optimal sample size is {}.'.format(optimal_sample_size))
+        logger.info('Median time interval is approximately {}.'.format(median_time))
         logger.info('Outputting coalescent tree computed at optimal sample size.')
         output_tree = pd.DataFrame(
             this_coalescent_tree, 
@@ -279,7 +279,7 @@ class ComputeOptimalSampleSize():
             optimal_sample_size))
         
         output_sfs = [0] # 0-tons
-        for r in range(1, optimal_sample_size + 1):
+        for r in range(1, optimal_sample_size):
             expected_gr = self.expected_gr(output_tree, r)
             if r % 100 == 0:
                 logger.info('E[G_{}] = {}'.format(r, expected_gr))
@@ -291,8 +291,8 @@ class ComputeOptimalSampleSize():
         logger.info('Arithmetic mean of population intervals: {0}'.format(
             statistics.mean(output_tree.iloc[:, 2])))
         output_sfs = dadi.Spectrum(output_sfs)
-        # logger.info("Tajima's D of expected SFS: {0}".format(
-        #     output_sfs.fold().Tajima_D()))
+        logger.info("Tajima's D of expected SFS: {0}".format(
+            output_sfs.Tajima_D()))
         output_sfs.to_file(expected_sfs)
 
 

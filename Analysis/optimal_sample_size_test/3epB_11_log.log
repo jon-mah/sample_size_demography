@@ -1,0 +1,33 @@
+2025-06-10 06:35:07,271 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-10 06:35:07,271 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/3epB_11_log.log
+
+2025-06-10 06:35:07,271 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 11
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/3epB_11
+
+2025-06-10 06:35:07,271 - INFO - Reading in the demographic history from ../Data/three_epoch_bottleneck_demography.csv
+2025-06-10 06:35:07,275 - INFO - Finding time frame of target sample size 11.
+2025-06-10 06:35:07,275 - INFO - Optimal sample size is 11.
+2025-06-10 06:35:07,276 - INFO - Median time interval is approximately 3418.181818181818.
+2025-06-10 06:35:07,276 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-10 06:35:07,287 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+0      0.000000         1818.181818            50000
+1   1818.181818           44.444444             1000
+2   1862.626263           55.555556             1000
+3   1918.181818           71.428571             1000
+4   1989.610390           95.238095             1000
+5   2084.848485         1333.333333            10000
+6   3418.181818         2000.000000            10000
+7   5418.181818         3333.333333            10000
+8   8751.515152         6666.666667            10000
+9  15418.181818        20000.000000            10000
+2025-06-10 06:35:07,287 - INFO - Computing expected sfs for optimal sample size of 11.
+2025-06-10 06:35:07,301 - INFO - Expected SFS: [0, 10400.0, 6400.0, 5483.333333333333, 5203.571428571428, 5107.142857142857, 5066.666666666667, 5042.857142857143, 5025.0, 5011.111111111111, 5000.0]
+2025-06-10 06:35:07,301 - INFO - Expected relative number of singletons: 10400.0
+2025-06-10 06:35:07,301 - INFO - Arithmetic mean of population intervals: 10400
+2025-06-10 06:35:07,302 - INFO - Tajima's D of expected SFS: 0.4659241755329032
