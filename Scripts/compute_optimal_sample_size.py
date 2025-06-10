@@ -107,7 +107,7 @@ class ComputeOptimalSampleSize():
         numerator_sum = 0
         for k in range(2, n - r + 2):  # inclusive of n - r + 1
             binom_term = scipy.special.comb(n - k, r - 1)
-            N_k = input_df.iloc[k - 1, 2]  # k - 1 because pandas is 0-indexed
+            N_k = input_df.iloc[1 - k, 2]  # k - 1 because pandas is 0-indexed
             numerator_sum += binom_term * N_k
 
         denominator = r * scipy.special.comb(n - 1, r)
@@ -290,7 +290,7 @@ class ComputeOptimalSampleSize():
                 logger.info('E[G_{}] = {}'.format(r, expected_gr))
             output_sfs.append(expected_gr)
         # Write out the expected sfs
-        logger.info('Expected SFS: {0}'.format(output_sfs))
+        # logger.info('Expected SFS: {0}'.format(output_sfs))
         logger.info('Expected relative number of singletons: {0}'.format(
             output_sfs[1]))
         logger.info('Arithmetic mean of population intervals: {0}'.format(
