@@ -55,6 +55,8 @@ class ComputeOptimalSampleSize():
         Return the index of the epoch that contains *current_time*.
         """
         max_index = 0
+        # Start at first epoch, if current time is greater than
+        # first epoch, move to next epoch until end
         for i in range(len(epoch_time_array)):
             if current_time >= epoch_time_array[i]:
                 max_index = i
@@ -65,7 +67,7 @@ class ComputeOptimalSampleSize():
         Return the coalescent time for a given sample size and population size.
         """
         # The coalescent time is given by the formula:
-        # T_k = (k choose 2) / (2 * N)
+        # T_k = (2 * N) / (k choose 2)
         # where k is the sample size and N is the population size.
         return (2 * population_size) / scipy.special.comb(sample_size, 2)
     
@@ -76,7 +78,8 @@ class ComputeOptimalSampleSize():
         # Initialize the coalescent tree
         coalescent_tree = []
         # Iterate through the epochs in reverse order
-        current_time = 0
+        current_time = 0                
+
         for i in reversed(range(2, sample_size + 1)):
             # Get the current epoch time and population size
             this_epoch = self.WhichEpoch(epoch_time_array, current_time)
@@ -270,6 +273,8 @@ class ComputeOptimalSampleSize():
         output_tree = pd.DataFrame(
             this_coalescent_tree, 
             columns=['Total time', 'Next time interval', 'Population size'])
+        tree_index = reversed(np.arange(2, len(output_tree) + 2))
+        output_tree.index = tree_index
         output_tree.to_csv(output_tree_file, index=False)
         
         logger.info('Output tree: \n{0}'.format(output_tree))
