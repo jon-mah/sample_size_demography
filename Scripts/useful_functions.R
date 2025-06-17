@@ -758,3 +758,33 @@ read_neugamma_dfe_params = function(input_dfe_file) {
   return_data_frame = data.frame(return_data_frame)
   return(return_data_frame)
 }
+
+compare_msprime_lynch_proportional_sfs = function(null, msprime, lynch) {
+  x_axis = 1:length(msprime)
+  null = proportional_sfs(null)
+  msprime = proportional_sfs(msprime)
+  lynch = proportional_sfs(lynch)
+  input_df = data.frame(null,
+                        msprime,
+                        lynch,
+                        x_axis)
+  
+  names(input_df) = c('SNM',
+                      'MSPrime',
+                      'Lynch Theoretical',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
+  
+  return(p_input_comparison)
+}

@@ -43,8 +43,8 @@ class msPrimeSimulate():
                 'specified for use by the python package, `easySFS.py`.'),
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument(
-            'replicate', type=str,
-            help='An integer indexing the replicate.')
+            'sample_size', type=int,
+            help='An integer indexing the sample_size.')
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
@@ -58,7 +58,7 @@ class msPrimeSimulate():
         prog = parser.prog
 
         # Assign arguments
-        replicate = args['replicate']
+        sample_size = args['sample_size']
         outprefix = args['outprefix']
 
         # create output directory if needed
@@ -73,11 +73,11 @@ class msPrimeSimulate():
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
-        output_TwoEpC = '{0}{1}TwoEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, replicate)
-        output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
-        output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, replicate)
-        output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, replicate)
-        output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}.vcf'.format(args['outprefix'], underscore, replicate)
+        output_TwoEpC = '{0}{1}TwoEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
+        output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
+        output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
+        output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
+        output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -140,31 +140,31 @@ class msPrimeSimulate():
         dem4.sort_events()
 
         with open(output_TwoEpC, "w+") as f0:
-            ts0 = msprime.sim_ancestry(samples={"TwoEpC" : 1000},
+            ts0 = msprime.sim_ancestry(samples={"TwoEpC" : sample_size},
                 demography=dem0, sequence_length=1000000, recombination_rate=1e-8)
             mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
             mts0.write_vcf(f0)
 
         with open(output_TwoEpE, "w+") as f1:
-            ts1 = msprime.sim_ancestry(samples={"TwoEpE" : 1000},
+            ts1 = msprime.sim_ancestry(samples={"TwoEpE" : sample_size},
                 demography=dem1, sequence_length=1000000, recombination_rate=1e-8)
             mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
             mts1.write_vcf(f1)
 
         with open(output_ThreeEpC, "w+") as f2:
-            ts2 = msprime.sim_ancestry(samples={"ThreeEpC" : 1000},
+            ts2 = msprime.sim_ancestry(samples={"ThreeEpC" : sample_size},
                 demography=dem2, sequence_length=1000000, recombination_rate=1e-8)
             mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
             mts2.write_vcf(f2)
 
         with open(output_ThreeEpE, "w+") as f3:
-            ts3 = msprime.sim_ancestry(samples={"ThreeEpE": 1000},
+            ts3 = msprime.sim_ancestry(samples={"ThreeEpE": sample_size},
                 demography=dem3, sequence_length=1000000, recombination_rate=1e-8)
             mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
             mts3.write_vcf(f3)
 
         with open(output_ThreeEpB, "w+") as f4:
-            ts4 = msprime.sim_ancestry(samples={"ThreeEpB": 1000},
+            ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
                 demography=dem4, sequence_length=1000000, recombination_rate=1e-8)
             mts3 = msprime.sim_mutations(ts4, rate=1.5E-8)
             mts3.write_vcf(f4)
