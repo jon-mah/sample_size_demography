@@ -290,6 +290,8 @@ class ComputeOptimalSampleSize():
                 logger.info('E[G_{}] = {}'.format(r, expected_gr))
             output_sfs.append(expected_gr)
         # Write out the expected sfs
+        # product_4muL = 4 * 1000000 / 10**8
+        # output_sfs = [element * product_4muL for element in output_sfs]
         # logger.info('Expected SFS: {0}'.format(output_sfs))
         logger.info('Expected relative number of singletons: {0}'.format(
             output_sfs[1]))

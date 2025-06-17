@@ -1,43 +1,27 @@
-2025-06-10 11:14:51,243 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-06-17 14:17:52,319 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-06-10 11:14:51,243 - INFO - Progress is being logged to ./log.log
+2025-06-17 14:17:52,319 - INFO - Progress is being logged to ./log.log
 
-2025-06-10 11:14:51,243 - INFO - Parsed the following arguments:
-	input_demography = ../Data/two_epoch_expansion_demography.csv
+2025-06-17 14:17:52,319 - INFO - Parsed the following arguments:
+	input_demography = ../Data/compute_optimal_sample_size_example_input.csv
 	target_time = 0
-	target_sample_size = 21
+	target_sample_size = 6
 	nu_tau = False
 	outprefix = ./
 
-2025-06-10 11:14:51,243 - INFO - Reading in the demographic history from ../Data/two_epoch_expansion_demography.csv
-2025-06-10 11:14:51,258 - INFO - Finding time frame of target sample size 21.
-2025-06-10 11:14:51,258 - INFO - Optimal sample size is 21.
-2025-06-10 11:14:51,259 - INFO - Median time interval is approximately 2295.739348370927.
-2025-06-10 11:14:51,259 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-06-10 11:14:51,270 - INFO - Output tree: 
-      Total time  Next time interval  Population size
-21      0.000000          190.476190            20000
-20    190.476190          210.526316            20000
-19    401.002506          116.959064            10000
-18    517.961571          130.718954            10000
-17    648.680525          147.058824            10000
-16    795.739348          166.666667            10000
-15    962.406015          190.476190            10000
-14   1152.882206          219.780220            10000
-13   1372.662425          256.410256            10000
-12   1629.072682          303.030303            10000
-11   1932.102985          363.636364            10000
-10   2295.739348          444.444444            10000
-9    2740.183793          555.555556            10000
-8    3295.739348          714.285714            10000
-7    4010.025063          952.380952            10000
-6    4962.406015         1333.333333            10000
-5    6295.739348         2000.000000            10000
-4    8295.739348         3333.333333            10000
-3   11629.072682         6666.666667            10000
-2   18295.739348        20000.000000            10000
-2025-06-10 11:14:51,270 - INFO - Computing expected sfs for optimal sample size of 21.
-2025-06-10 11:14:51,301 - INFO - Expected SFS: [0, 11000.0, 5026.315789473684, 3333.3333333333335, 2500.0, 2000.0, 1666.6666666666667, 1428.5714285714287, 1250.0, 1111.111111111111, 1000.0, 909.0909090909091, 833.3333333333334, 769.2307692307693, 714.2857142857143, 666.6666666666666, 625.0, 588.2352941176471, 555.5555555555555, 526.3157894736842, 500.0]
-2025-06-10 11:14:51,301 - INFO - Expected relative number of singletons: 11000.0
-2025-06-10 11:14:51,301 - INFO - Arithmetic mean of population intervals: 11000
-2025-06-10 11:14:51,302 - INFO - Tajima's D of expected SFS: -0.07518913458137962
+2025-06-17 14:17:52,319 - INFO - Reading in the demographic history from ../Data/compute_optimal_sample_size_example_input.csv
+2025-06-17 14:17:52,328 - INFO - Finding time frame of target sample size 6.
+2025-06-17 14:17:52,328 - INFO - Optimal sample size is 6.
+2025-06-17 14:17:52,328 - INFO - Median time interval is approximately 5000.0.
+2025-06-17 14:17:52,328 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-17 14:17:52,338 - INFO - Output tree: 
+    Total time  Next time interval  Population size
+6     0.000000         1333.333333            10000
+5  1333.333333         2000.000000            10000
+4  3333.333333         1666.666667             5000
+3  5000.000000         3333.333333             5000
+2  8333.333333        10000.000000             5000
+2025-06-17 14:17:52,338 - INFO - Computing expected sfs for optimal sample size of 6.
+2025-06-17 14:17:52,341 - INFO - Expected relative number of singletons: 7000.0
+2025-06-17 14:17:52,341 - INFO - Arithmetic mean of population intervals: 7000
+2025-06-17 14:17:52,342 - INFO - Tajima's D of expected SFS: -0.16365160786680633
