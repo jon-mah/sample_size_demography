@@ -1,0 +1,35 @@
+2025-06-17 18:24:05,176 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-17 18:24:05,176 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/2epC_91_log.log
+
+2025-06-17 18:24:05,176 - INFO - Parsed the following arguments:
+	input_demography = ../Data/two_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 91
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/2epC_91
+
+2025-06-17 18:24:05,177 - INFO - Reading in the demographic history from ../Data/two_epoch_contraction_demography.csv
+2025-06-17 18:24:05,179 - INFO - Finding time frame of target sample size 91.
+2025-06-17 18:24:05,180 - INFO - Optimal sample size is 91.
+2025-06-17 18:24:05,180 - INFO - Median time interval is approximately 224.6642246642246.
+2025-06-17 18:24:05,180 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-17 18:24:05,189 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+91      0.000000            2.442002             5000
+90      2.442002            2.496879             5000
+89      4.938881            2.553626             5000
+88      7.492507            2.612330             5000
+87     10.104838            2.673082             5000
+..           ...                 ...              ...
+6    4224.664225         1333.333333            10000
+5    5557.997558         2000.000000            10000
+4    7557.997558         3333.333333            10000
+3   10891.330891         6666.666667            10000
+2   17557.997558        20000.000000            10000
+
+[90 rows x 3 columns]
+2025-06-17 18:24:05,189 - INFO - Computing expected sfs for optimal sample size of 91.
+2025-06-17 18:24:05,337 - INFO - Expected relative number of singletons: 5444.444444444444
+2025-06-17 18:24:05,337 - INFO - Arithmetic mean of population intervals: 5444.444444444444
+2025-06-17 18:24:05,338 - INFO - Tajima's D of expected SFS: 0.6351484993501483

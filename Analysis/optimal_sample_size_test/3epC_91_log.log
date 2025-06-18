@@ -1,0 +1,35 @@
+2025-06-17 18:24:08,619 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-17 18:24:08,619 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/3epC_91_log.log
+
+2025-06-17 18:24:08,619 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 91
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/3epC_91
+
+2025-06-17 18:24:08,619 - INFO - Reading in the demographic history from ../Data/three_epoch_contraction_demography.csv
+2025-06-17 18:24:08,628 - INFO - Finding time frame of target sample size 91.
+2025-06-17 18:24:08,629 - INFO - Optimal sample size is 91.
+2025-06-17 18:24:08,629 - INFO - Median time interval is approximately 112.3321123321123.
+2025-06-17 18:24:08,629 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-17 18:24:08,645 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+91      0.000000            1.221001             2500
+90      1.221001            1.248439             2500
+89      2.469441            1.276813             2500
+88      3.746254            1.306165             2500
+87      5.052419            1.336541             2500
+..           ...                 ...              ...
+6    3744.276557         1333.333333            10000
+5    5077.609890         2000.000000            10000
+4    7077.609890         3333.333333            10000
+3   10410.943223         6666.666667            10000
+2   17077.609890        20000.000000            10000
+
+[90 rows x 3 columns]
+2025-06-17 18:24:08,645 - INFO - Computing expected sfs for optimal sample size of 91.
+2025-06-17 18:24:08,800 - INFO - Expected relative number of singletons: 3750.0
+2025-06-17 18:24:08,800 - INFO - Arithmetic mean of population intervals: 3750
+2025-06-17 18:24:08,801 - INFO - Tajima's D of expected SFS: 0.9038438624533773

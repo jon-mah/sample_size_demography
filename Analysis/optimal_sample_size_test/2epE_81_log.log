@@ -1,0 +1,35 @@
+2025-06-17 18:23:50,567 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-17 18:23:50,567 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/2epE_81_log.log
+
+2025-06-17 18:23:50,567 - INFO - Parsed the following arguments:
+	input_demography = ../Data/two_epoch_expansion_demography.csv
+	target_time = 0
+	target_sample_size = 81
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/2epE_81
+
+2025-06-17 18:23:50,567 - INFO - Reading in the demographic history from ../Data/two_epoch_expansion_demography.csv
+2025-06-17 18:23:50,572 - INFO - Finding time frame of target sample size 81.
+2025-06-17 18:23:50,573 - INFO - Optimal sample size is 81.
+2025-06-17 18:23:50,573 - INFO - Median time interval is approximately 609.3606043854799.
+2025-06-17 18:23:50,573 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-17 18:23:50,589 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+81      0.000000           12.345679            20000
+80     12.345679           12.658228            20000
+79     25.003907           12.982798            20000
+78     37.986705           13.320013            20000
+77     51.306718           13.670540            20000
+..           ...                 ...              ...
+6    6276.027271         1333.333333            10000
+5    7609.360604         2000.000000            10000
+4    9609.360604         3333.333333            10000
+3   12942.693938         6666.666667            10000
+2   19609.360604        20000.000000            10000
+
+[80 rows x 3 columns]
+2025-06-17 18:23:50,589 - INFO - Computing expected sfs for optimal sample size of 81.
+2025-06-17 18:23:50,890 - INFO - Expected relative number of singletons: 11750.0
+2025-06-17 18:23:50,891 - INFO - Arithmetic mean of population intervals: 11750
+2025-06-17 18:23:50,892 - INFO - Tajima's D of expected SFS: -0.11211151935841406

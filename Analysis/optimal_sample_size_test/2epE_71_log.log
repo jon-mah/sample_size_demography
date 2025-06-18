@@ -1,0 +1,35 @@
+2025-06-17 18:23:31,190 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-17 18:23:31,191 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/2epE_71_log.log
+
+2025-06-17 18:23:31,191 - INFO - Parsed the following arguments:
+	input_demography = ../Data/two_epoch_expansion_demography.csv
+	target_time = 0
+	target_sample_size = 71
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/2epE_71
+
+2025-06-17 18:23:31,191 - INFO - Reading in the demographic history from ../Data/two_epoch_expansion_demography.csv
+2025-06-17 18:23:31,194 - INFO - Finding time frame of target sample size 71.
+2025-06-17 18:23:31,194 - INFO - Optimal sample size is 71.
+2025-06-17 18:23:31,194 - INFO - Median time interval is approximately 682.763246143528.
+2025-06-17 18:23:31,194 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-17 18:23:31,203 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+71      0.000000           16.096579            20000
+70     16.096579           16.563147            20000
+69     32.659726           17.050298            20000
+68     49.710025           17.559263            20000
+67     67.269287           18.091361            20000
+..           ...                 ...              ...
+6    6206.572770         1333.333333            10000
+5    7539.906103         2000.000000            10000
+4    9539.906103         3333.333333            10000
+3   12873.239437         6666.666667            10000
+2   19539.906103        20000.000000            10000
+
+[70 rows x 3 columns]
+2025-06-17 18:23:31,203 - INFO - Computing expected sfs for optimal sample size of 71.
+2025-06-17 18:23:31,304 - INFO - Expected relative number of singletons: 11571.42857142857
+2025-06-17 18:23:31,304 - INFO - Arithmetic mean of population intervals: 11571.42857142857
+2025-06-17 18:23:31,305 - INFO - Tajima's D of expected SFS: -0.10240878149771893

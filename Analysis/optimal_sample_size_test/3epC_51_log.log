@@ -1,0 +1,72 @@
+2025-06-17 18:23:34,292 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-17 18:23:34,292 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/3epC_51_log.log
+
+2025-06-17 18:23:34,292 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 51
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/3epC_51
+
+2025-06-17 18:23:34,292 - INFO - Reading in the demographic history from ../Data/three_epoch_contraction_demography.csv
+2025-06-17 18:23:34,296 - INFO - Finding time frame of target sample size 51.
+2025-06-17 18:23:34,296 - INFO - Optimal sample size is 51.
+2025-06-17 18:23:34,296 - INFO - Median time interval is approximately 203.921568627451.
+2025-06-17 18:23:34,296 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-17 18:23:34,308 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+51      0.000000            3.921569             2500
+50      3.921569            4.081633             2500
+49      8.003201            4.251701             2500
+48     12.254902            4.432624             2500
+47     16.687526            4.625347             2500
+46     21.312873            4.830918             2500
+45     26.143791            5.050505             2500
+44     31.194296            5.285412             2500
+43     36.479708            5.537099             2500
+42     42.016807            5.807201             2500
+41     47.824008            6.097561             2500
+40     53.921569            6.410256             2500
+39     60.331825            6.747638             2500
+38     67.079463            7.112376             2500
+37     74.191839            7.507508             2500
+36     81.699346            7.936508             2500
+35     89.635854            8.403361             2500
+34     98.039216            8.912656             2500
+33    106.951872            9.469697             2500
+32    116.421569           10.080645             2500
+31    126.502214           10.752688             2500
+30    137.254902           11.494253             2500
+29    148.749155           12.315271             2500
+28    161.064426           13.227513             2500
+27    174.291939           14.245014             2500
+26    188.536953           15.384615             2500
+25    203.921569           33.333333             5000
+24    237.254902           36.231884             5000
+23    273.486786           39.525692             5000
+22    313.012478           43.290043             5000
+21    356.302521           47.619048             5000
+20    403.921569           52.631579             5000
+19    456.553148           58.479532             5000
+18    515.032680           65.359477             5000
+17    580.392157           73.529412             5000
+16    653.921569           83.333333             5000
+15    737.254902           95.238095             5000
+14    832.492997          109.890110             5000
+13    942.383107          128.205128             5000
+12   1070.588235          151.515152             5000
+11   1222.103387          181.818182             5000
+10   1403.921569          222.222222             5000
+9    1626.143791          277.777778             5000
+8    1903.921569          357.142857             5000
+7    2261.064426          952.380952            10000
+6    3213.445378         1333.333333            10000
+5    4546.778711         2000.000000            10000
+4    6546.778711         3333.333333            10000
+3    9880.112045         6666.666667            10000
+2   16546.778711        20000.000000            10000
+2025-06-17 18:23:34,308 - INFO - Computing expected sfs for optimal sample size of 51.
+2025-06-17 18:23:34,371 - INFO - Expected relative number of singletons: 4300.0
+2025-06-17 18:23:34,371 - INFO - Arithmetic mean of population intervals: 4300
+2025-06-17 18:23:34,372 - INFO - Tajima's D of expected SFS: 0.737549505064056
