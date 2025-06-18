@@ -44,7 +44,10 @@ class msPrimeSimulate():
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument(
             'sample_size', type=int,
-            help='An integer indexing the sample_size.')
+            help='An integer indexing the sample size.')
+        parser.add_argument(
+            'replicate', type=int,
+            help='An integer indexing the replicate.')
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
@@ -59,6 +62,7 @@ class msPrimeSimulate():
 
         # Assign arguments
         sample_size = args['sample_size']
+        replicate = args['replicate']
         outprefix = args['outprefix']
 
         # create output directory if needed
@@ -73,11 +77,16 @@ class msPrimeSimulate():
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
-        output_TwoEpC = '{0}{1}TwoEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
-        output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
-        output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
-        output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
-        output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}.vcf'.format(args['outprefix'], underscore, sample_size)
+        output_TwoEpC = '{0}{1}TwoEpochContraction_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):

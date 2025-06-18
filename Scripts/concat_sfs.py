@@ -42,8 +42,11 @@ class concatSFS():
                 'Concatenates a given list of `*.sfs` files.'),
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument(
+            'sample_size', type=int,
+            help='The sample size of the input SFSs.')
+        parser.add_argument(
             'outprefix', type=str,
-            help='The file prefix for the output files')
+            help='The file prefix for the output files.')
         return parser
 
     def main(self):
@@ -54,10 +57,11 @@ class concatSFS():
         prog = parser.prog
 
         # Assign arguments
+        sample_size = args['sample_size']
         outprefix = args['outprefix']
         outprefix_string = str(outprefix)
-        # matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
-        matching_files = glob.glob(outprefix_string + '*sfs.txt', recursive=True)
+        matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
+        # matching_files = glob.glob(outprefix_string + '*sfs.txt', recursive=True)
 
         # create output directory if needed
         outdir = os.path.dirname(args['outprefix'])
@@ -101,8 +105,7 @@ class concatSFS():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Grab all files which begin with outprefix
-        # output_spectrum = dadi.Spectrum([0] * 1001)
-        output_spectrum = dadi.Spectrum([0] * 306)
+        output_spectrum = dadi.Spectrum([0] + [0] * sample_size)
         output_spectrum = output_spectrum.fold()
         for file in matching_files:
             temp_sfs = dadi.Spectrum.from_file(file)
