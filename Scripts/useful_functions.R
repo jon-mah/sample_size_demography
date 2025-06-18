@@ -759,18 +759,29 @@ read_neugamma_dfe_params = function(input_dfe_file) {
   return(return_data_frame)
 }
 
-compare_msprime_lynch_proportional_sfs = function(null, msprime, lynch) {
-  x_axis = 1:length(msprime)
-  null = proportional_sfs(null)
-  msprime = proportional_sfs(msprime)
-  lynch = proportional_sfs(lynch)
+compare_msprime_dadi_lynch_proportional_sfs = function(null, msprime, dadi, lynch) {
+  if (length(msprime) > 10) {
+    x_axis = 1:10
+    null = proportional_sfs(null)[1:10]
+    msprime = proportional_sfs(msprime)[1:10]
+    dadi = proportional_sfs(dadi)[1:10]
+    lynch = proportional_sfs(lynch)[1:10]
+  } else {
+    x_axis = 1:length(msprime)
+    null = proportional_sfs(null)
+    msprime = proportional_sfs(msprime)
+    dadi = proportional_sfs(dadi)
+    lynch = proportional_sfs(lynch)    
+  }
   input_df = data.frame(null,
                         msprime,
+                        dadi,
                         lynch,
                         x_axis)
   
   names(input_df) = c('SNM',
                       'MSPrime',
+                      'Dadi projection',
                       'Lynch Theoretical',
                       'x_axis')
   
