@@ -71,7 +71,7 @@ class computeSFSSummaryStatistics():
         # input files: logfile
         # Remove input files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
-        logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
+        logfile = '{0}{1}summary.txt'.format(args['outprefix'], underscore)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
