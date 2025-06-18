@@ -1,0 +1,37 @@
+2025-06-18 15:51:23,537 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-18 15:51:23,537 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/3epE_201_log.log
+
+2025-06-18 15:51:23,537 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_expansion_demography.csv
+	target_time = 0
+	target_sample_size = 201
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/3epE_201
+
+2025-06-18 15:51:23,537 - INFO - Reading in the demographic history from ../Data/three_epoch_expansion_demography.csv
+2025-06-18 15:51:23,540 - INFO - Finding time frame of target sample size 201.
+2025-06-18 15:51:23,542 - INFO - Optimal sample size is 201.
+2025-06-18 15:51:23,542 - INFO - Median time interval is approximately 503.98009950248746.
+2025-06-18 15:51:23,542 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-18 15:51:23,557 - INFO - Output tree: 
+       Total time  Next time interval  Population size
+201      0.000000            3.980100            40000
+200      3.980100            4.020101            40000
+199      8.000200            4.060708            40000
+198     12.060908            4.101933            40000
+197     16.162841            4.143789            40000
+..            ...                 ...              ...
+6     7547.117354         1333.333333            10000
+5     8880.450688         2000.000000            10000
+4    10880.450688         3333.333333            10000
+3    14213.784021         6666.666667            10000
+2    20880.450688        20000.000000            10000
+
+[200 rows x 3 columns]
+2025-06-18 15:51:23,557 - INFO - Computing expected sfs for optimal sample size of 201.
+2025-06-18 15:51:24,065 - INFO - E[G_100] = 100.00000000047484
+2025-06-18 15:51:24,279 - INFO - E[G_200] = 50.0
+2025-06-18 15:51:24,280 - INFO - Expected relative number of singletons: 22450.0
+2025-06-18 15:51:24,280 - INFO - Arithmetic mean of population intervals: 22450
+2025-06-18 15:51:24,281 - INFO - Tajima's D of expected SFS: -0.7711293768113179

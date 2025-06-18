@@ -1,0 +1,36 @@
+2025-06-18 15:51:26,289 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-18 15:51:26,289 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/3epE_161_log.log
+
+2025-06-18 15:51:26,289 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_expansion_demography.csv
+	target_time = 0
+	target_sample_size = 161
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/3epE_161
+
+2025-06-18 15:51:26,289 - INFO - Reading in the demographic history from ../Data/three_epoch_expansion_demography.csv
+2025-06-18 15:51:26,293 - INFO - Finding time frame of target sample size 161.
+2025-06-18 15:51:26,294 - INFO - Optimal sample size is 161.
+2025-06-18 15:51:26,294 - INFO - Median time interval is approximately 603.2261054973579.
+2025-06-18 15:51:26,294 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-18 15:51:26,304 - INFO - Output tree: 
+       Total time  Next time interval  Population size
+161      0.000000            6.211180            40000
+160      6.211180            6.289308            40000
+159     12.500488            6.368920            40000
+158     18.869408            6.450052            40000
+157     25.319460            6.532745            40000
+..            ...                 ...              ...
+6     7482.013984         1333.333333            10000
+5     8815.347318         2000.000000            10000
+4    10815.347318         3333.333333            10000
+3    14148.680651         6666.666667            10000
+2    20815.347318        20000.000000            10000
+
+[160 rows x 3 columns]
+2025-06-18 15:51:26,304 - INFO - Computing expected sfs for optimal sample size of 161.
+2025-06-18 15:51:26,664 - INFO - E[G_100] = 99.99999999999997
+2025-06-18 15:51:26,750 - INFO - Expected relative number of singletons: 21375.0
+2025-06-18 15:51:26,750 - INFO - Arithmetic mean of population intervals: 21375
+2025-06-18 15:51:26,751 - INFO - Tajima's D of expected SFS: -0.721166970803734
