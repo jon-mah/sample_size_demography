@@ -1,0 +1,35 @@
+2025-06-24 08:43:16,074 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-24 08:43:16,075 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_91_log.log
+
+2025-06-24 08:43:16,075 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 91
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/tennessen_91
+
+2025-06-24 08:43:16,075 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-06-24 08:43:16,082 - INFO - Finding time frame of target sample size 91.
+2025-06-24 08:43:16,084 - INFO - Optimal sample size is 91.
+2025-06-24 08:43:16,084 - INFO - Median time interval is approximately 657.301587301587.
+2025-06-24 08:43:16,085 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 08:43:16,108 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+91     0.000000          244.901587           501436
+90   244.901587            4.633708             9279
+89   249.535295            4.739019             9279
+88   254.274315            4.847962             9279
+87   259.122277            4.960706             9279
+..          ...                 ...              ...
+6   1490.736881          137.600000             1032
+5   1628.336881          206.400000             1032
+4   1834.736881          344.000000             1032
+3   2178.736881         4873.333333             7310
+2   7052.070215        14620.000000             7310
+
+[90 rows x 3 columns]
+2025-06-24 08:43:16,108 - INFO - Computing expected sfs for optimal sample size of 91.
+2025-06-24 08:43:16,349 - INFO - Expected relative number of singletons: 11863.022222222222
+2025-06-24 08:43:16,350 - INFO - Arithmetic mean of population intervals: 11863.022222222222
+2025-06-24 08:43:16,350 - INFO - Tajima's D of expected SFS: -0.5753366249434386

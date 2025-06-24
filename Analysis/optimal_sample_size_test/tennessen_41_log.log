@@ -1,0 +1,62 @@
+2025-06-24 08:43:12,141 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-24 08:43:12,142 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_41_log.log
+
+2025-06-24 08:43:12,142 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 41
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/tennessen_41
+
+2025-06-24 08:43:12,142 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-06-24 08:43:12,145 - INFO - Finding time frame of target sample size 41.
+2025-06-24 08:43:12,145 - INFO - Optimal sample size is 41.
+2025-06-24 08:43:12,145 - INFO - Median time interval is approximately 1326.2146341463415.
+2025-06-24 08:43:12,145 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 08:43:12,156 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+41     0.000000         1223.014634           501436
+40  1223.014634            2.646154             1032
+39  1225.660788            2.785425             1032
+38  1228.446213            2.935989             1032
+37  1231.382202            3.099099             1032
+36  1234.481301            3.276190             1032
+35  1237.757491            3.468908             1032
+34  1241.226399            3.679144             1032
+33  1244.905543            3.909091             1032
+32  1248.814634            4.161290             1032
+31  1252.975924            4.438710             1032
+30  1257.414634            4.744828             1032
+29  1262.159462            5.083744             1032
+28  1267.243206            5.460317             1032
+27  1272.703523            5.880342             1032
+26  1278.583865            6.350769             1032
+25  1284.934634            6.880000             1032
+24  1291.814634            7.478261             1032
+23  1299.292895            8.158103             1032
+22  1307.450998            8.935065             1032
+21  1316.386063            9.828571             1032
+20  1326.214634           10.863158             1032
+19  1337.077792           12.070175             1032
+18  1349.147967           13.490196             1032
+17  1362.638164           15.176471             1032
+16  1377.814634           17.200000             1032
+15  1395.014634           19.657143             1032
+14  1414.671777           22.681319             1032
+13  1437.353096           26.461538             1032
+12  1463.814634           31.272727             1032
+11  1495.087361           37.527273             1032
+10  1532.614634           45.866667             1032
+9   1578.481301           57.333333             1032
+8   1635.814634           73.714286             1032
+7   1709.528920           98.285714             1032
+6   1807.814634          137.600000             1032
+5   1945.414634          206.400000             1032
+4   2151.814634         2436.666667             7310
+3   4588.481301         4873.333333             7310
+2   9461.814634        14620.000000             7310
+2025-06-24 08:43:12,156 - INFO - Computing expected sfs for optimal sample size of 41.
+2025-06-24 08:43:12,202 - INFO - Expected relative number of singletons: 14012.95
+2025-06-24 08:43:12,202 - INFO - Arithmetic mean of population intervals: 14012.95
+2025-06-24 08:43:12,203 - INFO - Tajima's D of expected SFS: -0.6093882891213295

@@ -1,0 +1,35 @@
+2025-06-24 08:43:13,619 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-24 08:43:13,619 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_71_log.log
+
+2025-06-24 08:43:13,619 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 71
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/tennessen_71
+
+2025-06-24 08:43:13,619 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-06-24 08:43:13,622 - INFO - Finding time frame of target sample size 71.
+2025-06-24 08:43:13,622 - INFO - Optimal sample size is 71.
+2025-06-24 08:43:13,622 - INFO - Median time interval is approximately 933.7987927565391.
+2025-06-24 08:43:13,622 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 08:43:13,634 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+71     0.000000          403.570221           501436
+70   403.570221            7.684472             9279
+69   411.254693            7.910486             9279
+68   419.165179            8.146620             9279
+67   427.311799            8.393487             9279
+..          ...                 ...              ...
+6   1503.855936          137.600000             1032
+5   1641.455936          206.400000             1032
+4   1847.855936          344.000000             1032
+3   2191.855936         4873.333333             7310
+2   7065.189269        14620.000000             7310
+
+[70 rows x 3 columns]
+2025-06-24 08:43:13,634 - INFO - Computing expected sfs for optimal sample size of 71.
+2025-06-24 08:43:13,739 - INFO - Expected relative number of singletons: 12483.5
+2025-06-24 08:43:13,739 - INFO - Arithmetic mean of population intervals: 12483.5
+2025-06-24 08:43:13,739 - INFO - Tajima's D of expected SFS: -0.61264358607396

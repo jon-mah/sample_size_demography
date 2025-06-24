@@ -1,0 +1,36 @@
+2025-06-24 08:43:12,489 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-24 08:43:12,490 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_171_log.log
+
+2025-06-24 08:43:12,490 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 171
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/tennessen_171
+
+2025-06-24 08:43:12,490 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-06-24 08:43:12,495 - INFO - Finding time frame of target sample size 171.
+2025-06-24 08:43:12,496 - INFO - Optimal sample size is 171.
+2025-06-24 08:43:12,496 - INFO - Median time interval is approximately 425.18555702982934.
+2025-06-24 08:43:12,496 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 08:43:12,508 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+171     0.000000           68.997042           501436
+170    68.997042           69.813575           501436
+169   138.810616           70.644689           501436
+168   209.455305            1.322926             9279
+167   210.778231            1.338864             9279
+..           ...                 ...              ...
+6    1522.372887          137.600000             1032
+5    1659.972887          206.400000             1032
+4    1866.372887          344.000000             1032
+3    2210.372887         4873.333333             7310
+2    7083.706221        14620.000000             7310
+
+[170 rows x 3 columns]
+2025-06-24 08:43:12,508 - INFO - Computing expected sfs for optimal sample size of 171.
+2025-06-24 08:43:12,848 - INFO - E[G_100] = 62.54561782109295
+2025-06-24 08:43:12,945 - INFO - Expected relative number of singletons: 16194.535294117648
+2025-06-24 08:43:12,946 - INFO - Arithmetic mean of population intervals: 16194.535294117648
+2025-06-24 08:43:12,946 - INFO - Tajima's D of expected SFS: -0.8928951206966318

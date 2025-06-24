@@ -1,0 +1,43 @@
+2025-06-24 08:43:22,822 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-24 08:43:22,822 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_811_log.log
+
+2025-06-24 08:43:22,822 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 811
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/tennessen_811
+
+2025-06-24 08:43:22,823 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-06-24 08:43:22,828 - INFO - Finding time frame of target sample size 811.
+2025-06-24 08:43:22,845 - INFO - Optimal sample size is 811.
+2025-06-24 08:43:22,846 - INFO - Median time interval is approximately 246.81237406371474.
+2025-06-24 08:43:22,846 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 08:43:22,878 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+811     0.000000            3.053301           501436
+810     3.053301            3.060849           501436
+809     6.114150            3.068426           501436
+808     9.182576            3.076030           501436
+807    12.258606            3.083663           501436
+..           ...                 ...              ...
+6    1530.417930          137.600000             1032
+5    1668.017930          206.400000             1032
+4    1874.417930          344.000000             1032
+3    2218.417930         4873.333333             7310
+2    7091.751263        14620.000000             7310
+
+[810 rows x 3 columns]
+2025-06-24 08:43:22,878 - INFO - Computing expected sfs for optimal sample size of 811.
+2025-06-24 08:43:27,817 - INFO - E[G_100] = 25.01128283993198
+2025-06-24 08:43:32,130 - INFO - E[G_200] = 18.754759307263893
+2025-06-24 08:43:35,811 - INFO - E[G_300] = 16.076667739217115
+2025-06-24 08:43:38,861 - INFO - E[G_400] = 14.258618626855693
+2025-06-24 08:43:41,275 - INFO - E[G_500] = 12.784569518828977
+2025-06-24 08:43:43,047 - INFO - E[G_600] = 11.482520410800365
+2025-06-24 08:43:44,150 - INFO - E[G_700] = 10.278757017072204
+2025-06-24 08:43:44,617 - INFO - E[G_800] = 9.13642219475347
+2025-06-24 08:43:44,629 - INFO - Expected relative number of singletons: 46487.248148148145
+2025-06-24 08:43:44,630 - INFO - Arithmetic mean of population intervals: 46487.248148148145
+2025-06-24 08:43:44,631 - INFO - Tajima's D of expected SFS: -1.7275698907142238
