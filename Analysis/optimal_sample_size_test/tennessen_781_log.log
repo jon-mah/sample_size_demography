@@ -1,20 +1,20 @@
-2025-06-24 08:43:23,848 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-06-24 12:57:26,932 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-06-24 08:43:23,849 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_781_log.log
+2025-06-24 12:57:26,932 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/tennessen_781_log.log
 
-2025-06-24 08:43:23,849 - INFO - Parsed the following arguments:
+2025-06-24 12:57:26,933 - INFO - Parsed the following arguments:
 	input_demography = ../Data/tennessen_demography.csv
 	target_time = 0
 	target_sample_size = 781
 	nu_tau = False
 	outprefix = ../Analysis/optimal_sample_size_test/tennessen_781
 
-2025-06-24 08:43:23,849 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
-2025-06-24 08:43:23,854 - INFO - Finding time frame of target sample size 781.
-2025-06-24 08:43:23,870 - INFO - Optimal sample size is 781.
-2025-06-24 08:43:23,870 - INFO - Median time interval is approximately 249.85539933348943.
-2025-06-24 08:43:23,870 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-06-24 08:43:23,905 - INFO - Output tree: 
+2025-06-24 12:57:26,933 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-06-24 12:57:26,936 - INFO - Finding time frame of target sample size 781.
+2025-06-24 12:57:26,952 - INFO - Optimal sample size is 781.
+2025-06-24 12:57:26,952 - INFO - Median time interval is approximately 249.85539933348943.
+2025-06-24 12:57:26,952 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 12:57:26,984 - INFO - Output tree: 
       Total time  Next time interval  Population size
 781     0.000000            3.292531           501436
 780     3.292531            3.300984           501436
@@ -25,18 +25,18 @@
 6    1529.936169          137.600000             1032
 5    1667.536169          206.400000             1032
 4    1873.936169          344.000000             1032
-3    2217.936169         4873.333333             7310
-2    7091.269502        14620.000000             7310
+3    2217.936169         1240.666667             1861
+2    3458.602835         3722.000000             1861
 
 [780 rows x 3 columns]
-2025-06-24 08:43:23,905 - INFO - Computing expected sfs for optimal sample size of 781.
-2025-06-24 08:43:28,751 - INFO - E[G_100] = 25.5000650559086
-2025-06-24 08:43:32,903 - INFO - E[G_200] = 19.201367315798876
-2025-06-24 08:43:36,455 - INFO - E[G_300] = 16.44813337418602
-2025-06-24 08:43:39,360 - INFO - E[G_400] = 14.554921826151816
-2025-06-24 08:43:41,610 - INFO - E[G_500] = 13.005710279457691
-2025-06-24 08:43:43,218 - INFO - E[G_600] = 11.628498732764795
-2025-06-24 08:43:44,205 - INFO - E[G_700] = 10.349572900371957
-2025-06-24 08:43:44,505 - INFO - Expected relative number of singletons: 45394.45256410256
-2025-06-24 08:43:44,506 - INFO - Arithmetic mean of population intervals: 45394.45256410256
-2025-06-24 08:43:44,507 - INFO - Tajima's D of expected SFS: -1.7129746282504676
+2025-06-24 12:57:26,984 - INFO - Computing expected sfs for optimal sample size of 781.
+2025-06-24 12:57:31,649 - INFO - E[G_100] = 12.416079999443399
+2025-06-24 12:57:35,740 - INFO - E[G_200] = 7.014159850601149
+2025-06-24 12:57:39,285 - INFO - E[G_300] = 5.1577035002516745
+2025-06-24 12:57:42,102 - INFO - E[G_400] = 4.16126954346734
+2025-06-24 12:57:44,283 - INFO - E[G_500] = 3.5088355880336635
+2025-06-24 12:57:45,818 - INFO - E[G_600] = 3.0284016326003615
+2025-06-24 12:57:46,738 - INFO - E[G_700] = 2.6462533914564528
+2025-06-24 12:57:47,011 - INFO - Expected relative number of singletons: 45380.480769230766
+2025-06-24 12:57:47,012 - INFO - Arithmetic mean of population intervals: 45380.480769230766
+2025-06-24 12:57:47,013 - INFO - Tajima's D of expected SFS: -2.4088920328415475
