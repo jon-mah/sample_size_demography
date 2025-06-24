@@ -1,5 +1,5 @@
 #!/bin/bash
-#$ -N downsample_sfs.bash
+#$ -N sfs_summary_statistics
 #$ -cwd # Run qsub script from desired working directory
 #$ -V
 #$ -e /u/home/j/jonmah/postproc_error
@@ -8,7 +8,7 @@
 #$ -l h_rt=00:10:00
 #$ -t 11-1001:10
 
-# SGE_TASK_ID=10
+SGE_TASK_ID=751
 
 sample_size=$SGE_TASK_ID
 
@@ -20,8 +20,18 @@ sample_size=$SGE_TASK_ID
 # python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat
 
 # Lynch theoretical SFS
-python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/2epC_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/2epC_${sample_size}
-python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/2epE_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/2epE_${sample_size}
-python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/3epC_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/3epC_${sample_size}
-python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/3epE_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/3epE_${sample_size}
-python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/3epB_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/3epB_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/2epC_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/2epC_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/2epE_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/2epE_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/3epC_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/3epC_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/3epE_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/3epE_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/3epB_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/3epB_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/tennessen_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/tennessen_${sample_size}
+# python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/1000_1000_bottleneck_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/1000_1000_bottleneck_${sample_size}
+python compute_sfs_summary_statistics.py ../Analysis/optimal_sample_size_test/2000_2000_bottleneck_${sample_size}_expected_sfs.txt ../Analysis/optimal_sample_size_test/2000_2000_bottleneck_${sample_size}
+
+
+# python compute_sfs_summary_statistics.py ../Analysis/TwoEpochContraction_${sample_size}/syn_downsampled_sfs.txt ../Analysis/TwoEpochContraction_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Analysis/TwoEpochExpansion_${sample_size}/syn_downsampled_sfs.txt ../Analysis/TwoEpochExpansion_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Analysis/ThreeEpochContraction_${sample_size}/syn_downsampled_sfs.txt ../Analysis/ThreeEpochContraction_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Analysis/ThreeEpochExpansion_${sample_size}/syn_downsampled_sfs.txt ../Analysis/ThreeEpochExpansion_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Analysis/ThreeEpochBottleneck_${sample_size}/syn_downsampled_sfs.txt ../Analysis/ThreeEpochBottleneck_${sample_size}/

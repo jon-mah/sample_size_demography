@@ -1,0 +1,32 @@
+2025-06-24 15:05:48,607 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-06-24 15:05:48,608 - INFO - Progress is being logged to ../Analysis/optimal_sample_size_test/1000_1000_bottleneck_11_log.log
+
+2025-06-24 15:05:48,608 - INFO - Parsed the following arguments:
+	input_demography = ../Data/1000_1000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 11
+	nu_tau = False
+	outprefix = ../Analysis/optimal_sample_size_test/1000_1000_bottleneck_11
+
+2025-06-24 15:05:48,608 - INFO - Reading in the demographic history from ../Data/1000_1000_bottleneck_demography.csv
+2025-06-24 15:05:48,611 - INFO - Finding time frame of target sample size 11.
+2025-06-24 15:05:48,612 - INFO - Optimal sample size is 11.
+2025-06-24 15:05:48,612 - INFO - Median time interval is approximately 3418.181818181818.
+2025-06-24 15:05:48,612 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-06-24 15:05:48,623 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+11      0.000000         1818.181818            50000
+10   1818.181818           44.444444             1000
+9    1862.626263           55.555556             1000
+8    1918.181818           71.428571             1000
+7    1989.610390           95.238095             1000
+6    2084.848485         1333.333333            10000
+5    3418.181818         2000.000000            10000
+4    5418.181818         3333.333333            10000
+3    8751.515152         6666.666667            10000
+2   15418.181818        20000.000000            10000
+2025-06-24 15:05:48,623 - INFO - Computing expected sfs for optimal sample size of 11.
+2025-06-24 15:05:48,630 - INFO - Expected relative number of singletons: 10400.0
+2025-06-24 15:05:48,630 - INFO - Arithmetic mean of population intervals: 10400
+2025-06-24 15:05:48,631 - INFO - Tajima's D of expected SFS: -0.053389483110110526
