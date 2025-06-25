@@ -783,6 +783,7 @@ compare_msprime_dadi_lynch_proportional_sfs = function(null, msprime, dadi, lync
                       'MSPrime',
                       'Dadi projection',
                       'Lynch Theoretical',
+                      
                       'x_axis')
   
   p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
@@ -795,7 +796,89 @@ compare_msprime_dadi_lynch_proportional_sfs = function(null, msprime, dadi, lync
     ylab('Proportion of segregating sites') +
     theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
-    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
-  
+
   return(p_input_comparison)
+}
+
+compare_msprime_dadi_lynch_proportional_sfs_bottleneck = function(null, msprime, dadi, lynch, lynch_1000, lynch_2000) {
+  if (length(msprime) > 5) {
+    x_axis = 1:5
+    null = proportional_sfs(null)[1:5]
+    msprime = proportional_sfs(msprime)[1:5]
+    dadi = proportional_sfs(dadi)[1:5]
+    lynch = proportional_sfs(lynch)[1:5]
+    lynch_1000 = proportional_sfs(lynch_1000)[1:5]
+    lynch_2000 = proportional_sfs(lynch_2000)[1:5]
+  } else {
+    x_axis = 1:length(msprime)
+    null = proportional_sfs(null)
+    msprime = proportional_sfs(msprime)
+    dadi = proportional_sfs(dadi)
+    lynch = proportional_sfs(lynch)    
+    lynch_1000 = proportional_sfs(lynch_1000)
+    lynch_2000 = proportional_sfs(lynch_2000)
+  }
+  input_df = data.frame(null,
+                        msprime,
+                        dadi,
+                        lynch,
+                        lynch_1000,
+                        lynch_2000,
+                        x_axis)
+  
+  names(input_df) = c('SNM',
+                      'MSPrime',
+                      'Dadi projection',
+                      'Lynch Theoretical',
+                      'Lynch (1000, 1000)',
+                      'Lynch (2000, 2000)',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
+
+read_summary_statistics = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+
+  watterson_theta_string = readLines(this_file)[10]
+  # Extract the float that comes after "Watterson's Theta: "
+  match <- str_match(watterson_theta_string, "Watterson's Theta:\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  watterson_theta <- as.numeric(match[2])
+  
+  pi_string = readLines(this_file)[11]
+  # Extract the float that comes after "Nucleotide Diversity: "
+  match <- str_match(pi_string, "Nucleotide Diversity:\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  pi <- as.numeric(match[2])
+  
+  tajima_D_string = readLines(this_file)[12]
+  # Extract the float that comes after "Tajima's D: "
+  match <- str_match(tajima_D_string, "Tajima's D:\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  tajima_D <- as.numeric(match[2])
+  
+  zeng_E_string = readLines(this_file)[13]
+  # Extract the float that comes after "Zeng's E: "
+  match <- str_match(zeng_E_string, "Zeng's E:\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  zeng_E <- as.numeric(match[2])
+  
+  zeng_theta_L_string = readLines(this_file)[14]
+  # Extract the float that comes after "Zeng's Theta_L: "
+  match <- str_match(zeng_theta_L_string, "Zeng's Theta_L:\\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  zeng_theta_L <- as.numeric(match[2])
+
+  return_list = c(watterson_theta, pi, tajima_D, zeng_E, zeng_theta_L)
+  
+  return(return_list)
 }

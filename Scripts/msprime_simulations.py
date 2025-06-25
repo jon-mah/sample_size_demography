@@ -175,8 +175,8 @@ class msPrimeSimulate():
         with open(output_ThreeEpB, "w+") as f4:
             ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
                 demography=dem4, sequence_length=1000000, recombination_rate=1e-8)
-            mts3 = msprime.sim_mutations(ts4, rate=1.5E-8)
-            mts3.write_vcf(f4)
+            mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
+            mts4.write_vcf(f4)
 
 
         logger.info('Pipeline executed succesfully.')
