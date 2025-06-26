@@ -1333,47 +1333,47 @@ compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, TwoEpochC_100_msp
   ggtitle('Three Epoch Bottleneck, k=100') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_10_SFS, 
-  ThreeEpochB_10_msprime_SFS, ThreeEpochB_10_dadi_projection_SFS, 
-  ThreeEpochB_10_lynch_SFS, lynch_1000_1000_10_SFS, lynch_2000_2000_10_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=10') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_20_SFS, 
-  ThreeEpochB_20_msprime_SFS, ThreeEpochB_20_dadi_projection_SFS, 
-  ThreeEpochB_20_lynch_SFS, lynch_1000_1000_20_SFS, lynch_2000_2000_20_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=20') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_30_SFS, 
-  ThreeEpochB_30_msprime_SFS, ThreeEpochB_30_dadi_projection_SFS, 
-  ThreeEpochB_30_lynch_SFS, lynch_1000_1000_30_SFS, lynch_2000_2000_30_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=30') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_40_SFS, 
-  ThreeEpochB_40_msprime_SFS, ThreeEpochB_40_dadi_projection_SFS, 
-  ThreeEpochB_40_lynch_SFS, lynch_1000_1000_40_SFS, lynch_2000_2000_40_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=40') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_50_SFS, 
-  ThreeEpochB_50_msprime_SFS, ThreeEpochB_50_dadi_projection_SFS, 
-  ThreeEpochB_50_lynch_SFS, lynch_1000_1000_50_SFS, lynch_2000_2000_50_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=50') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_60_SFS, 
-  ThreeEpochB_60_msprime_SFS, ThreeEpochB_60_dadi_projection_SFS, 
-  ThreeEpochB_60_lynch_SFS, lynch_1000_1000_60_SFS, lynch_2000_2000_60_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=60') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_70_SFS, 
-  ThreeEpochB_70_msprime_SFS, ThreeEpochB_70_dadi_projection_SFS, 
-  ThreeEpochB_70_lynch_SFS, lynch_1000_1000_70_SFS, lynch_2000_2000_70_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=70') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_80_SFS, 
-  ThreeEpochB_80_msprime_SFS, ThreeEpochB_80_dadi_projection_SFS, 
-  ThreeEpochB_80_lynch_SFS, lynch_1000_1000_80_SFS, lynch_2000_2000_80_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=80') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_90_SFS, 
-  ThreeEpochB_90_msprime_SFS, ThreeEpochB_90_dadi_projection_SFS, 
-  ThreeEpochB_90_lynch_SFS, lynch_1000_1000_90_SFS, lynch_2000_2000_90_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=90') +
-  compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_100_SFS, 
-  ThreeEpochB_100_msprime_SFS, ThreeEpochB_100_dadi_projection_SFS, 
-  ThreeEpochB_100_lynch_SFS, lynch_1000_1000_100_SFS, lynch_2000_2000_100_SFS) + 
-  ggtitle('Three Epoch Bottleneck, k=100') +
-  plot_layout(nrow=5)
+# compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_10_SFS, 
+#   ThreeEpochB_10_msprime_SFS, ThreeEpochB_10_dadi_projection_SFS, 
+#   ThreeEpochB_10_lynch_SFS, lynch_1000_1000_10_SFS, lynch_2000_2000_10_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=10') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_20_SFS, 
+#   ThreeEpochB_20_msprime_SFS, ThreeEpochB_20_dadi_projection_SFS, 
+#   ThreeEpochB_20_lynch_SFS, lynch_1000_1000_20_SFS, lynch_2000_2000_20_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=20') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_30_SFS, 
+#   ThreeEpochB_30_msprime_SFS, ThreeEpochB_30_dadi_projection_SFS, 
+#   ThreeEpochB_30_lynch_SFS, lynch_1000_1000_30_SFS, lynch_2000_2000_30_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=30') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_40_SFS, 
+#   ThreeEpochB_40_msprime_SFS, ThreeEpochB_40_dadi_projection_SFS, 
+#   ThreeEpochB_40_lynch_SFS, lynch_1000_1000_40_SFS, lynch_2000_2000_40_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=40') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_50_SFS, 
+#   ThreeEpochB_50_msprime_SFS, ThreeEpochB_50_dadi_projection_SFS, 
+#   ThreeEpochB_50_lynch_SFS, lynch_1000_1000_50_SFS, lynch_2000_2000_50_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=50') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_60_SFS, 
+#   ThreeEpochB_60_msprime_SFS, ThreeEpochB_60_dadi_projection_SFS, 
+#   ThreeEpochB_60_lynch_SFS, lynch_1000_1000_60_SFS, lynch_2000_2000_60_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=60') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_70_SFS, 
+#   ThreeEpochB_70_msprime_SFS, ThreeEpochB_70_dadi_projection_SFS, 
+#   ThreeEpochB_70_lynch_SFS, lynch_1000_1000_70_SFS, lynch_2000_2000_70_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=70') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_80_SFS, 
+#   ThreeEpochB_80_msprime_SFS, ThreeEpochB_80_dadi_projection_SFS, 
+#   ThreeEpochB_80_lynch_SFS, lynch_1000_1000_80_SFS, lynch_2000_2000_80_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=80') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_90_SFS, 
+#   ThreeEpochB_90_msprime_SFS, ThreeEpochB_90_dadi_projection_SFS, 
+#   ThreeEpochB_90_lynch_SFS, lynch_1000_1000_90_SFS, lynch_2000_2000_90_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=90') +
+#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_100_SFS, 
+#   ThreeEpochB_100_msprime_SFS, ThreeEpochB_100_dadi_projection_SFS, 
+#   ThreeEpochB_100_lynch_SFS, lynch_1000_1000_100_SFS, lynch_2000_2000_100_SFS) + 
+#   ggtitle('Three Epoch Bottleneck, k=100') +
+#   plot_layout(nrow=5)
 
 ## Compare Tajima's D
 
