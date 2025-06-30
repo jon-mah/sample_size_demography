@@ -150,31 +150,31 @@ class msPrimeSimulate():
 
         with open(output_TwoEpC, "w+") as f0:
             ts0 = msprime.sim_ancestry(samples={"TwoEpC" : sample_size},
-                demography=dem0, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
             mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
             mts0.write_vcf(f0)
 
         with open(output_TwoEpE, "w+") as f1:
             ts1 = msprime.sim_ancestry(samples={"TwoEpE" : sample_size},
-                demography=dem1, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
             mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
             mts1.write_vcf(f1)
 
         with open(output_ThreeEpC, "w+") as f2:
             ts2 = msprime.sim_ancestry(samples={"ThreeEpC" : sample_size},
-                demography=dem2, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
             mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
             mts2.write_vcf(f2)
 
         with open(output_ThreeEpE, "w+") as f3:
             ts3 = msprime.sim_ancestry(samples={"ThreeEpE": sample_size},
-                demography=dem3, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
             mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
             mts3.write_vcf(f3)
 
         with open(output_ThreeEpB, "w+") as f4:
             ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
-                demography=dem4, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
             mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
             mts4.write_vcf(f4)
 

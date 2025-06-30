@@ -130,13 +130,13 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_1000, "w+") as f0:
             ts0 = msprime.sim_ancestry(samples={"ThreeEpB_1000": sample_size},
-                demography=dem0, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
             mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
             mts0.write_vcf(f0)
 
         with open(output_ThreeEpB_2000, "w+") as f1:
             ts1 = msprime.sim_ancestry(samples={"ThreeEpB_2000": sample_size},
-                demography=dem1, sequence_length=1000000, recombination_rate=1e-8)
+                demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
             mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
             mts1.write_vcf(f1)
 
