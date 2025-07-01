@@ -1,0 +1,36 @@
+2025-07-01 00:58:41,212 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:41,212 - INFO - Progress is being logged to ../Simulations/lynch_theory/tennessen_101_log.log
+
+2025-07-01 00:58:41,212 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 101
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/tennessen_101
+
+2025-07-01 00:58:41,212 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-07-01 00:58:41,215 - INFO - Finding time frame of target sample size 101.
+2025-07-01 00:58:41,216 - INFO - Optimal sample size is 101.
+2025-07-01 00:58:41,216 - INFO - Median time interval is approximately 768.5998279827983.
+2025-07-01 00:58:41,216 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:41,258 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+101     0.000000          198.588515           501436
+100   198.588515          202.600404           501436
+99    401.188919            3.825603             9279
+98    405.014522            3.904481             9279
+97    408.919003            3.985825             9279
+..           ...                 ...              ...
+6    1518.865194          137.600000             1032
+5    1656.465194          206.400000             1032
+4    1862.865194          344.000000             1032
+3    2206.865194         1240.666667             1861
+2    3447.531861         3722.000000             1861
+
+[100 rows x 3 columns]
+2025-07-01 00:58:41,258 - INFO - Computing expected sfs for optimal sample size of 101.
+2025-07-01 00:58:41,450 - INFO - E[G_100] = 18.61
+2025-07-01 00:58:41,450 - INFO - Expected relative number of singletons: 15839.92
+2025-07-01 00:58:41,450 - INFO - Arithmetic mean of population intervals: 15839.92
+2025-07-01 00:58:41,451 - INFO - Tajima's D of expected SFS: -2.023628861326717

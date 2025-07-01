@@ -1,0 +1,37 @@
+2025-07-01 00:58:52,999 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:52,999 - INFO - Progress is being logged to ../Simulations/lynch_theory/2000_2000_bottleneck_281_log.log
+
+2025-07-01 00:58:52,999 - INFO - Parsed the following arguments:
+	input_demography = ../Data/2000_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 281
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/2000_2000_bottleneck_281
+
+2025-07-01 00:58:52,999 - INFO - Reading in the demographic history from ../Data/2000_2000_bottleneck_demography.csv
+2025-07-01 00:58:53,002 - INFO - Finding time frame of target sample size 281.
+2025-07-01 00:58:53,004 - INFO - Optimal sample size is 281.
+2025-07-01 00:58:53,004 - INFO - Median time interval is approximately 716.8276563294353.
+2025-07-01 00:58:53,004 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:53,016 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+281     0.000000            2.541942            50000
+280     2.541942            2.560164            50000
+279     5.102106            2.578582            50000
+278     7.680688            2.597200            50000
+277    10.277888            2.616021            50000
+..           ...                 ...              ...
+6    2639.854401          133.333333             1000
+5    2773.187735          200.000000             1000
+4    2973.187735          333.333333             1000
+3    3306.521068          666.666667             1000
+2    3973.187735         2000.000000             1000
+
+[280 rows x 3 columns]
+2025-07-01 00:58:53,016 - INFO - Computing expected sfs for optimal sample size of 281.
+2025-07-01 00:58:53,626 - INFO - E[G_100] = 9.999999999998602
+2025-07-01 00:58:53,998 - INFO - E[G_200] = 4.999999999998848
+2025-07-01 00:58:54,119 - INFO - Expected relative number of singletons: 37400.0
+2025-07-01 00:58:54,119 - INFO - Arithmetic mean of population intervals: 37400
+2025-07-01 00:58:54,121 - INFO - Tajima's D of expected SFS: -2.624456272426051

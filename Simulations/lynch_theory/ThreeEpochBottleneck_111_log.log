@@ -1,0 +1,36 @@
+2025-07-01 00:58:37,088 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:37,088 - INFO - Progress is being logged to ../Simulations/lynch_theory/ThreeEpochBottleneck_111_log.log
+
+2025-07-01 00:58:37,088 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 111
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/ThreeEpochBottleneck_111
+
+2025-07-01 00:58:37,088 - INFO - Reading in the demographic history from ../Data/three_epoch_bottleneck_demography.csv
+2025-07-01 00:58:37,091 - INFO - Finding time frame of target sample size 111.
+2025-07-01 00:58:37,092 - INFO - Optimal sample size is 111.
+2025-07-01 00:58:37,092 - INFO - Median time interval is approximately 250.7234507234508.
+2025-07-01 00:58:37,092 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:37,221 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+111     0.000000           16.380016            50000
+110    16.380016           16.680567            50000
+109    33.060584           16.989467            50000
+108    50.050050           17.307027            50000
+107    67.357077           17.633574            50000
+..           ...                 ...              ...
+6     844.662845          133.333333             1000
+5     977.996178          200.000000             1000
+4    1177.996178          333.333333             1000
+3    1511.329511          666.666667             1000
+2    2177.996178        20000.000000            10000
+
+[110 rows x 3 columns]
+2025-07-01 00:58:37,221 - INFO - Computing expected sfs for optimal sample size of 111.
+2025-07-01 00:58:37,450 - INFO - E[G_100] = 91.81818181818183
+2025-07-01 00:58:37,457 - INFO - Expected relative number of singletons: 6427.272727272727
+2025-07-01 00:58:37,457 - INFO - Arithmetic mean of population intervals: 6427.272727272727
+2025-07-01 00:58:37,458 - INFO - Tajima's D of expected SFS: 0.3387561595331051

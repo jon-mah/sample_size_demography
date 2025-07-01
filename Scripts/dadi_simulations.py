@@ -11,7 +11,7 @@ import time
 import argparse
 import warnings
 
-import Dadi
+import dadi
 
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
@@ -343,7 +343,7 @@ class DadiSimulate():
         # Output files: logfile
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
-        logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
+        logfile = '{0}{1}{2}.log'.format(args['outprefix'], underscore, sample_size)
         output_TwoEpC = '{0}{1}TwoEpochContraction_{2}.sfs'.format(
             args['outprefix'], underscore, sample_size)
         output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}.sfs'.format(
@@ -385,24 +385,24 @@ class DadiSimulate():
         # Initialize demographic scenario parameters
         mu = 1.5E-8  # Mutation rate per generation
         N_e = 10000  # Effective population size
-        theta = N_e * mu * 4
+        theta = N_e * mu * 4 * 100000000
 
         with open(output_TwoEpC, "w+") as f0:
             """Simulate a two-epoch contraction."""
             nu = 0.5
             tau = 0.1
-            output_spectrum = self.two_epoch(
+            output_spectrum = theta * self.two_epoch(
                 params=(nu, tau), ns=(sample_size,), pts=1000)
-            output_spectrum.to_file(f0)
+            output_spectrum.fold().to_file(f0)
             logger.info('Finished generating two-epoch contraction.')
 
         with open(output_TwoEpE, "w+") as f1:
             """Simulate a two-epoch expansion."""
             nu = 2.0
             tau = 0.01
-            output_spectrum = self.two_epoch(
+            output_spectrum = theta * self.two_epoch(
                 params=(nu, tau), ns=(sample_size,), pts=1000)
-            output_spectrum.to_file(f1)
+            output_spectrum.fold().to_file(f1)
             logger.info('Finished generating two-epoch expansion.')
 
         with open(output_ThreeEpC, "w+") as f2:
@@ -411,9 +411,9 @@ class DadiSimulate():
             nuF = 0.025  # Concurrent relative size
             tauB = 0.09  # Bottleneck duration
             tauF = 0.01  # Time since bottleneck recovery
-            output_spectrum = self.three_epoch(
+            output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
-            output_spectrum.to_file(f2)
+            output_spectrum.fold().to_file(f2)
             logger.info('Finished generating three-epoch contraction.')
 
         with open(output_ThreeEpE, "w+") as f3:
@@ -422,9 +422,9 @@ class DadiSimulate():
             nuF = 4.0  # Concurrent relative size
             tauB = 0.09  # Bottleneck duration
             tauF = 0.01  # Time since bottleneck recovery
-            output_spectrum = self.three_epoch(
+            output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
-            output_spectrum.to_file(f3)
+            output_spectrum.fold().to_file(f3)
             logger.info('Finished generating three-epoch expansion.')
 
         with open(output_ThreeEpB, "w+") as f4:
@@ -433,9 +433,9 @@ class DadiSimulate():
             nuF = 5.0  # Concurrent relative size
             tauB = 0.09  # Bottleneck duration
             tauF = 0.01  # Time since bottleneck recovery
-            output_spectrum = self.three_epoch(
+            output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
-            output_spectrum.to_file(f4)
+            output_spectrum.fold().to_file(f4)
             logger.info('Finished generating three-epoch bottleneck.')
 
         logger.info('Pipeline executed succesfully.')

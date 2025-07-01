@@ -1,0 +1,32 @@
+2025-07-01 00:58:41,833 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:41,833 - INFO - Progress is being logged to ../Simulations/lynch_theory/2000_2000_bottleneck_11_log.log
+
+2025-07-01 00:58:41,833 - INFO - Parsed the following arguments:
+	input_demography = ../Data/2000_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 11
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/2000_2000_bottleneck_11
+
+2025-07-01 00:58:41,833 - INFO - Reading in the demographic history from ../Data/2000_2000_bottleneck_demography.csv
+2025-07-01 00:58:41,836 - INFO - Finding time frame of target sample size 11.
+2025-07-01 00:58:41,836 - INFO - Optimal sample size is 11.
+2025-07-01 00:58:41,836 - INFO - Median time interval is approximately 7595.959595959596.
+2025-07-01 00:58:41,836 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:41,844 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+11      0.000000         1818.181818            50000
+10   1818.181818         2222.222222            50000
+9    4040.404040          555.555556            10000
+8    4595.959596          714.285714            10000
+7    5310.245310          952.380952            10000
+6    6262.626263         1333.333333            10000
+5    7595.959596         2000.000000            10000
+4    9595.959596         3333.333333            10000
+3   12929.292929         6666.666667            10000
+2   19595.959596        20000.000000            10000
+2025-07-01 00:58:41,844 - INFO - Computing expected sfs for optimal sample size of 11.
+2025-07-01 00:58:41,851 - INFO - Expected relative number of singletons: 18000.0
+2025-07-01 00:58:41,852 - INFO - Arithmetic mean of population intervals: 18000
+2025-07-01 00:58:41,852 - INFO - Tajima's D of expected SFS: -0.47477786170884395

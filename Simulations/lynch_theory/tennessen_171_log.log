@@ -1,0 +1,36 @@
+2025-07-01 00:58:39,852 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:39,852 - INFO - Progress is being logged to ../Simulations/lynch_theory/tennessen_171_log.log
+
+2025-07-01 00:58:39,852 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 171
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/tennessen_171
+
+2025-07-01 00:58:39,852 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-07-01 00:58:39,855 - INFO - Finding time frame of target sample size 171.
+2025-07-01 00:58:39,856 - INFO - Optimal sample size is 171.
+2025-07-01 00:58:39,857 - INFO - Median time interval is approximately 425.18555702982934.
+2025-07-01 00:58:39,857 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:39,866 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+171     0.000000           68.997042           501436
+170    68.997042           69.813575           501436
+169   138.810616           70.644689           501436
+168   209.455305            1.322926             9279
+167   210.778231            1.338864             9279
+..           ...                 ...              ...
+6    1522.372887          137.600000             1032
+5    1659.972887          206.400000             1032
+4    1866.372887          344.000000             1032
+3    2210.372887         1240.666667             1861
+2    3451.039554         3722.000000             1861
+
+[170 rows x 3 columns]
+2025-07-01 00:58:39,866 - INFO - Computing expected sfs for optimal sample size of 171.
+2025-07-01 00:58:40,229 - INFO - E[G_100] = 17.216310476853455
+2025-07-01 00:58:40,332 - INFO - Expected relative number of singletons: 16130.429411764706
+2025-07-01 00:58:40,332 - INFO - Arithmetic mean of population intervals: 16130.429411764706
+2025-07-01 00:58:40,333 - INFO - Tajima's D of expected SFS: -2.028184378249985

@@ -1,0 +1,35 @@
+2025-07-01 00:58:29,201 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:29,201 - INFO - Progress is being logged to ../Simulations/lynch_theory/TwoEpochContraction_71_log.log
+
+2025-07-01 00:58:29,201 - INFO - Parsed the following arguments:
+	input_demography = ../Data/two_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 71
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/TwoEpochContraction_71
+
+2025-07-01 00:58:29,201 - INFO - Reading in the demographic history from ../Data/two_epoch_contraction_demography.csv
+2025-07-01 00:58:29,205 - INFO - Finding time frame of target sample size 71.
+2025-07-01 00:58:29,206 - INFO - Optimal sample size is 71.
+2025-07-01 00:58:29,206 - INFO - Median time interval is approximately 289.7384305835011.
+2025-07-01 00:58:29,206 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:29,238 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+71      0.000000            4.024145             5000
+70      4.024145            4.140787             5000
+69      8.164932            4.262575             5000
+68     12.427506            4.389816             5000
+67     16.817322            4.522840             5000
+..           ...                 ...              ...
+6    3884.976526         1333.333333            10000
+5    5218.309859         2000.000000            10000
+4    7218.309859         3333.333333            10000
+3   10551.643192         6666.666667            10000
+2   17218.309859        20000.000000            10000
+
+[70 rows x 3 columns]
+2025-07-01 00:58:29,238 - INFO - Computing expected sfs for optimal sample size of 71.
+2025-07-01 00:58:29,343 - INFO - Expected relative number of singletons: 5500.0
+2025-07-01 00:58:29,344 - INFO - Arithmetic mean of population intervals: 5500
+2025-07-01 00:58:29,345 - INFO - Tajima's D of expected SFS: 0.6042870576845258

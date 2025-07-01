@@ -1,0 +1,36 @@
+2025-07-01 00:58:31,023 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:31,023 - INFO - Progress is being logged to ../Simulations/lynch_theory/TwoEpochExpansion_111_log.log
+
+2025-07-01 00:58:31,024 - INFO - Parsed the following arguments:
+	input_demography = ../Data/two_epoch_expansion_demography.csv
+	target_time = 0
+	target_sample_size = 111
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/TwoEpochExpansion_111
+
+2025-07-01 00:58:31,024 - INFO - Reading in the demographic history from ../Data/two_epoch_expansion_demography.csv
+2025-07-01 00:58:31,026 - INFO - Finding time frame of target sample size 111.
+2025-07-01 00:58:31,028 - INFO - Optimal sample size is 111.
+2025-07-01 00:58:31,028 - INFO - Median time interval is approximately 471.66828562177415.
+2025-07-01 00:58:31,028 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:31,047 - INFO - Output tree: 
+       Total time  Next time interval  Population size
+111      0.000000            6.552007            20000
+110      6.552007            6.672227            20000
+109     13.224233            6.795787            20000
+108     20.020020            6.922811            20000
+107     26.942831            7.053430            20000
+..            ...                 ...              ...
+6     6411.062225         1333.333333            10000
+5     7744.395558         2000.000000            10000
+4     9744.395558         3333.333333            10000
+3    13077.728892         6666.666667            10000
+2    19744.395558        20000.000000            10000
+
+[110 rows x 3 columns]
+2025-07-01 00:58:31,047 - INFO - Computing expected sfs for optimal sample size of 111.
+2025-07-01 00:58:31,280 - INFO - E[G_100] = 99.99999999999999
+2025-07-01 00:58:31,287 - INFO - Expected relative number of singletons: 12272.727272727272
+2025-07-01 00:58:31,288 - INFO - Arithmetic mean of population intervals: 12272.727272727272
+2025-07-01 00:58:31,289 - INFO - Tajima's D of expected SFS: -0.1402243655387179

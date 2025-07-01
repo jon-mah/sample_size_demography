@@ -1,0 +1,40 @@
+2025-07-01 00:59:03,031 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:59:03,031 - INFO - Progress is being logged to ../Simulations/lynch_theory/ThreeEpochBottleneck_551_log.log
+
+2025-07-01 00:59:03,031 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 551
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/ThreeEpochBottleneck_551
+
+2025-07-01 00:59:03,031 - INFO - Reading in the demographic history from ../Data/three_epoch_bottleneck_demography.csv
+2025-07-01 00:59:03,036 - INFO - Finding time frame of target sample size 551.
+2025-07-01 00:59:03,044 - INFO - Optimal sample size is 551.
+2025-07-01 00:59:03,044 - INFO - Median time interval is approximately 203.68172406821722.
+2025-07-01 00:59:03,044 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:59:03,068 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+551     0.000000            0.659957            50000
+550     0.659957            0.662361            50000
+549     1.322318            0.664779            50000
+548     1.987097            0.667209            50000
+547     2.654306            0.669653            50000
+..           ...                 ...              ...
+6     855.802936          133.333333             1000
+5     989.136270          200.000000             1000
+4    1189.136270          333.333333             1000
+3    1522.469603          666.666667             1000
+2    2189.136270        20000.000000            10000
+
+[550 rows x 3 columns]
+2025-07-01 00:59:03,068 - INFO - Computing expected sfs for optimal sample size of 551.
+2025-07-01 00:59:04,634 - INFO - E[G_100] = 26.36363636364866
+2025-07-01 00:59:06,046 - INFO - E[G_200] = 21.363636363638207
+2025-07-01 00:59:06,919 - INFO - E[G_300] = 19.696969696968843
+2025-07-01 00:59:07,523 - INFO - E[G_400] = 18.86363636364093
+2025-07-01 00:59:07,853 - INFO - E[G_500] = 18.363636363637447
+2025-07-01 00:59:07,920 - INFO - Expected relative number of singletons: 18478.18181818182
+2025-07-01 00:59:07,922 - INFO - Arithmetic mean of population intervals: 18478.18181818182
+2025-07-01 00:59:07,924 - INFO - Tajima's D of expected SFS: -0.7451286179118701

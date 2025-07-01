@@ -28,7 +28,7 @@ sample_size=$SGE_TASK_ID
 # python downsample_sfs.py ../Data/gnomAD_empirical_syn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/syn
 # python downsample_sfs.py ../Data/gnomAD_empirical_nonsyn_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/nonsyn
 # python downsample_sfs.py ../Data/gnomAD_empirical_stop_gained_sfs.txt ${sample_size} ../Analysis/gnomAD_${sample_size}/stop_gained
-python downsample_sfs.py ../Analysis/snm_800/snm_sfs.txt ${sample_size} ../Analysis/snm_${sample_size}/snm
+# python downsample_sfs.py ../Analysis/snm_800/snm_sfs.txt ${sample_size} ../Analysis/snm_${sample_size}/snm
 
 # Simulated Tennessen data
 # python downsample_sfs.py ../Simulations/ooa_864_sfs/dadi/pop1.sfs ${sample_size} ../Analysis/ooa_simulated_${sample_size}/syn

@@ -298,6 +298,7 @@ class ComputeOptimalSampleSize():
         logger.info('Arithmetic mean of population intervals: {0}'.format(
             statistics.mean(output_tree.iloc[:, 2])))
         output_sfs = dadi.Spectrum(output_sfs)
+        output_sfs = output_sfs.fold()
         logger.info("Tajima's D of expected SFS: {0}".format(
             output_sfs.Tajima_D()))
         output_sfs.to_file(expected_sfs)

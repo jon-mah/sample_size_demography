@@ -5,10 +5,11 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=45G
-#$ -l h_rt=04:00:00
-#$ -t 10-800:10
+#$ -l highp
+#$ -l h_rt=06:00:00
+#$ -t 670
 
-# SGE_TASK_ID=970
+# SGE_TASK_ID=670
 
 sample_size=$SGE_TASK_ID
 

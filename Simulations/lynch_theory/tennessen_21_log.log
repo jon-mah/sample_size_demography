@@ -1,0 +1,42 @@
+2025-07-01 00:58:38,860 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:38,860 - INFO - Progress is being logged to ../Simulations/lynch_theory/tennessen_21_log.log
+
+2025-07-01 00:58:38,860 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 21
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/tennessen_21
+
+2025-07-01 00:58:38,860 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-07-01 00:58:38,863 - INFO - Finding time frame of target sample size 21.
+2025-07-01 00:58:38,863 - INFO - Optimal sample size is 21.
+2025-07-01 00:58:38,863 - INFO - Median time interval is approximately 5147.78095238095.
+2025-07-01 00:58:38,863 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:38,882 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+21      0.000000         4775.580952           501436
+20   4775.580952           19.589474             1861
+19   4795.170426           21.766082             1861
+18   4816.936508           24.326797             1861
+17   4841.263305           27.367647             1861
+16   4868.630952           31.016667             1861
+15   4899.647619           35.447619             1861
+14   4935.095238           40.901099             1861
+13   4975.996337           47.717949             1861
+12   5023.714286           56.393939             1861
+11   5080.108225           67.672727             1861
+10   5147.780952           82.711111             1861
+9    5230.492063          103.388889             1861
+8    5333.880952          132.928571             1861
+7    5466.809524          177.238095             1861
+6    5644.047619          248.133333             1861
+5    5892.180952          372.200000             1861
+4    6264.380952         2436.666667             7310
+3    8701.047619         4873.333333             7310
+2   13574.380952        14620.000000             7310
+2025-07-01 00:58:38,882 - INFO - Computing expected sfs for optimal sample size of 21.
+2025-07-01 00:58:38,900 - INFO - Expected relative number of singletons: 27657.1
+2025-07-01 00:58:38,900 - INFO - Arithmetic mean of population intervals: 27657.1
+2025-07-01 00:58:38,901 - INFO - Tajima's D of expected SFS: -1.3554113947409077

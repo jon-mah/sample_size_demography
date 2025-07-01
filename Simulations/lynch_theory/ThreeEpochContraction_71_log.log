@@ -1,0 +1,35 @@
+2025-07-01 00:58:32,964 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:32,964 - INFO - Progress is being logged to ../Simulations/lynch_theory/ThreeEpochContraction_71_log.log
+
+2025-07-01 00:58:32,964 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 71
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/ThreeEpochContraction_71
+
+2025-07-01 00:58:32,964 - INFO - Reading in the demographic history from ../Data/three_epoch_contraction_demography.csv
+2025-07-01 00:58:32,967 - INFO - Finding time frame of target sample size 71.
+2025-07-01 00:58:32,968 - INFO - Optimal sample size is 71.
+2025-07-01 00:58:32,968 - INFO - Median time interval is approximately 144.86921529175055.
+2025-07-01 00:58:32,968 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:32,995 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+71      0.000000            2.012072             2500
+70      2.012072            2.070393             2500
+69      4.082466            2.131287             2500
+68      6.213753            2.194908             2500
+67      8.408661            2.261420             2500
+..           ...                 ...              ...
+6    3680.994010         1333.333333            10000
+5    5014.327343         2000.000000            10000
+4    7014.327343         3333.333333            10000
+3   10347.660677         6666.666667            10000
+2   17014.327343        20000.000000            10000
+
+[70 rows x 3 columns]
+2025-07-01 00:58:32,995 - INFO - Computing expected sfs for optimal sample size of 71.
+2025-07-01 00:58:33,093 - INFO - Expected relative number of singletons: 4000.0
+2025-07-01 00:58:33,093 - INFO - Arithmetic mean of population intervals: 4000
+2025-07-01 00:58:33,094 - INFO - Tajima's D of expected SFS: 0.8245216350172737

@@ -1,0 +1,62 @@
+2025-07-01 00:58:33,412 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-01 00:58:33,412 - INFO - Progress is being logged to ../Simulations/lynch_theory/ThreeEpochContraction_41_log.log
+
+2025-07-01 00:58:33,412 - INFO - Parsed the following arguments:
+	input_demography = ../Data/three_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 41
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/ThreeEpochContraction_41
+
+2025-07-01 00:58:33,412 - INFO - Reading in the demographic history from ../Data/three_epoch_contraction_demography.csv
+2025-07-01 00:58:33,415 - INFO - Finding time frame of target sample size 41.
+2025-07-01 00:58:33,415 - INFO - Optimal sample size is 41.
+2025-07-01 00:58:33,415 - INFO - Median time interval is approximately 301.55210643015516.
+2025-07-01 00:58:33,416 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-01 00:58:33,521 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+41      0.000000            6.097561             2500
+40      6.097561            6.410256             2500
+39     12.507817            6.747638             2500
+38     19.255456            7.112376             2500
+37     26.367831            7.507508             2500
+36     33.875339            7.936508             2500
+35     41.811847            8.403361             2500
+34     50.215208            8.912656             2500
+33     59.127864            9.469697             2500
+32     68.597561           10.080645             2500
+31     78.678206           10.752688             2500
+30     89.430894           11.494253             2500
+29    100.925147           12.315271             2500
+28    113.240418           13.227513             2500
+27    126.467931           14.245014             2500
+26    140.712946           15.384615             2500
+25    156.097561           16.666667             2500
+24    172.764228           18.115942             2500
+23    190.880170           19.762846             2500
+22    210.643016           43.290043             5000
+21    253.933059           47.619048             5000
+20    301.552106           52.631579             5000
+19    354.183685           58.479532             5000
+18    412.663218           65.359477             5000
+17    478.022695           73.529412             5000
+16    551.552106           83.333333             5000
+15    634.885440           95.238095             5000
+14    730.123535          109.890110             5000
+13    840.013645          128.205128             5000
+12    968.218773          151.515152             5000
+11   1119.733925          181.818182             5000
+10   1301.552106          222.222222             5000
+9    1523.774329          277.777778             5000
+8    1801.552106          357.142857             5000
+7    2158.694964          952.380952            10000
+6    3111.075916         1333.333333            10000
+5    4444.409249         2000.000000            10000
+4    6444.409249         3333.333333            10000
+3    9777.742583         6666.666667            10000
+2   16444.409249        20000.000000            10000
+2025-07-01 00:58:33,521 - INFO - Computing expected sfs for optimal sample size of 41.
+2025-07-01 00:58:33,567 - INFO - Expected relative number of singletons: 4562.5
+2025-07-01 00:58:33,567 - INFO - Arithmetic mean of population intervals: 4562.5
+2025-07-01 00:58:33,568 - INFO - Tajima's D of expected SFS: 0.6701517420857711
