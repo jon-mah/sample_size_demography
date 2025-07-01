@@ -1333,6 +1333,176 @@ compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, TwoEpochC_100_msp
   ggtitle('Three Epoch Bottleneck, k=100') +
   plot_layout(nrow=3)
 
+compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, TwoEpochC_10_msprime_SFS, 
+    TwoEpochC_10_dadi_projection_SFS, TwoEpochC_10_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=10') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, TwoEpochE_10_msprime_SFS,
+    TwoEpochE_10_dadi_projection_SFS, TwoEpochE_10_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=10') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, ThreeEpochC_10_msprime_SFS,
+    ThreeEpochC_10_dadi_projection_SFS, ThreeEpochC_10_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=10') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, ThreeEpochE_10_msprime_SFS,
+    ThreeEpochE_10_dadi_projection_SFS, ThreeEpochE_10_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=10') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, ThreeEpochB_10_msprime_SFS,
+    ThreeEpochB_10_dadi_projection_SFS, ThreeEpochB_10_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=10') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, TwoEpochC_20_msprime_SFS, 
+    TwoEpochC_20_dadi_projection_SFS, TwoEpochC_20_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=20') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, TwoEpochE_20_msprime_SFS,
+    TwoEpochE_20_dadi_projection_SFS, TwoEpochE_20_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=20') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, ThreeEpochC_20_msprime_SFS,
+    ThreeEpochC_20_dadi_projection_SFS, ThreeEpochC_20_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=20') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, ThreeEpochE_20_msprime_SFS,
+    ThreeEpochE_20_dadi_projection_SFS, ThreeEpochE_20_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=20') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, ThreeEpochB_20_msprime_SFS,
+    ThreeEpochB_20_dadi_projection_SFS, ThreeEpochB_20_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=20') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, TwoEpochC_30_msprime_SFS, 
+    TwoEpochC_30_dadi_projection_SFS, TwoEpochC_30_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=30') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, TwoEpochE_30_msprime_SFS,
+    TwoEpochE_30_dadi_projection_SFS, TwoEpochE_30_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=30') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, ThreeEpochC_30_msprime_SFS,
+    ThreeEpochC_30_dadi_projection_SFS, ThreeEpochC_30_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=30') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, ThreeEpochE_30_msprime_SFS,
+    ThreeEpochE_30_dadi_projection_SFS, ThreeEpochE_30_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=30') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, ThreeEpochB_30_msprime_SFS,
+    ThreeEpochB_30_dadi_projection_SFS, ThreeEpochB_30_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=30') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, TwoEpochC_40_msprime_SFS, 
+    TwoEpochC_40_dadi_projection_SFS, TwoEpochC_40_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=40') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, TwoEpochE_40_msprime_SFS,
+    TwoEpochE_40_dadi_projection_SFS, TwoEpochE_40_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=40') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, ThreeEpochC_40_msprime_SFS,
+    ThreeEpochC_40_dadi_projection_SFS, ThreeEpochC_40_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=40') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, ThreeEpochE_40_msprime_SFS,
+    ThreeEpochE_40_dadi_projection_SFS, ThreeEpochE_40_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=40') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, ThreeEpochB_40_msprime_SFS,
+    ThreeEpochB_40_dadi_projection_SFS, ThreeEpochB_40_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=40') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, TwoEpochC_50_msprime_SFS, 
+    TwoEpochC_50_dadi_projection_SFS, TwoEpochC_50_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=50') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, TwoEpochE_50_msprime_SFS,
+    TwoEpochE_50_dadi_projection_SFS, TwoEpochE_50_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=50') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, ThreeEpochC_50_msprime_SFS,
+    ThreeEpochC_50_dadi_projection_SFS, ThreeEpochC_50_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=50') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, ThreeEpochE_50_msprime_SFS,
+    ThreeEpochE_50_dadi_projection_SFS, ThreeEpochE_50_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=50') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, ThreeEpochB_50_msprime_SFS,
+    ThreeEpochB_50_dadi_projection_SFS, ThreeEpochB_50_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=50') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, TwoEpochC_60_msprime_SFS, 
+    TwoEpochC_60_dadi_projection_SFS, TwoEpochC_60_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=60') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, TwoEpochE_60_msprime_SFS,
+    TwoEpochE_60_dadi_projection_SFS, TwoEpochE_60_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=60') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, ThreeEpochC_60_msprime_SFS,
+    ThreeEpochC_60_dadi_projection_SFS, ThreeEpochC_60_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=60') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, ThreeEpochE_60_msprime_SFS,
+    ThreeEpochE_60_dadi_projection_SFS, ThreeEpochE_60_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=60') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, ThreeEpochB_60_msprime_SFS,
+    ThreeEpochB_60_dadi_projection_SFS, ThreeEpochB_60_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=60') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, TwoEpochC_70_msprime_SFS, 
+    TwoEpochC_70_dadi_projection_SFS, TwoEpochC_70_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=70') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, TwoEpochE_70_msprime_SFS,
+    TwoEpochE_70_dadi_projection_SFS, TwoEpochE_70_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=70') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, ThreeEpochC_70_msprime_SFS,
+    ThreeEpochC_70_dadi_projection_SFS, ThreeEpochC_70_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=70') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, ThreeEpochE_70_msprime_SFS,
+    ThreeEpochE_70_dadi_projection_SFS, ThreeEpochE_70_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=70') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, ThreeEpochB_70_msprime_SFS,
+    ThreeEpochB_70_dadi_projection_SFS, ThreeEpochB_70_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=70') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, TwoEpochC_80_msprime_SFS, 
+    TwoEpochC_80_dadi_projection_SFS, TwoEpochC_80_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=80') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, TwoEpochE_80_msprime_SFS,
+    TwoEpochE_80_dadi_projection_SFS, TwoEpochE_80_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=80') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, ThreeEpochC_80_msprime_SFS,
+    ThreeEpochC_80_dadi_projection_SFS, ThreeEpochC_80_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=80') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, ThreeEpochE_80_msprime_SFS,
+    ThreeEpochE_80_dadi_projection_SFS, ThreeEpochE_80_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=80') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, ThreeEpochB_80_msprime_SFS,
+    ThreeEpochB_80_dadi_projection_SFS, ThreeEpochB_80_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=80') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, TwoEpochC_90_msprime_SFS, 
+    TwoEpochC_90_dadi_projection_SFS, TwoEpochC_90_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=90') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, TwoEpochE_90_msprime_SFS,
+    TwoEpochE_90_dadi_projection_SFS, TwoEpochE_90_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=90') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, ThreeEpochC_90_msprime_SFS,
+    ThreeEpochC_90_dadi_projection_SFS, ThreeEpochC_90_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=90') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, ThreeEpochE_90_msprime_SFS,
+    ThreeEpochE_90_dadi_projection_SFS, ThreeEpochE_90_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=90') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, ThreeEpochB_90_msprime_SFS,
+    ThreeEpochB_90_dadi_projection_SFS, ThreeEpochB_90_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=90') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, TwoEpochC_100_msprime_SFS, 
+    TwoEpochC_100_dadi_projection_SFS, TwoEpochC_100_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=100') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, TwoEpochE_100_msprime_SFS,
+    TwoEpochE_100_dadi_projection_SFS, TwoEpochE_100_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=100') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, ThreeEpochC_100_msprime_SFS,
+    ThreeEpochC_100_dadi_projection_SFS, ThreeEpochC_100_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=100') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, ThreeEpochE_100_msprime_SFS,
+    ThreeEpochE_100_dadi_projection_SFS, ThreeEpochE_100_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=100') +
+  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, ThreeEpochB_100_msprime_SFS,
+    ThreeEpochB_100_dadi_projection_SFS, ThreeEpochB_100_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=100') +
+  plot_layout(nrow=3)
+
 # compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_10_SFS, 
 #   ThreeEpochB_10_msprime_SFS, ThreeEpochB_10_dadi_projection_SFS, 
 #   ThreeEpochB_10_lynch_SFS, lynch_1000_1000_10_SFS, lynch_2000_2000_10_SFS) + 

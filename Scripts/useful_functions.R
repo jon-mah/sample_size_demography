@@ -800,6 +800,47 @@ compare_msprime_dadi_lynch_proportional_sfs = function(null, msprime, dadi, lync
   return(p_input_comparison)
 }
 
+compare_msprime_dadi_lynch_count_sfs = function(null, msprime, dadi, lynch) {
+  if (length(msprime) > 10) {
+    x_axis = 1:10
+    null = null[1:10] * 5
+    msprime = msprime[1:10]
+    dadi = dadi[1:10]
+    lynch = lynch[1:10] * 4 * 100000000 * 1.5E-8
+  } else {
+    x_axis = 1:length(msprime)
+    null = null * 5
+    msprime = msprime
+    dadi = dadi
+    lynch = lynch * 4 * 100000000 * 1.5E-8
+  }
+  input_df = data.frame(null,
+                        msprime,
+                        dadi,
+                        lynch,
+                        x_axis)
+  
+  names(input_df) = c('SNM',
+                      'MSPrime',
+                      'Dadi projection',
+                      'Lynch Theoretical',
+                      
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Count of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
 compare_msprime_dadi_lynch_proportional_sfs_bottleneck = function(null, msprime, dadi, lynch, lynch_1000, lynch_2000) {
   if (length(msprime) > 5) {
     x_axis = 1:5
