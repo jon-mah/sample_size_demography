@@ -21,5 +21,15 @@ python compute_optimal_sample_size.py ../Data/three_epoch_bottleneck_demography.
 
 # Complex demographic histories
 python compute_optimal_sample_size.py ../Data/tennessen_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/tennessen_${sample_size}
-python compute_optimal_sample_size.py ../Data/1000_1000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1000_1000_bottleneck_${sample_size}
+
+# Bottleneck demographic histories
+python compute_optimal_sample_size.py ../Data/500_2000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/500_2000_bottleneck_${sample_size}
+python compute_optimal_sample_size.py ../Data/1000_2000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1000_2000_bottleneck_${sample_size}
+python compute_optimal_sample_size.py ../Data/1500_2000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1500_2000_bottleneck_${sample_size}
 python compute_optimal_sample_size.py ../Data/2000_2000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/2000_2000_bottleneck_${sample_size}
+python compute_optimal_sample_size.py ../Data/2500_2000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/2500_2000_bottleneck_${sample_size}
+
+python compute_optimal_sample_size.py ../Data/1000_500_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1000_500_bottleneck_${sample_size}
+python compute_optimal_sample_size.py ../Data/1000_1000_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1000_1000_bottleneck_${sample_size}
+python compute_optimal_sample_size.py ../Data/1000_1500_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1000_1500_bottleneck_${sample_size}
+python compute_optimal_sample_size.py ../Data/1000_2500_bottleneck_demography.csv --target_sample_size ${sample_size} ../Simulations/lynch_theory/1000_2500_bottleneck_${sample_size}

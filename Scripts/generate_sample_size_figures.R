@@ -952,598 +952,734 @@ source('useful_functions.R')
 
 ## Compute_optimal_sample size vs. msprime
 
-one_epoch_10_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_10/one_epoch_demography.txt')
-one_epoch_20_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_20/one_epoch_demography.txt')
-one_epoch_30_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_30/one_epoch_demography.txt')
-one_epoch_40_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_40/one_epoch_demography.txt')
-one_epoch_50_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_50/one_epoch_demography.txt')
-one_epoch_60_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_60/one_epoch_demography.txt')
-one_epoch_70_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_70/one_epoch_demography.txt')
-one_epoch_80_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_80/one_epoch_demography.txt')
-one_epoch_90_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_90/one_epoch_demography.txt')
-one_epoch_100_SFS = sfs_from_demography('../Analysis/TwoEpochContraction_100/one_epoch_demography.txt')
+dadi_snm_10_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_10.sfs')
+dadi_snm_20_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_20.sfs')
+dadi_snm_30_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_30.sfs')
+dadi_snm_40_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_40.sfs')
+dadi_snm_50_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_50.sfs')
+dadi_snm_60_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_60.sfs')
+dadi_snm_70_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_70.sfs')
+dadi_snm_80_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_80.sfs')
+dadi_snm_90_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_90.sfs')
+dadi_snm_100_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_100.sfs')
 
-TwoEpochC_10_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_10/syn_downsampled_sfs.txt')
-TwoEpochE_10_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_10/syn_downsampled_sfs.txt')
-ThreeEpochC_10_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_10/syn_downsampled_sfs.txt')
-ThreeEpochE_10_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_10/syn_downsampled_sfs.txt')
-ThreeEpochB_10_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_10/syn_downsampled_sfs.txt')
+TwoEpochC_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_10.sfs')
+TwoEpochE_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_10.sfs')
+ThreeEpochC_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_10.sfs')
+ThreeEpochE_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_10.sfs')
+ThreeEpochB_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_10.sfs')
+dadi_1000_1000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_10.sfs')
+dadi_2000_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_10.sfs')
 
-TwoEpochC_20_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_20/syn_downsampled_sfs.txt')
-TwoEpochE_20_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_20/syn_downsampled_sfs.txt')
-ThreeEpochC_20_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_20/syn_downsampled_sfs.txt')
-ThreeEpochE_20_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_20/syn_downsampled_sfs.txt')
-ThreeEpochB_20_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_20/syn_downsampled_sfs.txt')
+TwoEpochC_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_20.sfs')
+TwoEpochE_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_20.sfs')
+ThreeEpochC_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_20.sfs')
+ThreeEpochE_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_20.sfs')
+ThreeEpochB_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_20.sfs')
+dadi_1000_1000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_20.sfs')
+dadi_2000_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_20.sfs')
 
-TwoEpochC_30_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_30/syn_downsampled_sfs.txt')
-TwoEpochE_30_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_30/syn_downsampled_sfs.txt')
-ThreeEpochC_30_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_30/syn_downsampled_sfs.txt')
-ThreeEpochE_30_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_30/syn_downsampled_sfs.txt')
-ThreeEpochB_30_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_30/syn_downsampled_sfs.txt')
+TwoEpochC_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_30.sfs')
+TwoEpochE_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_30.sfs')
+ThreeEpochC_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_30.sfs')
+ThreeEpochE_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_30.sfs')
+ThreeEpochB_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_30.sfs')
+dadi_1000_1000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_30.sfs')
+dadi_2000_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_30.sfs')
 
-TwoEpochC_40_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_40/syn_downsampled_sfs.txt')
-TwoEpochE_40_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_40/syn_downsampled_sfs.txt')
-ThreeEpochC_40_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_40/syn_downsampled_sfs.txt')
-ThreeEpochE_40_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_40/syn_downsampled_sfs.txt')
-ThreeEpochB_40_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_40/syn_downsampled_sfs.txt')
+TwoEpochC_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_40.sfs')
+TwoEpochE_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_40.sfs')
+ThreeEpochC_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_40.sfs')
+ThreeEpochE_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_40.sfs')
+ThreeEpochB_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_40.sfs')
+dadi_1000_1000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_40.sfs')
+dadi_2000_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_40.sfs')
 
-TwoEpochC_50_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_50/syn_downsampled_sfs.txt')
-TwoEpochE_50_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_50/syn_downsampled_sfs.txt')
-ThreeEpochC_50_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_50/syn_downsampled_sfs.txt')
-ThreeEpochE_50_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_50/syn_downsampled_sfs.txt')
-ThreeEpochB_50_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_50/syn_downsampled_sfs.txt')
+TwoEpochC_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_50.sfs')
+TwoEpochE_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_50.sfs')
+ThreeEpochC_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_50.sfs')
+ThreeEpochE_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_50.sfs')
+ThreeEpochB_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_50.sfs')
+dadi_1000_1000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_50.sfs')
+dadi_2000_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_50.sfs')
 
-TwoEpochC_60_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_60/syn_downsampled_sfs.txt')
-TwoEpochE_60_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_60/syn_downsampled_sfs.txt')
-ThreeEpochC_60_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_60/syn_downsampled_sfs.txt')
-ThreeEpochE_60_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_60/syn_downsampled_sfs.txt')
-ThreeEpochB_60_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_60/syn_downsampled_sfs.txt')
+TwoEpochC_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_60.sfs')
+TwoEpochE_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_60.sfs')
+ThreeEpochC_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_60.sfs')
+ThreeEpochE_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_60.sfs')
+ThreeEpochB_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_60.sfs')
+dadi_1000_1000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_60.sfs')
+dadi_2000_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_60.sfs')
 
-TwoEpochC_70_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_70/syn_downsampled_sfs.txt')
-TwoEpochE_70_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_70/syn_downsampled_sfs.txt')
-ThreeEpochC_70_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_70/syn_downsampled_sfs.txt')
-ThreeEpochE_70_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_70/syn_downsampled_sfs.txt')
-ThreeEpochB_70_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_70/syn_downsampled_sfs.txt')
+TwoEpochC_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_70.sfs')
+TwoEpochE_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_70.sfs')
+ThreeEpochC_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_70.sfs')
+ThreeEpochE_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_70.sfs')
+ThreeEpochB_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_70.sfs')
+dadi_1000_1000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_70.sfs')
+dadi_2000_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_70.sfs')
 
-TwoEpochC_80_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_80/syn_downsampled_sfs.txt')
-TwoEpochE_80_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_80/syn_downsampled_sfs.txt')
-ThreeEpochC_80_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_80/syn_downsampled_sfs.txt')
-ThreeEpochE_80_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_80/syn_downsampled_sfs.txt')
-ThreeEpochB_80_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_80/syn_downsampled_sfs.txt')
+TwoEpochC_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_80.sfs')
+TwoEpochE_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_80.sfs')
+ThreeEpochC_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_80.sfs')
+ThreeEpochE_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_80.sfs')
+ThreeEpochB_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_80.sfs')
+dadi_1000_1000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_80.sfs')
+dadi_2000_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_80.sfs')
 
-TwoEpochC_90_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_90/syn_downsampled_sfs.txt')
-TwoEpochE_90_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_90/syn_downsampled_sfs.txt')
-ThreeEpochC_90_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_90/syn_downsampled_sfs.txt')
-ThreeEpochE_90_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_90/syn_downsampled_sfs.txt')
-ThreeEpochB_90_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_90/syn_downsampled_sfs.txt')
+TwoEpochC_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_90.sfs')
+TwoEpochE_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_90.sfs')
+ThreeEpochC_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_90.sfs')
+ThreeEpochE_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_90.sfs')
+ThreeEpochB_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_90.sfs')
+dadi_1000_1000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_90.sfs')
+dadi_2000_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_90.sfs')
 
-TwoEpochC_100_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochContraction_100/syn_downsampled_sfs.txt')
-TwoEpochE_100_dadi_projection_SFS = read_input_sfs('../Analysis/TwoEpochExpansion_100/syn_downsampled_sfs.txt')
-ThreeEpochC_100_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochContraction_100/syn_downsampled_sfs.txt')
-ThreeEpochE_100_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochExpansion_100/syn_downsampled_sfs.txt')
-ThreeEpochB_100_dadi_projection_SFS = read_input_sfs('../Analysis/ThreeEpochBottleneck_100/syn_downsampled_sfs.txt')
+TwoEpochC_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_100.sfs')
+TwoEpochE_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_100.sfs')
+ThreeEpochC_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_100.sfs')
+ThreeEpochE_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_100.sfs')
+ThreeEpochB_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_100.sfs')
+dadi_1000_1000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_100.sfs')
+dadi_2000_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_100.sfs')
 
 TwoEpochC_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_10_concat.sfs')
 TwoEpochE_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_10_concat.sfs')
 ThreeEpochC_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_10_concat.sfs')
 ThreeEpochE_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_10_concat.sfs')
 ThreeEpochB_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_10_concat.sfs')
+msprime_1000_1000_10_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_10_concat.sfs')
+msprime_2000_2000_10_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_10_concat.sfs')
 
 TwoEpochC_20_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_20_concat.sfs')
 TwoEpochE_20_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_20_concat.sfs')
 ThreeEpochC_20_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_20_concat.sfs')
 ThreeEpochE_20_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_20_concat.sfs')
 ThreeEpochB_20_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_20_concat.sfs')
+msprime_1000_1000_20_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_20_concat.sfs')
+msprime_2000_2000_20_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_20_concat.sfs')
 
 TwoEpochC_30_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_30_concat.sfs')
 TwoEpochE_30_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_30_concat.sfs')
 ThreeEpochC_30_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_30_concat.sfs')
 ThreeEpochE_30_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_30_concat.sfs')
 ThreeEpochB_30_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_30_concat.sfs')
+msprime_1000_1000_30_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_30_concat.sfs')
+msprime_2000_2000_30_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_30_concat.sfs')
 
 TwoEpochC_40_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_40_concat.sfs')
 TwoEpochE_40_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_40_concat.sfs')
 ThreeEpochC_40_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_40_concat.sfs')
 ThreeEpochE_40_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_40_concat.sfs')
 ThreeEpochB_40_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_40_concat.sfs')
+msprime_1000_1000_40_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_40_concat.sfs')
+msprime_2000_2000_40_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_40_concat.sfs')
 
 TwoEpochC_50_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_50_concat.sfs')
 TwoEpochE_50_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_50_concat.sfs')
 ThreeEpochC_50_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_50_concat.sfs')
 ThreeEpochE_50_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_50_concat.sfs')
 ThreeEpochB_50_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_50_concat.sfs')
+msprime_1000_1000_50_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_50_concat.sfs')
+msprime_2000_2000_50_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_50_concat.sfs')
 
 TwoEpochC_60_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_60_concat.sfs')
 TwoEpochE_60_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_60_concat.sfs')
 ThreeEpochC_60_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_60_concat.sfs')
 ThreeEpochE_60_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_60_concat.sfs')
 ThreeEpochB_60_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_60_concat.sfs')
+msprime_1000_1000_60_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_60_concat.sfs')
+msprime_2000_2000_60_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_60_concat.sfs')
 
 TwoEpochC_70_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_70_concat.sfs')
 TwoEpochE_70_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_70_concat.sfs')
 ThreeEpochC_70_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_70_concat.sfs')
 ThreeEpochE_70_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_70_concat.sfs')
 ThreeEpochB_70_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_70_concat.sfs')
+msprime_1000_1000_70_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_70_concat.sfs')
+msprime_2000_2000_70_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_70_concat.sfs')
 
 TwoEpochC_80_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_80_concat.sfs')
 TwoEpochE_80_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_80_concat.sfs')
 ThreeEpochC_80_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_80_concat.sfs')
 ThreeEpochE_80_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_80_concat.sfs')
 ThreeEpochB_80_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_80_concat.sfs')
+msprime_1000_1000_80_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_80_concat.sfs')
+msprime_2000_2000_80_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_80_concat.sfs')
 
 TwoEpochC_90_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_90_concat.sfs')
 TwoEpochE_90_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_90_concat.sfs')
 ThreeEpochC_90_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_90_concat.sfs')
 ThreeEpochE_90_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_90_concat.sfs')
 ThreeEpochB_90_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_90_concat.sfs')
+msprime_1000_1000_90_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_90_concat.sfs')
+msprime_2000_2000_90_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_90_concat.sfs')
 
 TwoEpochC_100_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_100_concat.sfs')
 TwoEpochE_100_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_100_concat.sfs')
 ThreeEpochC_100_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochContraction_100_concat.sfs')
 ThreeEpochE_100_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochExpansion_100_concat.sfs')
 ThreeEpochB_100_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_100_concat.sfs')
+msprime_1000_1000_100_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_100_concat.sfs')
+msprime_2000_2000_100_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_100_concat.sfs')
 
-TwoEpochC_10_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_11_expected_sfs.txt')
-TwoEpochE_10_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_11_expected_sfs.txt')
-ThreeEpochC_10_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_11_expected_sfs.txt')
-ThreeEpochE_10_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_11_expected_sfs.txt')
-ThreeEpochB_10_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_11_expected_sfs.txt')
-lynch_1000_1000_10_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_11_expected_sfs.txt')
-lynch_2000_2000_10_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_11_expected_sfs.txt')
+TwoEpochC_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_11_expected_sfs.txt')
+TwoEpochE_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_11_expected_sfs.txt')
+ThreeEpochC_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_11_expected_sfs.txt')
+ThreeEpochE_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_11_expected_sfs.txt')
+ThreeEpochB_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_11_expected_sfs.txt')
+lynch_1000_1000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_11_expected_sfs.txt')
+lynch_2000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_11_expected_sfs.txt')
 
-TwoEpochC_20_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_21_expected_sfs.txt')
-TwoEpochE_20_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_21_expected_sfs.txt')
-ThreeEpochC_20_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_21_expected_sfs.txt')
-ThreeEpochE_20_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_21_expected_sfs.txt')
-ThreeEpochB_20_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_21_expected_sfs.txt')
-lynch_1000_1000_20_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_21_expected_sfs.txt')
-lynch_2000_2000_20_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_21_expected_sfs.txt')
+TwoEpochC_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_21_expected_sfs.txt')
+TwoEpochE_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_21_expected_sfs.txt')
+ThreeEpochC_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_21_expected_sfs.txt')
+ThreeEpochE_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_21_expected_sfs.txt')
+ThreeEpochB_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_21_expected_sfs.txt')
+lynch_1000_1000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_21_expected_sfs.txt')
+lynch_2000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_21_expected_sfs.txt')
 
-TwoEpochC_30_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_31_expected_sfs.txt')
-TwoEpochE_30_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_31_expected_sfs.txt')
-ThreeEpochC_30_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_31_expected_sfs.txt')
-ThreeEpochE_30_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_31_expected_sfs.txt')
-ThreeEpochB_30_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_31_expected_sfs.txt')
-lynch_1000_1000_30_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_31_expected_sfs.txt')
-lynch_2000_2000_30_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_31_expected_sfs.txt')
+TwoEpochC_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_31_expected_sfs.txt')
+TwoEpochE_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_31_expected_sfs.txt')
+ThreeEpochC_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_31_expected_sfs.txt')
+ThreeEpochE_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_31_expected_sfs.txt')
+ThreeEpochB_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_31_expected_sfs.txt')
+lynch_1000_1000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_31_expected_sfs.txt')
+lynch_2000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_31_expected_sfs.txt')
 
-TwoEpochC_40_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_41_expected_sfs.txt')
-TwoEpochE_40_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_41_expected_sfs.txt')
-ThreeEpochC_40_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_41_expected_sfs.txt')
-ThreeEpochE_40_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_41_expected_sfs.txt')
-ThreeEpochB_40_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_41_expected_sfs.txt')
-lynch_1000_1000_40_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_41_expected_sfs.txt')
-lynch_2000_2000_40_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_41_expected_sfs.txt')
+TwoEpochC_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_41_expected_sfs.txt')
+TwoEpochE_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_41_expected_sfs.txt')
+ThreeEpochC_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_41_expected_sfs.txt')
+ThreeEpochE_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_41_expected_sfs.txt')
+ThreeEpochB_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_41_expected_sfs.txt')
+lynch_1000_1000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_41_expected_sfs.txt')
+lynch_2000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_41_expected_sfs.txt')
 
-TwoEpochC_50_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_51_expected_sfs.txt')
-TwoEpochE_50_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_51_expected_sfs.txt')
-ThreeEpochC_50_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_51_expected_sfs.txt')
-ThreeEpochE_50_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_51_expected_sfs.txt')
-ThreeEpochB_50_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_51_expected_sfs.txt')
-lynch_1000_1000_50_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_51_expected_sfs.txt')
-lynch_2000_2000_50_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_51_expected_sfs.txt')
+TwoEpochC_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_51_expected_sfs.txt')
+TwoEpochE_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_51_expected_sfs.txt')
+ThreeEpochC_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_51_expected_sfs.txt')
+ThreeEpochE_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_51_expected_sfs.txt')
+ThreeEpochB_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_51_expected_sfs.txt')
+lynch_1000_1000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_51_expected_sfs.txt')
+lynch_2000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_51_expected_sfs.txt')
 
-TwoEpochC_60_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_61_expected_sfs.txt')
-TwoEpochE_60_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_61_expected_sfs.txt')
-ThreeEpochC_60_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_61_expected_sfs.txt')
-ThreeEpochE_60_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_61_expected_sfs.txt')
-ThreeEpochB_60_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_61_expected_sfs.txt')
-lynch_1000_1000_60_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_61_expected_sfs.txt')
-lynch_2000_2000_60_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_61_expected_sfs.txt')
+TwoEpochC_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_61_expected_sfs.txt')
+TwoEpochE_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_61_expected_sfs.txt')
+ThreeEpochC_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_61_expected_sfs.txt')
+ThreeEpochE_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_61_expected_sfs.txt')
+ThreeEpochB_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_61_expected_sfs.txt')
+lynch_1000_1000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_61_expected_sfs.txt')
+lynch_2000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_61_expected_sfs.txt')
 
-TwoEpochC_70_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_71_expected_sfs.txt')
-TwoEpochE_70_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_71_expected_sfs.txt')
-ThreeEpochC_70_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_71_expected_sfs.txt')
-ThreeEpochE_70_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_71_expected_sfs.txt')
-ThreeEpochB_70_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_71_expected_sfs.txt')
-lynch_1000_1000_70_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_71_expected_sfs.txt')
-lynch_2000_2000_70_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_71_expected_sfs.txt')
+TwoEpochC_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_71_expected_sfs.txt')
+TwoEpochE_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_71_expected_sfs.txt')
+ThreeEpochC_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_71_expected_sfs.txt')
+ThreeEpochE_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_71_expected_sfs.txt')
+ThreeEpochB_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_71_expected_sfs.txt')
+lynch_1000_1000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_71_expected_sfs.txt')
+lynch_2000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_71_expected_sfs.txt')
 
-TwoEpochC_80_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_81_expected_sfs.txt')
-TwoEpochE_80_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_81_expected_sfs.txt')
-ThreeEpochC_80_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_81_expected_sfs.txt')
-ThreeEpochE_80_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_81_expected_sfs.txt')
-ThreeEpochB_80_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_81_expected_sfs.txt')
-lynch_1000_1000_80_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_81_expected_sfs.txt')
-lynch_2000_2000_80_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_81_expected_sfs.txt')
+TwoEpochC_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_81_expected_sfs.txt')
+TwoEpochE_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_81_expected_sfs.txt')
+ThreeEpochC_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_81_expected_sfs.txt')
+ThreeEpochE_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_81_expected_sfs.txt')
+ThreeEpochB_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_81_expected_sfs.txt')
+lynch_1000_1000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_81_expected_sfs.txt')
+lynch_2000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_81_expected_sfs.txt')
 
-TwoEpochC_90_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_91_expected_sfs.txt')
-TwoEpochE_90_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_91_expected_sfs.txt')
-ThreeEpochC_90_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_91_expected_sfs.txt')
-ThreeEpochE_90_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_91_expected_sfs.txt')
-ThreeEpochB_90_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_91_expected_sfs.txt')
-lynch_1000_1000_90_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_91_expected_sfs.txt')
-lynch_2000_2000_90_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_91_expected_sfs.txt')
+TwoEpochC_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_91_expected_sfs.txt')
+TwoEpochE_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_91_expected_sfs.txt')
+ThreeEpochC_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_91_expected_sfs.txt')
+ThreeEpochE_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_91_expected_sfs.txt')
+ThreeEpochB_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_91_expected_sfs.txt')
+lynch_1000_1000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_91_expected_sfs.txt')
+lynch_2000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_91_expected_sfs.txt')
 
-TwoEpochC_100_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpC_101_expected_sfs.txt')
-TwoEpochE_100_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2EpE_101_expected_sfs.txt')
-ThreeEpochC_100_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpC_101_expected_sfs.txt')
-ThreeEpochE_100_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpE_101_expected_sfs.txt')
-ThreeEpochB_100_lynch_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/3EpB_101_expected_sfs.txt')
-lynch_1000_1000_100_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/1000_1000_bottleneck_101_expected_sfs.txt')
-lynch_2000_2000_100_SFS = read_input_sfs('../Analysis/optimal_sample_size_test/2000_2000_bottleneck_101_expected_sfs.txt')
+TwoEpochC_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_101_expected_sfs.txt')
+TwoEpochE_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_101_expected_sfs.txt')
+ThreeEpochC_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_101_expected_sfs.txt')
+ThreeEpochE_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_101_expected_sfs.txt')
+ThreeEpochB_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_101_expected_sfs.txt')
+lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_101_expected_sfs.txt')
+lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_101_expected_sfs.txt')
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_10_SFS, TwoEpochC_10_msprime_SFS, 
-    TwoEpochC_10_dadi_projection_SFS, TwoEpochC_10_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, TwoEpochC_10_msprime_SFS, 
+    TwoEpochC_10_dadi_SFS, TwoEpochC_10_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=10') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_10_SFS, TwoEpochE_10_msprime_SFS,
-    TwoEpochE_10_dadi_projection_SFS, TwoEpochE_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, TwoEpochE_10_msprime_SFS,
+    TwoEpochE_10_dadi_SFS, TwoEpochE_10_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=10') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_10_SFS, ThreeEpochC_10_msprime_SFS,
-    ThreeEpochC_10_dadi_projection_SFS, ThreeEpochC_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, ThreeEpochC_10_msprime_SFS,
+    ThreeEpochC_10_dadi_SFS, ThreeEpochC_10_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=10') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_10_SFS, ThreeEpochE_10_msprime_SFS,
-    ThreeEpochE_10_dadi_projection_SFS, ThreeEpochE_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, ThreeEpochE_10_msprime_SFS,
+    ThreeEpochE_10_dadi_SFS, ThreeEpochE_10_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=10') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_10_SFS, ThreeEpochB_10_msprime_SFS,
-    ThreeEpochB_10_dadi_projection_SFS, ThreeEpochB_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, ThreeEpochB_10_msprime_SFS,
+    ThreeEpochB_10_dadi_SFS, ThreeEpochB_10_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=10') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_20_SFS, TwoEpochC_20_msprime_SFS, 
-    TwoEpochC_20_dadi_projection_SFS, TwoEpochC_20_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, TwoEpochC_20_msprime_SFS, 
+    TwoEpochC_20_dadi_SFS, TwoEpochC_20_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=20') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_20_SFS, TwoEpochE_20_msprime_SFS,
-    TwoEpochE_20_dadi_projection_SFS, TwoEpochE_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, TwoEpochE_20_msprime_SFS,
+    TwoEpochE_20_dadi_SFS, TwoEpochE_20_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=20') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_20_SFS, ThreeEpochC_20_msprime_SFS,
-    ThreeEpochC_20_dadi_projection_SFS, ThreeEpochC_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, ThreeEpochC_20_msprime_SFS,
+    ThreeEpochC_20_dadi_SFS, ThreeEpochC_20_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=20') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_20_SFS, ThreeEpochE_20_msprime_SFS,
-    ThreeEpochE_20_dadi_projection_SFS, ThreeEpochE_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, ThreeEpochE_20_msprime_SFS,
+    ThreeEpochE_20_dadi_SFS, ThreeEpochE_20_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=20') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_20_SFS, ThreeEpochB_20_msprime_SFS,
-    ThreeEpochB_20_dadi_projection_SFS, ThreeEpochB_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, ThreeEpochB_20_msprime_SFS,
+    ThreeEpochB_20_dadi_SFS, ThreeEpochB_20_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=20') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_30_SFS, TwoEpochC_30_msprime_SFS, 
-    TwoEpochC_30_dadi_projection_SFS, TwoEpochC_30_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, TwoEpochC_30_msprime_SFS, 
+    TwoEpochC_30_dadi_SFS, TwoEpochC_30_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=30') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_30_SFS, TwoEpochE_30_msprime_SFS,
-    TwoEpochE_30_dadi_projection_SFS, TwoEpochE_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, TwoEpochE_30_msprime_SFS,
+    TwoEpochE_30_dadi_SFS, TwoEpochE_30_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=30') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_30_SFS, ThreeEpochC_30_msprime_SFS,
-    ThreeEpochC_30_dadi_projection_SFS, ThreeEpochC_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, ThreeEpochC_30_msprime_SFS,
+    ThreeEpochC_30_dadi_SFS, ThreeEpochC_30_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=30') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_30_SFS, ThreeEpochE_30_msprime_SFS,
-    ThreeEpochE_30_dadi_projection_SFS, ThreeEpochE_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, ThreeEpochE_30_msprime_SFS,
+    ThreeEpochE_30_dadi_SFS, ThreeEpochE_30_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=30') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_30_SFS, ThreeEpochB_30_msprime_SFS,
-    ThreeEpochB_30_dadi_projection_SFS, ThreeEpochB_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, ThreeEpochB_30_msprime_SFS,
+    ThreeEpochB_30_dadi_SFS, ThreeEpochB_30_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=30') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_40_SFS, TwoEpochC_40_msprime_SFS, 
-    TwoEpochC_40_dadi_projection_SFS, TwoEpochC_40_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, TwoEpochC_40_msprime_SFS, 
+    TwoEpochC_40_dadi_SFS, TwoEpochC_40_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=40') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_40_SFS, TwoEpochE_40_msprime_SFS,
-    TwoEpochE_40_dadi_projection_SFS, TwoEpochE_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, TwoEpochE_40_msprime_SFS,
+    TwoEpochE_40_dadi_SFS, TwoEpochE_40_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=40') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_40_SFS, ThreeEpochC_40_msprime_SFS,
-    ThreeEpochC_40_dadi_projection_SFS, ThreeEpochC_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, ThreeEpochC_40_msprime_SFS,
+    ThreeEpochC_40_dadi_SFS, ThreeEpochC_40_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=40') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_40_SFS, ThreeEpochE_40_msprime_SFS,
-    ThreeEpochE_40_dadi_projection_SFS, ThreeEpochE_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, ThreeEpochE_40_msprime_SFS,
+    ThreeEpochE_40_dadi_SFS, ThreeEpochE_40_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=40') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_40_SFS, ThreeEpochB_40_msprime_SFS,
-    ThreeEpochB_40_dadi_projection_SFS, ThreeEpochB_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, ThreeEpochB_40_msprime_SFS,
+    ThreeEpochB_40_dadi_SFS, ThreeEpochB_40_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=40') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_50_SFS, TwoEpochC_50_msprime_SFS, 
-    TwoEpochC_50_dadi_projection_SFS, TwoEpochC_50_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, TwoEpochC_50_msprime_SFS, 
+    TwoEpochC_50_dadi_SFS, TwoEpochC_50_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=50') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_50_SFS, TwoEpochE_50_msprime_SFS,
-    TwoEpochE_50_dadi_projection_SFS, TwoEpochE_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, TwoEpochE_50_msprime_SFS,
+    TwoEpochE_50_dadi_SFS, TwoEpochE_50_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=50') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_50_SFS, ThreeEpochC_50_msprime_SFS,
-    ThreeEpochC_50_dadi_projection_SFS, ThreeEpochC_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, ThreeEpochC_50_msprime_SFS,
+    ThreeEpochC_50_dadi_SFS, ThreeEpochC_50_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=50') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_50_SFS, ThreeEpochE_50_msprime_SFS,
-    ThreeEpochE_50_dadi_projection_SFS, ThreeEpochE_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, ThreeEpochE_50_msprime_SFS,
+    ThreeEpochE_50_dadi_SFS, ThreeEpochE_50_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=50') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_50_SFS, ThreeEpochB_50_msprime_SFS,
-    ThreeEpochB_50_dadi_projection_SFS, ThreeEpochB_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, ThreeEpochB_50_msprime_SFS,
+    ThreeEpochB_50_dadi_SFS, ThreeEpochB_50_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=50') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_60_SFS, TwoEpochC_60_msprime_SFS, 
-    TwoEpochC_60_dadi_projection_SFS, TwoEpochC_60_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, TwoEpochC_60_msprime_SFS, 
+    TwoEpochC_60_dadi_SFS, TwoEpochC_60_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=60') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_60_SFS, TwoEpochE_60_msprime_SFS,
-    TwoEpochE_60_dadi_projection_SFS, TwoEpochE_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, TwoEpochE_60_msprime_SFS,
+    TwoEpochE_60_dadi_SFS, TwoEpochE_60_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=60') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_60_SFS, ThreeEpochC_60_msprime_SFS,
-    ThreeEpochC_60_dadi_projection_SFS, ThreeEpochC_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, ThreeEpochC_60_msprime_SFS,
+    ThreeEpochC_60_dadi_SFS, ThreeEpochC_60_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=60') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_60_SFS, ThreeEpochE_60_msprime_SFS,
-    ThreeEpochE_60_dadi_projection_SFS, ThreeEpochE_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, ThreeEpochE_60_msprime_SFS,
+    ThreeEpochE_60_dadi_SFS, ThreeEpochE_60_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=60') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_60_SFS, ThreeEpochB_60_msprime_SFS,
-    ThreeEpochB_60_dadi_projection_SFS, ThreeEpochB_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, ThreeEpochB_60_msprime_SFS,
+    ThreeEpochB_60_dadi_SFS, ThreeEpochB_60_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=60') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_70_SFS, TwoEpochC_70_msprime_SFS, 
-    TwoEpochC_70_dadi_projection_SFS, TwoEpochC_70_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, TwoEpochC_70_msprime_SFS, 
+    TwoEpochC_70_dadi_SFS, TwoEpochC_70_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=70') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_70_SFS, TwoEpochE_70_msprime_SFS,
-    TwoEpochE_70_dadi_projection_SFS, TwoEpochE_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, TwoEpochE_70_msprime_SFS,
+    TwoEpochE_70_dadi_SFS, TwoEpochE_70_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=70') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_70_SFS, ThreeEpochC_70_msprime_SFS,
-    ThreeEpochC_70_dadi_projection_SFS, ThreeEpochC_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, ThreeEpochC_70_msprime_SFS,
+    ThreeEpochC_70_dadi_SFS, ThreeEpochC_70_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=70') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_70_SFS, ThreeEpochE_70_msprime_SFS,
-    ThreeEpochE_70_dadi_projection_SFS, ThreeEpochE_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, ThreeEpochE_70_msprime_SFS,
+    ThreeEpochE_70_dadi_SFS, ThreeEpochE_70_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=70') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_70_SFS, ThreeEpochB_70_msprime_SFS,
-    ThreeEpochB_70_dadi_projection_SFS, ThreeEpochB_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, ThreeEpochB_70_msprime_SFS,
+    ThreeEpochB_70_dadi_SFS, ThreeEpochB_70_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=70') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_80_SFS, TwoEpochC_80_msprime_SFS, 
-    TwoEpochC_80_dadi_projection_SFS, TwoEpochC_80_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, TwoEpochC_80_msprime_SFS, 
+    TwoEpochC_80_dadi_SFS, TwoEpochC_80_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=80') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_80_SFS, TwoEpochE_80_msprime_SFS,
-    TwoEpochE_80_dadi_projection_SFS, TwoEpochE_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, TwoEpochE_80_msprime_SFS,
+    TwoEpochE_80_dadi_SFS, TwoEpochE_80_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=80') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_80_SFS, ThreeEpochC_80_msprime_SFS,
-    ThreeEpochC_80_dadi_projection_SFS, ThreeEpochC_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, ThreeEpochC_80_msprime_SFS,
+    ThreeEpochC_80_dadi_SFS, ThreeEpochC_80_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=80') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_80_SFS, ThreeEpochE_80_msprime_SFS,
-    ThreeEpochE_80_dadi_projection_SFS, ThreeEpochE_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, ThreeEpochE_80_msprime_SFS,
+    ThreeEpochE_80_dadi_SFS, ThreeEpochE_80_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=80') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_80_SFS, ThreeEpochB_80_msprime_SFS,
-    ThreeEpochB_80_dadi_projection_SFS, ThreeEpochB_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, ThreeEpochB_80_msprime_SFS,
+    ThreeEpochB_80_dadi_SFS, ThreeEpochB_80_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=80') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_90_SFS, TwoEpochC_90_msprime_SFS, 
-    TwoEpochC_90_dadi_projection_SFS, TwoEpochC_90_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, TwoEpochC_90_msprime_SFS, 
+    TwoEpochC_90_dadi_SFS, TwoEpochC_90_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=90') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_90_SFS, TwoEpochE_90_msprime_SFS,
-    TwoEpochE_90_dadi_projection_SFS, TwoEpochE_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, TwoEpochE_90_msprime_SFS,
+    TwoEpochE_90_dadi_SFS, TwoEpochE_90_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=90') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_90_SFS, ThreeEpochC_90_msprime_SFS,
-    ThreeEpochC_90_dadi_projection_SFS, ThreeEpochC_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, ThreeEpochC_90_msprime_SFS,
+    ThreeEpochC_90_dadi_SFS, ThreeEpochC_90_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=90') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_90_SFS, ThreeEpochE_90_msprime_SFS,
-    ThreeEpochE_90_dadi_projection_SFS, ThreeEpochE_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, ThreeEpochE_90_msprime_SFS,
+    ThreeEpochE_90_dadi_SFS, ThreeEpochE_90_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=90') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_90_SFS, ThreeEpochB_90_msprime_SFS,
-    ThreeEpochB_90_dadi_projection_SFS, ThreeEpochB_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, ThreeEpochB_90_msprime_SFS,
+    ThreeEpochB_90_dadi_SFS, ThreeEpochB_90_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=90') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, TwoEpochC_100_msprime_SFS, 
-    TwoEpochC_100_dadi_projection_SFS, TwoEpochC_100_lynch_SFS) + 
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, TwoEpochC_100_msprime_SFS, 
+    TwoEpochC_100_dadi_SFS, TwoEpochC_100_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=100') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, TwoEpochE_100_msprime_SFS,
-    TwoEpochE_100_dadi_projection_SFS, TwoEpochE_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, TwoEpochE_100_msprime_SFS,
+    TwoEpochE_100_dadi_SFS, TwoEpochE_100_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=100') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, ThreeEpochC_100_msprime_SFS,
-    ThreeEpochC_100_dadi_projection_SFS, ThreeEpochC_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, ThreeEpochC_100_msprime_SFS,
+    ThreeEpochC_100_dadi_SFS, ThreeEpochC_100_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=100') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, ThreeEpochE_100_msprime_SFS,
-    ThreeEpochE_100_dadi_projection_SFS, ThreeEpochE_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, ThreeEpochE_100_msprime_SFS,
+    ThreeEpochE_100_dadi_SFS, ThreeEpochE_100_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=100') +
-  compare_msprime_dadi_lynch_proportional_sfs(one_epoch_100_SFS, ThreeEpochB_100_msprime_SFS,
-    ThreeEpochB_100_dadi_projection_SFS, ThreeEpochB_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, ThreeEpochB_100_msprime_SFS,
+    ThreeEpochB_100_dadi_SFS, ThreeEpochB_100_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=100') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, TwoEpochC_10_msprime_SFS, 
-    TwoEpochC_10_dadi_projection_SFS, TwoEpochC_10_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, TwoEpochC_10_msprime_SFS, 
+    TwoEpochC_10_dadi_SFS, TwoEpochC_10_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=10') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, TwoEpochE_10_msprime_SFS,
-    TwoEpochE_10_dadi_projection_SFS, TwoEpochE_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, TwoEpochE_10_msprime_SFS,
+    TwoEpochE_10_dadi_SFS, TwoEpochE_10_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=10') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, ThreeEpochC_10_msprime_SFS,
-    ThreeEpochC_10_dadi_projection_SFS, ThreeEpochC_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, ThreeEpochC_10_msprime_SFS,
+    ThreeEpochC_10_dadi_SFS, ThreeEpochC_10_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=10') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, ThreeEpochE_10_msprime_SFS,
-    ThreeEpochE_10_dadi_projection_SFS, ThreeEpochE_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, ThreeEpochE_10_msprime_SFS,
+    ThreeEpochE_10_dadi_SFS, ThreeEpochE_10_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=10') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_10_SFS, ThreeEpochB_10_msprime_SFS,
-    ThreeEpochB_10_dadi_projection_SFS, ThreeEpochB_10_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, ThreeEpochB_10_msprime_SFS,
+    ThreeEpochB_10_dadi_SFS, ThreeEpochB_10_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=10') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, TwoEpochC_20_msprime_SFS, 
-    TwoEpochC_20_dadi_projection_SFS, TwoEpochC_20_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, TwoEpochC_20_msprime_SFS, 
+    TwoEpochC_20_dadi_SFS, TwoEpochC_20_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=20') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, TwoEpochE_20_msprime_SFS,
-    TwoEpochE_20_dadi_projection_SFS, TwoEpochE_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, TwoEpochE_20_msprime_SFS,
+    TwoEpochE_20_dadi_SFS, TwoEpochE_20_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=20') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, ThreeEpochC_20_msprime_SFS,
-    ThreeEpochC_20_dadi_projection_SFS, ThreeEpochC_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, ThreeEpochC_20_msprime_SFS,
+    ThreeEpochC_20_dadi_SFS, ThreeEpochC_20_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=20') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, ThreeEpochE_20_msprime_SFS,
-    ThreeEpochE_20_dadi_projection_SFS, ThreeEpochE_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, ThreeEpochE_20_msprime_SFS,
+    ThreeEpochE_20_dadi_SFS, ThreeEpochE_20_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=20') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_20_SFS, ThreeEpochB_20_msprime_SFS,
-    ThreeEpochB_20_dadi_projection_SFS, ThreeEpochB_20_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, ThreeEpochB_20_msprime_SFS,
+    ThreeEpochB_20_dadi_SFS, ThreeEpochB_20_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=20') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, TwoEpochC_30_msprime_SFS, 
-    TwoEpochC_30_dadi_projection_SFS, TwoEpochC_30_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, TwoEpochC_30_msprime_SFS, 
+    TwoEpochC_30_dadi_SFS, TwoEpochC_30_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=30') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, TwoEpochE_30_msprime_SFS,
-    TwoEpochE_30_dadi_projection_SFS, TwoEpochE_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, TwoEpochE_30_msprime_SFS,
+    TwoEpochE_30_dadi_SFS, TwoEpochE_30_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=30') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, ThreeEpochC_30_msprime_SFS,
-    ThreeEpochC_30_dadi_projection_SFS, ThreeEpochC_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, ThreeEpochC_30_msprime_SFS,
+    ThreeEpochC_30_dadi_SFS, ThreeEpochC_30_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=30') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, ThreeEpochE_30_msprime_SFS,
-    ThreeEpochE_30_dadi_projection_SFS, ThreeEpochE_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, ThreeEpochE_30_msprime_SFS,
+    ThreeEpochE_30_dadi_SFS, ThreeEpochE_30_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=30') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_30_SFS, ThreeEpochB_30_msprime_SFS,
-    ThreeEpochB_30_dadi_projection_SFS, ThreeEpochB_30_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, ThreeEpochB_30_msprime_SFS,
+    ThreeEpochB_30_dadi_SFS, ThreeEpochB_30_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=30') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, TwoEpochC_40_msprime_SFS, 
-    TwoEpochC_40_dadi_projection_SFS, TwoEpochC_40_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, TwoEpochC_40_msprime_SFS, 
+    TwoEpochC_40_dadi_SFS, TwoEpochC_40_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=40') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, TwoEpochE_40_msprime_SFS,
-    TwoEpochE_40_dadi_projection_SFS, TwoEpochE_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, TwoEpochE_40_msprime_SFS,
+    TwoEpochE_40_dadi_SFS, TwoEpochE_40_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=40') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, ThreeEpochC_40_msprime_SFS,
-    ThreeEpochC_40_dadi_projection_SFS, ThreeEpochC_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, ThreeEpochC_40_msprime_SFS,
+    ThreeEpochC_40_dadi_SFS, ThreeEpochC_40_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=40') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, ThreeEpochE_40_msprime_SFS,
-    ThreeEpochE_40_dadi_projection_SFS, ThreeEpochE_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, ThreeEpochE_40_msprime_SFS,
+    ThreeEpochE_40_dadi_SFS, ThreeEpochE_40_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=40') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_40_SFS, ThreeEpochB_40_msprime_SFS,
-    ThreeEpochB_40_dadi_projection_SFS, ThreeEpochB_40_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, ThreeEpochB_40_msprime_SFS,
+    ThreeEpochB_40_dadi_SFS, ThreeEpochB_40_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=40') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, TwoEpochC_50_msprime_SFS, 
-    TwoEpochC_50_dadi_projection_SFS, TwoEpochC_50_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, TwoEpochC_50_msprime_SFS, 
+    TwoEpochC_50_dadi_SFS, TwoEpochC_50_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=50') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, TwoEpochE_50_msprime_SFS,
-    TwoEpochE_50_dadi_projection_SFS, TwoEpochE_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, TwoEpochE_50_msprime_SFS,
+    TwoEpochE_50_dadi_SFS, TwoEpochE_50_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=50') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, ThreeEpochC_50_msprime_SFS,
-    ThreeEpochC_50_dadi_projection_SFS, ThreeEpochC_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, ThreeEpochC_50_msprime_SFS,
+    ThreeEpochC_50_dadi_SFS, ThreeEpochC_50_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=50') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, ThreeEpochE_50_msprime_SFS,
-    ThreeEpochE_50_dadi_projection_SFS, ThreeEpochE_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, ThreeEpochE_50_msprime_SFS,
+    ThreeEpochE_50_dadi_SFS, ThreeEpochE_50_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=50') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_50_SFS, ThreeEpochB_50_msprime_SFS,
-    ThreeEpochB_50_dadi_projection_SFS, ThreeEpochB_50_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, ThreeEpochB_50_msprime_SFS,
+    ThreeEpochB_50_dadi_SFS, ThreeEpochB_50_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=50') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, TwoEpochC_60_msprime_SFS, 
-    TwoEpochC_60_dadi_projection_SFS, TwoEpochC_60_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, TwoEpochC_60_msprime_SFS, 
+    TwoEpochC_60_dadi_SFS, TwoEpochC_60_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=60') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, TwoEpochE_60_msprime_SFS,
-    TwoEpochE_60_dadi_projection_SFS, TwoEpochE_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, TwoEpochE_60_msprime_SFS,
+    TwoEpochE_60_dadi_SFS, TwoEpochE_60_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=60') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, ThreeEpochC_60_msprime_SFS,
-    ThreeEpochC_60_dadi_projection_SFS, ThreeEpochC_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, ThreeEpochC_60_msprime_SFS,
+    ThreeEpochC_60_dadi_SFS, ThreeEpochC_60_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=60') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, ThreeEpochE_60_msprime_SFS,
-    ThreeEpochE_60_dadi_projection_SFS, ThreeEpochE_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, ThreeEpochE_60_msprime_SFS,
+    ThreeEpochE_60_dadi_SFS, ThreeEpochE_60_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=60') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_60_SFS, ThreeEpochB_60_msprime_SFS,
-    ThreeEpochB_60_dadi_projection_SFS, ThreeEpochB_60_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, ThreeEpochB_60_msprime_SFS,
+    ThreeEpochB_60_dadi_SFS, ThreeEpochB_60_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=60') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, TwoEpochC_70_msprime_SFS, 
-    TwoEpochC_70_dadi_projection_SFS, TwoEpochC_70_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, TwoEpochC_70_msprime_SFS, 
+    TwoEpochC_70_dadi_SFS, TwoEpochC_70_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=70') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, TwoEpochE_70_msprime_SFS,
-    TwoEpochE_70_dadi_projection_SFS, TwoEpochE_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, TwoEpochE_70_msprime_SFS,
+    TwoEpochE_70_dadi_SFS, TwoEpochE_70_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=70') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, ThreeEpochC_70_msprime_SFS,
-    ThreeEpochC_70_dadi_projection_SFS, ThreeEpochC_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, ThreeEpochC_70_msprime_SFS,
+    ThreeEpochC_70_dadi_SFS, ThreeEpochC_70_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=70') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, ThreeEpochE_70_msprime_SFS,
-    ThreeEpochE_70_dadi_projection_SFS, ThreeEpochE_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, ThreeEpochE_70_msprime_SFS,
+    ThreeEpochE_70_dadi_SFS, ThreeEpochE_70_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=70') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_70_SFS, ThreeEpochB_70_msprime_SFS,
-    ThreeEpochB_70_dadi_projection_SFS, ThreeEpochB_70_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, ThreeEpochB_70_msprime_SFS,
+    ThreeEpochB_70_dadi_SFS, ThreeEpochB_70_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=70') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, TwoEpochC_80_msprime_SFS, 
-    TwoEpochC_80_dadi_projection_SFS, TwoEpochC_80_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, TwoEpochC_80_msprime_SFS, 
+    TwoEpochC_80_dadi_SFS, TwoEpochC_80_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=80') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, TwoEpochE_80_msprime_SFS,
-    TwoEpochE_80_dadi_projection_SFS, TwoEpochE_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, TwoEpochE_80_msprime_SFS,
+    TwoEpochE_80_dadi_SFS, TwoEpochE_80_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=80') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, ThreeEpochC_80_msprime_SFS,
-    ThreeEpochC_80_dadi_projection_SFS, ThreeEpochC_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, ThreeEpochC_80_msprime_SFS,
+    ThreeEpochC_80_dadi_SFS, ThreeEpochC_80_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=80') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, ThreeEpochE_80_msprime_SFS,
-    ThreeEpochE_80_dadi_projection_SFS, ThreeEpochE_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, ThreeEpochE_80_msprime_SFS,
+    ThreeEpochE_80_dadi_SFS, ThreeEpochE_80_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=80') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_80_SFS, ThreeEpochB_80_msprime_SFS,
-    ThreeEpochB_80_dadi_projection_SFS, ThreeEpochB_80_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, ThreeEpochB_80_msprime_SFS,
+    ThreeEpochB_80_dadi_SFS, ThreeEpochB_80_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=80') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, TwoEpochC_90_msprime_SFS, 
-    TwoEpochC_90_dadi_projection_SFS, TwoEpochC_90_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, TwoEpochC_90_msprime_SFS, 
+    TwoEpochC_90_dadi_SFS, TwoEpochC_90_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=90') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, TwoEpochE_90_msprime_SFS,
-    TwoEpochE_90_dadi_projection_SFS, TwoEpochE_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, TwoEpochE_90_msprime_SFS,
+    TwoEpochE_90_dadi_SFS, TwoEpochE_90_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=90') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, ThreeEpochC_90_msprime_SFS,
-    ThreeEpochC_90_dadi_projection_SFS, ThreeEpochC_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, ThreeEpochC_90_msprime_SFS,
+    ThreeEpochC_90_dadi_SFS, ThreeEpochC_90_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=90') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, ThreeEpochE_90_msprime_SFS,
-    ThreeEpochE_90_dadi_projection_SFS, ThreeEpochE_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, ThreeEpochE_90_msprime_SFS,
+    ThreeEpochE_90_dadi_SFS, ThreeEpochE_90_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=90') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_90_SFS, ThreeEpochB_90_msprime_SFS,
-    ThreeEpochB_90_dadi_projection_SFS, ThreeEpochB_90_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, ThreeEpochB_90_msprime_SFS,
+    ThreeEpochB_90_dadi_SFS, ThreeEpochB_90_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=90') +
   plot_layout(nrow=3)
 
-compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, TwoEpochC_100_msprime_SFS, 
-    TwoEpochC_100_dadi_projection_SFS, TwoEpochC_100_lynch_SFS) + 
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, TwoEpochC_100_msprime_SFS, 
+    TwoEpochC_100_dadi_SFS, TwoEpochC_100_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=100') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, TwoEpochE_100_msprime_SFS,
-    TwoEpochE_100_dadi_projection_SFS, TwoEpochE_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, TwoEpochE_100_msprime_SFS,
+    TwoEpochE_100_dadi_SFS, TwoEpochE_100_lynch_SFS) + 
   ggtitle('Two Epoch Expansion, k=100') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, ThreeEpochC_100_msprime_SFS,
-    ThreeEpochC_100_dadi_projection_SFS, ThreeEpochC_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, ThreeEpochC_100_msprime_SFS,
+    ThreeEpochC_100_dadi_SFS, ThreeEpochC_100_lynch_SFS) + 
   ggtitle('Three Epoch Contraction, k=100') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, ThreeEpochE_100_msprime_SFS,
-    ThreeEpochE_100_dadi_projection_SFS, ThreeEpochE_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, ThreeEpochE_100_msprime_SFS,
+    ThreeEpochE_100_dadi_SFS, ThreeEpochE_100_lynch_SFS) + 
   ggtitle('Three Epoch Expansion, k=100') +
-  compare_msprime_dadi_lynch_count_sfs(one_epoch_100_SFS, ThreeEpochB_100_msprime_SFS,
-    ThreeEpochB_100_dadi_projection_SFS, ThreeEpochB_100_lynch_SFS) + 
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, ThreeEpochB_100_msprime_SFS,
+    ThreeEpochB_100_dadi_SFS, ThreeEpochB_100_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=100') +
   plot_layout(nrow=3)
 
-# compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_10_SFS, 
-#   ThreeEpochB_10_msprime_SFS, ThreeEpochB_10_dadi_projection_SFS, 
-#   ThreeEpochB_10_lynch_SFS, lynch_1000_1000_10_SFS, lynch_2000_2000_10_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=10') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_20_SFS, 
-#   ThreeEpochB_20_msprime_SFS, ThreeEpochB_20_dadi_projection_SFS, 
-#   ThreeEpochB_20_lynch_SFS, lynch_1000_1000_20_SFS, lynch_2000_2000_20_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=20') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_30_SFS, 
-#   ThreeEpochB_30_msprime_SFS, ThreeEpochB_30_dadi_projection_SFS, 
-#   ThreeEpochB_30_lynch_SFS, lynch_1000_1000_30_SFS, lynch_2000_2000_30_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=30') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_40_SFS, 
-#   ThreeEpochB_40_msprime_SFS, ThreeEpochB_40_dadi_projection_SFS, 
-#   ThreeEpochB_40_lynch_SFS, lynch_1000_1000_40_SFS, lynch_2000_2000_40_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=40') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_50_SFS, 
-#   ThreeEpochB_50_msprime_SFS, ThreeEpochB_50_dadi_projection_SFS, 
-#   ThreeEpochB_50_lynch_SFS, lynch_1000_1000_50_SFS, lynch_2000_2000_50_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=50') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_60_SFS, 
-#   ThreeEpochB_60_msprime_SFS, ThreeEpochB_60_dadi_projection_SFS, 
-#   ThreeEpochB_60_lynch_SFS, lynch_1000_1000_60_SFS, lynch_2000_2000_60_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=60') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_70_SFS, 
-#   ThreeEpochB_70_msprime_SFS, ThreeEpochB_70_dadi_projection_SFS, 
-#   ThreeEpochB_70_lynch_SFS, lynch_1000_1000_70_SFS, lynch_2000_2000_70_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=70') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_80_SFS, 
-#   ThreeEpochB_80_msprime_SFS, ThreeEpochB_80_dadi_projection_SFS, 
-#   ThreeEpochB_80_lynch_SFS, lynch_1000_1000_80_SFS, lynch_2000_2000_80_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=80') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_90_SFS, 
-#   ThreeEpochB_90_msprime_SFS, ThreeEpochB_90_dadi_projection_SFS, 
-#   ThreeEpochB_90_lynch_SFS, lynch_1000_1000_90_SFS, lynch_2000_2000_90_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=90') +
-#   compare_msprime_dadi_lynch_proportional_sfs_bottleneck(one_epoch_100_SFS, 
-#   ThreeEpochB_100_msprime_SFS, ThreeEpochB_100_dadi_projection_SFS, 
-#   ThreeEpochB_100_lynch_SFS, lynch_1000_1000_100_SFS, lynch_2000_2000_100_SFS) + 
-#   ggtitle('Three Epoch Bottleneck, k=100') +
-#   plot_layout(nrow=5)
+## Altered Bottleneck timing
+
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, 
+  msprime_1000_1000_10_SFS, dadi_1000_1000_10_SFS, lynch_1000_1000_10_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=10') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, 
+  msprime_1000_1000_20_SFS, dadi_1000_1000_20_SFS, lynch_1000_1000_20_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=20') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, 
+  msprime_1000_1000_30_SFS, dadi_1000_1000_30_SFS, lynch_1000_1000_30_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=30') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, 
+  msprime_1000_1000_40_SFS, dadi_1000_1000_40_SFS, lynch_1000_1000_40_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=40') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, 
+  msprime_1000_1000_50_SFS, dadi_1000_1000_50_SFS, lynch_1000_1000_50_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=50') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, 
+  msprime_1000_1000_60_SFS, dadi_1000_1000_60_SFS, lynch_1000_1000_60_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=60') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, 
+  msprime_1000_1000_70_SFS, dadi_1000_1000_70_SFS, lynch_1000_1000_70_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=70') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, 
+  msprime_1000_1000_80_SFS, dadi_1000_1000_80_SFS, lynch_1000_1000_80_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=80') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, 
+  msprime_1000_1000_90_SFS, dadi_1000_1000_90_SFS, lynch_1000_1000_90_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=90') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, 
+  msprime_1000_1000_100_SFS, dadi_1000_1000_100_SFS, lynch_1000_1000_100_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=100') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, 
+  msprime_2000_2000_10_SFS, dadi_2000_2000_10_SFS, lynch_2000_2000_10_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=10') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, 
+  msprime_2000_2000_20_SFS, dadi_2000_2000_20_SFS, lynch_2000_2000_20_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=20') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, 
+  msprime_2000_2000_30_SFS, dadi_2000_2000_30_SFS, lynch_2000_2000_30_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=30') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, 
+  msprime_2000_2000_40_SFS, dadi_2000_2000_40_SFS, lynch_2000_2000_40_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=40') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, 
+  msprime_2000_2000_50_SFS, dadi_2000_2000_50_SFS, lynch_2000_2000_50_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=50') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, 
+  msprime_2000_2000_60_SFS, dadi_2000_2000_60_SFS, lynch_2000_2000_60_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=60') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, 
+  msprime_2000_2000_70_SFS, dadi_2000_2000_70_SFS, lynch_2000_2000_70_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=70') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, 
+  msprime_2000_2000_80_SFS, dadi_2000_2000_80_SFS, lynch_2000_2000_80_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=80') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, 
+  msprime_2000_2000_90_SFS, dadi_2000_2000_90_SFS, lynch_2000_2000_90_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=90') +
+  compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, 
+  msprime_2000_2000_100_SFS, dadi_2000_2000_100_SFS, lynch_2000_2000_100_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=100') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, 
+  msprime_1000_1000_10_SFS, dadi_1000_1000_10_SFS, lynch_1000_1000_10_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=10') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, 
+  msprime_1000_1000_20_SFS, dadi_1000_1000_20_SFS, lynch_1000_1000_20_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=20') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, 
+  msprime_1000_1000_30_SFS, dadi_1000_1000_30_SFS, lynch_1000_1000_30_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=30') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, 
+  msprime_1000_1000_40_SFS, dadi_1000_1000_40_SFS, lynch_1000_1000_40_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=40') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, 
+  msprime_1000_1000_50_SFS, dadi_1000_1000_50_SFS, lynch_1000_1000_50_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=50') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, 
+  msprime_1000_1000_60_SFS, dadi_1000_1000_60_SFS, lynch_1000_1000_60_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=60') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, 
+  msprime_1000_1000_70_SFS, dadi_1000_1000_70_SFS, lynch_1000_1000_70_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=70') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, 
+  msprime_1000_1000_80_SFS, dadi_1000_1000_80_SFS, lynch_1000_1000_80_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=80') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, 
+  msprime_1000_1000_90_SFS, dadi_1000_1000_90_SFS, lynch_1000_1000_90_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=90') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, 
+  msprime_1000_1000_100_SFS, dadi_1000_1000_100_SFS, lynch_1000_1000_100_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1000, 1000], k=100') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_10_SFS, 
+  msprime_2000_2000_10_SFS, dadi_2000_2000_10_SFS, lynch_2000_2000_10_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=10') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_20_SFS, 
+  msprime_2000_2000_20_SFS, dadi_2000_2000_20_SFS, lynch_2000_2000_20_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=20') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_30_SFS, 
+  msprime_2000_2000_30_SFS, dadi_2000_2000_30_SFS, lynch_2000_2000_30_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=30') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_40_SFS, 
+  msprime_2000_2000_40_SFS, dadi_2000_2000_40_SFS, lynch_2000_2000_40_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=40') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_50_SFS, 
+  msprime_2000_2000_50_SFS, dadi_2000_2000_50_SFS, lynch_2000_2000_50_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=50') +
+  plot_layout(nrow=3)
+
+compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS, 
+  msprime_2000_2000_60_SFS, dadi_2000_2000_60_SFS, lynch_2000_2000_60_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=60') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_70_SFS, 
+  msprime_2000_2000_70_SFS, dadi_2000_2000_70_SFS, lynch_2000_2000_70_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=70') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_80_SFS, 
+  msprime_2000_2000_80_SFS, dadi_2000_2000_80_SFS, lynch_2000_2000_80_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=80') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_90_SFS, 
+  msprime_2000_2000_90_SFS, dadi_2000_2000_90_SFS, lynch_2000_2000_90_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=90') +
+  compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, 
+  msprime_2000_2000_100_SFS, dadi_2000_2000_100_SFS, lynch_2000_2000_100_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=100') +
+  plot_layout(nrow=3)
 
 ## Compare Tajima's D
 
@@ -1569,17 +1705,17 @@ ThreeEpochB_lynch_tajima_d = c()
 # Loop through subdirectories and get relevant files
 for (i in seq(from=10, to=800, by=10)) {
   # Dadi
-  subdirectory_dadi_2epC <- paste0("../Analysis/TwoEpochContraction_", i)
-  subdirectory_dadi_2epE <- paste0("../Analysis/TwoEpochExpansion_", i)
-  subdirectory_dadi_3epB <- paste0("../Analysis/ThreeEpochBottleneck_", i)
-  subdirectory_dadi_3epC <- paste0("../Analysis/ThreeEpochContraction_", i)
-  subdirectory_dadi_3epE <- paste0("../Analysis/ThreeEpochExpansion_", i)
+  subdirectory_dadi_2epC <- paste0("../Simulations/dadi_simulations/TwoEpochContraction_", i)
+  subdirectory_dadi_2epE <- paste0("../Simulations/dadi_simulations/TwoEpochExpansion_", i)
+  subdirectory_dadi_3epB <- paste0("../Simulations/dadi_simulations/ThreeEpochBottleneck_", i)
+  subdirectory_dadi_3epC <- paste0("../Simulations/dadi_simulations/ThreeEpochContraction_", i)
+  subdirectory_dadi_3epE <- paste0("../Simulations/dadi_simulations/ThreeEpochExpansion_", i)
 
-  TwoEpochC_dadi_summary <- paste0(subdirectory_dadi_2epC, "/summary.txt")
-  TwoEpochE_dadi_summary <- paste0(subdirectory_dadi_2epE, "/summary.txt")
-  ThreeEpochB_dadi_summary <- paste0(subdirectory_dadi_3epB, "/summary.txt")
-  ThreeEpochC_dadi_summary <- paste0(subdirectory_dadi_3epC, "/summary.txt")
-  ThreeEpochE_dadi_summary <- paste0(subdirectory_dadi_3epE, "/summary.txt")
+  TwoEpochC_dadi_summary <- paste0(subdirectory_dadi_2epC, "_summary.txt")
+  TwoEpochE_dadi_summary <- paste0(subdirectory_dadi_2epE, "_summary.txt")
+  ThreeEpochB_dadi_summary <- paste0(subdirectory_dadi_3epB, "_summary.txt")
+  ThreeEpochC_dadi_summary <- paste0(subdirectory_dadi_3epC, "_summary.txt")
+  ThreeEpochE_dadi_summary <- paste0(subdirectory_dadi_3epE, "_summary.txt")
 
   TwoEpochC_dadi_tajima_d = c(TwoEpochC_dadi_tajima_d, read_summary_statistics(TwoEpochC_dadi_summary)[3])
   TwoEpochE_dadi_tajima_d = c(TwoEpochE_dadi_tajima_d, read_summary_statistics(TwoEpochE_dadi_summary)[3])
@@ -1589,11 +1725,11 @@ for (i in seq(from=10, to=800, by=10)) {
 
   # Lynch
   j = i + 1
-  subdirectory_lynch_2epC <- paste0("../Analysis/optimal_sample_size_test/2epC_", j)
-  subdirectory_lynch_2epE <- paste0("../Analysis/optimal_sample_size_test/2epE_", j)
-  subdirectory_lynch_3epB <- paste0("../Analysis/optimal_sample_size_test/3epB_", j)
-  subdirectory_lynch_3epC <- paste0("../Analysis/optimal_sample_size_test/3epC_", j)
-  subdirectory_lynch_3epE <- paste0("../Analysis/optimal_sample_size_test/3epE_", j)
+  subdirectory_lynch_2epC <- paste0("../Simulations/lynch_theory/TwoEpochContraction_", j)
+  subdirectory_lynch_2epE <- paste0("../Simulations/lynch_theory/TwoEpochExpansion_", j)
+  subdirectory_lynch_3epB <- paste0("../Simulations/lynch_theory/ThreeEpochBottleneck_", j)
+  subdirectory_lynch_3epC <- paste0("../Simulations/lynch_theory/ThreeEpochContraction_", j)
+  subdirectory_lynch_3epE <- paste0("../Simulations/lynch_theory/ThreeEpochExpansion_", j)
 
   TwoEpochC_lynch_summary <- paste0(subdirectory_lynch_2epC, "_summary.txt")
   TwoEpochE_lynch_summary <- paste0(subdirectory_lynch_2epE, "_summary.txt")
@@ -1735,7 +1871,7 @@ tennessen_lynch_tajima_d = c()
 for (i in seq(from=10, to=800, by=10)) {
   # Lynch
   j = i + 1
-  subdirectory_lynch_tennessen <- paste0("../Analysis/optimal_sample_size_test/tennessen_", j)
+  subdirectory_lynch_tennessen <- paste0("../Simulations/lynch_theory/tennessen_", j)
   tennessen_lynch_summary <- paste0(subdirectory_lynch_tennessen, "_summary.txt")
 
   tennessen_lynch_tajima_d = c(tennessen_lynch_tajima_d, read_summary_statistics(tennessen_lynch_summary)[3])

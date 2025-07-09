@@ -354,6 +354,24 @@ class DadiSimulate():
             args['outprefix'], underscore, sample_size)
         output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}.sfs'.format(
             args['outprefix'], underscore, sample_size)
+        output_500_2000 = '{0}{1}500_2000_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_1000_2000 = '{0}{1}1000_2000_{2}.sfs'.format(   
+            args['outprefix'], underscore, sample_size)
+        output_1500_2000 = '{0}{1}1500_2000_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_2000_2000 = '{0}{1}2000_2000_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_2500_2000 = '{0}{1}2500_2000_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_1000_500 = '{0}{1}1000_500_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_1000_1000   = '{0}{1}1000_1000_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_1000_1500 = '{0}{1}1000_1500_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
+        output_1000_2500 = '{0}{1}1000_2500_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -438,6 +456,106 @@ class DadiSimulate():
             output_spectrum.fold().to_file(f4)
             logger.info('Finished generating three-epoch bottleneck.')
 
+        with open(output_500_2000, "w+") as f5:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.1 # Bottleneck duration
+            tauF = 0.025 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f5)
+            logger.info('Finished generating 500-2000 bottleneck.')
+
+        with open(output_1000_2000, "w+") as f6:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.1 # Bottleneck duration
+            tauF = 0.05 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f6)
+            logger.info('Finished generating 1000-2000 bottleneck.')
+
+        with open(output_1500_2000, "w+") as f7:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.1 # Bottleneck duration
+            tauF = 0.075 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f7)
+            logger.info('Finished generating 1500-2000 bottleneck.')
+        
+        with open(output_2000_2000, "w+") as f8:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.1 # Bottleneck duration
+            tauF = 0.1 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f8)
+            logger.info('Finished generating 2000-2000 bottleneck.')
+
+        with open(output_2500_2000, "w+") as f9:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.1 # Bottleneck duration
+            tauF = 0.125 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f9)
+            logger.info('Finished generating 2500-2000 bottleneck.')
+
+        with open(output_1000_500, "w+") as f10:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.025 # Bottleneck duration
+            tauF = 0.05 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f10)
+            logger.info('Finished generating 1000-500 bottleneck.')
+
+        with open(output_1000_1000, "w+") as f11:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.05 # Bottleneck duration
+            tauF = 0.05 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f11)
+            logger.info('Finished generating 1000-1000 bottleneck.')
+        
+        with open(output_1000_1500, "w+") as f12:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.075 # Bottleneck duration
+            tauF = 0.05 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f12)
+            logger.info('Finished generating 1000-1500 bottleneck.')
+
+        with open(output_1000_2500, "w+") as f13:
+            """Simulate a three-epoch bottleneck."""
+            nuB = 0.1 # Bottleneck relative size
+            nuF = 5.0 # Concurrent relative size
+            tauB = 0.125 # Bottleneck duration
+            tauF = 0.05 # Time since bottleneck recovery
+            output_spectrum = theta * self.three_epoch(
+                params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
+            output_spectrum.fold().to_file(f13)
+            logger.info('Finished generating 1000-2500 bottleneck.')
+
+        logger.info('Finished generating all demographic scenarios.')
         logger.info('Pipeline executed succesfully.')
 
 
