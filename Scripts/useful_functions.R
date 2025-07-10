@@ -841,6 +841,78 @@ compare_msprime_dadi_lynch_count_sfs = function(null, msprime, dadi, lynch) {
   return(p_input_comparison)
 }
 
+compare_dadi_lynch_proportional_sfs = function(null, dadi, lynch) {
+  if (length(null) > 10) {
+    x_axis = 1:10
+    null = proportional_sfs(null)[1:10]
+    dadi = proportional_sfs(dadi)[1:10]
+    lynch = proportional_sfs(lynch)[1:10]
+  } else {
+    x_axis = 1:length(null)
+    null = proportional_sfs(null)
+    dadi = proportional_sfs(dadi)
+    lynch = proportional_sfs(lynch)    
+  }
+  input_df = data.frame(null,
+                        dadi,
+                        lynch,
+                        x_axis)
+  
+  names(input_df) = c('SNM',
+                      'Dadi',
+                      'Lynch',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
+compare_dadi_lynch_count_sfs = function(null, dadi, lynch) {
+  if (length(null) > 10) {
+    x_axis = 1:10
+    null = null[1:10]
+    dadi = dadi[1:10]
+    lynch = lynch[1:10]
+  } else {
+    x_axis = 1:length(null)
+    null = null
+    dadi = dadi
+    lynch = lynch
+  }
+  input_df = data.frame(null,
+                        dadi,
+                        lynch,
+                        x_axis)
+  
+  names(input_df) = c('SNM',
+                      'Dadi',
+                      'Lynch',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
 read_summary_statistics = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))

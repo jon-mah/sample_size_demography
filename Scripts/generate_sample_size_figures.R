@@ -1203,6 +1203,228 @@ ThreeEpochB_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpo
 lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_101_expected_sfs.txt')
 lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_101_expected_sfs.txt')
 
+# Altered Bottleneck Timings
+
+dadi_500_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_10.sfs')
+dadi_500_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_20.sfs')
+dadi_500_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_30.sfs')
+dadi_500_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_40.sfs')
+dadi_500_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_50.sfs')
+dadi_500_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_60.sfs')
+dadi_500_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_70.sfs')
+dadi_500_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_80.sfs')
+dadi_500_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_90.sfs')
+dadi_500_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/500_2000_100.sfs')
+
+dadi_1000_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_10.sfs')
+dadi_1000_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_20.sfs')
+dadi_1000_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_30.sfs')
+dadi_1000_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_40.sfs')
+dadi_1000_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_50.sfs')
+dadi_1000_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_60.sfs')
+dadi_1000_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_70.sfs')
+dadi_1000_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_80.sfs')
+dadi_1000_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_90.sfs')
+dadi_1000_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_100.sfs')
+
+dadi_1500_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_10.sfs')
+dadi_1500_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_20.sfs')
+dadi_1500_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_30.sfs')
+dadi_1500_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_40.sfs')
+dadi_1500_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_50.sfs')
+dadi_1500_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_60.sfs')
+dadi_1500_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_70.sfs')
+dadi_1500_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_80.sfs')
+dadi_1500_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_90.sfs')
+dadi_1500_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1500_2000_100.sfs')
+
+dadi_2000_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_10.sfs')
+dadi_2000_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_20.sfs')
+dadi_2000_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_30.sfs')
+dadi_2000_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_40.sfs')
+dadi_2000_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_50.sfs')
+dadi_2000_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_60.sfs')
+dadi_2000_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_70.sfs')
+dadi_2000_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_80.sfs')
+dadi_2000_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_90.sfs')
+dadi_2000_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_100.sfs')
+
+dadi_2500_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_10.sfs')
+dadi_2500_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_20.sfs')
+dadi_2500_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_30.sfs')
+dadi_2500_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_40.sfs')
+dadi_2500_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_50.sfs')
+dadi_2500_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_60.sfs')
+dadi_2500_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_70.sfs')
+dadi_2500_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_80.sfs')
+dadi_2500_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_90.sfs')
+dadi_2500_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/2500_2000_100.sfs')
+
+dadi_1000_500_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_10.sfs')
+dadi_1000_500_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_20.sfs')
+dadi_1000_500_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_30.sfs')
+dadi_1000_500_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_40.sfs')
+dadi_1000_500_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_50.sfs')
+dadi_1000_500_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_60.sfs')
+dadi_1000_500_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_70.sfs')
+dadi_1000_500_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_80.sfs')
+dadi_1000_500_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_90.sfs')
+dadi_1000_500_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_500_100.sfs')
+
+dadi_1000_1000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_10.sfs')
+dadi_1000_1000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_20.sfs')
+dadi_1000_1000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_30.sfs')
+dadi_1000_1000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_40.sfs')
+dadi_1000_1000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_50.sfs')
+dadi_1000_1000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_60.sfs')
+dadi_1000_1000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_70.sfs')
+dadi_1000_1000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_80.sfs')
+dadi_1000_1000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_90.sfs')
+dadi_1000_1000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_100.sfs')
+
+dadi_1000_1500_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_10.sfs')
+dadi_1000_1500_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_20.sfs')
+dadi_1000_1500_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_30.sfs')
+dadi_1000_1500_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_40.sfs')
+dadi_1000_1500_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_50.sfs')
+dadi_1000_1500_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_60.sfs')
+dadi_1000_1500_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_70.sfs')
+dadi_1000_1500_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_80.sfs')
+dadi_1000_1500_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_90.sfs')
+dadi_1000_1500_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1500_100.sfs')
+
+dadi_1000_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_10.sfs')
+dadi_1000_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_20.sfs')
+dadi_1000_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_30.sfs')
+dadi_1000_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_40.sfs')
+dadi_1000_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_50.sfs')
+dadi_1000_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_60.sfs')
+dadi_1000_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_70.sfs')
+dadi_1000_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_80.sfs')
+dadi_1000_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_90.sfs')
+dadi_1000_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2000_100.sfs')
+
+dadi_1000_2500_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_10.sfs')
+dadi_1000_2500_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_20.sfs')
+dadi_1000_2500_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_30.sfs')
+dadi_1000_2500_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_40.sfs')
+dadi_1000_2500_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_50.sfs')
+dadi_1000_2500_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_60.sfs')
+dadi_1000_2500_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_70.sfs')
+dadi_1000_2500_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_80.sfs')
+dadi_1000_2500_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_90.sfs')
+dadi_1000_2500_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_100.sfs')
+
+lynch_500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_11_expected_sfs.txt')
+lynch_500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_21_expected_sfs.txt')
+lynch_500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_31_expected_sfs.txt')
+lynch_500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_41_expected_sfs.txt')
+lynch_500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_51_expected_sfs.txt')
+lynch_500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_61_expected_sfs.txt')
+lynch_500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_71_expected_sfs.txt')
+lynch_500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_81_expected_sfs.txt')
+lynch_500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_91_expected_sfs.txt')
+lynch_500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_101_expected_sfs.txt')
+
+lynch_1000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_11_expected_sfs.txt')
+lynch_1000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_21_expected_sfs.txt')
+lynch_1000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_31_expected_sfs.txt')
+lynch_1000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_41_expected_sfs.txt')
+lynch_1000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_51_expected_sfs.txt')
+lynch_1000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_61_expected_sfs.txt')
+lynch_1000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_71_expected_sfs.txt')
+lynch_1000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_81_expected_sfs.txt')
+lynch_1000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_91_expected_sfs.txt')
+lynch_1000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_101_expected_sfs.txt')
+
+lynch_1500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_11_expected_sfs.txt')
+lynch_1500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_21_expected_sfs.txt')
+lynch_1500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_31_expected_sfs.txt')
+lynch_1500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_41_expected_sfs.txt')
+lynch_1500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_51_expected_sfs.txt')
+lynch_1500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_61_expected_sfs.txt')
+lynch_1500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_71_expected_sfs.txt')
+lynch_1500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_81_expected_sfs.txt')
+lynch_1500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_91_expected_sfs.txt')
+lynch_1500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_101_expected_sfs.txt')
+
+lynch_2000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_11_expected_sfs.txt')
+lynch_2000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_21_expected_sfs.txt')
+lynch_2000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_31_expected_sfs.txt')
+lynch_2000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_41_expected_sfs.txt')
+lynch_2000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_51_expected_sfs.txt')
+lynch_2000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_61_expected_sfs.txt')
+lynch_2000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_71_expected_sfs.txt')
+lynch_2000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_81_expected_sfs.txt')
+lynch_2000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_91_expected_sfs.txt')
+lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_101_expected_sfs.txt')
+
+lynch_2500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_11_expected_sfs.txt')
+lynch_2500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_21_expected_sfs.txt')
+lynch_2500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_31_expected_sfs.txt')
+lynch_2500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_41_expected_sfs.txt')
+lynch_2500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_51_expected_sfs.txt')
+lynch_2500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_61_expected_sfs.txt')
+lynch_2500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_71_expected_sfs.txt')
+lynch_2500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_81_expected_sfs.txt')
+lynch_2500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_91_expected_sfs.txt')
+lynch_2500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_101_expected_sfs.txt')
+
+lynch_1000_500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_11_expected_sfs.txt')
+lynch_1000_500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_21_expected_sfs.txt')
+lynch_1000_500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_31_expected_sfs.txt')
+lynch_1000_500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_41_expected_sfs.txt')
+lynch_1000_500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_51_expected_sfs.txt')
+lynch_1000_500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_61_expected_sfs.txt')
+lynch_1000_500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_71_expected_sfs.txt')
+lynch_1000_500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_81_expected_sfs.txt')
+lynch_1000_500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_91_expected_sfs.txt')
+lynch_1000_500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_101_expected_sfs.txt')
+
+lynch_1000_1000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_11_expected_sfs.txt')
+lynch_1000_1000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_21_expected_sfs.txt')
+lynch_1000_1000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_31_expected_sfs.txt')
+lynch_1000_1000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_41_expected_sfs.txt')
+lynch_1000_1000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_51_expected_sfs.txt')
+lynch_1000_1000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_61_expected_sfs.txt')
+lynch_1000_1000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_71_expected_sfs.txt')
+lynch_1000_1000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_81_expected_sfs.txt')
+lynch_1000_1000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_91_expected_sfs.txt')
+lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_101_expected_sfs.txt')
+
+lynch_1000_1500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_11_expected_sfs.txt')
+lynch_1000_1500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_21_expected_sfs.txt')
+lynch_1000_1500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_31_expected_sfs.txt')
+lynch_1000_1500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_41_expected_sfs.txt')
+lynch_1000_1500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_51_expected_sfs.txt')
+lynch_1000_1500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_61_expected_sfs.txt')
+lynch_1000_1500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_71_expected_sfs.txt')
+lynch_1000_1500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_81_expected_sfs.txt')
+lynch_1000_1500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_91_expected_sfs.txt')
+lynch_1000_1500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_101_expected_sfs.txt')
+
+lynch_1000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_11_expected_sfs.txt')
+lynch_1000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_21_expected_sfs.txt')
+lynch_1000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_31_expected_sfs.txt')
+lynch_1000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_41_expected_sfs.txt')
+lynch_1000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_51_expected_sfs.txt')
+lynch_1000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_61_expected_sfs.txt')
+lynch_1000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_71_expected_sfs.txt')
+lynch_1000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_81_expected_sfs.txt')
+lynch_1000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_91_expected_sfs.txt')
+lynch_1000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_101_expected_sfs.txt')
+
+lynch_1000_2500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_11_expected_sfs.txt')
+lynch_1000_2500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_21_expected_sfs.txt')
+lynch_1000_2500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_31_expected_sfs.txt')
+lynch_1000_2500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_41_expected_sfs.txt')
+lynch_1000_2500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_51_expected_sfs.txt')
+lynch_1000_2500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_61_expected_sfs.txt')
+lynch_1000_2500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_71_expected_sfs.txt')
+lynch_1000_2500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_81_expected_sfs.txt')
+lynch_1000_2500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_91_expected_sfs.txt')
+lynch_1000_2500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_101_expected_sfs.txt')
+
 compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, TwoEpochC_10_msprime_SFS, 
     TwoEpochC_10_dadi_SFS, TwoEpochC_10_lynch_SFS) + 
   ggtitle('Two Epoch Contraction, k=10') +
@@ -1680,6 +1902,650 @@ compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS,
   msprime_2000_2000_100_SFS, dadi_2000_2000_100_SFS, lynch_2000_2000_100_SFS) +
   ggtitle('Three Epoch Bottleneck, tau = [2000, 2000], k=100') +
   plot_layout(nrow=3)
+
+## Dadi vs. Lynch
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+  dadi_500_2000_10_SFS, lynch_500_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_1000_2000_10_SFS, lynch_1000_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_1500_2000_10_SFS, lynch_1500_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_2000_2000_10_SFS, lynch_2000_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_2500_2000_10_SFS, lynch_2500_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=10')  
+  
+compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+  dadi_500_2000_20_SFS, lynch_500_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_1000_2000_20_SFS, lynch_1000_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_1500_2000_20_SFS, lynch_1500_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_2000_2000_20_SFS, lynch_2000_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_2500_2000_20_SFS, lynch_2500_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=20')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+  dadi_500_2000_30_SFS, lynch_500_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_1000_2000_30_SFS, lynch_1000_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_1500_2000_30_SFS, lynch_1500_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_2000_2000_30_SFS, lynch_2000_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_2500_2000_30_SFS, lynch_2500_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=30')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+  dadi_500_2000_40_SFS, lynch_500_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_1000_2000_40_SFS, lynch_1000_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_1500_2000_40_SFS, lynch_1500_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_2000_2000_40_SFS, lynch_2000_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_2500_2000_40_SFS, lynch_2500_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=40')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+  dadi_500_2000_50_SFS, lynch_500_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_1000_2000_50_SFS, lynch_1000_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_1500_2000_50_SFS, lynch_1500_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_2000_2000_50_SFS, lynch_2000_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_2500_2000_50_SFS, lynch_2500_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=50')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+  dadi_500_2000_60_SFS, lynch_500_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_1000_2000_60_SFS, lynch_1000_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_1500_2000_60_SFS, lynch_1500_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_2000_2000_60_SFS, lynch_2000_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_2500_2000_60_SFS, lynch_2500_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=60')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+  dadi_500_2000_70_SFS, lynch_500_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_1000_2000_70_SFS, lynch_1000_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_1500_2000_70_SFS, lynch_1500_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_2000_2000_70_SFS, lynch_2000_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_2500_2000_70_SFS, lynch_2500_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=70')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+  dadi_500_2000_80_SFS, lynch_500_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_1000_2000_80_SFS, lynch_1000_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_1500_2000_80_SFS, lynch_1500_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_2000_2000_80_SFS, lynch_2000_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_2500_2000_80_SFS, lynch_2500_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=80')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+  dadi_500_2000_90_SFS, lynch_500_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_1000_2000_90_SFS, lynch_1000_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_1500_2000_90_SFS, lynch_1500_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_2000_2000_90_SFS, lynch_2000_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_2500_2000_90_SFS, lynch_2500_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=90')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+  dadi_500_2000_100_SFS, lynch_500_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_1000_2000_100_SFS, lynch_1000_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [10000, 2000], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_1500_2000_100_SFS, lynch_1500_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_2000_2000_100_SFS, lynch_2000_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_2500_2000_100_SFS, lynch_2500_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=100')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+  dadi_1000_500_10_SFS, lynch_1000_500_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_1000_1000_10_SFS, lynch_1000_1000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_1000_1500_10_SFS, lynch_1000_1500_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_1000_2000_10_SFS, lynch_1000_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
+    dadi_1000_2500_10_SFS, lynch_1000_2500_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=10')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+  dadi_1000_500_20_SFS, lynch_1000_500_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_1000_1000_20_SFS, lynch_1000_1000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_1000_1500_20_SFS, lynch_1000_1500_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_1000_2000_20_SFS, lynch_1000_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS,
+    dadi_1000_2500_20_SFS, lynch_1000_2500_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=20')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+  dadi_1000_500_30_SFS, lynch_1000_500_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_1000_1000_30_SFS, lynch_1000_1000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_1000_1500_30_SFS, lynch_1000_1500_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_1000_2000_30_SFS, lynch_1000_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS,
+    dadi_1000_2500_30_SFS, lynch_1000_2500_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=30')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+  dadi_1000_500_40_SFS, lynch_1000_500_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_1000_1000_40_SFS, lynch_1000_1000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_1000_1500_40_SFS, lynch_1000_1500_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_1000_2000_40_SFS, lynch_1000_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS,
+    dadi_1000_2500_40_SFS, lynch_1000_2500_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=40')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+  dadi_1000_500_50_SFS, lynch_1000_500_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_1000_1000_50_SFS, lynch_1000_1000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_1000_1500_50_SFS, lynch_1000_1500_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_1000_2000_50_SFS, lynch_1000_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=50') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS,
+    dadi_1000_2500_50_SFS, lynch_1000_2500_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=50')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+  dadi_1000_500_60_SFS, lynch_1000_500_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_1000_1000_60_SFS, lynch_1000_1000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_1000_1500_60_SFS, lynch_1000_1500_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_1000_2000_60_SFS, lynch_1000_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS,
+    dadi_1000_2500_60_SFS, lynch_1000_2500_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=60')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+  dadi_1000_500_70_SFS, lynch_1000_500_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_1000_1000_70_SFS, lynch_1000_1000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_1000_1500_70_SFS, lynch_1000_1500_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_1000_2000_70_SFS, lynch_1000_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS,
+    dadi_1000_2500_70_SFS, lynch_1000_2500_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=70')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+  dadi_1000_500_80_SFS, lynch_1000_500_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_1000_1000_80_SFS, lynch_1000_1000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_1000_1500_80_SFS, lynch_1000_1500_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_1000_2000_80_SFS, lynch_1000_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS,
+    dadi_1000_2500_80_SFS, lynch_1000_2500_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=80')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+  dadi_1000_500_90_SFS, lynch_1000_500_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_1000_1000_90_SFS, lynch_1000_1000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_1000_1500_90_SFS, lynch_1000_1500_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_1000_2000_90_SFS, lynch_1000_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS,
+    dadi_1000_2500_90_SFS, lynch_1000_2500_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=90')  
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+  dadi_1000_500_100_SFS, lynch_1000_500_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_1000_1000_100_SFS, lynch_1000_1000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_1000_1500_100_SFS, lynch_1000_1500_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_1000_2000_100_SFS, lynch_1000_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=100') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
+    dadi_1000_2500_100_SFS, lynch_1000_2500_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=100')  
+
+## Count SFS
+
+compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+  dadi_500_2000_10_SFS, lynch_500_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_1000_2000_10_SFS, lynch_1000_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_1500_2000_10_SFS, lynch_1500_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_2000_2000_10_SFS, lynch_2000_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_2500_2000_10_SFS, lynch_2500_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=10')  
+  
+compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+  dadi_500_2000_20_SFS, lynch_500_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_1000_2000_20_SFS, lynch_1000_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_1500_2000_20_SFS, lynch_1500_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_2000_2000_20_SFS, lynch_2000_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_2500_2000_20_SFS, lynch_2500_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=20')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+  dadi_500_2000_30_SFS, lynch_500_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_1000_2000_30_SFS, lynch_1000_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_1500_2000_30_SFS, lynch_1500_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_2000_2000_30_SFS, lynch_2000_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_2500_2000_30_SFS, lynch_2500_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=30')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+  dadi_500_2000_40_SFS, lynch_500_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_1000_2000_40_SFS, lynch_1000_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_1500_2000_40_SFS, lynch_1500_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_2000_2000_40_SFS, lynch_2000_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_2500_2000_40_SFS, lynch_2500_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=40')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+  dadi_500_2000_50_SFS, lynch_500_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_1000_2000_50_SFS, lynch_1000_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_1500_2000_50_SFS, lynch_1500_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_2000_2000_50_SFS, lynch_2000_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_2500_2000_50_SFS, lynch_2500_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=50')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+  dadi_500_2000_60_SFS, lynch_500_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_1000_2000_60_SFS, lynch_1000_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_1500_2000_60_SFS, lynch_1500_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_2000_2000_60_SFS, lynch_2000_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_2500_2000_60_SFS, lynch_2500_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=60')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+  dadi_500_2000_70_SFS, lynch_500_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_1000_2000_70_SFS, lynch_1000_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_1500_2000_70_SFS, lynch_1500_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_2000_2000_70_SFS, lynch_2000_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_2500_2000_70_SFS, lynch_2500_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=70')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+  dadi_500_2000_80_SFS, lynch_500_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_1000_2000_80_SFS, lynch_1000_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_1500_2000_80_SFS, lynch_1500_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_2000_2000_80_SFS, lynch_2000_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_2500_2000_80_SFS, lynch_2500_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=80')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+  dadi_500_2000_90_SFS, lynch_500_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_1000_2000_90_SFS, lynch_1000_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_1500_2000_90_SFS, lynch_1500_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_2000_2000_90_SFS, lynch_2000_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_2500_2000_90_SFS, lynch_2500_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=90')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+  dadi_500_2000_100_SFS, lynch_500_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [500, 2000], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_1000_2000_100_SFS, lynch_1000_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [10000, 2000], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_1500_2000_100_SFS, lynch_1500_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1500, 2000], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_2000_2000_100_SFS, lynch_2000_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2000, 2000], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_2500_2000_100_SFS, lynch_2500_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [2500, 2000], k=100')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+  dadi_1000_500_10_SFS, lynch_1000_500_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_1000_1000_10_SFS, lynch_1000_1000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_1000_1500_10_SFS, lynch_1000_1500_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_1000_2000_10_SFS, lynch_1000_2000_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=10') +
+  compare_dadi_lynch_count_sfs(dadi_snm_10_SFS,
+    dadi_1000_2500_10_SFS, lynch_1000_2500_10_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=10')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+  dadi_1000_500_20_SFS, lynch_1000_500_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_1000_1000_20_SFS, lynch_1000_1000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_1000_1500_20_SFS, lynch_1000_1500_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_1000_2000_20_SFS, lynch_1000_2000_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=20') +
+  compare_dadi_lynch_count_sfs(dadi_snm_20_SFS,
+    dadi_1000_2500_20_SFS, lynch_1000_2500_20_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=20')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+  dadi_1000_500_30_SFS, lynch_1000_500_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_1000_1000_30_SFS, lynch_1000_1000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_1000_1500_30_SFS, lynch_1000_1500_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_1000_2000_30_SFS, lynch_1000_2000_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=30') +
+  compare_dadi_lynch_count_sfs(dadi_snm_30_SFS,
+    dadi_1000_2500_30_SFS, lynch_1000_2500_30_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=30')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+  dadi_1000_500_40_SFS, lynch_1000_500_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_1000_1000_40_SFS, lynch_1000_1000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_1000_1500_40_SFS, lynch_1000_1500_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_1000_2000_40_SFS, lynch_1000_2000_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=40') +
+  compare_dadi_lynch_count_sfs(dadi_snm_40_SFS,
+    dadi_1000_2500_40_SFS, lynch_1000_2500_40_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=40')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+  dadi_1000_500_50_SFS, lynch_1000_500_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_1000_1000_50_SFS, lynch_1000_1000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_1000_1500_50_SFS, lynch_1000_1500_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_1000_2000_50_SFS, lynch_1000_2000_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=50') +
+  compare_dadi_lynch_count_sfs(dadi_snm_50_SFS,
+    dadi_1000_2500_50_SFS, lynch_1000_2500_50_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=50')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+  dadi_1000_500_60_SFS, lynch_1000_500_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_1000_1000_60_SFS, lynch_1000_1000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_1000_1500_60_SFS, lynch_1000_1500_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_1000_2000_60_SFS, lynch_1000_2000_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=60') +
+  compare_dadi_lynch_count_sfs(dadi_snm_60_SFS,
+    dadi_1000_2500_60_SFS, lynch_1000_2500_60_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=60')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+  dadi_1000_500_70_SFS, lynch_1000_500_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_1000_1000_70_SFS, lynch_1000_1000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_1000_1500_70_SFS, lynch_1000_1500_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_1000_2000_70_SFS, lynch_1000_2000_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=70') +
+  compare_dadi_lynch_count_sfs(dadi_snm_70_SFS,
+    dadi_1000_2500_70_SFS, lynch_1000_2500_70_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=70')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+  dadi_1000_500_80_SFS, lynch_1000_500_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_1000_1000_80_SFS, lynch_1000_1000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_1000_1500_80_SFS, lynch_1000_1500_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_1000_2000_80_SFS, lynch_1000_2000_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=80') +
+  compare_dadi_lynch_count_sfs(dadi_snm_80_SFS,
+    dadi_1000_2500_80_SFS, lynch_1000_2500_80_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=80')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+  dadi_1000_500_90_SFS, lynch_1000_500_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_1000_1000_90_SFS, lynch_1000_1000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_1000_1500_90_SFS, lynch_1000_1500_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_1000_2000_90_SFS, lynch_1000_2000_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=90') +
+  compare_dadi_lynch_count_sfs(dadi_snm_90_SFS,
+    dadi_1000_2500_90_SFS, lynch_1000_2500_90_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=90')  
+
+compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+  dadi_1000_500_100_SFS, lynch_1000_500_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 500], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_1000_1000_100_SFS, lynch_1000_1000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 1000], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_1000_1500_100_SFS, lynch_1000_1500_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000], k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_1000_2000_100_SFS, lynch_1000_2000_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2000]. k=100') +
+  compare_dadi_lynch_count_sfs(dadi_snm_100_SFS,
+    dadi_1000_2500_100_SFS, lynch_1000_2500_100_SFS) +
+  ggtitle('Bottleneck + Growth, tau = [1000, 2500], k=100')  
 
 ## Compare Tajima's D
 
