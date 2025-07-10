@@ -1,20 +1,20 @@
-2025-07-09 20:34:39,283 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-07-10 14:23:18,269 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-07-09 20:34:39,284 - INFO - Progress is being logged to ../Simulations/lynch_theory/500_2000_bottleneck_61_log.log
+2025-07-10 14:23:18,269 - INFO - Progress is being logged to ../Simulations/lynch_theory/500_2000_bottleneck_61_log.log
 
-2025-07-09 20:34:39,284 - INFO - Parsed the following arguments:
+2025-07-10 14:23:18,270 - INFO - Parsed the following arguments:
 	input_demography = ../Data/500_2000_bottleneck_demography.csv
 	target_time = 0
 	target_sample_size = 61
 	nu_tau = False
 	outprefix = ../Simulations/lynch_theory/500_2000_bottleneck_61
 
-2025-07-09 20:34:39,284 - INFO - Reading in the demographic history from ../Data/500_2000_bottleneck_demography.csv
-2025-07-09 20:34:39,290 - INFO - Finding time frame of target sample size 61.
-2025-07-09 20:34:39,291 - INFO - Optimal sample size is 61.
-2025-07-09 20:34:39,291 - INFO - Median time interval is approximately 623.8755779739383.
-2025-07-09 20:34:39,291 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-07-09 20:34:39,312 - INFO - Output tree: 
+2025-07-10 14:23:18,270 - INFO - Reading in the demographic history from ../Data/500_2000_bottleneck_demography.csv
+2025-07-10 14:23:18,276 - INFO - Finding time frame of target sample size 61.
+2025-07-10 14:23:18,278 - INFO - Optimal sample size is 61.
+2025-07-10 14:23:18,278 - INFO - Median time interval is approximately 623.8755779739383.
+2025-07-10 14:23:18,278 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-10 14:23:18,302 - INFO - Output tree: 
      Total time  Next time interval  Population size
 61     0.000000           54.644809            50000
 60    54.644809           56.497175            50000
@@ -76,7 +76,8 @@
 4   1490.542245          333.333333             1000
 3   1823.875578          666.666667             1000
 2   2490.542245         2000.000000             1000
-2025-07-09 20:34:39,312 - INFO - Computing expected sfs for optimal sample size of 61.
-2025-07-09 20:34:39,431 - INFO - Expected relative number of singletons: 8350.0
-2025-07-09 20:34:39,432 - INFO - Arithmetic mean of population intervals: 8350
-2025-07-09 20:34:39,433 - INFO - Tajima's D of expected SFS: -1.8821121835066823
+2025-07-10 14:23:18,302 - INFO - Computing expected sfs for optimal sample size of 61.
+2025-07-10 14:23:18,455 - INFO - Expected SFS: [0.0, 50099.99999999999, 5989.830508474575, 2240.5610753945057, 1518.9916638469344, 1201.356547417638, 1000.0822149950081, 857.1467721426193, 750.00012926886, 666.6666688763906, 599.9999999999999, 545.4545454545454, 499.9999999999999, 461.53846153846143, 428.57142857142844, 399.99999999999994, 374.99999999999994, 352.94117647058806, 333.3333333333334, 315.7894736842104, 299.99999999999994, 285.71428571428567, 272.72727272727275, 260.86956521739125, 249.99999999999986, 239.99999999999991, 230.76923076923072, 222.22222222222223, 214.28571428571425, 206.8965517241379, 200.00000000000003, 193.54838709677415, 187.50000000000003, 181.81818181818173, 176.47058823529417, 171.42857142857136, 166.66666666666657, 162.16216216216213, 157.89473684210523, 153.8461538461538, 150.0, 146.34146341463415, 142.85714285714283, 139.53488372093025, 136.36363636363635, 133.33333333333331, 130.43478260869563, 127.65957446808508, 124.99999999999997, 122.44897959183672, 119.99999999999999, 117.6470588235294, 115.38461538461536, 113.2075471698113, 111.1111111111111, 109.09090909090908, 107.14285714285712, 105.26315789473684, 103.44827586206895, 101.69491525423727, 99.99999999999999]
+2025-07-10 14:23:18,455 - INFO - Expected relative number of singletons: 50099.99999999999
+2025-07-10 14:23:18,455 - INFO - Arithmetic mean of population intervals: 8350
+2025-07-10 14:23:18,456 - INFO - Tajima's D of expected SFS: -1.8825393994785293

@@ -1,20 +1,20 @@
-2025-07-09 20:34:44,870 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-07-10 14:23:26,051 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-07-09 20:34:44,870 - INFO - Progress is being logged to ../Simulations/lynch_theory/2000_2000_bottleneck_41_log.log
+2025-07-10 14:23:26,051 - INFO - Progress is being logged to ../Simulations/lynch_theory/2000_2000_bottleneck_41_log.log
 
-2025-07-09 20:34:44,870 - INFO - Parsed the following arguments:
+2025-07-10 14:23:26,051 - INFO - Parsed the following arguments:
 	input_demography = ../Data/2000_2000_bottleneck_demography.csv
 	target_time = 0
 	target_sample_size = 41
 	nu_tau = False
 	outprefix = ../Simulations/lynch_theory/2000_2000_bottleneck_41
 
-2025-07-09 20:34:44,870 - INFO - Reading in the demographic history from ../Data/2000_2000_bottleneck_demography.csv
-2025-07-09 20:34:44,873 - INFO - Finding time frame of target sample size 41.
-2025-07-09 20:34:44,874 - INFO - Optimal sample size is 41.
-2025-07-09 20:34:44,874 - INFO - Median time interval is approximately 2080.571909167368.
-2025-07-09 20:34:44,874 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-07-09 20:34:44,886 - INFO - Output tree: 
+2025-07-10 14:23:26,052 - INFO - Reading in the demographic history from ../Data/2000_2000_bottleneck_demography.csv
+2025-07-10 14:23:26,056 - INFO - Finding time frame of target sample size 41.
+2025-07-10 14:23:26,056 - INFO - Optimal sample size is 41.
+2025-07-10 14:23:26,056 - INFO - Median time interval is approximately 2080.571909167368.
+2025-07-10 14:23:26,057 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-10 14:23:26,071 - INFO - Output tree: 
      Total time  Next time interval  Population size
 41     0.000000          121.951220            50000
 40   121.951220          128.205128            50000
@@ -56,7 +56,8 @@
 4   2880.571909          333.333333             1000
 3   3213.905243          666.666667             1000
 2   3880.571909         2000.000000             1000
-2025-07-09 20:34:44,886 - INFO - Computing expected sfs for optimal sample size of 41.
-2025-07-09 20:34:44,943 - INFO - Expected relative number of singletons: 15700.0
-2025-07-09 20:34:44,943 - INFO - Arithmetic mean of population intervals: 15700
-2025-07-09 20:34:44,944 - INFO - Tajima's D of expected SFS: -2.271966824864407
+2025-07-10 14:23:26,071 - INFO - Computing expected sfs for optimal sample size of 41.
+2025-07-10 14:23:26,159 - INFO - Expected SFS: [0.0, 94199.99999999999, 15438.461538461535, 4182.186234817813, 1898.1015428383848, 1270.7736076157125, 1011.7956012692854, 858.9270657382111, 750.2365428062021, 666.6929492006891, 600.002289123931, 545.4546841893291, 500.00000438529486, 461.53846153846143, 428.57142857142844, 399.99999999999994, 374.99999999999994, 352.9411764705882, 333.3333333333333, 315.7894736842105, 299.9999999999999, 285.7142857142857, 272.72727272727263, 260.86956521739125, 249.99999999999994, 239.99999999999997, 230.7692307692307, 222.2222222222222, 214.28571428571425, 206.8965517241379, 199.99999999999997, 193.54838709677415, 187.49999999999997, 181.8181818181818, 176.4705882352941, 171.42857142857142, 166.66666666666666, 162.16216216216213, 157.89473684210523, 153.84615384615384, 149.99999999999997]
+2025-07-10 14:23:26,159 - INFO - Expected relative number of singletons: 94199.99999999999
+2025-07-10 14:23:26,160 - INFO - Arithmetic mean of population intervals: 15700
+2025-07-10 14:23:26,161 - INFO - Tajima's D of expected SFS: -2.2722299004293043

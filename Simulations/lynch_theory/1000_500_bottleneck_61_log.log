@@ -1,20 +1,20 @@
-2025-07-09 20:34:50,737 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-07-10 14:23:29,850 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-07-09 20:34:50,737 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_500_bottleneck_61_log.log
+2025-07-10 14:23:29,850 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_500_bottleneck_61_log.log
 
-2025-07-09 20:34:50,737 - INFO - Parsed the following arguments:
+2025-07-10 14:23:29,851 - INFO - Parsed the following arguments:
 	input_demography = ../Data/1000_500_bottleneck_demography.csv
 	target_time = 0
 	target_sample_size = 61
 	nu_tau = False
 	outprefix = ../Simulations/lynch_theory/1000_500_bottleneck_61
 
-2025-07-09 20:34:50,737 - INFO - Reading in the demographic history from ../Data/1000_500_bottleneck_demography.csv
-2025-07-09 20:34:50,742 - INFO - Finding time frame of target sample size 61.
-2025-07-09 20:34:50,743 - INFO - Optimal sample size is 61.
-2025-07-09 20:34:50,743 - INFO - Median time interval is approximately 1115.5143739605603.
-2025-07-09 20:34:50,743 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-07-09 20:34:50,761 - INFO - Output tree: 
+2025-07-10 14:23:29,851 - INFO - Reading in the demographic history from ../Data/1000_500_bottleneck_demography.csv
+2025-07-10 14:23:29,855 - INFO - Finding time frame of target sample size 61.
+2025-07-10 14:23:29,856 - INFO - Optimal sample size is 61.
+2025-07-10 14:23:29,856 - INFO - Median time interval is approximately 1115.5143739605603.
+2025-07-10 14:23:29,856 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-10 14:23:29,872 - INFO - Output tree: 
       Total time  Next time interval  Population size
 61      0.000000           54.644809            50000
 60     54.644809           56.497175            50000
@@ -76,7 +76,8 @@
 4    5839.323898         3333.333333            10000
 3    9172.657231         6666.666667            10000
 2   15839.323898        20000.000000            10000
-2025-07-09 20:34:50,761 - INFO - Computing expected sfs for optimal sample size of 61.
-2025-07-09 20:34:50,893 - INFO - Expected relative number of singletons: 14150.0
-2025-07-09 20:34:50,893 - INFO - Arithmetic mean of population intervals: 14150
-2025-07-09 20:34:50,894 - INFO - Tajima's D of expected SFS: -0.08880066261180096
+2025-07-10 14:23:29,872 - INFO - Computing expected sfs for optimal sample size of 61.
+2025-07-10 14:23:29,997 - INFO - Expected SFS: [0.0, 84899.99999999999, 16891.525423728814, 8255.93220338983, 6450.447568365682, 5778.548577756488, 5361.938931596564, 5034.635263841021, 4755.198006389258, 4508.299207380216, 4285.9947000884695, 4083.3403842539055, 3896.972714425458, 3724.4779556767203, 3564.0528117669933, 3414.303731274784, 3274.121781660464, 3142.601662098344, 3018.987655632892, 2902.636592543999, 2792.9918707826373, 2689.5648477764203, 2591.9212581690654, 2499.6711278615808, 2412.461164600572, 2329.9689316804556, 2251.8983246904736, 2177.9760134800267, 2107.9486080378133, 2041.5803735469053, 1978.651366474739, 1918.955896625603, 1862.3012438513517, 1808.5065754018965, 1757.4020226073155, 1708.827885025245, 1662.6339372686527, 1618.6788190879367, 1576.829493371066, 1536.960759871338, 1498.9548149103962, 1462.7008492070997, 1428.094677477925, 1395.0383946367886, 1363.440054362568, 1333.2133665549022, 1304.277410803964, 1276.5563634891473, 1249.9792365191176, 1224.4796260501798, 1199.9954697859891, 1176.46881168078, 1153.8455730494857, 1132.075329238553, 1111.1110911366225, 1090.9090909090908, 1071.4285714285713, 1052.6315789473683, 1034.4827586206895, 1016.9491525423726, 999.9999999999998]
+2025-07-10 14:23:29,997 - INFO - Expected relative number of singletons: 84899.99999999999
+2025-07-10 14:23:29,997 - INFO - Arithmetic mean of population intervals: 14150
+2025-07-10 14:23:29,998 - INFO - Tajima's D of expected SFS: -0.08880690829364732
