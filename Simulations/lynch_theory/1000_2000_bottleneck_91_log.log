@@ -1,0 +1,35 @@
+2025-07-09 20:34:43,716 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:43,717 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_2000_bottleneck_91_log.log
+
+2025-07-09 20:34:43,717 - INFO - Parsed the following arguments:
+	input_demography = ../Data/1000_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 91
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/1000_2000_bottleneck_91
+
+2025-07-09 20:34:43,717 - INFO - Reading in the demographic history from ../Data/1000_2000_bottleneck_demography.csv
+2025-07-09 20:34:43,723 - INFO - Finding time frame of target sample size 91.
+2025-07-09 20:34:43,726 - INFO - Optimal sample size is 91.
+2025-07-09 20:34:43,726 - INFO - Median time interval is approximately 1052.3770136673363.
+2025-07-09 20:34:43,726 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:43,748 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+91     0.000000           24.420024            50000
+90    24.420024           24.968789            50000
+89    49.388813           25.536261            50000
+88    74.925075           26.123302            50000
+87   101.048377           26.730821            50000
+..          ...                 ...              ...
+6   1630.154791          133.333333             1000
+5   1763.488125          200.000000             1000
+4   1963.488125          333.333333             1000
+3   2296.821458          666.666667             1000
+2   2963.488125         2000.000000             1000
+
+[90 rows x 3 columns]
+2025-07-09 20:34:43,748 - INFO - Computing expected sfs for optimal sample size of 91.
+2025-07-09 20:34:43,988 - INFO - Expected relative number of singletons: 16788.88888888889
+2025-07-09 20:34:43,989 - INFO - Arithmetic mean of population intervals: 16788.88888888889
+2025-07-09 20:34:43,989 - INFO - Tajima's D of expected SFS: -2.3524312951997515

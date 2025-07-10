@@ -1,0 +1,35 @@
+2025-07-09 20:34:39,346 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:39,347 - INFO - Progress is being logged to ../Simulations/lynch_theory/500_2000_bottleneck_81_log.log
+
+2025-07-09 20:34:39,347 - INFO - Parsed the following arguments:
+	input_demography = ../Data/500_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 81
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/500_2000_bottleneck_81
+
+2025-07-09 20:34:39,347 - INFO - Reading in the demographic history from ../Data/500_2000_bottleneck_demography.csv
+2025-07-09 20:34:39,355 - INFO - Finding time frame of target sample size 81.
+2025-07-09 20:34:39,357 - INFO - Optimal sample size is 81.
+2025-07-09 20:34:39,358 - INFO - Median time interval is approximately 556.2373318592223.
+2025-07-09 20:34:39,358 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:39,381 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+81     0.000000           30.864198            50000
+80    30.864198           31.645570            50000
+79    62.509767           32.456994            50000
+78    94.966762           33.300033            50000
+77   128.266795           34.176350            50000
+..          ...                 ...              ...
+6   1122.903999          133.333333             1000
+5   1256.237332          200.000000             1000
+4   1456.237332          333.333333             1000
+3   1789.570665          666.666667             1000
+2   2456.237332         2000.000000             1000
+
+[80 rows x 3 columns]
+2025-07-09 20:34:39,381 - INFO - Computing expected sfs for optimal sample size of 81.
+2025-07-09 20:34:39,587 - INFO - Expected relative number of singletons: 9575.0
+2025-07-09 20:34:39,588 - INFO - Arithmetic mean of population intervals: 9575
+2025-07-09 20:34:39,589 - INFO - Tajima's D of expected SFS: -1.9737454322770018

@@ -1,0 +1,35 @@
+2025-07-09 20:34:39,785 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:39,786 - INFO - Progress is being logged to ../Simulations/lynch_theory/500_2000_bottleneck_91_log.log
+
+2025-07-09 20:34:39,786 - INFO - Parsed the following arguments:
+	input_demography = ../Data/500_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 91
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/500_2000_bottleneck_91
+
+2025-07-09 20:34:39,786 - INFO - Reading in the demographic history from ../Data/500_2000_bottleneck_demography.csv
+2025-07-09 20:34:39,792 - INFO - Finding time frame of target sample size 91.
+2025-07-09 20:34:39,794 - INFO - Optimal sample size is 91.
+2025-07-09 20:34:39,795 - INFO - Median time interval is approximately 539.7353397353398.
+2025-07-09 20:34:39,795 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:39,818 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+91     0.000000           24.420024            50000
+90    24.420024           24.968789            50000
+89    49.388813           25.536261            50000
+88    74.925075           26.123302            50000
+87   101.048377           26.730821            50000
+..          ...                 ...              ...
+6   1117.513118          133.333333             1000
+5   1250.846451          200.000000             1000
+4   1450.846451          333.333333             1000
+3   1784.179784          666.666667             1000
+2   2450.846451         2000.000000             1000
+
+[90 rows x 3 columns]
+2025-07-09 20:34:39,818 - INFO - Computing expected sfs for optimal sample size of 91.
+2025-07-09 20:34:40,059 - INFO - Expected relative number of singletons: 10255.555555555555
+2025-07-09 20:34:40,059 - INFO - Arithmetic mean of population intervals: 10255.555555555555
+2025-07-09 20:34:40,060 - INFO - Tajima's D of expected SFS: -2.018493890265952

@@ -1,0 +1,35 @@
+2025-07-09 20:34:48,823 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:48,823 - INFO - Progress is being logged to ../Simulations/lynch_theory/2500_2000_bottleneck_81_log.log
+
+2025-07-09 20:34:48,823 - INFO - Parsed the following arguments:
+	input_demography = ../Data/2500_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 81
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/2500_2000_bottleneck_81
+
+2025-07-09 20:34:48,823 - INFO - Reading in the demographic history from ../Data/2500_2000_bottleneck_demography.csv
+2025-07-09 20:34:48,827 - INFO - Finding time frame of target sample size 81.
+2025-07-09 20:34:48,828 - INFO - Optimal sample size is 81.
+2025-07-09 20:34:48,828 - INFO - Median time interval is approximately 2530.864197530864.
+2025-07-09 20:34:48,828 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:48,844 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+81     0.000000           30.864198            50000
+80    30.864198           31.645570            50000
+79    62.509767           32.456994            50000
+78    94.966762           33.300033            50000
+77   128.266795           34.176350            50000
+..          ...                 ...              ...
+6   3097.530864          133.333333             1000
+5   3230.864198          200.000000             1000
+4   3430.864198          333.333333             1000
+3   3764.197531          666.666667             1000
+2   4430.864198         2000.000000             1000
+
+[80 rows x 3 columns]
+2025-07-09 20:34:48,844 - INFO - Computing expected sfs for optimal sample size of 81.
+2025-07-09 20:34:49,025 - INFO - Expected relative number of singletons: 26112.5
+2025-07-09 20:34:49,026 - INFO - Arithmetic mean of population intervals: 26112.5
+2025-07-09 20:34:49,026 - INFO - Tajima's D of expected SFS: -2.5180055498278104

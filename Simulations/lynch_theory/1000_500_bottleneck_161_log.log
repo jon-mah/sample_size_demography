@@ -1,0 +1,36 @@
+2025-07-09 20:34:49,804 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:49,804 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_500_bottleneck_161_log.log
+
+2025-07-09 20:34:49,804 - INFO - Parsed the following arguments:
+	input_demography = ../Data/1000_500_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 161
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/1000_500_bottleneck_161
+
+2025-07-09 20:34:49,804 - INFO - Reading in the demographic history from ../Data/1000_500_bottleneck_demography.csv
+2025-07-09 20:34:49,807 - INFO - Finding time frame of target sample size 161.
+2025-07-09 20:34:49,808 - INFO - Optimal sample size is 161.
+2025-07-09 20:34:49,808 - INFO - Median time interval is approximately 1010.0111661665154.
+2025-07-09 20:34:49,808 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:49,819 - INFO - Output tree: 
+       Total time  Next time interval  Population size
+161      0.000000            7.763975            50000
+160      7.763975            7.861635            50000
+159     15.625610            7.961150            50000
+158     23.586760            8.062566            50000
+157     31.649325            8.165932            50000
+..            ...                 ...              ...
+6     2483.820690         1333.333333            10000
+5     3817.154023         2000.000000            10000
+4     5817.154023         3333.333333            10000
+3     9150.487357         6666.666667            10000
+2    15817.154023        20000.000000            10000
+
+[160 rows x 3 columns]
+2025-07-09 20:34:49,819 - INFO - Computing expected sfs for optimal sample size of 161.
+2025-07-09 20:34:50,167 - INFO - E[G_100] = 99.7873970950387
+2025-07-09 20:34:50,250 - INFO - Expected relative number of singletons: 23387.5
+2025-07-09 20:34:50,251 - INFO - Arithmetic mean of population intervals: 23387.5
+2025-07-09 20:34:50,252 - INFO - Tajima's D of expected SFS: -0.5693651646886146

@@ -1,0 +1,35 @@
+2025-07-09 20:34:49,026 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:49,026 - INFO - Progress is being logged to ../Simulations/lynch_theory/2500_2000_bottleneck_71_log.log
+
+2025-07-09 20:34:49,026 - INFO - Parsed the following arguments:
+	input_demography = ../Data/2500_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 71
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/2500_2000_bottleneck_71
+
+2025-07-09 20:34:49,026 - INFO - Reading in the demographic history from ../Data/2500_2000_bottleneck_demography.csv
+2025-07-09 20:34:49,031 - INFO - Finding time frame of target sample size 71.
+2025-07-09 20:34:49,032 - INFO - Optimal sample size is 71.
+2025-07-09 20:34:49,032 - INFO - Median time interval is approximately 2594.681603132308.
+2025-07-09 20:34:49,032 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:49,048 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+71     0.000000           40.241449            50000
+70    40.241449           41.407867            50000
+69    81.649316           42.625746            50000
+68   124.275062           43.898156            50000
+67   168.173218           45.228403            50000
+..          ...                 ...              ...
+6   3147.062556          133.333333             1000
+5   3280.395889          200.000000             1000
+4   3480.395889          333.333333             1000
+3   3813.729222          666.666667             1000
+2   4480.395889         2000.000000             1000
+
+[70 rows x 3 columns]
+2025-07-09 20:34:49,049 - INFO - Computing expected sfs for optimal sample size of 71.
+2025-07-09 20:34:49,207 - INFO - Expected relative number of singletons: 24800.0
+2025-07-09 20:34:49,207 - INFO - Arithmetic mean of population intervals: 24800
+2025-07-09 20:34:49,208 - INFO - Tajima's D of expected SFS: -2.492800018970664

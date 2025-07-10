@@ -1,0 +1,35 @@
+2025-07-09 20:34:41,250 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:41,251 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_2000_bottleneck_71_log.log
+
+2025-07-09 20:34:41,251 - INFO - Parsed the following arguments:
+	input_demography = ../Data/1000_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 71
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/1000_2000_bottleneck_71
+
+2025-07-09 20:34:41,251 - INFO - Reading in the demographic history from ../Data/1000_2000_bottleneck_demography.csv
+2025-07-09 20:34:41,258 - INFO - Finding time frame of target sample size 71.
+2025-07-09 20:34:41,260 - INFO - Optimal sample size is 71.
+2025-07-09 20:34:41,260 - INFO - Median time interval is approximately 1066.6150750657791.
+2025-07-09 20:34:41,260 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:41,279 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+71     0.000000           40.241449            50000
+70    40.241449           41.407867            50000
+69    81.649316           42.625746            50000
+68   124.275062           43.898156            50000
+67   168.173218           45.228403            50000
+..          ...                 ...              ...
+6   1618.996027          133.333333             1000
+5   1752.329361          200.000000             1000
+4   1952.329361          333.333333             1000
+3   2285.662694          666.666667             1000
+2   2952.329361         2000.000000             1000
+
+[70 rows x 3 columns]
+2025-07-09 20:34:41,279 - INFO - Computing expected sfs for optimal sample size of 71.
+2025-07-09 20:34:41,442 - INFO - Expected relative number of singletons: 14300.0
+2025-07-09 20:34:41,442 - INFO - Arithmetic mean of population intervals: 14300
+2025-07-09 20:34:41,443 - INFO - Tajima's D of expected SFS: -2.263498248424157

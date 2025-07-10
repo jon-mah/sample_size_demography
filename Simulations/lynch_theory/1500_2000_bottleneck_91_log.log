@@ -1,0 +1,35 @@
+2025-07-09 20:34:46,008 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-09 20:34:46,008 - INFO - Progress is being logged to ../Simulations/lynch_theory/1500_2000_bottleneck_91_log.log
+
+2025-07-09 20:34:46,008 - INFO - Parsed the following arguments:
+	input_demography = ../Data/1500_2000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 91
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/1500_2000_bottleneck_91
+
+2025-07-09 20:34:46,008 - INFO - Reading in the demographic history from ../Data/1500_2000_bottleneck_demography.csv
+2025-07-09 20:34:46,011 - INFO - Finding time frame of target sample size 91.
+2025-07-09 20:34:46,012 - INFO - Optimal sample size is 91.
+2025-07-09 20:34:46,012 - INFO - Median time interval is approximately 1520.716320716321.
+2025-07-09 20:34:46,012 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-09 20:34:46,166 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+91     0.000000           24.420024            50000
+90    24.420024           24.968789            50000
+89    49.388813           25.536261            50000
+88    74.925075           26.123302            50000
+87   101.048377           26.730821            50000
+..          ...                 ...              ...
+6   2098.494098          133.333333             1000
+5   2231.827432          200.000000             1000
+4   2431.827432          333.333333             1000
+3   2765.160765          666.666667             1000
+2   3431.827432         2000.000000             1000
+
+[90 rows x 3 columns]
+2025-07-09 20:34:46,166 - INFO - Computing expected sfs for optimal sample size of 91.
+2025-07-09 20:34:46,377 - INFO - Expected relative number of singletons: 21144.444444444445
+2025-07-09 20:34:46,378 - INFO - Arithmetic mean of population intervals: 21144.444444444445
+2025-07-09 20:34:46,378 - INFO - Tajima's D of expected SFS: -2.463148866983012
