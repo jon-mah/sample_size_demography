@@ -877,25 +877,21 @@ compare_dadi_lynch_proportional_sfs = function(null, dadi, lynch) {
   return(p_input_comparison)
 }
 
-compare_dadi_lynch_count_sfs = function(null, dadi, lynch) {
-  if (length(null) > 10) {
+compare_dadi_lynch_count_sfs = function(dadi, lynch) {
+  if (length(dadi) > 10) {
     x_axis = 1:10
-    null = null[1:10]
     dadi = dadi[1:10]
     lynch = lynch[1:10]
   } else {
-    x_axis = 1:length(null)
-    null = null
+    x_axis = 1:length(dadi)
     dadi = dadi
     lynch = lynch
   }
-  input_df = data.frame(null,
-                        dadi,
+  input_df = data.frame(dadi,
                         lynch,
                         x_axis)
   
-  names(input_df) = c('SNM',
-                      'Dadi',
+  names(input_df) = c('Dadi',
                       'Lynch',
                       'x_axis')
   
