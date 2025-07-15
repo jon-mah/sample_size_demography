@@ -372,6 +372,8 @@ class DadiSimulate():
             args['outprefix'], underscore, sample_size)
         output_1000_2500 = '{0}{1}1000_2500_{2}.sfs'.format(
             args['outprefix'], underscore, sample_size)
+        output_snm = '{0}{1}snm_{2}.sfs'.format(
+            args['outprefix'], underscore, sample_size)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -554,6 +556,13 @@ class DadiSimulate():
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f13)
             logger.info('Finished generating 1000-2500 bottleneck.')
+
+        with open(output_snm, "w+") as f14:
+            """Simulate a standard neutral model."""
+            output_spectrum = theta * self.snm(
+                notused=None, ns=(sample_size, ), pts=1000)
+            output_spectrum.fold().to_file(f14)
+            logger.info('Finished generating standard neutral model.')
 
         logger.info('Finished generating all demographic scenarios.')
         logger.info('Pipeline executed succesfully.')

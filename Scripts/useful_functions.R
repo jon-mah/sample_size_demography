@@ -902,6 +902,38 @@ compare_dadi_lynch_count_sfs = function(dadi, lynch) {
     geom_bar(position='dodge2', stat='identity') +
     labs(x = "", fill = "") +
     scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Number of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+
+  return(p_input_comparison)
+}
+
+compare_snm_proportional_sfs = function(dadi, lynch) {
+  if (length(dadi) > 10) {
+    x_axis = 1:10
+    dadi = proportional_sfs(dadi)[1:10]
+    lynch = proportional_sfs(lynch)[1:10]
+  } else {
+    x_axis = 1:length(dadi)
+    dadi = proportional_sfs(dadi)
+    lynch = proportional_sfs(lynch)    
+  }
+  input_df = data.frame(dadi,
+                        lynch,
+                        x_axis)
+  
+  names(input_df) = c('Dadi SNM',
+                      'Lynch SNM',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
     ylab('Proportion of segregating sites') +
     theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
