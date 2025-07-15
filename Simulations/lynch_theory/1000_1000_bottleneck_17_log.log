@@ -1,0 +1,39 @@
+2025-07-15 12:35:38,949 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-15 12:35:38,950 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_1000_bottleneck_17_log.log
+
+2025-07-15 12:35:38,950 - INFO - Parsed the following arguments:
+	input_demography = ../Data/1000_1000_bottleneck_demography.csv
+	target_time = 0
+	target_sample_size = 17
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/1000_1000_bottleneck_17
+
+2025-07-15 12:35:38,950 - INFO - Reading in the demographic history from ../Data/1000_1000_bottleneck_demography.csv
+2025-07-15 12:35:38,957 - INFO - Finding time frame of target sample size 17.
+2025-07-15 12:35:38,958 - INFO - Optimal sample size is 17.
+2025-07-15 12:35:38,958 - INFO - Median time interval is approximately 1801.9607843137253.
+2025-07-15 12:35:38,958 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-15 12:35:38,974 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+17      0.000000          735.294118            50000
+16    735.294118          833.333333            50000
+15   1568.627451           19.047619             1000
+14   1587.675070           21.978022             1000
+13   1609.653092           25.641026             1000
+12   1635.294118           30.303030             1000
+11   1665.597148           36.363636             1000
+10   1701.960784           44.444444             1000
+9    1746.405229           55.555556             1000
+8    1801.960784           71.428571             1000
+7    1873.389356           95.238095             1000
+6    1968.627451          133.333333             1000
+5    2101.960784         2000.000000            10000
+4    4101.960784         3333.333333            10000
+3    7435.294118         6666.666667            10000
+2   14101.960784        20000.000000            10000
+2025-07-15 12:35:38,974 - INFO - Computing expected sfs for optimal sample size of 17.
+2025-07-15 12:35:38,999 - INFO - Expected SFS: [0.0, 56249.99999999999, 16374.999999999996, 12928.571428571426, 11328.2967032967, 10041.75824175824, 8961.538461538461, 8037.362637362637, 7240.384615384614, 6551.28205128205, 5955.494505494505, 5441.05894105894, 4997.527472527472, 4615.384615384615, 4285.714285714285, 3999.999999999999, 3749.9999999999995]
+2025-07-15 12:35:38,999 - INFO - Expected relative number of singletons: 56249.99999999999
+2025-07-15 12:35:38,999 - INFO - Arithmetic mean of population intervals: 9375
+2025-07-15 12:35:39,001 - INFO - Tajima's D of expected SFS: 0.028720180584383092
