@@ -1,20 +1,20 @@
-2025-07-15 12:35:27,306 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-07-17 16:32:15,138 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-07-15 12:35:27,306 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_1000_bottleneck_27_log.log
+2025-07-17 16:32:15,138 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_1000_bottleneck_27_log.log
 
-2025-07-15 12:35:27,306 - INFO - Parsed the following arguments:
+2025-07-17 16:32:15,138 - INFO - Parsed the following arguments:
 	input_demography = ../Data/1000_1000_bottleneck_demography.csv
 	target_time = 0
 	target_sample_size = 27
 	nu_tau = False
 	outprefix = ../Simulations/lynch_theory/1000_1000_bottleneck_27
 
-2025-07-15 12:35:27,306 - INFO - Reading in the demographic history from ../Data/1000_1000_bottleneck_demography.csv
-2025-07-15 12:35:27,309 - INFO - Finding time frame of target sample size 27.
-2025-07-15 12:35:27,310 - INFO - Optimal sample size is 27.
-2025-07-15 12:35:27,310 - INFO - Median time interval is approximately 1422.0240307196834.
-2025-07-15 12:35:27,310 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-07-15 12:35:27,323 - INFO - Output tree: 
+2025-07-17 16:32:15,138 - INFO - Reading in the demographic history from ../Data/1000_1000_bottleneck_demography.csv
+2025-07-17 16:32:15,142 - INFO - Finding time frame of target sample size 27.
+2025-07-17 16:32:15,142 - INFO - Optimal sample size is 27.
+2025-07-17 16:32:15,142 - INFO - Median time interval is approximately 1422.0240307196834.
+2025-07-17 16:32:15,142 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-17 16:32:15,155 - INFO - Output tree: 
       Total time  Next time interval  Population size
 27      0.000000          284.900285            50000
 26    284.900285          307.692308            50000
@@ -42,8 +42,9 @@
 4    2114.331723         3333.333333            10000
 3    5447.665056         6666.666667            10000
 2   12114.331723        20000.000000            10000
-2025-07-15 12:35:27,323 - INFO - Computing expected sfs for optimal sample size of 27.
-2025-07-15 12:35:27,361 - INFO - Expected SFS: [0.0, 57461.53846153845, 11695.384615384613, 7889.999999999999, 7008.762541806019, 6475.384615384614, 6053.846153846153, 5696.3736263736255, 5381.538461538461, 5097.435897435897, 4836.923076923076, 4595.454545454545, 4370.0, 4158.461538461538, 3959.340659340659, 3771.5384615384605, 3594.2307692307686, 3426.7873303167416, 3268.7179487179483, 3119.6356275303638, 2979.230769230769, 2847.2527472527468, 2723.496503496503, 2607.7926421404677, 2499.9999999999995, 2399.9999999999995, 2307.6923076923076]
-2025-07-15 12:35:27,361 - INFO - Expected relative number of singletons: 57461.53846153845
-2025-07-15 12:35:27,361 - INFO - Arithmetic mean of population intervals: 9576.923076923076
-2025-07-15 12:35:27,362 - INFO - Tajima's D of expected SFS: 0.02077824559484813
+2025-07-17 16:32:15,155 - INFO - Computing expected sfs for optimal sample size of 27.
+2025-07-17 16:32:15,179 - INFO - Expected sfs has length of 28, including n-tons and 0-tons.
+2025-07-17 16:32:15,180 - INFO - Expected SFS: [0.0, 57461.53846153845, 11695.384615384613, 7889.999999999999, 7008.762541806019, 6475.384615384614, 6053.846153846153, 5696.3736263736255, 5381.538461538461, 5097.435897435897, 4836.923076923076, 4595.454545454545, 4370.0, 4158.461538461538, 3959.340659340659, 3771.5384615384605, 3594.2307692307686, 3426.7873303167416, 3268.7179487179483, 3119.6356275303638, 2979.230769230769, 2847.2527472527468, 2723.496503496503, 2607.7926421404677, 2499.9999999999995, 2399.9999999999995, 2307.6923076923076, 0.0]
+2025-07-17 16:32:15,180 - INFO - Expected relative number of singletons: 57461.53846153845
+2025-07-17 16:32:15,180 - INFO - Arithmetic mean of population intervals: 9576.923076923076
+2025-07-17 16:32:15,180 - INFO - Tajima's D of expected SFS: 0.04488674882360433

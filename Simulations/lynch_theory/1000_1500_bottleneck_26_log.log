@@ -1,20 +1,20 @@
-2025-07-15 12:35:22,195 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-07-17 16:32:29,279 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-07-15 12:35:22,195 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_1500_bottleneck_26_log.log
+2025-07-17 16:32:29,279 - INFO - Progress is being logged to ../Simulations/lynch_theory/1000_1500_bottleneck_26_log.log
 
-2025-07-15 12:35:22,195 - INFO - Parsed the following arguments:
+2025-07-17 16:32:29,279 - INFO - Parsed the following arguments:
 	input_demography = ../Data/1000_1500_bottleneck_demography.csv
 	target_time = 0
 	target_sample_size = 26
 	nu_tau = False
 	outprefix = ../Simulations/lynch_theory/1000_1500_bottleneck_26
 
-2025-07-15 12:35:22,195 - INFO - Reading in the demographic history from ../Data/1000_1500_bottleneck_demography.csv
-2025-07-15 12:35:22,198 - INFO - Finding time frame of target sample size 26.
-2025-07-15 12:35:22,199 - INFO - Optimal sample size is 26.
-2025-07-15 12:35:22,199 - INFO - Median time interval is approximately 1137.1237458193984.
-2025-07-15 12:35:22,199 - INFO - Outputting coalescent tree computed at optimal sample size.
-2025-07-15 12:35:22,210 - INFO - Output tree: 
+2025-07-17 16:32:29,279 - INFO - Reading in the demographic history from ../Data/1000_1500_bottleneck_demography.csv
+2025-07-17 16:32:29,283 - INFO - Finding time frame of target sample size 26.
+2025-07-17 16:32:29,284 - INFO - Optimal sample size is 26.
+2025-07-17 16:32:29,284 - INFO - Median time interval is approximately 1137.1237458193984.
+2025-07-17 16:32:29,285 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-17 16:32:30,974 - INFO - Output tree: 
      Total time  Next time interval  Population size
 26     0.000000          307.692308            50000
 25   307.692308          333.333333            50000
@@ -41,8 +41,9 @@
 4   1829.431438          333.333333             1000
 3   2162.764771          666.666667             1000
 2   2829.431438        20000.000000            10000
-2025-07-15 12:35:22,211 - INFO - Computing expected sfs for optimal sample size of 26.
-2025-07-15 12:35:22,243 - INFO - Expected SFS: [0.0, 43439.99999999999, 6629.999999999999, 4202.608695652173, 3659.9999999999995, 3359.9999999999995, 3159.999999999999, 3017.1428571428564, 2909.9999999999995, 2826.666666666666, 2759.9999999999995, 2705.454545454545, 2659.9999999999995, 2621.538461538461, 2588.5714285714284, 2559.9999999999995, 2534.9999999999995, 2512.941176470588, 2493.333333333333, 2475.7894736842104, 2459.9999999999995, 2445.7142857142853, 2432.727272727272, 2420.8695652173906, 2409.9999999999995, 2399.9999999999995]
-2025-07-15 12:35:22,243 - INFO - Expected relative number of singletons: 43439.99999999999
-2025-07-15 12:35:22,243 - INFO - Arithmetic mean of population intervals: 7240
-2025-07-15 12:35:22,244 - INFO - Tajima's D of expected SFS: -0.23213094071510598
+2025-07-17 16:32:30,975 - INFO - Computing expected sfs for optimal sample size of 26.
+2025-07-17 16:32:31,025 - INFO - Expected sfs has length of 27, including n-tons and 0-tons.
+2025-07-17 16:32:31,025 - INFO - Expected SFS: [0.0, 43439.99999999999, 6629.999999999999, 4202.608695652173, 3659.9999999999995, 3359.9999999999995, 3159.999999999999, 3017.1428571428564, 2909.9999999999995, 2826.666666666666, 2759.9999999999995, 2705.454545454545, 2659.9999999999995, 2621.538461538461, 2588.5714285714284, 2559.9999999999995, 2534.9999999999995, 2512.941176470588, 2493.333333333333, 2475.7894736842104, 2459.9999999999995, 2445.7142857142853, 2432.727272727272, 2420.8695652173906, 2409.9999999999995, 2399.9999999999995, 0.0]
+2025-07-17 16:32:31,025 - INFO - Expected relative number of singletons: 43439.99999999999
+2025-07-17 16:32:31,025 - INFO - Arithmetic mean of population intervals: 7240
+2025-07-17 16:32:31,027 - INFO - Tajima's D of expected SFS: -0.19011427947802617
