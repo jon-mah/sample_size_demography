@@ -878,7 +878,7 @@ compare_dadi_lynch_proportional_sfs = function(null, dadi, lynch) {
 }
 
 compare_dadi_lynch_count_sfs = function(dadi, lynch) {
-  if (length(dadi) > 10) {
+  if (length(dadi) > 30) {
     x_axis = 1:10
     dadi = dadi[1:10]
     lynch = lynch[1:10]
@@ -973,4 +973,44 @@ read_summary_statistics = function(input_file) {
   return_list = c(watterson_theta, pi, tajima_D, zeng_E, zeng_theta_L)
   
   return(return_list)
+}
+
+compare_five_full_SFS = function(
+  dadi_1, lynch_1,
+  dadi_2, lynch_2,
+  dadi_3, lynch_3,
+  dadi_4, lynch_4,
+  dadi_5, lynch_5
+) {
+  length_1 = length(dadi_1)
+  length_2 = length(dadi_2)
+  length_3 = length(dadi_3)
+  length_4 = length(dadi_4)
+  length_5 = length(dadi_5)
+  x_axis = 1:length_5
+
+  while(length(dadi_1) < length_5) {
+    dadi_1 = c(dadi_1, 0)
+    lynch_1 = c(lynch_1, 0)
+  }
+  while(length(dadi_2) < length_5) {
+    dadi_2 = c(dadi_2, 0)
+    lynch_2 = c(lynch_2, 0)
+  }
+  while(length(dadi_3) < length_5) {
+    dadi_3 = c(dadi_3, 0)
+    lynch_3 = c(lynch_3, 0)
+  }
+  while(length(dadi_4) < length_5) {
+    dadi_4 = c(dadi_4, 0)
+    lynch_4 = c(lynch_4, 0)
+  }
+  
+  plot_1 = compare_dadi_lynch_count_sfs(dadi_1, lynch_1) + guides(fill='none') + theme(axis.title.x = element_blank()) + ylab('')
+  plot_2 = compare_dadi_lynch_count_sfs(dadi_2, lynch_2) + guides(fill='none') + theme(axis.title.x = element_blank()) + ylab('')
+  plot_3 = compare_dadi_lynch_count_sfs(dadi_3, lynch_3) + theme(axis.title.x = element_blank()) + theme(axis.title.x = element_blank())
+  plot_4 = compare_dadi_lynch_count_sfs(dadi_4, lynch_4) + guides(fill='none') + theme(axis.title.x = element_blank()) + ylab('')
+  plot_5 = compare_dadi_lynch_count_sfs(dadi_5, lynch_5) + guides(fill='none') + ylab('')
+  
+  plot_1 + plot_2 + plot_3 + plot_4 + plot_5 + plot_layout(nrow=5)
 }

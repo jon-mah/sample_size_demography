@@ -428,7 +428,7 @@ class DadiSimulate():
         with open(output_ThreeEpC, "w+") as f2:
             """Simulate a three-epoch contraction."""
             nuB = 0.5  # Bottleneck relative size
-            nuF = 0.025  # Concurrent relative size
+            nuF = 0.25  # Concurrent relative size
             tauB = 0.09  # Bottleneck duration
             tauF = 0.01  # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(

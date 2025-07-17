@@ -289,6 +289,9 @@ class ComputeOptimalSampleSize():
             if r % 100 == 0:
                 logger.info('E[G_{}] = {}'.format(r, expected_gr))
             output_sfs.append(expected_gr)
+        output_sfs.append(0) # n-tons
+        logger.info('Expected sfs has length of {0}, including n-tons '
+                    'and 0-tons.'.format(len(output_sfs)))
         # Write out the expected sfs
         product_4muL = 4 * 1000000 / 10**8
         output_sfs = [element * product_4muL for element in output_sfs]
