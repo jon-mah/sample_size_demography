@@ -6,7 +6,7 @@
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=15G
 #$ -l h_rt=00:60:00
-#$ -t 10-30
+#$ -t 40-800:10
 
 # SGE_TASK_ID=10
 

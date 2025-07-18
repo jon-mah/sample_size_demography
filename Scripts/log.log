@@ -1,10 +1,27 @@
-2025-06-24 13:49:55,167 - INFO - Beginning execution of generate_pops_file.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-07-16 16:46:31,327 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
 
-2025-06-24 13:49:55,167 - INFO - Progress is being logged to ./log.log
+2025-07-16 16:46:31,327 - INFO - Progress is being logged to ./log.log
 
-2025-06-24 13:49:55,167 - INFO - Parsed the following arguments:
-	sample_size = 1000
+2025-07-16 16:46:31,327 - INFO - Parsed the following arguments:
+	input_demography = ../Data/compute_optimal_sample_size_example_input.csv
+	target_time = 0
+	target_sample_size = 5
+	nu_tau = False
 	outprefix = ./
 
-2025-06-24 13:49:55,167 - INFO - Generating pops file for sample size 1000
-
+2025-07-16 16:46:31,327 - INFO - Reading in the demographic history from ../Data/compute_optimal_sample_size_example_input.csv
+2025-07-16 16:46:31,347 - INFO - Finding time frame of target sample size 5.
+2025-07-16 16:46:31,347 - INFO - Optimal sample size is 5.
+2025-07-16 16:46:31,347 - INFO - Median time interval is approximately 3000.0.
+2025-07-16 16:46:31,347 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-16 16:46:31,354 - INFO - Output tree: 
+    Total time  Next time interval  Population size
+5     0.000000         2000.000000            10000
+4  2000.000000          333.333333             1000
+3  2333.333333          666.666667             1000
+2  3000.000000        10000.000000             5000
+2025-07-16 16:46:31,354 - INFO - Computing expected sfs for optimal sample size of 5.
+2025-07-16 16:46:31,358 - INFO - Expected SFS: [0.0, 25499.999999999996, 8999.999999999998, 7999.999999999998, 7499.999999999999]
+2025-07-16 16:46:31,358 - INFO - Expected relative number of singletons: 25499.999999999996
+2025-07-16 16:46:31,358 - INFO - Arithmetic mean of population intervals: 4250
+2025-07-16 16:46:31,359 - INFO - Tajima's D of expected SFS: -0.19589816507229013
