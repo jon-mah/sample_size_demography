@@ -1,0 +1,53 @@
+2025-07-17 16:58:19,837 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-17 16:58:19,837 - INFO - Progress is being logged to ../Simulations/lynch_theory/tennessen_30_log.log
+
+2025-07-17 16:58:19,837 - INFO - Parsed the following arguments:
+	input_demography = ../Data/tennessen_demography.csv
+	target_time = 0
+	target_sample_size = 30
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/tennessen_30
+
+2025-07-17 16:58:19,837 - INFO - Reading in the demographic history from ../Data/tennessen_demography.csv
+2025-07-17 16:58:19,841 - INFO - Finding time frame of target sample size 30.
+2025-07-17 16:58:19,841 - INFO - Optimal sample size is 30.
+2025-07-17 16:58:19,841 - INFO - Median time interval is approximately 2545.0298850574723.
+2025-07-17 16:58:19,841 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-17 16:58:19,855 - INFO - Output tree: 
+     Total time  Next time interval  Population size
+30     0.000000         2305.452874           501436
+29  2305.452874            9.167488             1861
+28  2314.620361            9.846561             1861
+27  2324.466922           10.603989             1861
+26  2335.070911           11.452308             1861
+25  2346.523218           12.406667             1861
+24  2358.929885           13.485507             1861
+23  2372.415392           14.711462             1861
+22  2387.126855           16.112554             1861
+21  2403.239409           17.723810             1861
+20  2420.963218           19.589474             1861
+19  2440.552692           21.766082             1861
+18  2462.318774           24.326797             1861
+17  2486.645571           27.367647             1861
+16  2514.013218           31.016667             1861
+15  2545.029885           35.447619             1861
+14  2580.477504           40.901099             1861
+13  2621.378603           47.717949             1861
+12  2669.096552           56.393939             1861
+11  2725.490491           67.672727             1861
+10  2793.163218           82.711111             1861
+9   2875.874330          103.388889             1861
+8   2979.263218          132.928571             1861
+7   3112.191790          177.238095             1861
+6   3289.429885          248.133333             1861
+5   3537.563218          372.200000             1861
+4   3909.763218          620.333333             1861
+3   4530.096552         1240.666667             1861
+2   5770.763218         3722.000000             1861
+2025-07-17 16:58:19,855 - INFO - Computing expected sfs for optimal sample size of 30.
+2025-07-17 16:58:19,904 - INFO - Expected sfs has length of 31, including n-tons and 0-tons.
+2025-07-17 16:58:19,905 - INFO - Expected SFS: [0.0, 114526.3448275862, 5582.999999999999, 3721.9999999999995, 2791.4999999999995, 2233.2, 1860.9999999999998, 1595.1428571428567, 1395.7499999999998, 1240.6666666666665, 1116.6, 1015.090909090909, 930.4999999999999, 858.9230769230768, 797.5714285714283, 744.3999999999999, 697.8749999999999, 656.8235294117646, 620.3333333333333, 587.6842105263157, 558.3, 531.7142857142857, 507.5454545454545, 485.4782608695652, 465.24999999999994, 446.63999999999993, 429.4615384615384, 413.5555555555555, 398.78571428571416, 385.0344827586206, 0.0]
+2025-07-17 16:58:19,905 - INFO - Expected relative number of singletons: 114526.3448275862
+2025-07-17 16:58:19,905 - INFO - Arithmetic mean of population intervals: 19087.724137931036
+2025-07-17 16:58:19,906 - INFO - Tajima's D of expected SFS: -2.020679758284249

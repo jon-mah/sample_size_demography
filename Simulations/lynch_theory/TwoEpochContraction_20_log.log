@@ -1,0 +1,43 @@
+2025-07-17 16:58:06,067 - INFO - Beginning execution of compute_optimal_sample_size.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+
+2025-07-17 16:58:06,068 - INFO - Progress is being logged to ../Simulations/lynch_theory/TwoEpochContraction_20_log.log
+
+2025-07-17 16:58:06,068 - INFO - Parsed the following arguments:
+	input_demography = ../Data/two_epoch_contraction_demography.csv
+	target_time = 0
+	target_sample_size = 20
+	nu_tau = False
+	outprefix = ../Simulations/lynch_theory/TwoEpochContraction_20
+
+2025-07-17 16:58:06,068 - INFO - Reading in the demographic history from ../Data/two_epoch_contraction_demography.csv
+2025-07-17 16:58:06,076 - INFO - Finding time frame of target sample size 20.
+2025-07-17 16:58:06,077 - INFO - Optimal sample size is 20.
+2025-07-17 16:58:06,077 - INFO - Median time interval is approximately 1000.0.
+2025-07-17 16:58:06,077 - INFO - Outputting coalescent tree computed at optimal sample size.
+2025-07-17 16:58:06,096 - INFO - Output tree: 
+      Total time  Next time interval  Population size
+20      0.000000           52.631579             5000
+19     52.631579           58.479532             5000
+18    111.111111           65.359477             5000
+17    176.470588           73.529412             5000
+16    250.000000           83.333333             5000
+15    333.333333           95.238095             5000
+14    428.571429          109.890110             5000
+13    538.461538          128.205128             5000
+12    666.666667          151.515152             5000
+11    818.181818          181.818182             5000
+10   1000.000000          222.222222             5000
+9    1222.222222          277.777778             5000
+8    1500.000000          357.142857             5000
+7    1857.142857          476.190476             5000
+6    2333.333333         1333.333333            10000
+5    3666.666667         2000.000000            10000
+4    5666.666667         3333.333333            10000
+3    9000.000000         6666.666667            10000
+2   15666.666667        20000.000000            10000
+2025-07-17 16:58:06,096 - INFO - Computing expected sfs for optimal sample size of 20.
+2025-07-17 16:58:06,131 - INFO - Expected sfs has length of 21, including n-tons and 0-tons.
+2025-07-17 16:58:06,131 - INFO - Expected SFS: [0.0, 37894.73684210526, 22017.54385964912, 16243.550051599585, 13063.080495356035, 10966.976264189885, 9446.59442724458, 8279.522335249889, 7351.006191950463, 6594.4272445820425, 5967.492260061918, 5441.411014166431, 4995.4850361197105, 4614.193855679923, 4285.530001474273, 3999.999999999999, 3749.9999999999995, 3529.411764705882, 3333.3333333333326, 3157.8947368421045, 0.0]
+2025-07-17 16:58:06,131 - INFO - Expected relative number of singletons: 37894.73684210526
+2025-07-17 16:58:06,132 - INFO - Arithmetic mean of population intervals: 6315.789473684211
+2025-07-17 16:58:06,133 - INFO - Tajima's D of expected SFS: 0.37256896906939424
