@@ -38,6 +38,6 @@ python compute_sfs_summary_statistics.py ../Simulations/lynch_theory/tennessen_$
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/TwoEpochExpansion_${sample_size}.sfs ../Simulations/dadi_simulations/TwoEpochExpansion_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochExpansion_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochExpansion_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}
-# python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}
-# python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_${sample_size}
+# python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/1000_1000_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}
+# python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/2000_2000_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/snm_${sample_size}.sfs ../Simulations/dadi_simulations/snm_${sample_size}
