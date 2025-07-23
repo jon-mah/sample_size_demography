@@ -968,96 +968,96 @@ dadi_snm_400_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_400.sfs')
 dadi_snm_500_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_500.sfs')
 dadi_snm_600_SFS = read_input_sfs('../Simulations/dadi_simulations/snm_600.sfs')
 
-lynch_snm_10_SFS = read_input_sfs("../Simulations/lynch_theory/snm_11_expected_sfs.txt")
-lynch_snm_20_SFS = read_input_sfs("../Simulations/lynch_theory/snm_21_expected_sfs.txt")
-lynch_snm_30_SFS = read_input_sfs("../Simulations/lynch_theory/snm_31_expected_sfs.txt")
-lynch_snm_40_SFS = read_input_sfs("../Simulations/lynch_theory/snm_41_expected_sfs.txt")
-lynch_snm_50_SFS = read_input_sfs("../Simulations/lynch_theory/snm_51_expected_sfs.txt")
-lynch_snm_60_SFS = read_input_sfs("../Simulations/lynch_theory/snm_61_expected_sfs.txt")
-lynch_snm_70_SFS = read_input_sfs("../Simulations/lynch_theory/snm_71_expected_sfs.txt")
-lynch_snm_80_SFS = read_input_sfs("../Simulations/lynch_theory/snm_81_expected_sfs.txt")
-lynch_snm_90_SFS = read_input_sfs("../Simulations/lynch_theory/snm_91_expected_sfs.txt")
-lynch_snm_100_SFS = read_input_sfs("../Simulations/lynch_theory/snm_101_expected_sfs.txt")
+lynch_snm_10_SFS = read_input_sfs("../Simulations/lynch_theory/snm_10_expected_sfs.txt")
+lynch_snm_20_SFS = read_input_sfs("../Simulations/lynch_theory/snm_20_expected_sfs.txt")
+lynch_snm_30_SFS = read_input_sfs("../Simulations/lynch_theory/snm_30_expected_sfs.txt")
+lynch_snm_40_SFS = read_input_sfs("../Simulations/lynch_theory/snm_40_expected_sfs.txt")
+lynch_snm_50_SFS = read_input_sfs("../Simulations/lynch_theory/snm_50_expected_sfs.txt")
+lynch_snm_60_SFS = read_input_sfs("../Simulations/lynch_theory/snm_60_expected_sfs.txt")
+lynch_snm_70_SFS = read_input_sfs("../Simulations/lynch_theory/snm_70_expected_sfs.txt")
+lynch_snm_80_SFS = read_input_sfs("../Simulations/lynch_theory/snm_80_expected_sfs.txt")
+lynch_snm_90_SFS = read_input_sfs("../Simulations/lynch_theory/snm_90_expected_sfs.txt")
+lynch_snm_100_SFS = read_input_sfs("../Simulations/lynch_theory/snm_100_expected_sfs.txt")
 
 TwoEpochC_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_10.sfs')
 TwoEpochE_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_10.sfs')
 ThreeEpochC_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_10.sfs')
 ThreeEpochE_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_10.sfs')
 ThreeEpochB_10_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_10.sfs')
-dadi_1000_1000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_10.sfs')
-dadi_2000_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_10.sfs')
+dadi_1000_1000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_10.sfs')
+dadi_2000_2000_10_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_10.sfs')
 
 TwoEpochC_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_20.sfs')
 TwoEpochE_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_20.sfs')
 ThreeEpochC_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_20.sfs')
 ThreeEpochE_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_20.sfs')
 ThreeEpochB_20_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_20.sfs')
-dadi_1000_1000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_20.sfs')
-dadi_2000_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_20.sfs')
+dadi_1000_1000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_20.sfs')
+dadi_2000_2000_20_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_20.sfs')
 
 TwoEpochC_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_30.sfs')
 TwoEpochE_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_30.sfs')
 ThreeEpochC_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_30.sfs')
 ThreeEpochE_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_30.sfs')
 ThreeEpochB_30_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_30.sfs')
-dadi_1000_1000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_30.sfs')
-dadi_2000_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_30.sfs')
+dadi_1000_1000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_30.sfs')
+dadi_2000_2000_30_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_30.sfs')
 
 TwoEpochC_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_40.sfs')
 TwoEpochE_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_40.sfs')
 ThreeEpochC_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_40.sfs')
 ThreeEpochE_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_40.sfs')
 ThreeEpochB_40_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_40.sfs')
-dadi_1000_1000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_40.sfs')
-dadi_2000_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_40.sfs')
+dadi_1000_1000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_40.sfs')
+dadi_2000_2000_40_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_40.sfs')
 
 TwoEpochC_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_50.sfs')
 TwoEpochE_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_50.sfs')
 ThreeEpochC_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_50.sfs')
 ThreeEpochE_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_50.sfs')
 ThreeEpochB_50_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_50.sfs')
-dadi_1000_1000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_50.sfs')
-dadi_2000_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_50.sfs')
+dadi_1000_1000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_50.sfs')
+dadi_2000_2000_50_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_50.sfs')
 
 TwoEpochC_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_60.sfs')
 TwoEpochE_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_60.sfs')
 ThreeEpochC_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_60.sfs')
 ThreeEpochE_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_60.sfs')
 ThreeEpochB_60_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_60.sfs')
-dadi_1000_1000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_60.sfs')
-dadi_2000_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_60.sfs')
+dadi_1000_1000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_60.sfs')
+dadi_2000_2000_60_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_60.sfs')
 
 TwoEpochC_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_70.sfs')
 TwoEpochE_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_70.sfs')
 ThreeEpochC_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_70.sfs')
 ThreeEpochE_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_70.sfs')
 ThreeEpochB_70_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_70.sfs')
-dadi_1000_1000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_70.sfs')
-dadi_2000_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_70.sfs')
+dadi_1000_1000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_70.sfs')
+dadi_2000_2000_70_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_70.sfs')
 
 TwoEpochC_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_80.sfs')
 TwoEpochE_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_80.sfs')
 ThreeEpochC_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_80.sfs')
 ThreeEpochE_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_80.sfs')
 ThreeEpochB_80_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_80.sfs')
-dadi_1000_1000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_80.sfs')
-dadi_2000_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_80.sfs')
+dadi_1000_1000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_80.sfs')
+dadi_2000_2000_80_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_80.sfs')
 
 TwoEpochC_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_90.sfs')
 TwoEpochE_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_90.sfs')
 ThreeEpochC_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_90.sfs')
 ThreeEpochE_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_90.sfs')
 ThreeEpochB_90_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_90.sfs')
-dadi_1000_1000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_90.sfs')
-dadi_2000_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_90.sfs')
+dadi_1000_1000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_90.sfs')
+dadi_2000_2000_90_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_90.sfs')
 
 TwoEpochC_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochContraction_100.sfs')
 TwoEpochE_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/TwoEpochExpansion_100.sfs')
 ThreeEpochC_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochContraction_100.sfs')
 ThreeEpochE_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochExpansion_100.sfs')
 ThreeEpochB_100_dadi_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_100.sfs')
-dadi_1000_1000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_100.sfs')
-dadi_2000_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_100.sfs')
+dadi_1000_1000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_1000_100.sfs')
+dadi_2000_2000_100_SFS = read_input_sfs('../Simulations/dadi_simulations/2000_2000_100.sfs')
 
 TwoEpochC_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochContraction_10_concat.sfs')
 TwoEpochE_10_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/TwoEpochExpansion_10_concat.sfs')
@@ -1139,85 +1139,85 @@ ThreeEpochB_100_msprime_SFS = read_input_sfs('../Simulations/simple_simulations/
 msprime_1000_1000_100_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_100_concat.sfs')
 msprime_2000_2000_100_SFS = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_100_concat.sfs')
 
-TwoEpochC_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_11_expected_sfs.txt')
-TwoEpochE_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_11_expected_sfs.txt')
-ThreeEpochC_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_11_expected_sfs.txt')
-ThreeEpochE_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_11_expected_sfs.txt')
-ThreeEpochB_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_11_expected_sfs.txt')
-lynch_1000_1000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_11_expected_sfs.txt')
-lynch_2000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_11_expected_sfs.txt')
+TwoEpochC_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_10_expected_sfs.txt')
+TwoEpochE_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_10_expected_sfs.txt')
+ThreeEpochC_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_10_expected_sfs.txt')
+ThreeEpochE_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_10_expected_sfs.txt')
+ThreeEpochB_10_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_10_expected_sfs.txt')
+lynch_1000_1000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_10_expected_sfs.txt')
+lynch_2000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_10_expected_sfs.txt')
 
-TwoEpochC_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_21_expected_sfs.txt')
-TwoEpochE_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_21_expected_sfs.txt')
-ThreeEpochC_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_21_expected_sfs.txt')
-ThreeEpochE_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_21_expected_sfs.txt')
-ThreeEpochB_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_21_expected_sfs.txt')
-lynch_1000_1000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_21_expected_sfs.txt')
-lynch_2000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_21_expected_sfs.txt')
+TwoEpochC_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_20_expected_sfs.txt')
+TwoEpochE_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_20_expected_sfs.txt')
+ThreeEpochC_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_20_expected_sfs.txt')
+ThreeEpochE_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_20_expected_sfs.txt')
+ThreeEpochB_20_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_20_expected_sfs.txt')
+lynch_1000_1000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_20_expected_sfs.txt')
+lynch_2000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_20_expected_sfs.txt')
 
-TwoEpochC_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_31_expected_sfs.txt')
-TwoEpochE_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_31_expected_sfs.txt')
-ThreeEpochC_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_31_expected_sfs.txt')
-ThreeEpochE_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_31_expected_sfs.txt')
-ThreeEpochB_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_31_expected_sfs.txt')
-lynch_1000_1000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_31_expected_sfs.txt')
-lynch_2000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_31_expected_sfs.txt')
+TwoEpochC_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_30_expected_sfs.txt')
+TwoEpochE_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_30_expected_sfs.txt')
+ThreeEpochC_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_30_expected_sfs.txt')
+ThreeEpochE_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_30_expected_sfs.txt')
+ThreeEpochB_30_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_30_expected_sfs.txt')
+lynch_1000_1000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_30_expected_sfs.txt')
+lynch_2000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_30_expected_sfs.txt')
 
-TwoEpochC_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_41_expected_sfs.txt')
-TwoEpochE_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_41_expected_sfs.txt')
-ThreeEpochC_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_41_expected_sfs.txt')
-ThreeEpochE_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_41_expected_sfs.txt')
-ThreeEpochB_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_41_expected_sfs.txt')
-lynch_1000_1000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_41_expected_sfs.txt')
-lynch_2000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_41_expected_sfs.txt')
+TwoEpochC_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_40_expected_sfs.txt')
+TwoEpochE_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_40_expected_sfs.txt')
+ThreeEpochC_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_40_expected_sfs.txt')
+ThreeEpochE_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_40_expected_sfs.txt')
+ThreeEpochB_40_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_40_expected_sfs.txt')
+lynch_1000_1000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_40_expected_sfs.txt')
+lynch_2000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_40_expected_sfs.txt')
 
-TwoEpochC_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_51_expected_sfs.txt')
-TwoEpochE_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_51_expected_sfs.txt')
-ThreeEpochC_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_51_expected_sfs.txt')
-ThreeEpochE_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_51_expected_sfs.txt')
-ThreeEpochB_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_51_expected_sfs.txt')
-lynch_1000_1000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_51_expected_sfs.txt')
-lynch_2000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_51_expected_sfs.txt')
+TwoEpochC_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_50_expected_sfs.txt')
+TwoEpochE_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_50_expected_sfs.txt')
+ThreeEpochC_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_50_expected_sfs.txt')
+ThreeEpochE_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_50_expected_sfs.txt')
+ThreeEpochB_50_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_50_expected_sfs.txt')
+lynch_1000_1000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_50_expected_sfs.txt')
+lynch_2000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_50_expected_sfs.txt')
 
-TwoEpochC_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_61_expected_sfs.txt')
-TwoEpochE_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_61_expected_sfs.txt')
-ThreeEpochC_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_61_expected_sfs.txt')
-ThreeEpochE_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_61_expected_sfs.txt')
-ThreeEpochB_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_61_expected_sfs.txt')
-lynch_1000_1000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_61_expected_sfs.txt')
-lynch_2000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_61_expected_sfs.txt')
+TwoEpochC_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_60_expected_sfs.txt')
+TwoEpochE_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_60_expected_sfs.txt')
+ThreeEpochC_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_60_expected_sfs.txt')
+ThreeEpochE_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_60_expected_sfs.txt')
+ThreeEpochB_60_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_60_expected_sfs.txt')
+lynch_1000_1000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_60_expected_sfs.txt')
+lynch_2000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_60_expected_sfs.txt')
 
-TwoEpochC_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_71_expected_sfs.txt')
-TwoEpochE_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_71_expected_sfs.txt')
-ThreeEpochC_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_71_expected_sfs.txt')
-ThreeEpochE_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_71_expected_sfs.txt')
-ThreeEpochB_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_71_expected_sfs.txt')
-lynch_1000_1000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_71_expected_sfs.txt')
-lynch_2000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_71_expected_sfs.txt')
+TwoEpochC_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_70_expected_sfs.txt')
+TwoEpochE_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_70_expected_sfs.txt')
+ThreeEpochC_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_70_expected_sfs.txt')
+ThreeEpochE_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_70_expected_sfs.txt')
+ThreeEpochB_70_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_70_expected_sfs.txt')
+lynch_1000_1000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_70_expected_sfs.txt')
+lynch_2000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_70_expected_sfs.txt')
 
-TwoEpochC_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_81_expected_sfs.txt')
-TwoEpochE_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_81_expected_sfs.txt')
-ThreeEpochC_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_81_expected_sfs.txt')
-ThreeEpochE_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_81_expected_sfs.txt')
-ThreeEpochB_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_81_expected_sfs.txt')
-lynch_1000_1000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_81_expected_sfs.txt')
-lynch_2000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_81_expected_sfs.txt')
+TwoEpochC_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_80_expected_sfs.txt')
+TwoEpochE_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_80_expected_sfs.txt')
+ThreeEpochC_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_80_expected_sfs.txt')
+ThreeEpochE_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_80_expected_sfs.txt')
+ThreeEpochB_80_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_80_expected_sfs.txt')
+lynch_1000_1000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_80_expected_sfs.txt')
+lynch_2000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_80_expected_sfs.txt')
 
-TwoEpochC_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_91_expected_sfs.txt')
-TwoEpochE_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_91_expected_sfs.txt')
-ThreeEpochC_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_91_expected_sfs.txt')
-ThreeEpochE_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_91_expected_sfs.txt')
-ThreeEpochB_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_91_expected_sfs.txt')
-lynch_1000_1000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_91_expected_sfs.txt')
-lynch_2000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_91_expected_sfs.txt')
+TwoEpochC_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_90_expected_sfs.txt')
+TwoEpochE_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_90_expected_sfs.txt')
+ThreeEpochC_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_90_expected_sfs.txt')
+ThreeEpochE_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_90_expected_sfs.txt')
+ThreeEpochB_90_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_90_expected_sfs.txt')
+lynch_1000_1000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_90_expected_sfs.txt')
+lynch_2000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_90_expected_sfs.txt')
 
-TwoEpochC_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_101_expected_sfs.txt')
-TwoEpochE_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_101_expected_sfs.txt')
-ThreeEpochC_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_101_expected_sfs.txt')
-ThreeEpochE_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_101_expected_sfs.txt')
-ThreeEpochB_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_101_expected_sfs.txt')
-lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_101_expected_sfs.txt')
-lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_101_expected_sfs.txt')
+TwoEpochC_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochContraction_100_expected_sfs.txt')
+TwoEpochE_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/TwoEpochExpansion_100_expected_sfs.txt')
+ThreeEpochC_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochContraction_100_expected_sfs.txt')
+ThreeEpochE_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochExpansion_100_expected_sfs.txt')
+ThreeEpochB_100_lynch_SFS = read_input_sfs('../Simulations/lynch_theory/ThreeEpochBottleneck_100_expected_sfs.txt')
+lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_100_expected_sfs.txt')
+lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_100_expected_sfs.txt')
 
 # Altered Bottleneck Timings
 
@@ -1561,345 +1561,345 @@ dadi_1000_2500_400_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_25
 dadi_1000_2500_500_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_500.sfs')
 dadi_1000_2500_600_SFS = read_input_sfs('../Simulations/dadi_simulations/1000_2500_600.sfs')
 
-lynch_500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_11_expected_sfs.txt')
-lynch_500_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_12_expected_sfs.txt')
-lynch_500_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_13_expected_sfs.txt')
-lynch_500_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_14_expected_sfs.txt')
-lynch_500_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_15_expected_sfs.txt')
-lynch_500_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_16_expected_sfs.txt')
-lynch_500_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_17_expected_sfs.txt')
-lynch_500_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_18_expected_sfs.txt')
-lynch_500_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_19_expected_sfs.txt')
-lynch_500_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_20_expected_sfs.txt')
-lynch_500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_21_expected_sfs.txt')
-lynch_500_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_22_expected_sfs.txt')
-lynch_500_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_23_expected_sfs.txt')
-lynch_500_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_24_expected_sfs.txt')
-lynch_500_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_25_expected_sfs.txt')
-lynch_500_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_26_expected_sfs.txt')
-lynch_500_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_27_expected_sfs.txt')
-lynch_500_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_28_expected_sfs.txt')
-lynch_500_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_29_expected_sfs.txt')
-lynch_500_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_30_expected_sfs.txt')
-lynch_500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_31_expected_sfs.txt')
-lynch_500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_41_expected_sfs.txt')
-lynch_500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_51_expected_sfs.txt')
-lynch_500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_61_expected_sfs.txt')
-lynch_500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_71_expected_sfs.txt')
-lynch_500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_81_expected_sfs.txt')
-lynch_500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_91_expected_sfs.txt')
-lynch_500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_101_expected_sfs.txt')
-lynch_500_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_201_expected_sfs.txt')
-lynch_500_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_301_expected_sfs.txt')
-lynch_500_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_401_expected_sfs.txt')
-lynch_500_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_501_expected_sfs.txt')
-lynch_500_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_601_expected_sfs.txt')
+lynch_500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_10_expected_sfs.txt')
+lynch_500_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_11_expected_sfs.txt')
+lynch_500_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_12_expected_sfs.txt')
+lynch_500_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_13_expected_sfs.txt')
+lynch_500_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_14_expected_sfs.txt')
+lynch_500_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_15_expected_sfs.txt')
+lynch_500_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_16_expected_sfs.txt')
+lynch_500_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_17_expected_sfs.txt')
+lynch_500_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_18_expected_sfs.txt')
+lynch_500_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_19_expected_sfs.txt')
+lynch_500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_20_expected_sfs.txt')
+lynch_500_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_21_expected_sfs.txt')
+lynch_500_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_22_expected_sfs.txt')
+lynch_500_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_23_expected_sfs.txt')
+lynch_500_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_24_expected_sfs.txt')
+lynch_500_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_25_expected_sfs.txt')
+lynch_500_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_26_expected_sfs.txt')
+lynch_500_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_27_expected_sfs.txt')
+lynch_500_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_28_expected_sfs.txt')
+lynch_500_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_29_expected_sfs.txt')
+lynch_500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_30_expected_sfs.txt')
+lynch_500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_40_expected_sfs.txt')
+lynch_500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_50_expected_sfs.txt')
+lynch_500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_60_expected_sfs.txt')
+lynch_500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_70_expected_sfs.txt')
+lynch_500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_80_expected_sfs.txt')
+lynch_500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_90_expected_sfs.txt')
+lynch_500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_100_expected_sfs.txt')
+lynch_500_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_200_expected_sfs.txt')
+lynch_500_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_300_expected_sfs.txt')
+lynch_500_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_400_expected_sfs.txt')
+lynch_500_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_500_expected_sfs.txt')
+lynch_500_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/500_2000_bottleneck_600_expected_sfs.txt')
 
-lynch_1000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_11_expected_sfs.txt')
-lynch_1000_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_12_expected_sfs.txt')
-lynch_1000_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_13_expected_sfs.txt')
-lynch_1000_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_14_expected_sfs.txt')
-lynch_1000_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_15_expected_sfs.txt')
-lynch_1000_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_16_expected_sfs.txt')
-lynch_1000_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_17_expected_sfs.txt')
-lynch_1000_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_18_expected_sfs.txt')
-lynch_1000_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_19_expected_sfs.txt')
-lynch_1000_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_20_expected_sfs.txt')
-lynch_1000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_21_expected_sfs.txt')
-lynch_1000_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_22_expected_sfs.txt')
-lynch_1000_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_23_expected_sfs.txt')
-lynch_1000_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_24_expected_sfs.txt')
-lynch_1000_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_25_expected_sfs.txt')
-lynch_1000_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_26_expected_sfs.txt')
-lynch_1000_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_27_expected_sfs.txt')
-lynch_1000_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_28_expected_sfs.txt')
-lynch_1000_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_29_expected_sfs.txt')
-lynch_1000_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_30_expected_sfs.txt')
-lynch_1000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_31_expected_sfs.txt')
-lynch_1000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_41_expected_sfs.txt')
-lynch_1000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_51_expected_sfs.txt')
-lynch_1000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_61_expected_sfs.txt')
-lynch_1000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_71_expected_sfs.txt')
-lynch_1000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_81_expected_sfs.txt')
-lynch_1000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_91_expected_sfs.txt')
-lynch_1000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_101_expected_sfs.txt')
-lynch_1000_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_201_expected_sfs.txt')
-lynch_1000_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_301_expected_sfs.txt')
-lynch_1000_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_401_expected_sfs.txt')
-lynch_1000_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_501_expected_sfs.txt')
-lynch_1000_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_601_expected_sfs.txt')
+lynch_1000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_10_expected_sfs.txt')
+lynch_1000_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_11_expected_sfs.txt')
+lynch_1000_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_12_expected_sfs.txt')
+lynch_1000_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_13_expected_sfs.txt')
+lynch_1000_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_14_expected_sfs.txt')
+lynch_1000_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_15_expected_sfs.txt')
+lynch_1000_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_16_expected_sfs.txt')
+lynch_1000_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_17_expected_sfs.txt')
+lynch_1000_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_18_expected_sfs.txt')
+lynch_1000_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_19_expected_sfs.txt')
+lynch_1000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_20_expected_sfs.txt')
+lynch_1000_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_21_expected_sfs.txt')
+lynch_1000_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_22_expected_sfs.txt')
+lynch_1000_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_23_expected_sfs.txt')
+lynch_1000_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_24_expected_sfs.txt')
+lynch_1000_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_25_expected_sfs.txt')
+lynch_1000_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_26_expected_sfs.txt')
+lynch_1000_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_27_expected_sfs.txt')
+lynch_1000_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_28_expected_sfs.txt')
+lynch_1000_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_29_expected_sfs.txt')
+lynch_1000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_30_expected_sfs.txt')
+lynch_1000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_40_expected_sfs.txt')
+lynch_1000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_50_expected_sfs.txt')
+lynch_1000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_60_expected_sfs.txt')
+lynch_1000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_70_expected_sfs.txt')
+lynch_1000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_80_expected_sfs.txt')
+lynch_1000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_90_expected_sfs.txt')
+lynch_1000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_100_expected_sfs.txt')
+lynch_1000_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_200_expected_sfs.txt')
+lynch_1000_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_300_expected_sfs.txt')
+lynch_1000_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_400_expected_sfs.txt')
+lynch_1000_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_500_expected_sfs.txt')
+lynch_1000_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_600_expected_sfs.txt')
 
-lynch_1500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_11_expected_sfs.txt')
-lynch_1500_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_12_expected_sfs.txt')
-lynch_1500_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_13_expected_sfs.txt')
-lynch_1500_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_14_expected_sfs.txt')
-lynch_1500_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_15_expected_sfs.txt')
-lynch_1500_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_16_expected_sfs.txt')
-lynch_1500_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_17_expected_sfs.txt')
-lynch_1500_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_18_expected_sfs.txt')
-lynch_1500_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_19_expected_sfs.txt')
-lynch_1500_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_20_expected_sfs.txt')
-lynch_1500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_21_expected_sfs.txt')
-lynch_1500_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_22_expected_sfs.txt')
-lynch_1500_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_23_expected_sfs.txt')
-lynch_1500_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_24_expected_sfs.txt')
-lynch_1500_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_25_expected_sfs.txt')
-lynch_1500_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_26_expected_sfs.txt')
-lynch_1500_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_27_expected_sfs.txt')
-lynch_1500_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_28_expected_sfs.txt')
-lynch_1500_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_29_expected_sfs.txt')
-lynch_1500_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_30_expected_sfs.txt')
-lynch_1500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_31_expected_sfs.txt')
-lynch_1500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_41_expected_sfs.txt')
-lynch_1500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_51_expected_sfs.txt')
-lynch_1500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_61_expected_sfs.txt')
-lynch_1500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_71_expected_sfs.txt')
-lynch_1500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_81_expected_sfs.txt')
-lynch_1500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_91_expected_sfs.txt')
-lynch_1500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_101_expected_sfs.txt')
-lynch_1500_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_201_expected_sfs.txt')
-lynch_1500_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_301_expected_sfs.txt')
-lynch_1500_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_401_expected_sfs.txt')
-lynch_1500_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_501_expected_sfs.txt')
-lynch_1500_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_601_expected_sfs.txt')
+lynch_1500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_10_expected_sfs.txt')
+lynch_1500_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_11_expected_sfs.txt')
+lynch_1500_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_12_expected_sfs.txt')
+lynch_1500_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_13_expected_sfs.txt')
+lynch_1500_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_14_expected_sfs.txt')
+lynch_1500_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_15_expected_sfs.txt')
+lynch_1500_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_16_expected_sfs.txt')
+lynch_1500_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_17_expected_sfs.txt')
+lynch_1500_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_18_expected_sfs.txt')
+lynch_1500_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_19_expected_sfs.txt')
+lynch_1500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_20_expected_sfs.txt')
+lynch_1500_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_21_expected_sfs.txt')
+lynch_1500_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_22_expected_sfs.txt')
+lynch_1500_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_23_expected_sfs.txt')
+lynch_1500_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_24_expected_sfs.txt')
+lynch_1500_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_25_expected_sfs.txt')
+lynch_1500_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_26_expected_sfs.txt')
+lynch_1500_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_27_expected_sfs.txt')
+lynch_1500_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_28_expected_sfs.txt')
+lynch_1500_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_29_expected_sfs.txt')
+lynch_1500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_30_expected_sfs.txt')
+lynch_1500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_40_expected_sfs.txt')
+lynch_1500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_50_expected_sfs.txt')
+lynch_1500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_60_expected_sfs.txt')
+lynch_1500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_70_expected_sfs.txt')
+lynch_1500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_80_expected_sfs.txt')
+lynch_1500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_90_expected_sfs.txt')
+lynch_1500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_100_expected_sfs.txt')
+lynch_1500_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_200_expected_sfs.txt')
+lynch_1500_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_300_expected_sfs.txt')
+lynch_1500_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_400_expected_sfs.txt')
+lynch_1500_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_500_expected_sfs.txt')
+lynch_1500_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1500_2000_bottleneck_600_expected_sfs.txt')
 
-lynch_2000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_11_expected_sfs.txt')
-lynch_2000_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_12_expected_sfs.txt')
-lynch_2000_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_13_expected_sfs.txt')
-lynch_2000_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_14_expected_sfs.txt')
-lynch_2000_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_15_expected_sfs.txt')
-lynch_2000_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_16_expected_sfs.txt')
-lynch_2000_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_17_expected_sfs.txt')
-lynch_2000_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_18_expected_sfs.txt')
-lynch_2000_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_19_expected_sfs.txt')
-lynch_2000_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_20_expected_sfs.txt')
-lynch_2000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_21_expected_sfs.txt')
-lynch_2000_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_22_expected_sfs.txt')
-lynch_2000_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_23_expected_sfs.txt')
-lynch_2000_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_24_expected_sfs.txt')
-lynch_2000_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_25_expected_sfs.txt')
-lynch_2000_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_26_expected_sfs.txt')
-lynch_2000_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_27_expected_sfs.txt')
-lynch_2000_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_28_expected_sfs.txt')
-lynch_2000_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_29_expected_sfs.txt')
-lynch_2000_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_30_expected_sfs.txt')
-lynch_2000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_31_expected_sfs.txt')
-lynch_2000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_41_expected_sfs.txt')
-lynch_2000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_51_expected_sfs.txt')
-lynch_2000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_61_expected_sfs.txt')
-lynch_2000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_71_expected_sfs.txt')
-lynch_2000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_81_expected_sfs.txt')
-lynch_2000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_91_expected_sfs.txt')
-lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_101_expected_sfs.txt')
-lynch_2000_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_201_expected_sfs.txt')
-lynch_2000_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_301_expected_sfs.txt')
-lynch_2000_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_401_expected_sfs.txt')
-lynch_2000_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_501_expected_sfs.txt')
-lynch_2000_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_601_expected_sfs.txt')
+lynch_2000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_10_expected_sfs.txt')
+lynch_2000_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_11_expected_sfs.txt')
+lynch_2000_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_12_expected_sfs.txt')
+lynch_2000_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_13_expected_sfs.txt')
+lynch_2000_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_14_expected_sfs.txt')
+lynch_2000_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_15_expected_sfs.txt')
+lynch_2000_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_16_expected_sfs.txt')
+lynch_2000_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_17_expected_sfs.txt')
+lynch_2000_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_18_expected_sfs.txt')
+lynch_2000_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_19_expected_sfs.txt')
+lynch_2000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_20_expected_sfs.txt')
+lynch_2000_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_21_expected_sfs.txt')
+lynch_2000_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_22_expected_sfs.txt')
+lynch_2000_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_23_expected_sfs.txt')
+lynch_2000_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_24_expected_sfs.txt')
+lynch_2000_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_25_expected_sfs.txt')
+lynch_2000_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_26_expected_sfs.txt')
+lynch_2000_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_27_expected_sfs.txt')
+lynch_2000_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_28_expected_sfs.txt')
+lynch_2000_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_29_expected_sfs.txt')
+lynch_2000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_30_expected_sfs.txt')
+lynch_2000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_40_expected_sfs.txt')
+lynch_2000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_50_expected_sfs.txt')
+lynch_2000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_60_expected_sfs.txt')
+lynch_2000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_70_expected_sfs.txt')
+lynch_2000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_80_expected_sfs.txt')
+lynch_2000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_90_expected_sfs.txt')
+lynch_2000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_100_expected_sfs.txt')
+lynch_2000_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_200_expected_sfs.txt')
+lynch_2000_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_300_expected_sfs.txt')
+lynch_2000_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_400_expected_sfs.txt')
+lynch_2000_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_500_expected_sfs.txt')
+lynch_2000_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/2000_2000_bottleneck_600_expected_sfs.txt')
 
-lynch_2500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_11_expected_sfs.txt')
-lynch_2500_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_12_expected_sfs.txt')
-lynch_2500_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_13_expected_sfs.txt')
-lynch_2500_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_14_expected_sfs.txt')
-lynch_2500_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_15_expected_sfs.txt')
-lynch_2500_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_16_expected_sfs.txt')
-lynch_2500_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_17_expected_sfs.txt')
-lynch_2500_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_18_expected_sfs.txt')
-lynch_2500_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_19_expected_sfs.txt')
-lynch_2500_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_20_expected_sfs.txt')
-lynch_2500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_21_expected_sfs.txt')
-lynch_2500_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_22_expected_sfs.txt')
-lynch_2500_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_23_expected_sfs.txt')
-lynch_2500_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_24_expected_sfs.txt')
-lynch_2500_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_25_expected_sfs.txt')
-lynch_2500_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_26_expected_sfs.txt')
-lynch_2500_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_27_expected_sfs.txt')
-lynch_2500_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_28_expected_sfs.txt')
-lynch_2500_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_29_expected_sfs.txt')
-lynch_2500_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_30_expected_sfs.txt')
-lynch_2500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_31_expected_sfs.txt')
-lynch_2500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_41_expected_sfs.txt')
-lynch_2500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_51_expected_sfs.txt')
-lynch_2500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_61_expected_sfs.txt')
-lynch_2500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_71_expected_sfs.txt')
-lynch_2500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_81_expected_sfs.txt')
-lynch_2500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_91_expected_sfs.txt')
-lynch_2500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_101_expected_sfs.txt')
-lynch_2500_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_201_expected_sfs.txt')
-lynch_2500_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_301_expected_sfs.txt')
-lynch_2500_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_401_expected_sfs.txt')
-lynch_2500_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_501_expected_sfs.txt')
-lynch_2500_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_601_expected_sfs.txt')
+lynch_2500_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_10_expected_sfs.txt')
+lynch_2500_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_11_expected_sfs.txt')
+lynch_2500_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_12_expected_sfs.txt')
+lynch_2500_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_13_expected_sfs.txt')
+lynch_2500_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_14_expected_sfs.txt')
+lynch_2500_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_15_expected_sfs.txt')
+lynch_2500_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_16_expected_sfs.txt')
+lynch_2500_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_17_expected_sfs.txt')
+lynch_2500_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_18_expected_sfs.txt')
+lynch_2500_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_19_expected_sfs.txt')
+lynch_2500_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_20_expected_sfs.txt')
+lynch_2500_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_21_expected_sfs.txt')
+lynch_2500_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_22_expected_sfs.txt')
+lynch_2500_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_23_expected_sfs.txt')
+lynch_2500_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_24_expected_sfs.txt')
+lynch_2500_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_25_expected_sfs.txt')
+lynch_2500_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_26_expected_sfs.txt')
+lynch_2500_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_27_expected_sfs.txt')
+lynch_2500_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_28_expected_sfs.txt')
+lynch_2500_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_29_expected_sfs.txt')
+lynch_2500_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_30_expected_sfs.txt')
+lynch_2500_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_40_expected_sfs.txt')
+lynch_2500_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_50_expected_sfs.txt')
+lynch_2500_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_60_expected_sfs.txt')
+lynch_2500_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_70_expected_sfs.txt')
+lynch_2500_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_80_expected_sfs.txt')
+lynch_2500_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_90_expected_sfs.txt')
+lynch_2500_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_100_expected_sfs.txt')
+lynch_2500_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_200_expected_sfs.txt')
+lynch_2500_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_300_expected_sfs.txt')
+lynch_2500_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_400_expected_sfs.txt')
+lynch_2500_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_500_expected_sfs.txt')
+lynch_2500_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/2500_2000_bottleneck_600_expected_sfs.txt')
 
-lynch_1000_500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_11_expected_sfs.txt')
-lynch_1000_500_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_12_expected_sfs.txt')
-lynch_1000_500_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_13_expected_sfs.txt')
-lynch_1000_500_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_14_expected_sfs.txt')
-lynch_1000_500_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_15_expected_sfs.txt')
-lynch_1000_500_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_16_expected_sfs.txt')
-lynch_1000_500_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_17_expected_sfs.txt')
-lynch_1000_500_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_18_expected_sfs.txt')
-lynch_1000_500_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_19_expected_sfs.txt')
-lynch_1000_500_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_20_expected_sfs.txt')
-lynch_1000_500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_21_expected_sfs.txt')
-lynch_1000_500_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_22_expected_sfs.txt')
-lynch_1000_500_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_23_expected_sfs.txt')
-lynch_1000_500_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_24_expected_sfs.txt')
-lynch_1000_500_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_25_expected_sfs.txt')
-lynch_1000_500_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_26_expected_sfs.txt')
-lynch_1000_500_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_27_expected_sfs.txt')
-lynch_1000_500_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_28_expected_sfs.txt')
-lynch_1000_500_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_29_expected_sfs.txt')
-lynch_1000_500_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_30_expected_sfs.txt')
-lynch_1000_500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_31_expected_sfs.txt')
-lynch_1000_500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_41_expected_sfs.txt')
-lynch_1000_500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_51_expected_sfs.txt')
-lynch_1000_500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_61_expected_sfs.txt')
-lynch_1000_500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_71_expected_sfs.txt')
-lynch_1000_500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_81_expected_sfs.txt')
-lynch_1000_500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_91_expected_sfs.txt')
-lynch_1000_500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_101_expected_sfs.txt')
-lynch_1000_500_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_201_expected_sfs.txt')
-lynch_1000_500_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_301_expected_sfs.txt')
-lynch_1000_500_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_401_expected_sfs.txt')
-lynch_1000_500_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_501_expected_sfs.txt')
-lynch_1000_500_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_601_expected_sfs.txt')
+lynch_1000_500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_10_expected_sfs.txt')
+lynch_1000_500_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_11_expected_sfs.txt')
+lynch_1000_500_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_12_expected_sfs.txt')
+lynch_1000_500_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_13_expected_sfs.txt')
+lynch_1000_500_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_14_expected_sfs.txt')
+lynch_1000_500_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_15_expected_sfs.txt')
+lynch_1000_500_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_16_expected_sfs.txt')
+lynch_1000_500_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_17_expected_sfs.txt')
+lynch_1000_500_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_18_expected_sfs.txt')
+lynch_1000_500_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_19_expected_sfs.txt')
+lynch_1000_500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_20_expected_sfs.txt')
+lynch_1000_500_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_21_expected_sfs.txt')
+lynch_1000_500_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_22_expected_sfs.txt')
+lynch_1000_500_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_23_expected_sfs.txt')
+lynch_1000_500_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_24_expected_sfs.txt')
+lynch_1000_500_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_25_expected_sfs.txt')
+lynch_1000_500_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_26_expected_sfs.txt')
+lynch_1000_500_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_27_expected_sfs.txt')
+lynch_1000_500_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_28_expected_sfs.txt')
+lynch_1000_500_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_29_expected_sfs.txt')
+lynch_1000_500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_30_expected_sfs.txt')
+lynch_1000_500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_40_expected_sfs.txt')
+lynch_1000_500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_50_expected_sfs.txt')
+lynch_1000_500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_60_expected_sfs.txt')
+lynch_1000_500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_70_expected_sfs.txt')
+lynch_1000_500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_80_expected_sfs.txt')
+lynch_1000_500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_90_expected_sfs.txt')
+lynch_1000_500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_100_expected_sfs.txt')
+lynch_1000_500_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_200_expected_sfs.txt')
+lynch_1000_500_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_300_expected_sfs.txt')
+lynch_1000_500_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_400_expected_sfs.txt')
+lynch_1000_500_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_500_expected_sfs.txt')
+lynch_1000_500_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_500_bottleneck_600_expected_sfs.txt')
 
-lynch_1000_1000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_11_expected_sfs.txt')
-lynch_1000_1000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_12_expected_sfs.txt')
-lynch_1000_1000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_13_expected_sfs.txt')
-lynch_1000_1000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_14_expected_sfs.txt')
-lynch_1000_1000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_15_expected_sfs.txt')
-lynch_1000_1000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_16_expected_sfs.txt')
-lynch_1000_1000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_17_expected_sfs.txt')
-lynch_1000_1000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_18_expected_sfs.txt')
-lynch_1000_1000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_19_expected_sfs.txt')
-lynch_1000_1000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_20_expected_sfs.txt')
-lynch_1000_1000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_21_expected_sfs.txt')
-lynch_1000_1000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_22_expected_sfs.txt')
-lynch_1000_1000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_23_expected_sfs.txt')
-lynch_1000_1000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_24_expected_sfs.txt')
-lynch_1000_1000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_25_expected_sfs.txt')
-lynch_1000_1000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_26_expected_sfs.txt')
-lynch_1000_1000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_27_expected_sfs.txt')
-lynch_1000_1000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_28_expected_sfs.txt')
-lynch_1000_1000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_29_expected_sfs.txt')
-lynch_1000_1000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_30_expected_sfs.txt')
-lynch_1000_1000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_31_expected_sfs.txt')
-lynch_1000_1000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_41_expected_sfs.txt')
-lynch_1000_1000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_51_expected_sfs.txt')
-lynch_1000_1000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_61_expected_sfs.txt')
-lynch_1000_1000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_71_expected_sfs.txt')
-lynch_1000_1000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_81_expected_sfs.txt')
-lynch_1000_1000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_91_expected_sfs.txt')
-lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_101_expected_sfs.txt')
-lynch_1000_1000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_201_expected_sfs.txt')
-lynch_1000_1000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_301_expected_sfs.txt')
-lynch_1000_1000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_401_expected_sfs.txt')
-lynch_1000_1000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_501_expected_sfs.txt')
-lynch_1000_1000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_601_expected_sfs.txt')
+lynch_1000_1000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_10_expected_sfs.txt')
+lynch_1000_1000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_11_expected_sfs.txt')
+lynch_1000_1000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_12_expected_sfs.txt')
+lynch_1000_1000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_13_expected_sfs.txt')
+lynch_1000_1000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_14_expected_sfs.txt')
+lynch_1000_1000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_15_expected_sfs.txt')
+lynch_1000_1000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_16_expected_sfs.txt')
+lynch_1000_1000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_17_expected_sfs.txt')
+lynch_1000_1000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_18_expected_sfs.txt')
+lynch_1000_1000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_19_expected_sfs.txt')
+lynch_1000_1000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_20_expected_sfs.txt')
+lynch_1000_1000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_21_expected_sfs.txt')
+lynch_1000_1000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_22_expected_sfs.txt')
+lynch_1000_1000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_23_expected_sfs.txt')
+lynch_1000_1000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_24_expected_sfs.txt')
+lynch_1000_1000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_25_expected_sfs.txt')
+lynch_1000_1000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_26_expected_sfs.txt')
+lynch_1000_1000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_27_expected_sfs.txt')
+lynch_1000_1000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_28_expected_sfs.txt')
+lynch_1000_1000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_29_expected_sfs.txt')
+lynch_1000_1000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_30_expected_sfs.txt')
+lynch_1000_1000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_40_expected_sfs.txt')
+lynch_1000_1000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_50_expected_sfs.txt')
+lynch_1000_1000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_60_expected_sfs.txt')
+lynch_1000_1000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_70_expected_sfs.txt')
+lynch_1000_1000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_80_expected_sfs.txt')
+lynch_1000_1000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_90_expected_sfs.txt')
+lynch_1000_1000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_100_expected_sfs.txt')
+lynch_1000_1000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_200_expected_sfs.txt')
+lynch_1000_1000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_300_expected_sfs.txt')
+lynch_1000_1000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_400_expected_sfs.txt')
+lynch_1000_1000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_500_expected_sfs.txt')
+lynch_1000_1000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1000_bottleneck_600_expected_sfs.txt')
 
-lynch_1000_1500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_11_expected_sfs.txt')
-lynch_1000_1500_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_12_expected_sfs.txt')
-lynch_1000_1500_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_13_expected_sfs.txt')
-lynch_1000_1500_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_14_expected_sfs.txt')
-lynch_1000_1500_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_15_expected_sfs.txt')
-lynch_1000_1500_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_16_expected_sfs.txt')
-lynch_1000_1500_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_17_expected_sfs.txt')
-lynch_1000_1500_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_18_expected_sfs.txt')
-lynch_1000_1500_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_19_expected_sfs.txt')
-lynch_1000_1500_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_20_expected_sfs.txt')
-lynch_1000_1500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_21_expected_sfs.txt')
-lynch_1000_1500_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_22_expected_sfs.txt')
-lynch_1000_1500_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_23_expected_sfs.txt')
-lynch_1000_1500_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_24_expected_sfs.txt')
-lynch_1000_1500_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_25_expected_sfs.txt')
-lynch_1000_1500_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_26_expected_sfs.txt')
-lynch_1000_1500_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_27_expected_sfs.txt')
-lynch_1000_1500_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_28_expected_sfs.txt')
-lynch_1000_1500_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_29_expected_sfs.txt')
-lynch_1000_1500_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_30_expected_sfs.txt')
-lynch_1000_1500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_31_expected_sfs.txt')
-lynch_1000_1500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_41_expected_sfs.txt')
-lynch_1000_1500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_51_expected_sfs.txt')
-lynch_1000_1500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_61_expected_sfs.txt')
-lynch_1000_1500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_71_expected_sfs.txt')
-lynch_1000_1500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_81_expected_sfs.txt')
-lynch_1000_1500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_91_expected_sfs.txt')
-lynch_1000_1500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_101_expected_sfs.txt')
-lynch_1000_1500_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_201_expected_sfs.txt')
-lynch_1000_1500_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_301_expected_sfs.txt')
-lynch_1000_1500_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_401_expected_sfs.txt')
-lynch_1000_1500_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_501_expected_sfs.txt')
-lynch_1000_1500_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_601_expected_sfs.txt')
+lynch_1000_1500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_10_expected_sfs.txt')
+lynch_1000_1500_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_11_expected_sfs.txt')
+lynch_1000_1500_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_12_expected_sfs.txt')
+lynch_1000_1500_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_13_expected_sfs.txt')
+lynch_1000_1500_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_14_expected_sfs.txt')
+lynch_1000_1500_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_15_expected_sfs.txt')
+lynch_1000_1500_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_16_expected_sfs.txt')
+lynch_1000_1500_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_17_expected_sfs.txt')
+lynch_1000_1500_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_18_expected_sfs.txt')
+lynch_1000_1500_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_19_expected_sfs.txt')
+lynch_1000_1500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_20_expected_sfs.txt')
+lynch_1000_1500_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_21_expected_sfs.txt')
+lynch_1000_1500_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_22_expected_sfs.txt')
+lynch_1000_1500_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_23_expected_sfs.txt')
+lynch_1000_1500_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_24_expected_sfs.txt')
+lynch_1000_1500_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_25_expected_sfs.txt')
+lynch_1000_1500_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_26_expected_sfs.txt')
+lynch_1000_1500_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_27_expected_sfs.txt')
+lynch_1000_1500_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_28_expected_sfs.txt')
+lynch_1000_1500_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_29_expected_sfs.txt')
+lynch_1000_1500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_30_expected_sfs.txt')
+lynch_1000_1500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_40_expected_sfs.txt')
+lynch_1000_1500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_50_expected_sfs.txt')
+lynch_1000_1500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_60_expected_sfs.txt')
+lynch_1000_1500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_70_expected_sfs.txt')
+lynch_1000_1500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_80_expected_sfs.txt')
+lynch_1000_1500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_90_expected_sfs.txt')
+lynch_1000_1500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_100_expected_sfs.txt')
+lynch_1000_1500_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_200_expected_sfs.txt')
+lynch_1000_1500_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_300_expected_sfs.txt')
+lynch_1000_1500_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_400_expected_sfs.txt')
+lynch_1000_1500_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_500_expected_sfs.txt')
+lynch_1000_1500_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_1500_bottleneck_600_expected_sfs.txt')
 
-lynch_1000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_11_expected_sfs.txt')
-lynch_1000_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_12_expected_sfs.txt')
-lynch_1000_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_13_expected_sfs.txt')
-lynch_1000_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_14_expected_sfs.txt')
-lynch_1000_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_15_expected_sfs.txt')
-lynch_1000_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_16_expected_sfs.txt')
-lynch_1000_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_17_expected_sfs.txt')
-lynch_1000_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_18_expected_sfs.txt')
-lynch_1000_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_19_expected_sfs.txt')
-lynch_1000_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_20_expected_sfs.txt')
-lynch_1000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_21_expected_sfs.txt')
-lynch_1000_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_22_expected_sfs.txt')
-lynch_1000_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_23_expected_sfs.txt')
-lynch_1000_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_24_expected_sfs.txt')
-lynch_1000_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_25_expected_sfs.txt')
-lynch_1000_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_26_expected_sfs.txt')
-lynch_1000_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_27_expected_sfs.txt')
-lynch_1000_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_28_expected_sfs.txt')
-lynch_1000_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_29_expected_sfs.txt')
-lynch_1000_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_30_expected_sfs.txt')
-lynch_1000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_31_expected_sfs.txt')
-lynch_1000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_41_expected_sfs.txt')
-lynch_1000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_51_expected_sfs.txt')
-lynch_1000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_61_expected_sfs.txt')
-lynch_1000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_71_expected_sfs.txt')
-lynch_1000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_81_expected_sfs.txt')
-lynch_1000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_91_expected_sfs.txt')
-lynch_1000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_101_expected_sfs.txt')
-lynch_1000_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_201_expected_sfs.txt')
-lynch_1000_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_301_expected_sfs.txt')
-lynch_1000_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_401_expected_sfs.txt')
-lynch_1000_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_501_expected_sfs.txt')
-lynch_1000_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_601_expected_sfs.txt')
+lynch_1000_2000_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_10_expected_sfs.txt')
+lynch_1000_2000_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_11_expected_sfs.txt')
+lynch_1000_2000_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_12_expected_sfs.txt')
+lynch_1000_2000_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_13_expected_sfs.txt')
+lynch_1000_2000_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_14_expected_sfs.txt')
+lynch_1000_2000_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_15_expected_sfs.txt')
+lynch_1000_2000_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_16_expected_sfs.txt')
+lynch_1000_2000_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_17_expected_sfs.txt')
+lynch_1000_2000_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_18_expected_sfs.txt')
+lynch_1000_2000_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_19_expected_sfs.txt')
+lynch_1000_2000_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_20_expected_sfs.txt')
+lynch_1000_2000_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_21_expected_sfs.txt')
+lynch_1000_2000_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_22_expected_sfs.txt')
+lynch_1000_2000_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_23_expected_sfs.txt')
+lynch_1000_2000_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_24_expected_sfs.txt')
+lynch_1000_2000_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_25_expected_sfs.txt')
+lynch_1000_2000_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_26_expected_sfs.txt')
+lynch_1000_2000_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_27_expected_sfs.txt')
+lynch_1000_2000_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_28_expected_sfs.txt')
+lynch_1000_2000_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_29_expected_sfs.txt')
+lynch_1000_2000_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_30_expected_sfs.txt')
+lynch_1000_2000_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_40_expected_sfs.txt')
+lynch_1000_2000_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_50_expected_sfs.txt')
+lynch_1000_2000_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_60_expected_sfs.txt')
+lynch_1000_2000_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_70_expected_sfs.txt')
+lynch_1000_2000_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_80_expected_sfs.txt')
+lynch_1000_2000_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_90_expected_sfs.txt')
+lynch_1000_2000_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_100_expected_sfs.txt')
+lynch_1000_2000_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_200_expected_sfs.txt')
+lynch_1000_2000_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_300_expected_sfs.txt')
+lynch_1000_2000_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_400_expected_sfs.txt')
+lynch_1000_2000_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_500_expected_sfs.txt')
+lynch_1000_2000_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2000_bottleneck_600_expected_sfs.txt')
 
-lynch_1000_2500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_11_expected_sfs.txt')
-lynch_1000_2500_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_12_expected_sfs.txt')
-lynch_1000_2500_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_13_expected_sfs.txt')
-lynch_1000_2500_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_14_expected_sfs.txt')
-lynch_1000_2500_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_15_expected_sfs.txt')
-lynch_1000_2500_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_16_expected_sfs.txt')
-lynch_1000_2500_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_17_expected_sfs.txt')
-lynch_1000_2500_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_18_expected_sfs.txt')
-lynch_1000_2500_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_19_expected_sfs.txt')
-lynch_1000_2500_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_20_expected_sfs.txt')
-lynch_1000_2500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_21_expected_sfs.txt')
-lynch_1000_2500_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_22_expected_sfs.txt')
-lynch_1000_2500_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_23_expected_sfs.txt')
-lynch_1000_2500_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_24_expected_sfs.txt')
-lynch_1000_2500_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_25_expected_sfs.txt')
-lynch_1000_2500_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_26_expected_sfs.txt')
-lynch_1000_2500_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_27_expected_sfs.txt')
-lynch_1000_2500_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_28_expected_sfs.txt')
-lynch_1000_2500_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_29_expected_sfs.txt')
-lynch_1000_2500_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_30_expected_sfs.txt')
-lynch_1000_2500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_31_expected_sfs.txt')
-lynch_1000_2500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_41_expected_sfs.txt')
-lynch_1000_2500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_51_expected_sfs.txt')
-lynch_1000_2500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_61_expected_sfs.txt')
-lynch_1000_2500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_71_expected_sfs.txt')
-lynch_1000_2500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_81_expected_sfs.txt')
-lynch_1000_2500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_91_expected_sfs.txt')
-lynch_1000_2500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_101_expected_sfs.txt')
-lynch_1000_2500_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_201_expected_sfs.txt')
-lynch_1000_2500_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_301_expected_sfs.txt')
-lynch_1000_2500_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_401_expected_sfs.txt')
-lynch_1000_2500_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_501_expected_sfs.txt')
-lynch_1000_2500_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_601_expected_sfs.txt')
+lynch_1000_2500_10_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_10_expected_sfs.txt')
+lynch_1000_2500_11_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_11_expected_sfs.txt')
+lynch_1000_2500_12_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_12_expected_sfs.txt')
+lynch_1000_2500_13_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_13_expected_sfs.txt')
+lynch_1000_2500_14_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_14_expected_sfs.txt')
+lynch_1000_2500_15_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_15_expected_sfs.txt')
+lynch_1000_2500_16_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_16_expected_sfs.txt')
+lynch_1000_2500_17_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_17_expected_sfs.txt')
+lynch_1000_2500_18_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_18_expected_sfs.txt')
+lynch_1000_2500_19_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_19_expected_sfs.txt')
+lynch_1000_2500_20_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_20_expected_sfs.txt')
+lynch_1000_2500_21_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_21_expected_sfs.txt')
+lynch_1000_2500_22_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_22_expected_sfs.txt')
+lynch_1000_2500_23_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_23_expected_sfs.txt')
+lynch_1000_2500_24_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_24_expected_sfs.txt')
+lynch_1000_2500_25_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_25_expected_sfs.txt')
+lynch_1000_2500_26_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_26_expected_sfs.txt')
+lynch_1000_2500_27_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_27_expected_sfs.txt')
+lynch_1000_2500_28_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_28_expected_sfs.txt')
+lynch_1000_2500_29_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_29_expected_sfs.txt')
+lynch_1000_2500_30_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_30_expected_sfs.txt')
+lynch_1000_2500_40_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_40_expected_sfs.txt')
+lynch_1000_2500_50_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_50_expected_sfs.txt')
+lynch_1000_2500_60_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_60_expected_sfs.txt')
+lynch_1000_2500_70_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_70_expected_sfs.txt')
+lynch_1000_2500_80_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_80_expected_sfs.txt')
+lynch_1000_2500_90_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_90_expected_sfs.txt')
+lynch_1000_2500_100_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_100_expected_sfs.txt')
+lynch_1000_2500_200_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_200_expected_sfs.txt')
+lynch_1000_2500_300_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_300_expected_sfs.txt')
+lynch_1000_2500_400_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_400_expected_sfs.txt')
+lynch_1000_2500_500_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_500_expected_sfs.txt')
+lynch_1000_2500_600_SFS = read_input_sfs('../Simulations/lynch_theory/1000_2500_bottleneck_600_expected_sfs.txt')
 
 compare_msprime_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, TwoEpochC_10_msprime_SFS, 
     TwoEpochC_10_dadi_SFS, TwoEpochC_10_lynch_SFS) + 
@@ -2238,6 +2238,126 @@ compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, TwoEpochC_100_msprime_SFS
   ggtitle('Three Epoch Expansion, k=100') +
   compare_msprime_dadi_lynch_count_sfs(dadi_snm_100_SFS, ThreeEpochB_100_msprime_SFS,
     ThreeEpochB_100_dadi_SFS, ThreeEpochB_100_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=100') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_10_dadi_SFS, TwoEpochC_10_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=10') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_10_dadi_SFS, TwoEpochE_10_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=10') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_10_dadi_SFS, ThreeEpochC_10_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=10') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_10_dadi_SFS, ThreeEpochE_10_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=10') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_10_dadi_SFS, ThreeEpochB_10_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=10') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_20_dadi_SFS, TwoEpochC_20_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=20') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_20_dadi_SFS, TwoEpochE_20_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=20') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_20_dadi_SFS, ThreeEpochC_20_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=20') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_20_dadi_SFS, ThreeEpochE_20_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=20') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_20_dadi_SFS, ThreeEpochB_20_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=20') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_30_dadi_SFS, TwoEpochC_30_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=30') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_30_dadi_SFS, TwoEpochE_30_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=30') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_30_dadi_SFS, ThreeEpochC_30_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=30') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_30_dadi_SFS, ThreeEpochE_30_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=30') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_30_dadi_SFS, ThreeEpochB_30_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=30') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_40_dadi_SFS, TwoEpochC_40_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=40') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_40_dadi_SFS, TwoEpochE_40_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=40') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_40_dadi_SFS, ThreeEpochC_40_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=40') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_40_dadi_SFS, ThreeEpochE_40_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=40') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_40_dadi_SFS, ThreeEpochB_40_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=40') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_50_dadi_SFS, TwoEpochC_50_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=50') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_50_dadi_SFS, TwoEpochE_50_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=50') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_50_dadi_SFS, ThreeEpochC_50_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=50') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_50_dadi_SFS, ThreeEpochE_50_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=50') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_50_dadi_SFS, ThreeEpochB_50_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=50') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_60_dadi_SFS, TwoEpochC_60_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=60') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_60_dadi_SFS, TwoEpochE_60_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=60') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_60_dadi_SFS, ThreeEpochC_60_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=60') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_60_dadi_SFS, ThreeEpochE_60_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=60') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_60_dadi_SFS, ThreeEpochB_60_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=60') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_70_dadi_SFS, TwoEpochC_70_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=70') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_70_dadi_SFS, TwoEpochE_70_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=70') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_70_dadi_SFS, ThreeEpochC_70_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=70') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_70_dadi_SFS, ThreeEpochE_70_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=70') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_70_dadi_SFS, ThreeEpochB_70_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=70') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_80_dadi_SFS, TwoEpochC_80_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=80') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_80_dadi_SFS, TwoEpochE_80_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=80') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_80_dadi_SFS, ThreeEpochC_80_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=80') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_80_dadi_SFS, ThreeEpochE_80_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=80') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_80_dadi_SFS, ThreeEpochB_80_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=80') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_90_dadi_SFS, TwoEpochC_90_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=90') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_90_dadi_SFS, TwoEpochE_90_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=90') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_90_dadi_SFS, ThreeEpochC_90_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=90') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_90_dadi_SFS, ThreeEpochE_90_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=90') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_90_dadi_SFS, ThreeEpochB_90_lynch_SFS) + 
+  ggtitle('Three Epoch Bottleneck, k=90') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(TwoEpochC_100_dadi_SFS, TwoEpochC_100_lynch_SFS) + 
+  ggtitle('Two Epoch Contraction, k=100') +
+  compare_dadi_lynch_count_sfs(TwoEpochE_100_dadi_SFS, TwoEpochE_100_lynch_SFS) + 
+  ggtitle('Two Epoch Expansion, k=100') +
+  compare_dadi_lynch_count_sfs(ThreeEpochC_100_dadi_SFS, ThreeEpochC_100_lynch_SFS) + 
+  ggtitle('Three Epoch Contraction, k=100') +
+  compare_dadi_lynch_count_sfs(ThreeEpochE_100_dadi_SFS, ThreeEpochE_100_lynch_SFS) + 
+  ggtitle('Three Epoch Expansion, k=100') +
+  compare_dadi_lynch_count_sfs(ThreeEpochB_100_dadi_SFS, ThreeEpochB_100_lynch_SFS) + 
   ggtitle('Three Epoch Bottleneck, k=100') +
   plot_layout(nrow=3)
 
@@ -2703,6 +2823,8 @@ compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
 
 ## Count SFS
 
+### Modulating contraction timing
+
 compare_dadi_lynch_count_sfs(
   dadi_500_2000_10_SFS, lynch_500_2000_10_SFS) +
   ggtitle('BottleGrowth, tau = [500, 2000], k=10') +
@@ -2862,6 +2984,8 @@ compare_dadi_lynch_count_sfs(
   compare_dadi_lynch_count_sfs(
     dadi_2500_2000_100_SFS, lynch_2500_2000_100_SFS) +
   ggtitle('BottleGrowth, tau = [2500, 2000], k=100')  
+
+### Modulating expansion timing
 
 compare_dadi_lynch_count_sfs(
   dadi_1000_500_10_SFS, lynch_1000_500_10_SFS) +
@@ -3836,213 +3960,210 @@ compare_five_full_SFS(dadi_1000_2500_25_SFS, lynch_1000_2500_25_SFS,
     theme = theme(plot.title = element_text(size = 16, face = "bold", hjust = 0.5))
   )
 
-# ## Compare Tajima's D
-# 
-# TwoEpochC_dadi_tajima_d = c()
-# TwoEpochE_dadi_tajima_d = c()
-# ThreeEpochC_dadi_tajima_d = c()
-# ThreeEpochE_dadi_tajima_d = c()
-# ThreeEpochB_dadi_tajima_d = c()
-# 
-# TwoEpochC_msprime_tajima_d = c()
-# TwoEpochE_msprime_tajima_d = c()
-# ThreeEpochC_msprime_tajima_d = c()
-# ThreeEpochE_msprime_tajima_d = c()
-# ThreeEpochB_msprime_tajima_d = c()
-# 
-# TwoEpochC_lynch_tajima_d = c()
-# TwoEpochE_lynch_tajima_d = c()
-# ThreeEpochC_lynch_tajima_d = c()
-# ThreeEpochE_lynch_tajima_d = c()
-# ThreeEpochB_lynch_tajima_d = c()
-# 
-# 
-# # Loop through subdirectories and get relevant files
-# for (i in seq(from=10, to=800, by=10)) {
-#   # Dadi
-#   subdirectory_dadi_2epC <- paste0("../Simulations/dadi_simulations/TwoEpochContraction_", i)
-#   subdirectory_dadi_2epE <- paste0("../Simulations/dadi_simulations/TwoEpochExpansion_", i)
-#   subdirectory_dadi_3epB <- paste0("../Simulations/dadi_simulations/ThreeEpochBottleneck_", i)
-#   subdirectory_dadi_3epC <- paste0("../Simulations/dadi_simulations/ThreeEpochContraction_", i)
-#   subdirectory_dadi_3epE <- paste0("../Simulations/dadi_simulations/ThreeEpochExpansion_", i)
-# 
-#   TwoEpochC_dadi_summary <- paste0(subdirectory_dadi_2epC, "_summary.txt")
-#   TwoEpochE_dadi_summary <- paste0(subdirectory_dadi_2epE, "_summary.txt")
-#   ThreeEpochB_dadi_summary <- paste0(subdirectory_dadi_3epB, "_summary.txt")
-#   ThreeEpochC_dadi_summary <- paste0(subdirectory_dadi_3epC, "_summary.txt")
-#   ThreeEpochE_dadi_summary <- paste0(subdirectory_dadi_3epE, "_summary.txt")
-# 
-#   TwoEpochC_dadi_tajima_d = c(TwoEpochC_dadi_tajima_d, read_summary_statistics(TwoEpochC_dadi_summary)[3])
-#   TwoEpochE_dadi_tajima_d = c(TwoEpochE_dadi_tajima_d, read_summary_statistics(TwoEpochE_dadi_summary)[3])
-#   ThreeEpochB_dadi_tajima_d = c(ThreeEpochB_dadi_tajima_d, read_summary_statistics(ThreeEpochB_dadi_summary)[3])
-#   ThreeEpochC_dadi_tajima_d = c(ThreeEpochC_dadi_tajima_d, read_summary_statistics(ThreeEpochC_dadi_summary)[3])
-#   ThreeEpochE_dadi_tajima_d = c(ThreeEpochE_dadi_tajima_d, read_summary_statistics(ThreeEpochE_dadi_summary)[3])
-# 
-#   # Lynch
-#   j = i + 1
-#   subdirectory_lynch_2epC <- paste0("../Simulations/lynch_theory/TwoEpochContraction_", j)
-#   subdirectory_lynch_2epE <- paste0("../Simulations/lynch_theory/TwoEpochExpansion_", j)
-#   subdirectory_lynch_3epB <- paste0("../Simulations/lynch_theory/ThreeEpochBottleneck_", j)
-#   subdirectory_lynch_3epC <- paste0("../Simulations/lynch_theory/ThreeEpochContraction_", j)
-#   subdirectory_lynch_3epE <- paste0("../Simulations/lynch_theory/ThreeEpochExpansion_", j)
-# 
-#   TwoEpochC_lynch_summary <- paste0(subdirectory_lynch_2epC, "_summary.txt")
-#   TwoEpochE_lynch_summary <- paste0(subdirectory_lynch_2epE, "_summary.txt")
-#   ThreeEpochB_lynch_summary <- paste0(subdirectory_lynch_3epB, "_summary.txt")
-#   ThreeEpochC_lynch_summary <- paste0(subdirectory_lynch_3epC, "_summary.txt")
-#   ThreeEpochE_lynch_summary <- paste0(subdirectory_lynch_3epE, "_summary.txt")
-# 
-#   TwoEpochC_lynch_tajima_d = c(TwoEpochC_lynch_tajima_d, read_summary_statistics(TwoEpochC_lynch_summary)[3])
-#   TwoEpochE_lynch_tajima_d = c(TwoEpochE_lynch_tajima_d, read_summary_statistics(TwoEpochE_lynch_summary)[3])
-#   ThreeEpochB_lynch_tajima_d = c(ThreeEpochB_lynch_tajima_d, read_summary_statistics(ThreeEpochB_lynch_summary)[3])
-#   ThreeEpochC_lynch_tajima_d = c(ThreeEpochC_lynch_tajima_d, read_summary_statistics(ThreeEpochC_lynch_summary)[3])
-#   ThreeEpochE_lynch_tajima_d = c(ThreeEpochE_lynch_tajima_d, read_summary_statistics(ThreeEpochE_lynch_summary)[3])
-# 
-#   # MSPrime
-#   subdirectory_msprime_2epC <- paste0("../Simulations/simple_simulations/TwoEpochContraction_", i)
-#   subdirectory_msprime_2epE <- paste0("../Simulations/simple_simulations/TwoEpochExpansion_", i)
-#   subdirectory_msprime_3epB <- paste0("../Simulations/simple_simulations/ThreeEpochBottleneck_", i)
-#   subdirectory_msprime_3epC <- paste0("../Simulations/simple_simulations/ThreeEpochContraction_", i)
-#   subdirectory_msprime_3epE <- paste0("../Simulations/simple_simulations/ThreeEpochExpansion_", i)
-# 
-#   TwoEpochC_msprime_summary <- paste0(subdirectory_msprime_2epC, "_concat_summary.txt")
-#   TwoEpochE_msprime_summary <- paste0(subdirectory_msprime_2epE, "_concat_summary.txt")
-#   ThreeEpochB_msprime_summary <- paste0(subdirectory_msprime_3epB, "_concat_summary.txt")
-#   ThreeEpochC_msprime_summary <- paste0(subdirectory_msprime_3epC, "_concat_summary.txt")
-#   ThreeEpochE_msprime_summary <- paste0(subdirectory_msprime_3epE, "_concat_summary.txt")
-# 
-#   TwoEpochC_msprime_tajima_d = c(TwoEpochC_msprime_tajima_d, read_summary_statistics(TwoEpochC_msprime_summary)[3])
-#   TwoEpochE_msprime_tajima_d = c(TwoEpochE_msprime_tajima_d, read_summary_statistics(TwoEpochE_msprime_summary)[3])
-#   ThreeEpochB_msprime_tajima_d = c(ThreeEpochB_msprime_tajima_d, read_summary_statistics(ThreeEpochB_msprime_summary)[3])
-#   ThreeEpochC_msprime_tajima_d = c(ThreeEpochC_msprime_tajima_d, read_summary_statistics(ThreeEpochC_msprime_summary)[3])
-#   ThreeEpochE_msprime_tajima_d = c(ThreeEpochE_msprime_tajima_d, read_summary_statistics(ThreeEpochE_msprime_summary)[3])
-# }
-# 
-# sample_size_index = seq(10, 800, 10)
-# 
-# TwoEpochC_tajima_d_df = melt(data.frame(
-#   TwoEpochC_dadi_tajima_d,
-#   TwoEpochC_msprime_tajima_d,
-#   TwoEpochC_lynch_tajima_d
-# ))
-# TwoEpochC_tajima_d_df$sample_size = sample_size_index
-# 
-# TwoEpochE_tajima_d_df = melt(data.frame(
-#   TwoEpochE_dadi_tajima_d,
-#   TwoEpochE_msprime_tajima_d,
-#   TwoEpochE_lynch_tajima_d
-# ))
-# TwoEpochE_tajima_d_df$sample_size = sample_size_index
-# 
-# ThreeEpochC_tajima_d_df = melt(data.frame(
-#   ThreeEpochC_dadi_tajima_d,
-#   ThreeEpochC_msprime_tajima_d,
-#   ThreeEpochC_lynch_tajima_d
-# ))
-# ThreeEpochC_tajima_d_df$sample_size = sample_size_index
-# 
-# ThreeEpochE_tajima_d_df = melt(data.frame(
-#   ThreeEpochE_dadi_tajima_d,
-#   ThreeEpochE_msprime_tajima_d,
-#   ThreeEpochE_lynch_tajima_d
-# ))
-# ThreeEpochE_tajima_d_df$sample_size = sample_size_index
-# 
-# ThreeEpochB_tajima_d_df = melt(data.frame(
-#   ThreeEpochB_dadi_tajima_d,
-#   ThreeEpochB_msprime_tajima_d,
-#   ThreeEpochB_lynch_tajima_d
-# ))
-# ThreeEpochB_tajima_d_df$sample_size = sample_size_index
-# 
-# ggplot(data=TwoEpochC_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-#   xlab('Sample size') +
-#   ylab("Tajima's D") +
-#   ggtitle("Tajima's D, Two Epoch Contraction") + 
-#   scale_colour_manual(
-#     values = c("TwoEpochC_dadi_tajima_d"='red', 
-#       "TwoEpochC_msprime_tajima_d"='blue', 
-#       "TwoEpochC_lynch_tajima_d"='green'),
-#     labels = c("Dadi", "MSPrime", "Lynch Theory")
-#   ) +
-#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-# 
-# ggplot(data=TwoEpochE_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-#   xlab('Sample size') +
-#   ylab("Tajima's D") +
-#   ggtitle("Tajima's D, Two Epoch Expansion") + 
-#   scale_colour_manual(
-#     values = c("TwoEpochE_dadi_tajima_d"='red', 
-#       "TwoEpochE_msprime_tajima_d"='blue', 
-#       "TwoEpochE_lynch_tajima_d"='green'),
-#     labels = c("Dadi", "MSPrime", "Lynch Theory")
-#   ) +
-#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-# 
-# ggplot(data=ThreeEpochC_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-#   xlab('Sample size') +
-#   ylab("Tajima's D") +
-#   ggtitle("Tajima's D, Three Epoch Contraction") + 
-#   scale_colour_manual(
-#     values = c("ThreeEpochC_dadi_tajima_d"='red', 
-#       "ThreeEpochC_msprime_tajima_d"='blue', 
-#       "ThreeEpochC_lynch_tajima_d"='green'),
-#     labels = c("Dadi", "MSPrime", "Lynch Theory")
-#   ) +
-#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-# 
-# ggplot(data=ThreeEpochE_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-#   xlab('Sample size') +
-#   ylab("Tajima's D") +
-#   ggtitle("Tajima's D, Three Epoch Expansion") + 
-#   scale_colour_manual(
-#     values = c("ThreeEpochE_dadi_tajima_d"='red', 
-#       "ThreeEpochE_msprime_tajima_d"='blue', 
-#       "ThreeEpochE_lynch_tajima_d"='green'),
-#     labels = c("Dadi", "MSPrime", "Lynch Theory")
-#   ) +
-#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-# 
-# ggplot(data=ThreeEpochB_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-#   xlab('Sample size') +
-#   ylab("Tajima's D") +
-#   ggtitle("Tajima's D, Three-epoch BottleGrowth") + 
-#   scale_colour_manual(
-#     values = c("ThreeEpochB_dadi_tajima_d"='red', 
-#       "ThreeEpochB_msprime_tajima_d"='blue', 
-#       "ThreeEpochB_lynch_tajima_d"='green'),
-#     labels = c("Dadi", "MSPrime", "Lynch Theory")
-#   ) +
-#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-#   
-# tennessen_lynch_tajima_d = c()
-# 
-# # Loop through subdirectories and get relevant files
-# for (i in seq(from=10, to=800, by=10)) {
-#   # Lynch
-#   j = i + 1
-#   subdirectory_lynch_tennessen <- paste0("../Simulations/lynch_theory/tennessen_", j)
-#   tennessen_lynch_summary <- paste0(subdirectory_lynch_tennessen, "_summary.txt")
-# 
-#   tennessen_lynch_tajima_d = c(tennessen_lynch_tajima_d, read_summary_statistics(tennessen_lynch_summary)[3])
-# }
-# 
-# tennessen_tajima_d_df = melt(data.frame(tennessen_lynch_tajima_d))
-# tennessen_tajima_d_df$sample_size = sample_size_index
-# 
-# ggplot(data=tennessen_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-#   xlab('Sample size') +
-#   ylab("Tajima's D") +
-#   ggtitle("Tajima's D, Tennessen model") + 
-#   scale_colour_manual(
-#     values = c("tennessen_lynch_tajima_d"='green'),
-#     labels = c("Lynch Theory")
-#   ) +
-#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-#   
+## Compare Tajima's D
+
+TwoEpochC_dadi_tajima_d = c()
+TwoEpochE_dadi_tajima_d = c()
+ThreeEpochC_dadi_tajima_d = c()
+ThreeEpochE_dadi_tajima_d = c()
+ThreeEpochB_dadi_tajima_d = c()
+
+TwoEpochC_msprime_tajima_d = c()
+TwoEpochE_msprime_tajima_d = c()
+ThreeEpochC_msprime_tajima_d = c()
+ThreeEpochE_msprime_tajima_d = c()
+ThreeEpochB_msprime_tajima_d = c()
+
+TwoEpochC_lynch_tajima_d = c()
+TwoEpochE_lynch_tajima_d = c()
+ThreeEpochC_lynch_tajima_d = c()
+ThreeEpochE_lynch_tajima_d = c()
+ThreeEpochB_lynch_tajima_d = c()
+
+
+# Loop through subdirectories and get relevant files
+for (i in seq(from=10, to=800, by=10)) {
+  # Dadi
+  subdirectory_dadi_2epC <- paste0("../Simulations/dadi_simulations/TwoEpochContraction_", i)
+  subdirectory_dadi_2epE <- paste0("../Simulations/dadi_simulations/TwoEpochExpansion_", i)
+  subdirectory_dadi_3epB <- paste0("../Simulations/dadi_simulations/ThreeEpochBottleneck_", i)
+  subdirectory_dadi_3epC <- paste0("../Simulations/dadi_simulations/ThreeEpochContraction_", i)
+  subdirectory_dadi_3epE <- paste0("../Simulations/dadi_simulations/ThreeEpochExpansion_", i)
+
+  TwoEpochC_dadi_summary <- paste0(subdirectory_dadi_2epC, "_summary.txt")
+  TwoEpochE_dadi_summary <- paste0(subdirectory_dadi_2epE, "_summary.txt")
+  ThreeEpochB_dadi_summary <- paste0(subdirectory_dadi_3epB, "_summary.txt")
+  ThreeEpochC_dadi_summary <- paste0(subdirectory_dadi_3epC, "_summary.txt")
+  ThreeEpochE_dadi_summary <- paste0(subdirectory_dadi_3epE, "_summary.txt")
+
+  TwoEpochC_dadi_tajima_d = c(TwoEpochC_dadi_tajima_d, read_summary_statistics(TwoEpochC_dadi_summary)[3])
+  TwoEpochE_dadi_tajima_d = c(TwoEpochE_dadi_tajima_d, read_summary_statistics(TwoEpochE_dadi_summary)[3])
+  ThreeEpochB_dadi_tajima_d = c(ThreeEpochB_dadi_tajima_d, read_summary_statistics(ThreeEpochB_dadi_summary)[3])
+  ThreeEpochC_dadi_tajima_d = c(ThreeEpochC_dadi_tajima_d, read_summary_statistics(ThreeEpochC_dadi_summary)[3])
+  ThreeEpochE_dadi_tajima_d = c(ThreeEpochE_dadi_tajima_d, read_summary_statistics(ThreeEpochE_dadi_summary)[3])
+
+  # Lynch
+  subdirectory_lynch_2epC <- paste0("../Simulations/lynch_theory/TwoEpochContraction_", i)
+  subdirectory_lynch_2epE <- paste0("../Simulations/lynch_theory/TwoEpochExpansion_", i)
+  subdirectory_lynch_3epB <- paste0("../Simulations/lynch_theory/ThreeEpochBottleneck_", i)
+  subdirectory_lynch_3epC <- paste0("../Simulations/lynch_theory/ThreeEpochContraction_", i)
+  subdirectory_lynch_3epE <- paste0("../Simulations/lynch_theory/ThreeEpochExpansion_", i)
+
+  TwoEpochC_lynch_summary <- paste0(subdirectory_lynch_2epC, "_summary.txt")
+  TwoEpochE_lynch_summary <- paste0(subdirectory_lynch_2epE, "_summary.txt")
+  ThreeEpochB_lynch_summary <- paste0(subdirectory_lynch_3epB, "_summary.txt")
+  ThreeEpochC_lynch_summary <- paste0(subdirectory_lynch_3epC, "_summary.txt")
+  ThreeEpochE_lynch_summary <- paste0(subdirectory_lynch_3epE, "_summary.txt")
+
+  TwoEpochC_lynch_tajima_d = c(TwoEpochC_lynch_tajima_d, read_summary_statistics(TwoEpochC_lynch_summary)[3])
+  TwoEpochE_lynch_tajima_d = c(TwoEpochE_lynch_tajima_d, read_summary_statistics(TwoEpochE_lynch_summary)[3])
+  ThreeEpochB_lynch_tajima_d = c(ThreeEpochB_lynch_tajima_d, read_summary_statistics(ThreeEpochB_lynch_summary)[3])
+  ThreeEpochC_lynch_tajima_d = c(ThreeEpochC_lynch_tajima_d, read_summary_statistics(ThreeEpochC_lynch_summary)[3])
+  ThreeEpochE_lynch_tajima_d = c(ThreeEpochE_lynch_tajima_d, read_summary_statistics(ThreeEpochE_lynch_summary)[3])
+
+  # MSPrime
+  subdirectory_msprime_2epC <- paste0("../Simulations/simple_simulations/TwoEpochContraction_", i)
+  subdirectory_msprime_2epE <- paste0("../Simulations/simple_simulations/TwoEpochExpansion_", i)
+  subdirectory_msprime_3epB <- paste0("../Simulations/simple_simulations/ThreeEpochBottleneck_", i)
+  subdirectory_msprime_3epC <- paste0("../Simulations/simple_simulations/ThreeEpochContraction_", i)
+  subdirectory_msprime_3epE <- paste0("../Simulations/simple_simulations/ThreeEpochExpansion_", i)
+
+  TwoEpochC_msprime_summary <- paste0(subdirectory_msprime_2epC, "_concat_summary.txt")
+  TwoEpochE_msprime_summary <- paste0(subdirectory_msprime_2epE, "_concat_summary.txt")
+  ThreeEpochB_msprime_summary <- paste0(subdirectory_msprime_3epB, "_concat_summary.txt")
+  ThreeEpochC_msprime_summary <- paste0(subdirectory_msprime_3epC, "_concat_summary.txt")
+  ThreeEpochE_msprime_summary <- paste0(subdirectory_msprime_3epE, "_concat_summary.txt")
+
+  TwoEpochC_msprime_tajima_d = c(TwoEpochC_msprime_tajima_d, read_summary_statistics(TwoEpochC_msprime_summary)[3])
+  TwoEpochE_msprime_tajima_d = c(TwoEpochE_msprime_tajima_d, read_summary_statistics(TwoEpochE_msprime_summary)[3])
+  ThreeEpochB_msprime_tajima_d = c(ThreeEpochB_msprime_tajima_d, read_summary_statistics(ThreeEpochB_msprime_summary)[3])
+  ThreeEpochC_msprime_tajima_d = c(ThreeEpochC_msprime_tajima_d, read_summary_statistics(ThreeEpochC_msprime_summary)[3])
+  ThreeEpochE_msprime_tajima_d = c(ThreeEpochE_msprime_tajima_d, read_summary_statistics(ThreeEpochE_msprime_summary)[3])
+}
+
+sample_size_index = seq(10, 800, 10)
+
+TwoEpochC_tajima_d_df = melt(data.frame(
+  TwoEpochC_dadi_tajima_d,
+  TwoEpochC_msprime_tajima_d,
+  TwoEpochC_lynch_tajima_d
+))
+TwoEpochC_tajima_d_df$sample_size = sample_size_index
+
+TwoEpochE_tajima_d_df = melt(data.frame(
+  TwoEpochE_dadi_tajima_d,
+  TwoEpochE_msprime_tajima_d,
+  TwoEpochE_lynch_tajima_d
+))
+TwoEpochE_tajima_d_df$sample_size = sample_size_index
+
+ThreeEpochC_tajima_d_df = melt(data.frame(
+  ThreeEpochC_dadi_tajima_d,
+  ThreeEpochC_msprime_tajima_d,
+  ThreeEpochC_lynch_tajima_d
+))
+ThreeEpochC_tajima_d_df$sample_size = sample_size_index
+
+ThreeEpochE_tajima_d_df = melt(data.frame(
+  ThreeEpochE_dadi_tajima_d,
+  ThreeEpochE_msprime_tajima_d,
+  ThreeEpochE_lynch_tajima_d
+))
+ThreeEpochE_tajima_d_df$sample_size = sample_size_index
+
+ThreeEpochB_tajima_d_df = melt(data.frame(
+  ThreeEpochB_dadi_tajima_d,
+  ThreeEpochB_msprime_tajima_d,
+  ThreeEpochB_lynch_tajima_d
+))
+ThreeEpochB_tajima_d_df$sample_size = sample_size_index
+
+ggplot(data=TwoEpochC_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D, Two Epoch Contraction") +
+  scale_colour_manual(
+    values = c("TwoEpochC_dadi_tajima_d"='red',
+      "TwoEpochC_msprime_tajima_d"='blue',
+      "TwoEpochC_lynch_tajima_d"='green'),
+    labels = c("Dadi", "MSPrime", "Lynch Theory")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
+
+ggplot(data=TwoEpochE_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D, Two Epoch Expansion") +
+  scale_colour_manual(
+    values = c("TwoEpochE_dadi_tajima_d"='red',
+      "TwoEpochE_msprime_tajima_d"='blue',
+      "TwoEpochE_lynch_tajima_d"='green'),
+    labels = c("Dadi", "MSPrime", "Lynch Theory")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
+
+ggplot(data=ThreeEpochC_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D, Three Epoch Contraction") +
+  scale_colour_manual(
+    values = c("ThreeEpochC_dadi_tajima_d"='red',
+      "ThreeEpochC_msprime_tajima_d"='blue',
+      "ThreeEpochC_lynch_tajima_d"='green'),
+    labels = c("Dadi", "MSPrime", "Lynch Theory")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
+
+ggplot(data=ThreeEpochE_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D, Three Epoch Expansion") +
+  scale_colour_manual(
+    values = c("ThreeEpochE_dadi_tajima_d"='red',
+      "ThreeEpochE_msprime_tajima_d"='blue',
+      "ThreeEpochE_lynch_tajima_d"='green'),
+    labels = c("Dadi", "MSPrime", "Lynch Theory")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
+
+ggplot(data=ThreeEpochB_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D, Three-epoch BottleGrowth") +
+  scale_colour_manual(
+    values = c("ThreeEpochB_dadi_tajima_d"='red',
+      "ThreeEpochB_msprime_tajima_d"='blue',
+      "ThreeEpochB_lynch_tajima_d"='green'),
+    labels = c("Dadi", "MSPrime", "Lynch Theory")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
+
+tennessen_lynch_tajima_d = c()
+
+# Loop through subdirectories and get relevant files
+for (i in seq(from=10, to=800, by=10)) {
+  # Lynch
+  subdirectory_lynch_tennessen <- paste0("../Simulations/lynch_theory/tennessen_", i)
+  tennessen_lynch_summary <- paste0(subdirectory_lynch_tennessen, "_summary.txt")
+
+  tennessen_lynch_tajima_d = c(tennessen_lynch_tajima_d, read_summary_statistics(tennessen_lynch_summary)[3])
+}
+
+tennessen_tajima_d_df = melt(data.frame(tennessen_lynch_tajima_d))
+tennessen_tajima_d_df$sample_size = sample_size_index
+
+ggplot(data=tennessen_tajima_d_df, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D, Tennessen model") +
+  scale_colour_manual(
+    values = c("tennessen_lynch_tajima_d"='green'),
+    labels = c("Lynch Theory")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')

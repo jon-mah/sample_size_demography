@@ -806,13 +806,13 @@ compare_msprime_dadi_lynch_count_sfs = function(null, msprime, dadi, lynch) {
     null = null[1:10]
     msprime = msprime[1:10]
     dadi = dadi[1:10]
-    lynch = lynch[1:10] * 4 * 100000000 * 1.5E-8
+    lynch = lynch[1:10]
   } else {
     x_axis = 1:length(msprime)
     null = null
     msprime = msprime
     dadi = dadi
-    lynch = lynch * 4 * 100000000 * 1.5E-8
+    lynch = lynch
   }
   input_df = data.frame(null,
                         msprime,
@@ -878,10 +878,10 @@ compare_dadi_lynch_proportional_sfs = function(null, dadi, lynch) {
 }
 
 compare_dadi_lynch_count_sfs = function(dadi, lynch) {
-  if (length(dadi) > 30) {
-    x_axis = 1:10
-    dadi = dadi[1:10]
-    lynch = lynch[1:10]
+  if (length(dadi) > 20) {
+    x_axis = 1:20
+    dadi = dadi[1:20]
+    lynch = lynch[1:20]
   } else {
     x_axis = 1:length(dadi)
     dadi = dadi
@@ -901,7 +901,7 @@ compare_dadi_lynch_count_sfs = function(dadi, lynch) {
                                                          fill=variable)) +
     geom_bar(position='dodge2', stat='identity') +
     labs(x = "", fill = "") +
-    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=seq(1, length(x_axis), by=2), limits=c(0.5, length(x_axis) + 0.5)) +
     ylab('Number of segregating sites') +
     theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))

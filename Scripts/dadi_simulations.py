@@ -410,7 +410,7 @@ class DadiSimulate():
         with open(output_TwoEpC, "w+") as f0:
             """Simulate a two-epoch contraction."""
             nu = 0.5
-            tau = 0.1
+            tau = 0.1 # 2000 generations
             output_spectrum = theta * self.two_epoch(
                 params=(nu, tau), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f0)
@@ -419,7 +419,7 @@ class DadiSimulate():
         with open(output_TwoEpE, "w+") as f1:
             """Simulate a two-epoch expansion."""
             nu = 2.0
-            tau = 0.01
+            tau = 0.01 # 200 generations
             output_spectrum = theta * self.two_epoch(
                 params=(nu, tau), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f1)
@@ -429,8 +429,8 @@ class DadiSimulate():
             """Simulate a three-epoch contraction."""
             nuB = 0.5  # Bottleneck relative size
             nuF = 0.25  # Concurrent relative size
-            tauB = 0.09  # Bottleneck duration
-            tauF = 0.01  # Time since bottleneck recovery
+            tauB = 0.09  # Bottleneck duration, 1800 generations
+            tauF = 0.01  # Time since bottleneck recovery, 200 generations
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f2)
@@ -440,8 +440,8 @@ class DadiSimulate():
             """Simulate a three-epoch expansion."""
             nuB = 2.0  # Bottleneck relative size
             nuF = 4.0  # Concurrent relative size
-            tauB = 0.09  # Bottleneck duration
-            tauF = 0.01  # Time since bottleneck recovery
+            tauB = 0.09  # Bottleneck duration, 1800 generations
+            tauF = 0.01  # Time since bottleneck recovery, 200 generations
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f3)
@@ -462,8 +462,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.1 # Bottleneck duration
-            tauF = 0.025 # Time since bottleneck recovery
+            tauB = 0.025 # Bottleneck duration
+            tauF = 0.1 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f5)
@@ -473,8 +473,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.1 # Bottleneck duration
-            tauF = 0.05 # Time since bottleneck recovery
+            tauB = 0.05 # Bottleneck duration
+            tauF = 0.1 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f6)
@@ -484,8 +484,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.1 # Bottleneck duration
-            tauF = 0.075 # Time since bottleneck recovery
+            tauB = 0.075 # Bottleneck duration
+            tauF = 0.1 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f7)
@@ -506,8 +506,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.1 # Bottleneck duration
-            tauF = 0.125 # Time since bottleneck recovery
+            tauB = 0.125 # Bottleneck duration
+            tauF = 0.1 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f9)
@@ -517,8 +517,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.025 # Bottleneck duration
-            tauF = 0.05 # Time since bottleneck recovery
+            tauB = 0.05 # Bottleneck duration
+            tauF = 0.025 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f10)
@@ -539,8 +539,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.075 # Bottleneck duration
-            tauF = 0.05 # Time since bottleneck recovery
+            tauB = 0.05 # Bottleneck duration
+            tauF = 0.075 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f12)
@@ -550,8 +550,8 @@ class DadiSimulate():
             """Simulate a three-epoch bottleneck."""
             nuB = 0.1 # Bottleneck relative size
             nuF = 5.0 # Concurrent relative size
-            tauB = 0.125 # Bottleneck duration
-            tauF = 0.05 # Time since bottleneck recovery
+            tauB = 0.05 # Bottleneck duration
+            tauF = 0.125 # Time since bottleneck recovery
             output_spectrum = theta * self.three_epoch(
                 params=(nuB, nuF, tauB, tauF), ns=(sample_size,), pts=1000)
             output_spectrum.fold().to_file(f13)
