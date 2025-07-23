@@ -58,7 +58,7 @@ class ComputeOptimalSampleSize():
         # Start at first epoch, if current time is greater than
         # first epoch, move to next epoch until end
         for i in range(len(epoch_time_array)):
-            if current_time >= epoch_time_array[i]:
+            if current_time > epoch_time_array[i]:
                 max_index = i
         return max_index
     
@@ -295,13 +295,15 @@ class ComputeOptimalSampleSize():
         # Write out the expected sfs
         product_4muL = 4 * 100000000 * 1.5E-8
         output_sfs = [element * product_4muL for element in output_sfs]
+        output_sfs = dadi.Spectrum(output_sfs)
+        output_sfs = output_sfs.fold()
         logger.info('Expected SFS: {0}'.format(output_sfs))
         logger.info('Expected relative number of singletons: {0}'.format(
             output_sfs[1]))
         logger.info('Arithmetic mean of population intervals: {0}'.format(
             statistics.mean(output_tree.iloc[:, 2])))
-        output_sfs = dadi.Spectrum(output_sfs)
-        output_sfs = output_sfs.fold()
+        # output_sfs = dadi.Spectrum(output_sfs)
+        # output_sfs = output_sfs.fold()
         logger.info("Tajima's D of expected SFS: {0}".format(
             output_sfs.Tajima_D()))
         output_sfs.to_file(expected_sfs)
