@@ -2501,6 +2501,40 @@ compare_msprime_dadi_lynch_count_sfs(dadi_snm_60_SFS,
 
 ## Dadi vs. Lynch
 
+compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS, 
+  ThreeEpochB_10_dadi_SFS, ThreeEpochB_10_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=10') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_20_SFS, 
+  ThreeEpochB_20_dadi_SFS, ThreeEpochB_20_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=20') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_30_SFS, 
+  ThreeEpochB_30_dadi_SFS, ThreeEpochB_30_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=30') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_40_SFS, 
+  ThreeEpochB_40_dadi_SFS, ThreeEpochB_40_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=40') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_50_SFS, 
+  ThreeEpochB_50_dadi_SFS, ThreeEpochB_50_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=50') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_proportional_sfs(dadi_snm_60_SFS, 
+  ThreeEpochB_60_dadi_SFS, ThreeEpochB_60_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=60') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_70_SFS, 
+  ThreeEpochB_70_dadi_SFS, ThreeEpochB_70_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=70') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_80_SFS, 
+  ThreeEpochB_80_dadi_SFS, ThreeEpochB_80_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=80') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_90_SFS, 
+  ThreeEpochB_90_dadi_SFS, ThreeEpochB_90_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=90') +
+  compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS, 
+  ThreeEpochB_100_dadi_SFS, ThreeEpochB_100_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=100') +
+  plot_layout(nrow=3)
+
 compare_dadi_lynch_proportional_sfs(dadi_snm_10_SFS,
   dadi_500_2000_10_SFS, lynch_500_2000_10_SFS) +
   ggtitle('BottleGrowth, tau = [500, 2000], k=10') +
@@ -2822,6 +2856,41 @@ compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
   ggtitle('BottleGrowth, tau = [1000, 2500], k=100')  
 
 ## Count SFS
+
+compare_dadi_lynch_count_sfs(
+  ThreeEpochB_10_dadi_SFS, ThreeEpochB_10_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=10') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_20_dadi_SFS, ThreeEpochB_20_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=20') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_30_dadi_SFS, ThreeEpochB_30_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=30') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_40_dadi_SFS, ThreeEpochB_40_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=40') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_50_dadi_SFS, ThreeEpochB_50_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=50') +
+  plot_layout(nrow=3)
+
+compare_dadi_lynch_count_sfs(
+  ThreeEpochB_60_dadi_SFS, ThreeEpochB_60_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=60') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_70_dadi_SFS, ThreeEpochB_70_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=70') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_80_dadi_SFS, ThreeEpochB_80_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=80') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_90_dadi_SFS, ThreeEpochB_90_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=90') +
+  compare_dadi_lynch_count_sfs(
+  ThreeEpochB_100_dadi_SFS, ThreeEpochB_100_lynch_SFS) +
+  ggtitle('Three Epoch Bottleneck, tau = [1800, 200], k=100') +
+  plot_layout(nrow=3)
+
 
 ### Modulating contraction timing
 
@@ -3265,22 +3334,22 @@ compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
 
 compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
   dadi_1000_1000_100_SFS, lynch_1000_1000_100_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=100') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=100') +
   compare_dadi_lynch_proportional_sfs(dadi_snm_200_SFS,
   dadi_1000_1000_200_SFS, lynch_1000_1000_200_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=200') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=200') +
   compare_dadi_lynch_proportional_sfs(dadi_snm_300_SFS,
   dadi_1000_1000_300_SFS, lynch_1000_1000_300_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=300') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=300') +
   compare_dadi_lynch_proportional_sfs(dadi_snm_400_SFS,
   dadi_1000_1000_400_SFS, lynch_1000_1000_400_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=400') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=400') +
   compare_dadi_lynch_proportional_sfs(dadi_snm_500_SFS,
   dadi_1000_1000_500_SFS, lynch_1000_1000_500_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=500') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=500') +
   compare_dadi_lynch_proportional_sfs(dadi_snm_600_SFS,
   dadi_1000_1000_600_SFS, lynch_1000_1000_600_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=600')
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=600')
 
 compare_dadi_lynch_proportional_sfs(dadi_snm_100_SFS,
   dadi_1000_1500_100_SFS, lynch_1000_1500_100_SFS) +
@@ -3457,22 +3526,22 @@ compare_dadi_lynch_count_sfs(
 
 compare_dadi_lynch_count_sfs(
   dadi_1000_1000_100_SFS, lynch_1000_1000_100_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=100') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=100') +
   compare_dadi_lynch_count_sfs(
   dadi_1000_1000_200_SFS, lynch_1000_1000_200_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=200') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=200') +
   compare_dadi_lynch_count_sfs(
   dadi_1000_1000_300_SFS, lynch_1000_1000_300_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=300') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=300') +
   compare_dadi_lynch_count_sfs(
   dadi_1000_1000_400_SFS, lynch_1000_1000_400_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=400') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=400') +
   compare_dadi_lynch_count_sfs(
   dadi_1000_1000_500_SFS, lynch_1000_1000_500_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=500') +
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=500') +
   compare_dadi_lynch_count_sfs(
   dadi_1000_1000_600_SFS, lynch_1000_1000_600_SFS) +
-  ggtitle('BottleGrowth, tau = [1000, 500], k=600')
+  ggtitle('BottleGrowth, tau = [1000, 1000], k=600')
 
 compare_dadi_lynch_count_sfs(
   dadi_1000_1500_100_SFS, lynch_1000_1500_100_SFS) +

@@ -842,11 +842,11 @@ compare_msprime_dadi_lynch_count_sfs = function(null, msprime, dadi, lynch) {
 }
 
 compare_dadi_lynch_proportional_sfs = function(null, dadi, lynch) {
-  if (length(null) > 10) {
-    x_axis = 1:10
-    null = proportional_sfs(null)[1:10]
-    dadi = proportional_sfs(dadi)[1:10]
-    lynch = proportional_sfs(lynch)[1:10]
+  if (length(null) > 20) {
+    x_axis = 1:20
+    null = proportional_sfs(null)[1:20]
+    dadi = proportional_sfs(dadi)[1:20]
+    lynch = proportional_sfs(lynch)[1:20]
   } else {
     x_axis = 1:length(null)
     null = proportional_sfs(null)
@@ -869,7 +869,7 @@ compare_dadi_lynch_proportional_sfs = function(null, dadi, lynch) {
                                                          fill=variable)) +
     geom_bar(position='dodge2', stat='identity') +
     labs(x = "", fill = "") +
-    scale_x_continuous(name='Minor allele frequency in sample', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    scale_x_continuous(name='Minor allele frequency in sample', breaks=seq(1, length(x_axis), by=2), limits=c(0.5, length(x_axis) + 0.5)) +
     ylab('Proportion of segregating sites') +
     theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
