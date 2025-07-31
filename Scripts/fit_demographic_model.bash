@@ -2,14 +2,13 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=50G
-#$ -l h_rt=72:00:00
-#$ -l highp
+#$ -l h_rt=4:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N gnomAD_10
-#$ -t 10
+#$ -N
+#$ -t 250-800:10
 
-SGE_TASK_ID=800
+# SGE_TASK_ID=10
 
 sample_size=$SGE_TASK_ID
 
@@ -19,3 +18,9 @@ sample_size=$SGE_TASK_ID
 # python fit_demographic_model.py ../Analysis/gnomAD_${sample_size}/syn_downsampled_sfs.txt ../Analysis/gnomAD_${sample_size}/ --L_syn 7505993.0
 # python fit_demographic_model.py ../Data/1KG_2020/${sample_size}_syn_downsampled_sfs.txt ../Analysis/1kg_EUR_2020_${sample_size}/
 
+# Dadi simulation
+python fit_demographic_model.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Analysis/dadi_3EpB_${sample_size}/
+
+
+# MSPrime simulation
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_${sample_size}/

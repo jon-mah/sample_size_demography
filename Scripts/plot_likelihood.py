@@ -444,7 +444,7 @@ class PlotLikelihood():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Construct initial Spectrum object from input synonymous sfs.
-        syn_data = dadi.Spectrum.from_file(syn_input_sfs).fold()
+        syn_data = dadi.Spectrum.from_file(syn_input_sfs)
         if mask_singletons:
             syn_data.mask[1] = True
         if mask_doubletons:
@@ -457,8 +457,6 @@ class PlotLikelihood():
         model_list = ['two_epoch']
         for model in model_list:
             if model == 'two_epoch':
-                #upper_bound = [80, 0.15]
-                #lower_bound = [0, 0]
                 file = output_plot
                 func_ex = dadi.Numerics.make_extrap_log_func(self.two_epoch)
                 logger.info('Beginning demographic inference for two-epoch '
@@ -467,18 +465,22 @@ class PlotLikelihood():
                 x = input_nu  # Initial x value
                 y = input_tau  # Initial y value
 
-                npts = 250
-                if (x * 1.99) < 2.0:
-                    x_max = 2.0
+                npts = 25
+                # set npts to 250 for high resolution (figure quality)
+                # set npts to 25 for decent resolution
+                # set npts to 5 for <5 minutes testing
+                if (x * 1.99) < 1.25:
+                    x_max = 1.25
                 else:
                     x_max = x * 1.99
                 x_range = numpy.linspace(0.01 * x, x_max, npts)
-                y_range = numpy.linspace(y * 0.01, y * 3.99, npts)
+                y_range = numpy.linspace(y * 0.01, y * 1.99, npts)
 
                 X, Y = numpy.meshgrid(x_range, y_range)
 
                 Z = numpy.empty((npts, npts))
 
+                logger.info('Calculating initial max likelihood.')
                 max_likelihood = self.likelihood(input_nu, input_tau, syn_data, func_ex, pts_l)
                 best_params = [input_nu, input_tau]
                 x_val = []
@@ -486,6 +488,8 @@ class PlotLikelihood():
                 z_val = []
                 for i in range(0, npts):
                     for j in range(0, npts):
+                        logger.info('Begginging to evaluate row {0}, '
+                                    'column {1} of likelihood grid.'.format(i, j))
                         Z[i, j] = self.likelihood(x_range[i], y_range[j], syn_data, func_ex, pts_l)
                         x_val.append(x_range[i])
                         y_val.append(y_range[j])
@@ -498,36 +502,6 @@ class PlotLikelihood():
                             best_params = [x_range[i], y_range[j]]
                 df = pd.DataFrame({'X': x_val, 'Y': y_val, 'Z': z_val})
                 df.to_csv(likelihood_surface)
-                # fig = plt.figure()
-                # fig, ax = plt.subplots()
-                # Z = numpy.transpose(Z)
-                # ax.set_xlabel('Nu (Current / Ancestral population size)')
-                # ax.set_ylabel('Tau (Time in 2 * N_Anc generations)')
-                # levels = numpy.linspace(z_min, z_max, num=21)
-                # levels = [max_likelihood - 1500,
-                #           max_likelihood - 100,
-                #           max_likelihood - 10,
-                #           max_likelihood - 5,
-                #           max_likelihood - 3,
-                #           max_likelihood - 1,
-                #           max_likelihood]
-                # midnorm = MidpointNormalize(vmin=max_likelihood - 1000., vcenter=max_likelihood - 10, vmax=max_likelihood)
-                # contourplot = ax.contourf(X, Y, Z, norm=midnorm, levels=levels, cmap=cm.jet)
-                # ticks = numpy.arange(z_min, z_max, 1.0)
-                # cbar = fig.colorbar(contourplot, label='Log likelihood') # Add a colorbar to a plot
-                # cbar.ax.set_ylabel('Log likelihood')
-                # plt.title('Likelihood surface for {0}.'.format(species))
-                # plt.text(best_params[0], best_params[1],
-                #          'MLE = ({0}, {1})'.format(str(best_params[0]),
-                #                                     str(best_params[1])))
-                # label = 'MLE = ({0}, {1})'.format(str(numpy.round(best_params[0], decimals=4)),
-                #                                   str(numpy.round(best_params[1], decimals=4)))
-                # plt.annotate(label, # this is the text
-                #              xy=(best_params[0], best_params[1]), # these are the coordinates to position the label
-                #              textcoords="offset points", # how to position the text
-                #              ha='center', bbox=dict(boxstyle='round,pad=0.2', fc='yellow', alpha=0.3))
-                # plt.scatter(best_params[0], best_params[1])
-                # plt.savefig(file)
         logger.info('Maximum likelihood computed to be: {0}.'.format(max_likelihood))
         logger.info('Maximum likelihood found at ({0}).'.format(best_params))
         logger.info('Finished plotting likelihood surface.')

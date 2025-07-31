@@ -64,7 +64,7 @@ class DemographicInference():
             '--L_syn', type=float,
             dest='L_syn',
             help=('Sum of allele counts for synonymous SFS.'),
-            default=1000000.0)
+            default=100000000.0)
         parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
@@ -416,19 +416,18 @@ class DemographicInference():
         if mask_doubletons:
             syn_data.mask[2] = True
         syn_ns = syn_data.sample_sizes  # Number of samples.
-        # pts_l = [1200, 1400, 1600]
-        pts_l_1 = int(syn_ns * 3)
-        pts_l_2 = int(syn_ns * 4)
-        pts_l_3 = int(syn_ns * 5)
+        pts_l_1 = int(syn_ns * 2)
+        pts_l_2 = int(syn_ns * 3)
+        pts_l_3 = int(syn_ns * 4)
         pts_l = [pts_l_1, pts_l_2, pts_l_3]
 
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
         # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
         # model_list = ['three_epoch']
-        # model_list = ['two_epoch']
+        model_list = ['two_epoch']
         # model_list = ['two_epoch', 'three_epoch']
-        model_list = ['one_epoch']
+        # model_list = ['one_epoch']
         # Fit different epoch models and compute likelihood
         for model in model_list:
             if model == 'exponential_growth':
@@ -465,30 +464,30 @@ class DemographicInference():
             elif model == 'two_epoch':
                 initial_guesses = []
                 initial_guesses.append([0.01, 0.1])
+                initial_guesses.append([0.025, 0.1])
+                initial_guesses.append([0.05, 0.1])
+                initial_guesses.append([0.075, 0.1])
                 initial_guesses.append([0.1, 0.1])
+                initial_guesses.append([0.25, 0.1])
+                initial_guesses.append([0.5, 0.1])
+                initial_guesses.append([0.75, 0.1])
                 initial_guesses.append([1, 0.1])
+                initial_guesses.append([1.25, 0.1])
+                initial_guesses.append([1.5, 0.1])
+                initial_guesses.append([1.75, 0.1])
+                initial_guesses.append([2, 0.1])
+                initial_guesses.append([2.25, 0.1])
+                initial_guesses.append([2.5, 0.1])
+                initial_guesses.append([2.75, 0.1])
                 initial_guesses.append([3, 0.1])
+                initial_guesses.append([3.25, 0.1])
+                initial_guesses.append([3.5, 0.1])
+                initial_guesses.append([3.75, 0.1])
+                initial_guesses.append([4, 0.1])
+                initial_guesses.append([4.25, 0.1])
+                initial_guesses.append([4.5, 0.1])
+                initial_guesses.append([4.75, 0.1])
                 initial_guesses.append([5, 0.1])
-                initial_guesses.append([7, 0.1])
-                initial_guesses.append([10, 0.1])
-                initial_guesses.append([15, 0.1])
-                initial_guesses.append([20, 0.1])
-                initial_guesses.append([25, 0.1])
-                initial_guesses.append([30, 0.1])
-                initial_guesses.append([35, 0.1])
-                initial_guesses.append([40, 0.1])
-                initial_guesses.append([45, 0.1])
-                initial_guesses.append([50, 0.1])
-                initial_guesses.append([60, 0.1])
-                initial_guesses.append([70, 0.1])
-                initial_guesses.append([80, 0.1])
-                initial_guesses.append([90, 0.1])
-                initial_guesses.append([100, 0.1])
-                initial_guesses.append([120, 0.1])
-                initial_guesses.append([140, 0.1])
-                initial_guesses.append([160, 0.1])
-                initial_guesses.append([180, 0.1])
-                initial_guesses.append([200, 0.1])
                 file = two_epoch_demography
                 func_ex = dadi.Numerics.make_extrap_log_func(self.two_epoch)
                 logger.info('Beginning demographic inference for two-epoch '
@@ -594,16 +593,16 @@ class DemographicInference():
                     # Start at initial guess
                     p0 = initial_guesses[i]
                     # Randomly perturb parameters before optimization.
-                    p0 = dadi.Misc.perturb_params(
-                        p0, fold=1, upper_bound=None,
-                        lower_bound=None)
+                    # p0 = dadi.Misc.perturb_params(
+                    #     p0, fold=1, upper_bound=None,
+                    #     lower_bound=None)
                     logger.info(
                         'Beginning optimization with guess, {0}.'.format(p0))
                     popt = dadi.Inference.optimize_log_fmin(
                         p0=p0, data=syn_data, model_func=func_ex, pts=pts_l,
                         lower_bound=None,
                         upper_bound=None,
-                        verbose=len(p0), maxiter=25)
+                        verbose=len(p0), maxiter=5)
                     logger.info(
                         'Finished optimization with guess, ' + str(p0) + '.')
                     logger.info('Best fit parameters: {0}.'.format(popt))
