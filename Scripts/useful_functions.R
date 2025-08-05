@@ -545,6 +545,18 @@ tau_from_demography = function(input_file) {
   return(tau)
 }
 
+time_from_demography = function(input_file) {
+  this_file = file(input_file)
+  on.exit(close(this_file))
+  time_string = readLines(this_file)[9]
+  
+  # Extract the float that comes after "Tajima's D: "
+  match <- str_match(time_string, "Estimate for time is \\s*([+-]?\\d*\\.?\\d+(?:[eE][+-]?\\d+)?)")
+  time <- as.numeric(match[2])
+  
+  return(time)
+}
+
 nuB_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
@@ -1013,4 +1025,34 @@ compare_five_full_SFS = function(
   plot_5 = compare_dadi_lynch_count_sfs(dadi_5, lynch_5) + guides(fill='none') + ylab('')
   
   plot_1 + plot_2 + plot_3 + plot_4 + plot_5 + plot_layout(nrow=5)
+}
+
+plot_likelihood_surface = function(input) {
+  species_surface = read.csv(input, header=TRUE)
+  names(species_surface) = c('index', 'nu', 'tau', 'likelihood')
+
+  species_surface = species_surface[order(species_surface$likelihood, decreasing=TRUE), ]
+
+  MLE = max(species_surface$likelihood)
+  MLE_minus_3 = MLE - 3
+  MLE_minus_3_label = paste('<= ', str_trunc(toString(MLE_minus_3), 6, ellipsis=''), sep='')
+  MLE_minus_1 = MLE - 1
+  MLE_minus_1_label = paste(str_trunc(toString(MLE_minus_3), 6, ellipsis=''), ' <= ', str_trunc(toString(MLE_minus_1), 9, ellipsis=''), sep='')
+  MLE_minus_half = MLE - 0.5
+  MLE_minus_half_label  = paste(str_trunc(toString(MLE_minus_1), 6, ellipsis=''), ' <= ', str_trunc(toString(MLE_minus_half), 6, ellipsis=''), sep='')
+  MLE_label = paste(str_trunc(toString(MLE_minus_half), 6, ellipsis=''), ' <= ', str_trunc(toString(MLE), 6, ellipsis=''), sep='')
+  color_breakpoints = cut(species_surface$likelihood, c(-Inf, MLE_minus_3, MLE_minus_1, MLE_minus_half, MLE))
+  species_surface_scatter = ggplot(data=species_surface, aes(x=nu, y=tau), color=likelihood) + 
+    geom_point(aes(colour = color_breakpoints), size = 2, shape=15) +
+    # geom_point(aes(colour = color_breakpoints), size = 15, shape=15) +
+    scale_color_manual(name='Log Likelihood',
+                       values=c('#a6611a', '#dfc27d', '#80cdc1', '#018571'),
+                       labels=c('(-Inf, -3]', '(-3, -1]', '(-1, -0.5', '(-0,5, 0]')) +
+    geom_vline(xintercept=1.0, color='red', linewidth=2) +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+    xlab('Nu') +
+    ylab('Tau')
+
+  return(species_surface_scatter)
 }
