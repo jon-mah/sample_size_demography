@@ -2,12 +2,11 @@
 #$ -cwd
 #$ -V
 #$ -l h_data=25G
-#$ -l h_rt=72:00:00
+#$ -l h_rt=2:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N dadi_demog_1_3
-#$ -l highp
-#$ -t 10-800:10
+#$ -N dadi_demog
+#$ -t 740
 
 # SGE_TASK_ID=10
 

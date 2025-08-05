@@ -53,7 +53,7 @@ class msPrimeSimulate():
             help='The file prefix for the output files')
         return parser
     
-    def ensure_parent_dir_exists(filepath):
+    def ensure_parent_dir_exists(self, filepath):
         parent_dir = os.path.dirname(filepath)
         if parent_dir and not os.path.exists(parent_dir):
             os.makedirs(parent_dir)
@@ -84,23 +84,23 @@ class msPrimeSimulate():
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
         output_TwoEpC = '{0}{1}TwoEpochContraction_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
-        coalescent_TwoEpC = '{0}{1}TwoEpochContraction_{2}_{3}/coal_dist.txt'.format(
+        coalescent_TwoEpC = '{0}{1}TwoEpochContraction_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_TwoEpE = '{0}{1}TwoEpochExpansion_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
-        coalescent_TwoEpE = '{0}{1}TwoEpochExpansion_{2}_{3}/coal_dist.txt'.format(
+        coalescent_TwoEpE = '{0}{1}TwoEpochExpansion_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
-        coalescent_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}_{3}/coal_dist.txt'.format(
+        coalescent_ThreeEpC = '{0}{1}ThreeEpochContraction_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
-        coalescent_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}_{3}/coal_dist.txt'.format(
+        coalescent_ThreeEpE = '{0}{1}ThreeEpochExpansion_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
-        coalescent_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}_{3}/coal_dist.txt'.format(
+        coalescent_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         to_remove = [logfile]
         for f in to_remove:
@@ -164,45 +164,57 @@ class msPrimeSimulate():
         dem3.sort_events()
         dem4.sort_events()
 
-        ts0 = msprime.sim_ancestry(samples={"TwoEpC" : sample_size},
-            demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
-        tree_0 = ts0.first()
-        logger.info('First tree in TwoEpC: {0}'.format(tree_0))
-        self.ensure_parent_dir_exists(coalescent_TwoEpC)
-        with open(coalescent_TwoEpC, "w+") as g0:
-            logger.info('Writing coalescent times for TwoEpC.')
-            for u in tree_0.nodes():
-                g0.write(f"Node {u}: time {tree_0.time(u)}\n")
+        # ts0 = msprime.sim_ancestry(samples={"TwoEpC" : sample_size},
+        #     demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
+        # tree_0 = ts0.first()
+        # logger.info('First tree in TwoEpC: {0}'.format(tree_0))
+        # self.ensure_parent_dir_exists(coalescent_TwoEpC)
+        # with open(coalescent_TwoEpC, "w+") as g0:
+        #     g0.write('Node, generations\n')
+        #     logger.info('Writing coalescent times for TwoEpC.')
+        #     for u in tree_0.nodes():
+        #         # Retain coalescent nodes
+        #         if not tree_0.is_leaf(u):  # skip sample nodes
+        #             g0.write(f"Node {u}, {tree_0.time(u)}\n")
 
-        ts1 = msprime.sim_ancestry(samples={"TwoEpE" : sample_size},
-            demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
-        tree_1 = ts1.first()
-        logger.info('First tree in TwoEpE: {0}'.format(tree_1))
-        self.ensure_parent_dir_exists(coalescent_TwoEpE)
-        with open(coalescent_TwoEpE, "w+") as g1:
-            logger.info('Writing coalescent times for TwoEpE.')
-            for u in tree_1.nodes():
-                g1.write(f"Node {u}: time {tree_1.time(u)}\n")
+        # ts1 = msprime.sim_ancestry(samples={"TwoEpE" : sample_size},
+        #     demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
+        # tree_1 = ts1.first()
+        # logger.info('First tree in TwoEpE: {0}'.format(tree_1))
+        # self.ensure_parent_dir_exists(coalescent_TwoEpE)
+        # with open(coalescent_TwoEpE, "w+") as g1:
+        #     logger.info('Writing coalescent times for TwoEpE.')
+        #     g1.write('Node, generations\n')
+        #     for u in tree_1.nodes():
+        #         # Retain coalescent nodes
+        #         if not tree_1.is_leaf(u):
+        #             g1.write(f"Node {u}, {tree_1.time(u)}\n")
 
-        ts2 = msprime.sim_ancestry(samples={"ThreeEpC" : sample_size},
-            demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
-        tree_2 = ts2.first()
-        logger.info('First tree in ThreeEpC: {0}'.format(tree_2))
-        self.ensure_parent_dir_exists(coalescent_ThreeEpC)
-        with open(coalescent_ThreeEpC, "w+") as g2:
-            logger.info('Writing coalescent times for ThreeEpC.')
-            for u in tree_2.nodes():
-                g2.write(f"Node {u}: time {tree_2.time(u)}\n")
+        # ts2 = msprime.sim_ancestry(samples={"ThreeEpC" : sample_size},
+        #     demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
+        # tree_2 = ts2.first()
+        # logger.info('First tree in ThreeEpC: {0}'.format(tree_2))
+        # self.ensure_parent_dir_exists(coalescent_ThreeEpC)
+        # with open(coalescent_ThreeEpC, "w+") as g2:
+        #     g2.write('Node, generations\n')
+        #     logger.info('Writing coalescent times for ThreeEpC.')
+        #     for u in tree_2.nodes():
+        #         # Retain coalescent nodes
+        #         if not tree_2.is_leaf(u):
+        #             g2.write(f"Node {u}, {tree_2.time(u)}\n")
 
-        ts3 = msprime.sim_ancestry(samples={"ThreeEpE": sample_size},
-            demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
-        tree_3 = ts3.first()
-        logger.info('First tree in ThreeEpE: {0}'.format(tree_3))
-        self.ensure_parent_dir_exists(coalescent_ThreeEpE)
-        with open(coalescent_ThreeEpE, "w+") as g3:
-            logger.info('Writing coalescent times for ThreeEpE.')
-            for u in tree_3.nodes():
-                g3.write(f"Node {u}: time {tree_3.time(u)}\n")
+        # ts3 = msprime.sim_ancestry(samples={"ThreeEpE": sample_size},
+        #     demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
+        # tree_3 = ts3.first()
+        # logger.info('First tree in ThreeEpE: {0}'.format(tree_3))
+        # self.ensure_parent_dir_exists(coalescent_ThreeEpE)
+        # with open(coalescent_ThreeEpE, "w+") as g3:
+        #     g3.write('Node, generations\n')
+        #     logger.info('Writing coalescent times for ThreeEpE.')
+        #     for u in tree_3.nodes():
+        #         # Retain coalescent events
+        #         if not tree_3.is_leaf(u):
+        #             g3.write(f"Node {u}, {tree_3.time(u)}\n")
 
         ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
             demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
@@ -211,28 +223,31 @@ class msPrimeSimulate():
         self.ensure_parent_dir_exists(coalescent_ThreeEpB)
         with open(coalescent_ThreeEpB, "w+") as g4:
             logger.info('Writing coalescent times for ThreeEpB.')
+            g4.write('Node, generations\n')
             for u in tree_4.nodes():
-                g4.write(f"Node {u}: time {tree_4.time(u)}\n")
+                # Retain coalescent events
+                if not tree_4.is_leaf(u):
+                    g4.write(f"Node {u}, {tree_4.time(u)}\n")
 
-        with open(output_TwoEpC, "w+") as f0:
-            logger.info('Simulating two-epoch contraction.')
-            mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
-            mts0.write_vcf(f0)
+        # with open(output_TwoEpC, "w+") as f0:
+        #     logger.info('Simulating two-epoch contraction.')
+        #     mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
+        #     mts0.write_vcf(f0)
 
-        with open(output_TwoEpE, "w+") as f1:
-            logger.info('Simulating two-epoch expansion.')
-            mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
-            mts1.write_vcf(f1)
+        # with open(output_TwoEpE, "w+") as f1:
+        #     logger.info('Simulating two-epoch expansion.')
+        #     mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
+        #     mts1.write_vcf(f1)
 
-        with open(output_ThreeEpC, "w+") as f2:
-            logger.info('Simulating three-epoch contraction.')
-            mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
-            mts2.write_vcf(f2)
+        # with open(output_ThreeEpC, "w+") as f2:
+        #     logger.info('Simulating three-epoch contraction.')
+        #     mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
+        #     mts2.write_vcf(f2)
 
-        with open(output_ThreeEpE, "w+") as f3:
-            logger.info('Simulating three-epoch expansion.')
-            mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
-            mts3.write_vcf(f3)
+        # with open(output_ThreeEpE, "w+") as f3:
+        #     logger.info('Simulating three-epoch expansion.')
+        #     mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
+        #     mts3.write_vcf(f3)
 
         with open(output_ThreeEpB, "w+") as f4:
             logger.info('Simulating three-epoch bottleneck.')
