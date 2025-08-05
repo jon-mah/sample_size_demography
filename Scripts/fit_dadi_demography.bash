@@ -6,9 +6,9 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N dadi_demog
-#$ -t 740
+#$ -t 590
 
-# SGE_TASK_ID=10
+# SGE_TASK_ID=740
 
 sample_size=$SGE_TASK_ID
 
