@@ -424,10 +424,12 @@ class DemographicInference():
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
         # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
-        # model_list = ['three_epoch']
-        model_list = ['two_epoch']
-        # model_list = ['two_epoch', 'three_epoch']
         # model_list = ['one_epoch']
+        # model_list = ['two_epoch']
+        # model_list = ['three_epoch']
+        # model_list = ['one_epoch', 'two_epoch']
+        model_list = ['one_epoch', 'three_epoch']
+        # model_list = ['two_epoch', "three_epoch']
         # Fit different epoch models and compute likelihood
         for model in model_list:
             if model == 'exponential_growth':
@@ -602,7 +604,7 @@ class DemographicInference():
                         p0=p0, data=syn_data, model_func=func_ex, pts=pts_l,
                         lower_bound=None,
                         upper_bound=None,
-                        verbose=len(p0), maxiter=5)
+                        verbose=len(p0), maxiter=25)
                     logger.info(
                         'Finished optimization with guess, ' + str(p0) + '.')
                     logger.info('Best fit parameters: {0}.'.format(popt))
