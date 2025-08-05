@@ -52,6 +52,11 @@ class msPrimeSimulate():
             'outprefix', type=str,
             help='The file prefix for the output files')
         return parser
+    
+    def ensure_parent_dir_exists(filepath):
+        parent_dir = os.path.dirname(filepath)
+        if parent_dir and not os.path.exists(parent_dir):
+            os.makedirs(parent_dir)
 
     def main(self):
         """Execute main function."""
@@ -163,6 +168,7 @@ class msPrimeSimulate():
             demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
         tree_0 = ts0.first()
         logger.info('First tree in TwoEpC: {0}'.format(tree_0))
+        self.ensure_parent_dir_exists(coalescent_TwoEpC)
         with open(coalescent_TwoEpC, "w+") as g0:
             logger.info('Writing coalescent times for TwoEpC.')
             for u in tree_0.nodes():
@@ -172,6 +178,7 @@ class msPrimeSimulate():
             demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
         tree_1 = ts1.first()
         logger.info('First tree in TwoEpE: {0}'.format(tree_1))
+        self.ensure_parent_dir_exists(coalescent_TwoEpE)
         with open(coalescent_TwoEpE, "w+") as g1:
             logger.info('Writing coalescent times for TwoEpE.')
             for u in tree_1.nodes():
@@ -181,6 +188,7 @@ class msPrimeSimulate():
             demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
         tree_2 = ts2.first()
         logger.info('First tree in ThreeEpC: {0}'.format(tree_2))
+        self.ensure_parent_dir_exists(coalescent_ThreeEpC)
         with open(coalescent_ThreeEpC, "w+") as g2:
             logger.info('Writing coalescent times for ThreeEpC.')
             for u in tree_2.nodes():
@@ -190,6 +198,7 @@ class msPrimeSimulate():
             demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
         tree_3 = ts3.first()
         logger.info('First tree in ThreeEpE: {0}'.format(tree_3))
+        self.ensure_parent_dir_exists(coalescent_ThreeEpE)
         with open(coalescent_ThreeEpE, "w+") as g3:
             logger.info('Writing coalescent times for ThreeEpE.')
             for u in tree_3.nodes():
@@ -199,6 +208,7 @@ class msPrimeSimulate():
             demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
         tree_4 = ts4.first()
         logger.info('First tree in ThreeEpB: {0}'.format(tree_4))
+        self.ensure_parent_dir_exists(coalescent_ThreeEpB)
         with open(coalescent_ThreeEpB, "w+") as g4:
             logger.info('Writing coalescent times for ThreeEpB.')
             for u in tree_4.nodes():
