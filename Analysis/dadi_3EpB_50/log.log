@@ -1,267 +1,642 @@
-2025-07-31 19:19:37,764 - INFO - Beginning execution of fit_demographic_model.py in directory /u/project/kirk/jonmah/sample_size_demography/Scripts
+2025-08-06 10:58:11,074 - INFO - Beginning execution of plot_likelihood.py in directory /u/project/kirk-bigdata/jonmah/sample_size_demography/Scripts
 
-2025-07-31 19:19:37,765 - INFO - Progress is being logged to ../Analysis/dadi_3EpB_50/log.log
+2025-08-06 10:58:11,074 - INFO - Progress is being logged to ../Analysis/dadi_3EpB_50/log.log
 
-2025-07-31 19:19:37,765 - INFO - Parsed the following arguments:
+2025-08-06 10:58:11,074 - INFO - Parsed the following arguments:
 	syn_input_sfs = ../Simulations/dadi_simulations/ThreeEpochBottleneck_50.sfs
+	input_demography = ../Analysis/dadi_3EpB_50/two_epoch_demography.txt
 	mask_singletons = False
 	mask_doubletons = False
-	L_syn = 100000000.0
 	outprefix = ../Analysis/dadi_3EpB_50/
 
-2025-07-31 19:19:37,767 - INFO - Beginning demographic inference for one-epoch demographic model.
-2025-07-31 19:19:37,768 - INFO - Beginning optimization with guess, [0.1].
-2025-07-31 19:19:38,616 - INFO - Finished optimization with guess, [0.1].
-2025-07-31 19:19:38,617 - INFO - Best fit parameters: [0.1].
-2025-07-31 19:19:38,638 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:38,638 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:38,638 - INFO - Beginning optimization with guess, [0.2].
-2025-07-31 19:19:39,324 - INFO - Finished optimization with guess, [0.2].
-2025-07-31 19:19:39,324 - INFO - Best fit parameters: [0.2].
-2025-07-31 19:19:39,345 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:39,345 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:39,345 - INFO - Beginning optimization with guess, [0.3].
-2025-07-31 19:19:40,037 - INFO - Finished optimization with guess, [0.3].
-2025-07-31 19:19:40,037 - INFO - Best fit parameters: [0.3].
-2025-07-31 19:19:40,063 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:40,064 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:40,064 - INFO - Beginning optimization with guess, [0.4].
-2025-07-31 19:19:40,770 - INFO - Finished optimization with guess, [0.4].
-2025-07-31 19:19:40,771 - INFO - Best fit parameters: [0.4].
-2025-07-31 19:19:40,793 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:40,793 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:40,793 - INFO - Beginning optimization with guess, [0.5].
-2025-07-31 19:19:41,420 - INFO - Finished optimization with guess, [0.5].
-2025-07-31 19:19:41,420 - INFO - Best fit parameters: [0.5].
-2025-07-31 19:19:41,443 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:41,443 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:41,443 - INFO - Beginning optimization with guess, [0.6].
-2025-07-31 19:19:41,983 - INFO - Finished optimization with guess, [0.6].
-2025-07-31 19:19:41,983 - INFO - Best fit parameters: [0.6].
-2025-07-31 19:19:42,006 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:42,006 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:42,006 - INFO - Beginning optimization with guess, [0.7].
-2025-07-31 19:19:42,570 - INFO - Finished optimization with guess, [0.7].
-2025-07-31 19:19:42,570 - INFO - Best fit parameters: [0.7].
-2025-07-31 19:19:42,591 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:42,591 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:42,591 - INFO - Beginning optimization with guess, [0.8].
-2025-07-31 19:19:43,061 - INFO - Finished optimization with guess, [0.8].
-2025-07-31 19:19:43,061 - INFO - Best fit parameters: [0.8].
-2025-07-31 19:19:43,082 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:43,082 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:43,082 - INFO - Beginning optimization with guess, [0.9].
-2025-07-31 19:19:43,490 - INFO - Finished optimization with guess, [0.9].
-2025-07-31 19:19:43,490 - INFO - Best fit parameters: [0.9].
-2025-07-31 19:19:43,511 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:43,511 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:43,511 - INFO - Beginning optimization with guess, [1].
-2025-07-31 19:19:43,674 - INFO - Finished optimization with guess, [1].
-2025-07-31 19:19:43,675 - INFO - Best fit parameters: [1.].
-2025-07-31 19:19:43,695 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:43,695 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:43,695 - INFO - Beginning optimization with guess, [1.25].
-2025-07-31 19:19:44,163 - INFO - Finished optimization with guess, [1.25].
-2025-07-31 19:19:44,164 - INFO - Best fit parameters: [1.25].
-2025-07-31 19:19:44,184 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:44,184 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:44,184 - INFO - Beginning optimization with guess, [1.5].
-2025-07-31 19:19:44,715 - INFO - Finished optimization with guess, [1.5].
-2025-07-31 19:19:44,715 - INFO - Best fit parameters: [1.5].
-2025-07-31 19:19:44,735 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:44,735 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:44,736 - INFO - Beginning optimization with guess, [1.75].
-2025-07-31 19:19:45,326 - INFO - Finished optimization with guess, [1.75].
-2025-07-31 19:19:45,326 - INFO - Best fit parameters: [1.75].
-2025-07-31 19:19:45,347 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:45,347 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:45,347 - INFO - Beginning optimization with guess, [2].
-2025-07-31 19:19:45,944 - INFO - Finished optimization with guess, [2].
-2025-07-31 19:19:45,944 - INFO - Best fit parameters: [2.].
-2025-07-31 19:19:45,964 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:45,965 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:45,965 - INFO - Beginning optimization with guess, [2.25].
-2025-07-31 19:19:46,555 - INFO - Finished optimization with guess, [2.25].
-2025-07-31 19:19:46,555 - INFO - Best fit parameters: [2.25].
-2025-07-31 19:19:46,575 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:46,575 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:46,575 - INFO - Beginning optimization with guess, [2.5].
-2025-07-31 19:19:47,166 - INFO - Finished optimization with guess, [2.5].
-2025-07-31 19:19:47,166 - INFO - Best fit parameters: [2.5].
-2025-07-31 19:19:47,186 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:47,186 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:47,186 - INFO - Beginning optimization with guess, [2.75].
-2025-07-31 19:19:47,778 - INFO - Finished optimization with guess, [2.75].
-2025-07-31 19:19:47,779 - INFO - Best fit parameters: [2.75].
-2025-07-31 19:19:47,799 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:47,799 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:47,800 - INFO - Beginning optimization with guess, [3].
-2025-07-31 19:19:48,457 - INFO - Finished optimization with guess, [3].
-2025-07-31 19:19:48,457 - INFO - Best fit parameters: [3.].
-2025-07-31 19:19:48,478 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:48,478 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:48,478 - INFO - Beginning optimization with guess, [3.33].
-2025-07-31 19:19:49,139 - INFO - Finished optimization with guess, [3.33].
-2025-07-31 19:19:49,139 - INFO - Best fit parameters: [3.33].
-2025-07-31 19:19:49,159 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:49,159 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:49,159 - INFO - Beginning optimization with guess, [3.66].
-2025-07-31 19:19:49,809 - INFO - Finished optimization with guess, [3.66].
-2025-07-31 19:19:49,809 - INFO - Best fit parameters: [3.66].
-2025-07-31 19:19:49,830 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:49,830 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:49,830 - INFO - Beginning optimization with guess, [4].
-2025-07-31 19:19:50,480 - INFO - Finished optimization with guess, [4].
-2025-07-31 19:19:50,480 - INFO - Best fit parameters: [4.].
-2025-07-31 19:19:50,500 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:50,500 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:50,500 - INFO - Beginning optimization with guess, [5].
-2025-07-31 19:19:51,150 - INFO - Finished optimization with guess, [5].
-2025-07-31 19:19:51,150 - INFO - Best fit parameters: [5.].
-2025-07-31 19:19:51,170 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:51,170 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:51,170 - INFO - Beginning optimization with guess, [6].
-2025-07-31 19:19:51,820 - INFO - Finished optimization with guess, [6].
-2025-07-31 19:19:51,821 - INFO - Best fit parameters: [6.].
-2025-07-31 19:19:51,841 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:51,841 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:51,841 - INFO - Beginning optimization with guess, [7].
-2025-07-31 19:19:52,491 - INFO - Finished optimization with guess, [7].
-2025-07-31 19:19:52,491 - INFO - Best fit parameters: [7.].
-2025-07-31 19:19:52,511 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:52,511 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:52,511 - INFO - Beginning optimization with guess, [8].
-2025-07-31 19:19:53,223 - INFO - Finished optimization with guess, [8].
-2025-07-31 19:19:53,223 - INFO - Best fit parameters: [8.].
-2025-07-31 19:19:53,243 - INFO - Maximum log composite likelihood: -6522.707929109154.
-2025-07-31 19:19:53,243 - INFO - Optimal value of theta: 23319.24863609948.
-2025-07-31 19:19:53,244 - INFO - Converting and interpreting Tau estimates.
-2025-07-31 19:19:53,245 - INFO - Beginning demographic inference for three-epoch demographic model.
-2025-07-31 19:19:53,246 - INFO - Beginning optimization with guess, [0.01, 0.01, 0.1, 0.1].
-2025-07-31 19:19:56,201 - INFO - Finished optimization with guess, [0.01, 0.01, 0.1, 0.1].
-2025-07-31 19:19:56,203 - INFO - Best fit parameters: [0.042098   0.02059938 0.05992048 0.05443817].
-2025-07-31 19:19:56,245 - INFO - Maximum log composite likelihood: -2296.3072492548126.
-2025-07-31 19:19:56,245 - INFO - Optimal value of theta: 723198.797723655.
-2025-07-31 19:19:56,246 - INFO - Beginning optimization with guess, [0.1, 0.1, 0.1, 0.1].
-2025-07-31 19:19:57,806 - INFO - Finished optimization with guess, [0.1, 0.1, 0.1, 0.1].
-2025-07-31 19:19:57,807 - INFO - Best fit parameters: [0.08343733 0.15302514 0.07981056 0.11951779].
-2025-07-31 19:19:57,837 - INFO - Maximum log composite likelihood: -2289.0716148127394.
-2025-07-31 19:19:57,837 - INFO - Optimal value of theta: 98601.89524014301.
-2025-07-31 19:19:57,838 - INFO - Beginning optimization with guess, [0.5, 0.5, 0.1, 0.1].
-2025-07-31 19:19:59,028 - INFO - Finished optimization with guess, [0.5, 0.5, 0.1, 0.1].
-2025-07-31 19:19:59,028 - INFO - Best fit parameters: [0.52527887 0.22283579 0.27116054 0.24497875].
-2025-07-31 19:19:59,057 - INFO - Maximum log composite likelihood: -2302.4487185790986.
-2025-07-31 19:19:59,058 - INFO - Optimal value of theta: 66849.47820708486.
-2025-07-31 19:19:59,058 - INFO - Beginning optimization with guess, [1, 1, 0.1, 0.1].
-2025-07-31 19:19:59,939 - INFO - Finished optimization with guess, [1, 1, 0.1, 0.1].
-2025-07-31 19:19:59,939 - INFO - Best fit parameters: [1.00633355 0.97741742 0.0082847  0.6178484 ].
-2025-07-31 19:19:59,963 - INFO - Maximum log composite likelihood: -6347.611474292289.
-2025-07-31 19:19:59,963 - INFO - Optimal value of theta: 23667.648542151335.
-2025-07-31 19:19:59,963 - INFO - Beginning optimization with guess, [3, 3, 0.1, 0.1].
-2025-07-31 19:20:00,880 - INFO - Finished optimization with guess, [3, 3, 0.1, 0.1].
-2025-07-31 19:20:00,880 - INFO - Best fit parameters: [3.2020499  0.20339544 0.00449823 0.005599  ].
-2025-07-31 19:20:00,901 - INFO - Maximum log composite likelihood: -6058.091874230229.
-2025-07-31 19:20:00,901 - INFO - Optimal value of theta: 25379.922208104323.
-2025-07-31 19:20:00,901 - INFO - Beginning optimization with guess, [5, 5, 0.1, 0.1].
-2025-07-31 19:20:01,820 - INFO - Finished optimization with guess, [5, 5, 0.1, 0.1].
-2025-07-31 19:20:01,820 - INFO - Best fit parameters: [6.13841654 0.31970004 0.01264227 0.02995018].
-2025-07-31 19:20:01,842 - INFO - Maximum log composite likelihood: -5158.970605689348.
-2025-07-31 19:20:01,842 - INFO - Optimal value of theta: 27942.34146471353.
-2025-07-31 19:20:01,842 - INFO - Beginning optimization with guess, [7, 7, 0.1, 0.1].
-2025-07-31 19:20:02,790 - INFO - Finished optimization with guess, [7, 7, 0.1, 0.1].
-2025-07-31 19:20:02,790 - INFO - Best fit parameters: [7.73885969 0.20143072 0.01034114 0.01075109].
-2025-07-31 19:20:02,811 - INFO - Maximum log composite likelihood: -5931.619471375647.
-2025-07-31 19:20:02,812 - INFO - Optimal value of theta: 26745.1325797238.
-2025-07-31 19:20:02,812 - INFO - Beginning optimization with guess, [8, 8, 0.1, 0.1].
-2025-07-31 19:20:03,750 - INFO - Finished optimization with guess, [8, 8, 0.1, 0.1].
-2025-07-31 19:20:03,750 - INFO - Best fit parameters: [8.90585995 0.19909187 0.01099915 0.01151306].
-2025-07-31 19:20:03,772 - INFO - Maximum log composite likelihood: -5915.9347062143715.
-2025-07-31 19:20:03,772 - INFO - Optimal value of theta: 26995.81317279322.
-2025-07-31 19:20:03,772 - INFO - Beginning optimization with guess, [9, 9, 0.1, 0.1].
-2025-07-31 19:20:04,688 - INFO - Finished optimization with guess, [9, 9, 0.1, 0.1].
-2025-07-31 19:20:04,689 - INFO - Best fit parameters: [9.52738987 0.21644764 0.01038988 0.01291869].
-2025-07-31 19:20:04,710 - INFO - Maximum log composite likelihood: -5842.997117588709.
-2025-07-31 19:20:04,710 - INFO - Optimal value of theta: 27037.281964846767.
-2025-07-31 19:20:04,710 - INFO - Beginning optimization with guess, [10, 10, 0.1, 0.1].
-2025-07-31 19:20:05,627 - INFO - Finished optimization with guess, [10, 10, 0.1, 0.1].
-2025-07-31 19:20:05,627 - INFO - Best fit parameters: [9.78692452 0.22243375 0.00999832 0.01582911].
-2025-07-31 19:20:05,649 - INFO - Maximum log composite likelihood: -5720.260346355957.
-2025-07-31 19:20:05,649 - INFO - Optimal value of theta: 27709.57430385748.
-2025-07-31 19:20:05,649 - INFO - Beginning optimization with guess, [12.5, 12.5, 0.1, 0.1].
-2025-07-31 19:20:06,630 - INFO - Finished optimization with guess, [12.5, 12.5, 0.1, 0.1].
-2025-07-31 19:20:06,630 - INFO - Best fit parameters: [6.27142499 0.27047611 0.01153429 0.01488437].
-2025-07-31 19:20:06,651 - INFO - Maximum log composite likelihood: -5797.172364203012.
-2025-07-31 19:20:06,651 - INFO - Optimal value of theta: 26404.660310769952.
-2025-07-31 19:20:06,651 - INFO - Beginning optimization with guess, [15, 15, 0.1, 0.1].
-2025-07-31 19:20:07,591 - INFO - Finished optimization with guess, [15, 15, 0.1, 0.1].
-2025-07-31 19:20:07,591 - INFO - Best fit parameters: [1.76595905e+01 3.55579514e-01 1.76262954e-02 2.80908470e-02].
-2025-07-31 19:20:07,613 - INFO - Maximum log composite likelihood: -5486.663240116055.
-2025-07-31 19:20:07,613 - INFO - Optimal value of theta: 26636.361774659137.
-2025-07-31 19:20:07,613 - INFO - Beginning optimization with guess, [17.5, 17.5, 0.1, 0.1].
-2025-07-31 19:20:08,556 - INFO - Finished optimization with guess, [17.5, 17.5, 0.1, 0.1].
-2025-07-31 19:20:08,556 - INFO - Best fit parameters: [2.26844983e+01 2.18566450e-01 1.60113251e-02 2.19937076e-02].
-2025-07-31 19:20:08,578 - INFO - Maximum log composite likelihood: -5594.211822189116.
-2025-07-31 19:20:08,578 - INFO - Optimal value of theta: 28958.76978956907.
-2025-07-31 19:20:08,578 - INFO - Beginning optimization with guess, [20, 20, 0.1, 0.1].
-2025-07-31 19:20:09,561 - INFO - Finished optimization with guess, [20, 20, 0.1, 0.1].
-2025-07-31 19:20:09,561 - INFO - Best fit parameters: [2.25781401e+01 2.05711370e-01 1.29777951e-02 1.42816794e-02].
-2025-07-31 19:20:09,582 - INFO - Maximum log composite likelihood: -5846.824809892705.
-2025-07-31 19:20:09,582 - INFO - Optimal value of theta: 27492.775393755044.
-2025-07-31 19:20:09,582 - INFO - Beginning optimization with guess, [22.5, 22.5, 0.1, 0.1].
-2025-07-31 19:20:10,524 - INFO - Finished optimization with guess, [22.5, 22.5, 0.1, 0.1].
-2025-07-31 19:20:10,524 - INFO - Best fit parameters: [11.64967206  0.19630372  0.01488225  0.01562441].
-2025-07-31 19:20:10,546 - INFO - Maximum log composite likelihood: -5838.230352323728.
-2025-07-31 19:20:10,546 - INFO - Optimal value of theta: 28102.92811539011.
-2025-07-31 19:20:10,546 - INFO - Beginning optimization with guess, [25, 25, 0.1, 0.1].
-2025-07-31 19:20:11,485 - INFO - Finished optimization with guess, [25, 25, 0.1, 0.1].
-2025-07-31 19:20:11,485 - INFO - Best fit parameters: [11.22792963  0.2708425   0.0143702   0.01613798].
-2025-07-31 19:20:11,507 - INFO - Maximum log composite likelihood: -5815.287274745449.
-2025-07-31 19:20:11,507 - INFO - Optimal value of theta: 26427.662883797588.
-2025-07-31 19:20:11,507 - INFO - Beginning optimization with guess, [27.5, 27.5, 0.1, 0.1].
-2025-07-31 19:20:12,467 - INFO - Finished optimization with guess, [27.5, 27.5, 0.1, 0.1].
-2025-07-31 19:20:12,467 - INFO - Best fit parameters: [14.54143485  0.19773593  0.01634076  0.0163384 ].
-2025-07-31 19:20:12,489 - INFO - Maximum log composite likelihood: -5833.819342882911.
-2025-07-31 19:20:12,489 - INFO - Optimal value of theta: 28165.286256523174.
-2025-07-31 19:20:12,489 - INFO - Beginning optimization with guess, [30, 30, 0.1, 0.1].
-2025-07-31 19:20:13,386 - INFO - Finished optimization with guess, [30, 30, 0.1, 0.1].
-2025-07-31 19:20:13,386 - INFO - Best fit parameters: [13.94455555  0.22194038  0.01429508  0.01612275].
-2025-07-31 19:20:13,408 - INFO - Maximum log composite likelihood: -5778.976931505405.
-2025-07-31 19:20:13,408 - INFO - Optimal value of theta: 27511.009017973127.
-2025-07-31 19:20:13,408 - INFO - Beginning optimization with guess, [33.3, 33.3, 0.1, 0.1].
-2025-07-31 19:20:14,369 - INFO - Finished optimization with guess, [33.3, 33.3, 0.1, 0.1].
-2025-07-31 19:20:14,369 - INFO - Best fit parameters: [1.71968875e+01 2.22171892e-01 1.59061745e-02 1.94994586e-02].
-2025-07-31 19:20:14,390 - INFO - Maximum log composite likelihood: -5672.457635271647.
-2025-07-31 19:20:14,390 - INFO - Optimal value of theta: 28257.170465799605.
-2025-07-31 19:20:14,390 - INFO - Beginning optimization with guess, [36.6, 36.6, 0.1, 0.1].
-2025-07-31 19:20:15,309 - INFO - Finished optimization with guess, [36.6, 36.6, 0.1, 0.1].
-2025-07-31 19:20:15,309 - INFO - Best fit parameters: [1.92562340e+01 2.61431436e-01 1.72622142e-02 1.75442115e-02].
-2025-07-31 19:20:15,330 - INFO - Maximum log composite likelihood: -5804.353231433091.
-2025-07-31 19:20:15,330 - INFO - Optimal value of theta: 26702.802231358106.
-2025-07-31 19:20:15,330 - INFO - Beginning optimization with guess, [40, 40, 0.1, 0.1].
-2025-07-31 19:20:16,271 - INFO - Finished optimization with guess, [40, 40, 0.1, 0.1].
-2025-07-31 19:20:16,272 - INFO - Best fit parameters: [17.79884138  0.26014892  0.01875203  0.02101026].
-2025-07-31 19:20:16,294 - INFO - Maximum log composite likelihood: -5655.297988763954.
-2025-07-31 19:20:16,294 - INFO - Optimal value of theta: 27391.25534986146.
-2025-07-31 19:20:16,294 - INFO - Beginning optimization with guess, [50, 50, 0.1, 0.1].
-2025-07-31 19:20:17,323 - INFO - Finished optimization with guess, [50, 50, 0.1, 0.1].
-2025-07-31 19:20:17,323 - INFO - Best fit parameters: [2.11273183e+01 2.83705559e-01 1.74022737e-02 1.95102592e-02].
-2025-07-31 19:20:17,344 - INFO - Maximum log composite likelihood: -5747.073998522688.
-2025-07-31 19:20:17,344 - INFO - Optimal value of theta: 26632.089012904635.
-2025-07-31 19:20:17,344 - INFO - Beginning optimization with guess, [60, 60, 0.1, 0.1].
-2025-07-31 19:20:18,351 - INFO - Finished optimization with guess, [60, 60, 0.1, 0.1].
-2025-07-31 19:20:18,352 - INFO - Best fit parameters: [2.89032356e+01 2.17450027e-01 1.75442115e-02 1.72622142e-02].
-2025-07-31 19:20:18,373 - INFO - Maximum log composite likelihood: -5795.51587708716.
-2025-07-31 19:20:18,373 - INFO - Optimal value of theta: 27698.281962274006.
-2025-07-31 19:20:18,374 - INFO - Beginning optimization with guess, [70, 70, 0.1, 0.1].
-2025-07-31 19:20:19,402 - INFO - Finished optimization with guess, [70, 70, 0.1, 0.1].
-2025-07-31 19:20:19,403 - INFO - Best fit parameters: [2.83925784e+01 2.34334868e-01 1.67216075e-02 1.86636222e-02].
-2025-07-31 19:20:19,424 - INFO - Maximum log composite likelihood: -5716.548474585776.
-2025-07-31 19:20:19,424 - INFO - Optimal value of theta: 27628.602817468593.
-2025-07-31 19:20:19,424 - INFO - Beginning optimization with guess, [80, 80, 0.1, 0.1].
-2025-07-31 19:20:20,455 - INFO - Finished optimization with guess, [80, 80, 0.1, 0.1].
-2025-07-31 19:20:20,455 - INFO - Best fit parameters: [3.72393220e+01 2.21880204e-01 1.83025957e-02 1.98713005e-02].
-2025-07-31 19:20:20,476 - INFO - Maximum log composite likelihood: -5701.028797532865.
-2025-07-31 19:20:20,476 - INFO - Optimal value of theta: 28181.797380551347.
-2025-07-31 19:20:20,477 - INFO - Converting and interpreting Tau estimates.
-2025-07-31 19:20:20,478 - INFO - Finished demographic inference.
-2025-07-31 19:20:20,478 - INFO - Pipeline executed succesfully.
+2025-08-06 10:58:11,075 - INFO - Beginning demographic inference for two-epoch demographic model.
+2025-08-06 10:58:11,077 - INFO - Calculating initial max likelihood.
+2025-08-06 10:58:11,315 - INFO - Begginging to evaluate row 0, column 0 of likelihood grid.
+2025-08-06 10:58:11,549 - INFO - Begginging to evaluate row 0, column 1 of likelihood grid.
+2025-08-06 10:58:12,414 - INFO - Begginging to evaluate row 0, column 2 of likelihood grid.
+2025-08-06 10:58:13,843 - INFO - Begginging to evaluate row 0, column 3 of likelihood grid.
+2025-08-06 10:58:15,866 - INFO - Begginging to evaluate row 0, column 4 of likelihood grid.
+2025-08-06 10:58:18,514 - INFO - Begginging to evaluate row 0, column 5 of likelihood grid.
+2025-08-06 10:58:21,745 - INFO - Begginging to evaluate row 0, column 6 of likelihood grid.
+2025-08-06 10:58:25,568 - INFO - Begginging to evaluate row 0, column 7 of likelihood grid.
+2025-08-06 10:58:29,994 - INFO - Begginging to evaluate row 0, column 8 of likelihood grid.
+2025-08-06 10:58:35,024 - INFO - Begginging to evaluate row 0, column 9 of likelihood grid.
+2025-08-06 10:58:40,663 - INFO - Begginging to evaluate row 0, column 10 of likelihood grid.
+2025-08-06 10:58:46,893 - INFO - Begginging to evaluate row 0, column 11 of likelihood grid.
+2025-08-06 10:58:53,732 - INFO - Begginging to evaluate row 0, column 12 of likelihood grid.
+2025-08-06 10:59:01,164 - INFO - Begginging to evaluate row 0, column 13 of likelihood grid.
+2025-08-06 10:59:09,206 - INFO - Begginging to evaluate row 0, column 14 of likelihood grid.
+2025-08-06 10:59:17,817 - INFO - Begginging to evaluate row 0, column 15 of likelihood grid.
+2025-08-06 10:59:27,062 - INFO - Begginging to evaluate row 0, column 16 of likelihood grid.
+2025-08-06 10:59:36,970 - INFO - Begginging to evaluate row 0, column 17 of likelihood grid.
+2025-08-06 10:59:47,433 - INFO - Begginging to evaluate row 0, column 18 of likelihood grid.
+2025-08-06 10:59:58,498 - INFO - Begginging to evaluate row 0, column 19 of likelihood grid.
+2025-08-06 11:00:10,195 - INFO - Begginging to evaluate row 0, column 20 of likelihood grid.
+2025-08-06 11:00:22,615 - INFO - Begginging to evaluate row 0, column 21 of likelihood grid.
+2025-08-06 11:00:35,517 - INFO - Begginging to evaluate row 0, column 22 of likelihood grid.
+2025-08-06 11:00:49,510 - INFO - Begginging to evaluate row 0, column 23 of likelihood grid.
+2025-08-06 11:01:04,394 - INFO - Begginging to evaluate row 0, column 24 of likelihood grid.
+2025-08-06 11:01:20,113 - INFO - Begginging to evaluate row 1, column 0 of likelihood grid.
+2025-08-06 11:01:20,267 - INFO - Begginging to evaluate row 1, column 1 of likelihood grid.
+2025-08-06 11:01:20,423 - INFO - Begginging to evaluate row 1, column 2 of likelihood grid.
+2025-08-06 11:01:20,581 - INFO - Begginging to evaluate row 1, column 3 of likelihood grid.
+2025-08-06 11:01:20,741 - INFO - Begginging to evaluate row 1, column 4 of likelihood grid.
+2025-08-06 11:01:20,904 - INFO - Begginging to evaluate row 1, column 5 of likelihood grid.
+2025-08-06 11:01:21,069 - INFO - Begginging to evaluate row 1, column 6 of likelihood grid.
+2025-08-06 11:01:21,235 - INFO - Begginging to evaluate row 1, column 7 of likelihood grid.
+2025-08-06 11:01:21,405 - INFO - Begginging to evaluate row 1, column 8 of likelihood grid.
+2025-08-06 11:01:21,576 - INFO - Begginging to evaluate row 1, column 9 of likelihood grid.
+2025-08-06 11:01:21,754 - INFO - Begginging to evaluate row 1, column 10 of likelihood grid.
+2025-08-06 11:01:21,931 - INFO - Begginging to evaluate row 1, column 11 of likelihood grid.
+2025-08-06 11:01:22,110 - INFO - Begginging to evaluate row 1, column 12 of likelihood grid.
+2025-08-06 11:01:22,290 - INFO - Begginging to evaluate row 1, column 13 of likelihood grid.
+2025-08-06 11:01:22,474 - INFO - Begginging to evaluate row 1, column 14 of likelihood grid.
+2025-08-06 11:01:22,659 - INFO - Begginging to evaluate row 1, column 15 of likelihood grid.
+2025-08-06 11:01:22,845 - INFO - Begginging to evaluate row 1, column 16 of likelihood grid.
+2025-08-06 11:01:23,033 - INFO - Begginging to evaluate row 1, column 17 of likelihood grid.
+2025-08-06 11:01:23,225 - INFO - Begginging to evaluate row 1, column 18 of likelihood grid.
+2025-08-06 11:01:23,417 - INFO - Begginging to evaluate row 1, column 19 of likelihood grid.
+2025-08-06 11:01:23,612 - INFO - Begginging to evaluate row 1, column 20 of likelihood grid.
+2025-08-06 11:01:23,809 - INFO - Begginging to evaluate row 1, column 21 of likelihood grid.
+2025-08-06 11:01:24,012 - INFO - Begginging to evaluate row 1, column 22 of likelihood grid.
+2025-08-06 11:01:24,214 - INFO - Begginging to evaluate row 1, column 23 of likelihood grid.
+2025-08-06 11:01:24,420 - INFO - Begginging to evaluate row 1, column 24 of likelihood grid.
+2025-08-06 11:01:24,626 - INFO - Begginging to evaluate row 2, column 0 of likelihood grid.
+2025-08-06 11:01:24,780 - INFO - Begginging to evaluate row 2, column 1 of likelihood grid.
+2025-08-06 11:01:24,935 - INFO - Begginging to evaluate row 2, column 2 of likelihood grid.
+2025-08-06 11:01:25,092 - INFO - Begginging to evaluate row 2, column 3 of likelihood grid.
+2025-08-06 11:01:25,248 - INFO - Begginging to evaluate row 2, column 4 of likelihood grid.
+2025-08-06 11:01:25,407 - INFO - Begginging to evaluate row 2, column 5 of likelihood grid.
+2025-08-06 11:01:25,566 - INFO - Begginging to evaluate row 2, column 6 of likelihood grid.
+2025-08-06 11:01:25,727 - INFO - Begginging to evaluate row 2, column 7 of likelihood grid.
+2025-08-06 11:01:25,888 - INFO - Begginging to evaluate row 2, column 8 of likelihood grid.
+2025-08-06 11:01:26,051 - INFO - Begginging to evaluate row 2, column 9 of likelihood grid.
+2025-08-06 11:01:26,214 - INFO - Begginging to evaluate row 2, column 10 of likelihood grid.
+2025-08-06 11:01:26,380 - INFO - Begginging to evaluate row 2, column 11 of likelihood grid.
+2025-08-06 11:01:26,546 - INFO - Begginging to evaluate row 2, column 12 of likelihood grid.
+2025-08-06 11:01:26,713 - INFO - Begginging to evaluate row 2, column 13 of likelihood grid.
+2025-08-06 11:01:26,881 - INFO - Begginging to evaluate row 2, column 14 of likelihood grid.
+2025-08-06 11:01:27,051 - INFO - Begginging to evaluate row 2, column 15 of likelihood grid.
+2025-08-06 11:01:27,222 - INFO - Begginging to evaluate row 2, column 16 of likelihood grid.
+2025-08-06 11:01:27,393 - INFO - Begginging to evaluate row 2, column 17 of likelihood grid.
+2025-08-06 11:01:27,566 - INFO - Begginging to evaluate row 2, column 18 of likelihood grid.
+2025-08-06 11:01:27,739 - INFO - Begginging to evaluate row 2, column 19 of likelihood grid.
+2025-08-06 11:01:27,914 - INFO - Begginging to evaluate row 2, column 20 of likelihood grid.
+2025-08-06 11:01:28,090 - INFO - Begginging to evaluate row 2, column 21 of likelihood grid.
+2025-08-06 11:01:28,268 - INFO - Begginging to evaluate row 2, column 22 of likelihood grid.
+2025-08-06 11:01:28,446 - INFO - Begginging to evaluate row 2, column 23 of likelihood grid.
+2025-08-06 11:01:28,626 - INFO - Begginging to evaluate row 2, column 24 of likelihood grid.
+2025-08-06 11:01:28,806 - INFO - Begginging to evaluate row 3, column 0 of likelihood grid.
+2025-08-06 11:01:28,961 - INFO - Begginging to evaluate row 3, column 1 of likelihood grid.
+2025-08-06 11:01:29,115 - INFO - Begginging to evaluate row 3, column 2 of likelihood grid.
+2025-08-06 11:01:29,271 - INFO - Begginging to evaluate row 3, column 3 of likelihood grid.
+2025-08-06 11:01:29,428 - INFO - Begginging to evaluate row 3, column 4 of likelihood grid.
+2025-08-06 11:01:29,584 - INFO - Begginging to evaluate row 3, column 5 of likelihood grid.
+2025-08-06 11:01:29,742 - INFO - Begginging to evaluate row 3, column 6 of likelihood grid.
+2025-08-06 11:01:29,900 - INFO - Begginging to evaluate row 3, column 7 of likelihood grid.
+2025-08-06 11:01:30,059 - INFO - Begginging to evaluate row 3, column 8 of likelihood grid.
+2025-08-06 11:01:30,220 - INFO - Begginging to evaluate row 3, column 9 of likelihood grid.
+2025-08-06 11:01:30,379 - INFO - Begginging to evaluate row 3, column 10 of likelihood grid.
+2025-08-06 11:01:30,540 - INFO - Begginging to evaluate row 3, column 11 of likelihood grid.
+2025-08-06 11:01:30,702 - INFO - Begginging to evaluate row 3, column 12 of likelihood grid.
+2025-08-06 11:01:30,865 - INFO - Begginging to evaluate row 3, column 13 of likelihood grid.
+2025-08-06 11:01:31,028 - INFO - Begginging to evaluate row 3, column 14 of likelihood grid.
+2025-08-06 11:01:31,192 - INFO - Begginging to evaluate row 3, column 15 of likelihood grid.
+2025-08-06 11:01:31,358 - INFO - Begginging to evaluate row 3, column 16 of likelihood grid.
+2025-08-06 11:01:31,524 - INFO - Begginging to evaluate row 3, column 17 of likelihood grid.
+2025-08-06 11:01:31,691 - INFO - Begginging to evaluate row 3, column 18 of likelihood grid.
+2025-08-06 11:01:31,859 - INFO - Begginging to evaluate row 3, column 19 of likelihood grid.
+2025-08-06 11:01:32,027 - INFO - Begginging to evaluate row 3, column 20 of likelihood grid.
+2025-08-06 11:01:32,196 - INFO - Begginging to evaluate row 3, column 21 of likelihood grid.
+2025-08-06 11:01:32,365 - INFO - Begginging to evaluate row 3, column 22 of likelihood grid.
+2025-08-06 11:01:32,538 - INFO - Begginging to evaluate row 3, column 23 of likelihood grid.
+2025-08-06 11:01:32,709 - INFO - Begginging to evaluate row 3, column 24 of likelihood grid.
+2025-08-06 11:01:32,881 - INFO - Begginging to evaluate row 4, column 0 of likelihood grid.
+2025-08-06 11:01:33,035 - INFO - Begginging to evaluate row 4, column 1 of likelihood grid.
+2025-08-06 11:01:33,189 - INFO - Begginging to evaluate row 4, column 2 of likelihood grid.
+2025-08-06 11:01:33,344 - INFO - Begginging to evaluate row 4, column 3 of likelihood grid.
+2025-08-06 11:01:33,499 - INFO - Begginging to evaluate row 4, column 4 of likelihood grid.
+2025-08-06 11:01:33,656 - INFO - Begginging to evaluate row 4, column 5 of likelihood grid.
+2025-08-06 11:01:33,812 - INFO - Begginging to evaluate row 4, column 6 of likelihood grid.
+2025-08-06 11:01:33,971 - INFO - Begginging to evaluate row 4, column 7 of likelihood grid.
+2025-08-06 11:01:34,130 - INFO - Begginging to evaluate row 4, column 8 of likelihood grid.
+2025-08-06 11:01:34,288 - INFO - Begginging to evaluate row 4, column 9 of likelihood grid.
+2025-08-06 11:01:34,448 - INFO - Begginging to evaluate row 4, column 10 of likelihood grid.
+2025-08-06 11:01:34,607 - INFO - Begginging to evaluate row 4, column 11 of likelihood grid.
+2025-08-06 11:01:34,768 - INFO - Begginging to evaluate row 4, column 12 of likelihood grid.
+2025-08-06 11:01:34,928 - INFO - Begginging to evaluate row 4, column 13 of likelihood grid.
+2025-08-06 11:01:35,090 - INFO - Begginging to evaluate row 4, column 14 of likelihood grid.
+2025-08-06 11:01:35,252 - INFO - Begginging to evaluate row 4, column 15 of likelihood grid.
+2025-08-06 11:01:35,414 - INFO - Begginging to evaluate row 4, column 16 of likelihood grid.
+2025-08-06 11:01:35,577 - INFO - Begginging to evaluate row 4, column 17 of likelihood grid.
+2025-08-06 11:01:35,741 - INFO - Begginging to evaluate row 4, column 18 of likelihood grid.
+2025-08-06 11:01:35,906 - INFO - Begginging to evaluate row 4, column 19 of likelihood grid.
+2025-08-06 11:01:36,070 - INFO - Begginging to evaluate row 4, column 20 of likelihood grid.
+2025-08-06 11:01:36,236 - INFO - Begginging to evaluate row 4, column 21 of likelihood grid.
+2025-08-06 11:01:36,402 - INFO - Begginging to evaluate row 4, column 22 of likelihood grid.
+2025-08-06 11:01:36,570 - INFO - Begginging to evaluate row 4, column 23 of likelihood grid.
+2025-08-06 11:01:36,737 - INFO - Begginging to evaluate row 4, column 24 of likelihood grid.
+2025-08-06 11:01:36,905 - INFO - Begginging to evaluate row 5, column 0 of likelihood grid.
+2025-08-06 11:01:37,058 - INFO - Begginging to evaluate row 5, column 1 of likelihood grid.
+2025-08-06 11:01:37,213 - INFO - Begginging to evaluate row 5, column 2 of likelihood grid.
+2025-08-06 11:01:37,368 - INFO - Begginging to evaluate row 5, column 3 of likelihood grid.
+2025-08-06 11:01:37,523 - INFO - Begginging to evaluate row 5, column 4 of likelihood grid.
+2025-08-06 11:01:37,678 - INFO - Begginging to evaluate row 5, column 5 of likelihood grid.
+2025-08-06 11:01:37,835 - INFO - Begginging to evaluate row 5, column 6 of likelihood grid.
+2025-08-06 11:01:37,992 - INFO - Begginging to evaluate row 5, column 7 of likelihood grid.
+2025-08-06 11:01:38,149 - INFO - Begginging to evaluate row 5, column 8 of likelihood grid.
+2025-08-06 11:01:38,307 - INFO - Begginging to evaluate row 5, column 9 of likelihood grid.
+2025-08-06 11:01:38,465 - INFO - Begginging to evaluate row 5, column 10 of likelihood grid.
+2025-08-06 11:01:38,623 - INFO - Begginging to evaluate row 5, column 11 of likelihood grid.
+2025-08-06 11:01:38,782 - INFO - Begginging to evaluate row 5, column 12 of likelihood grid.
+2025-08-06 11:01:38,942 - INFO - Begginging to evaluate row 5, column 13 of likelihood grid.
+2025-08-06 11:01:39,102 - INFO - Begginging to evaluate row 5, column 14 of likelihood grid.
+2025-08-06 11:01:39,261 - INFO - Begginging to evaluate row 5, column 15 of likelihood grid.
+2025-08-06 11:01:39,422 - INFO - Begginging to evaluate row 5, column 16 of likelihood grid.
+2025-08-06 11:01:39,583 - INFO - Begginging to evaluate row 5, column 17 of likelihood grid.
+2025-08-06 11:01:39,745 - INFO - Begginging to evaluate row 5, column 18 of likelihood grid.
+2025-08-06 11:01:39,908 - INFO - Begginging to evaluate row 5, column 19 of likelihood grid.
+2025-08-06 11:01:40,070 - INFO - Begginging to evaluate row 5, column 20 of likelihood grid.
+2025-08-06 11:01:40,232 - INFO - Begginging to evaluate row 5, column 21 of likelihood grid.
+2025-08-06 11:01:40,394 - INFO - Begginging to evaluate row 5, column 22 of likelihood grid.
+2025-08-06 11:01:40,557 - INFO - Begginging to evaluate row 5, column 23 of likelihood grid.
+2025-08-06 11:01:40,722 - INFO - Begginging to evaluate row 5, column 24 of likelihood grid.
+2025-08-06 11:01:40,885 - INFO - Begginging to evaluate row 6, column 0 of likelihood grid.
+2025-08-06 11:01:41,038 - INFO - Begginging to evaluate row 6, column 1 of likelihood grid.
+2025-08-06 11:01:41,192 - INFO - Begginging to evaluate row 6, column 2 of likelihood grid.
+2025-08-06 11:01:41,346 - INFO - Begginging to evaluate row 6, column 3 of likelihood grid.
+2025-08-06 11:01:41,501 - INFO - Begginging to evaluate row 6, column 4 of likelihood grid.
+2025-08-06 11:01:41,657 - INFO - Begginging to evaluate row 6, column 5 of likelihood grid.
+2025-08-06 11:01:41,812 - INFO - Begginging to evaluate row 6, column 6 of likelihood grid.
+2025-08-06 11:01:41,967 - INFO - Begginging to evaluate row 6, column 7 of likelihood grid.
+2025-08-06 11:01:42,123 - INFO - Begginging to evaluate row 6, column 8 of likelihood grid.
+2025-08-06 11:01:42,280 - INFO - Begginging to evaluate row 6, column 9 of likelihood grid.
+2025-08-06 11:01:42,436 - INFO - Begginging to evaluate row 6, column 10 of likelihood grid.
+2025-08-06 11:01:42,593 - INFO - Begginging to evaluate row 6, column 11 of likelihood grid.
+2025-08-06 11:01:42,751 - INFO - Begginging to evaluate row 6, column 12 of likelihood grid.
+2025-08-06 11:01:42,909 - INFO - Begginging to evaluate row 6, column 13 of likelihood grid.
+2025-08-06 11:01:43,068 - INFO - Begginging to evaluate row 6, column 14 of likelihood grid.
+2025-08-06 11:01:43,227 - INFO - Begginging to evaluate row 6, column 15 of likelihood grid.
+2025-08-06 11:01:43,386 - INFO - Begginging to evaluate row 6, column 16 of likelihood grid.
+2025-08-06 11:01:43,545 - INFO - Begginging to evaluate row 6, column 17 of likelihood grid.
+2025-08-06 11:01:43,705 - INFO - Begginging to evaluate row 6, column 18 of likelihood grid.
+2025-08-06 11:01:43,866 - INFO - Begginging to evaluate row 6, column 19 of likelihood grid.
+2025-08-06 11:01:44,028 - INFO - Begginging to evaluate row 6, column 20 of likelihood grid.
+2025-08-06 11:01:44,189 - INFO - Begginging to evaluate row 6, column 21 of likelihood grid.
+2025-08-06 11:01:44,350 - INFO - Begginging to evaluate row 6, column 22 of likelihood grid.
+2025-08-06 11:01:44,512 - INFO - Begginging to evaluate row 6, column 23 of likelihood grid.
+2025-08-06 11:01:44,675 - INFO - Begginging to evaluate row 6, column 24 of likelihood grid.
+2025-08-06 11:01:44,837 - INFO - Begginging to evaluate row 7, column 0 of likelihood grid.
+2025-08-06 11:01:44,990 - INFO - Begginging to evaluate row 7, column 1 of likelihood grid.
+2025-08-06 11:01:45,144 - INFO - Begginging to evaluate row 7, column 2 of likelihood grid.
+2025-08-06 11:01:45,298 - INFO - Begginging to evaluate row 7, column 3 of likelihood grid.
+2025-08-06 11:01:45,453 - INFO - Begginging to evaluate row 7, column 4 of likelihood grid.
+2025-08-06 11:01:45,608 - INFO - Begginging to evaluate row 7, column 5 of likelihood grid.
+2025-08-06 11:01:45,763 - INFO - Begginging to evaluate row 7, column 6 of likelihood grid.
+2025-08-06 11:01:45,919 - INFO - Begginging to evaluate row 7, column 7 of likelihood grid.
+2025-08-06 11:01:46,074 - INFO - Begginging to evaluate row 7, column 8 of likelihood grid.
+2025-08-06 11:01:46,231 - INFO - Begginging to evaluate row 7, column 9 of likelihood grid.
+2025-08-06 11:01:46,387 - INFO - Begginging to evaluate row 7, column 10 of likelihood grid.
+2025-08-06 11:01:46,543 - INFO - Begginging to evaluate row 7, column 11 of likelihood grid.
+2025-08-06 11:01:46,701 - INFO - Begginging to evaluate row 7, column 12 of likelihood grid.
+2025-08-06 11:01:46,859 - INFO - Begginging to evaluate row 7, column 13 of likelihood grid.
+2025-08-06 11:01:47,017 - INFO - Begginging to evaluate row 7, column 14 of likelihood grid.
+2025-08-06 11:01:47,175 - INFO - Begginging to evaluate row 7, column 15 of likelihood grid.
+2025-08-06 11:01:47,333 - INFO - Begginging to evaluate row 7, column 16 of likelihood grid.
+2025-08-06 11:01:47,492 - INFO - Begginging to evaluate row 7, column 17 of likelihood grid.
+2025-08-06 11:01:47,651 - INFO - Begginging to evaluate row 7, column 18 of likelihood grid.
+2025-08-06 11:01:47,811 - INFO - Begginging to evaluate row 7, column 19 of likelihood grid.
+2025-08-06 11:01:47,970 - INFO - Begginging to evaluate row 7, column 20 of likelihood grid.
+2025-08-06 11:01:48,130 - INFO - Begginging to evaluate row 7, column 21 of likelihood grid.
+2025-08-06 11:01:48,290 - INFO - Begginging to evaluate row 7, column 22 of likelihood grid.
+2025-08-06 11:01:48,450 - INFO - Begginging to evaluate row 7, column 23 of likelihood grid.
+2025-08-06 11:01:48,611 - INFO - Begginging to evaluate row 7, column 24 of likelihood grid.
+2025-08-06 11:01:48,773 - INFO - Begginging to evaluate row 8, column 0 of likelihood grid.
+2025-08-06 11:01:48,927 - INFO - Begginging to evaluate row 8, column 1 of likelihood grid.
+2025-08-06 11:01:49,082 - INFO - Begginging to evaluate row 8, column 2 of likelihood grid.
+2025-08-06 11:01:49,236 - INFO - Begginging to evaluate row 8, column 3 of likelihood grid.
+2025-08-06 11:01:49,391 - INFO - Begginging to evaluate row 8, column 4 of likelihood grid.
+2025-08-06 11:01:49,546 - INFO - Begginging to evaluate row 8, column 5 of likelihood grid.
+2025-08-06 11:01:49,702 - INFO - Begginging to evaluate row 8, column 6 of likelihood grid.
+2025-08-06 11:01:49,857 - INFO - Begginging to evaluate row 8, column 7 of likelihood grid.
+2025-08-06 11:01:50,013 - INFO - Begginging to evaluate row 8, column 8 of likelihood grid.
+2025-08-06 11:01:50,169 - INFO - Begginging to evaluate row 8, column 9 of likelihood grid.
+2025-08-06 11:01:50,324 - INFO - Begginging to evaluate row 8, column 10 of likelihood grid.
+2025-08-06 11:01:50,481 - INFO - Begginging to evaluate row 8, column 11 of likelihood grid.
+2025-08-06 11:01:50,637 - INFO - Begginging to evaluate row 8, column 12 of likelihood grid.
+2025-08-06 11:01:50,794 - INFO - Begginging to evaluate row 8, column 13 of likelihood grid.
+2025-08-06 11:01:50,951 - INFO - Begginging to evaluate row 8, column 14 of likelihood grid.
+2025-08-06 11:01:51,109 - INFO - Begginging to evaluate row 8, column 15 of likelihood grid.
+2025-08-06 11:01:51,267 - INFO - Begginging to evaluate row 8, column 16 of likelihood grid.
+2025-08-06 11:01:51,424 - INFO - Begginging to evaluate row 8, column 17 of likelihood grid.
+2025-08-06 11:01:51,583 - INFO - Begginging to evaluate row 8, column 18 of likelihood grid.
+2025-08-06 11:01:51,743 - INFO - Begginging to evaluate row 8, column 19 of likelihood grid.
+2025-08-06 11:01:51,903 - INFO - Begginging to evaluate row 8, column 20 of likelihood grid.
+2025-08-06 11:01:52,061 - INFO - Begginging to evaluate row 8, column 21 of likelihood grid.
+2025-08-06 11:01:52,221 - INFO - Begginging to evaluate row 8, column 22 of likelihood grid.
+2025-08-06 11:01:52,380 - INFO - Begginging to evaluate row 8, column 23 of likelihood grid.
+2025-08-06 11:01:52,540 - INFO - Begginging to evaluate row 8, column 24 of likelihood grid.
+2025-08-06 11:01:52,700 - INFO - Begginging to evaluate row 9, column 0 of likelihood grid.
+2025-08-06 11:01:52,854 - INFO - Begginging to evaluate row 9, column 1 of likelihood grid.
+2025-08-06 11:01:53,007 - INFO - Begginging to evaluate row 9, column 2 of likelihood grid.
+2025-08-06 11:01:53,162 - INFO - Begginging to evaluate row 9, column 3 of likelihood grid.
+2025-08-06 11:01:53,316 - INFO - Begginging to evaluate row 9, column 4 of likelihood grid.
+2025-08-06 11:01:53,471 - INFO - Begginging to evaluate row 9, column 5 of likelihood grid.
+2025-08-06 11:01:53,626 - INFO - Begginging to evaluate row 9, column 6 of likelihood grid.
+2025-08-06 11:01:53,781 - INFO - Begginging to evaluate row 9, column 7 of likelihood grid.
+2025-08-06 11:01:53,937 - INFO - Begginging to evaluate row 9, column 8 of likelihood grid.
+2025-08-06 11:01:54,093 - INFO - Begginging to evaluate row 9, column 9 of likelihood grid.
+2025-08-06 11:01:54,250 - INFO - Begginging to evaluate row 9, column 10 of likelihood grid.
+2025-08-06 11:01:54,407 - INFO - Begginging to evaluate row 9, column 11 of likelihood grid.
+2025-08-06 11:01:54,564 - INFO - Begginging to evaluate row 9, column 12 of likelihood grid.
+2025-08-06 11:01:54,721 - INFO - Begginging to evaluate row 9, column 13 of likelihood grid.
+2025-08-06 11:01:54,877 - INFO - Begginging to evaluate row 9, column 14 of likelihood grid.
+2025-08-06 11:01:55,034 - INFO - Begginging to evaluate row 9, column 15 of likelihood grid.
+2025-08-06 11:01:55,193 - INFO - Begginging to evaluate row 9, column 16 of likelihood grid.
+2025-08-06 11:01:55,350 - INFO - Begginging to evaluate row 9, column 17 of likelihood grid.
+2025-08-06 11:01:55,508 - INFO - Begginging to evaluate row 9, column 18 of likelihood grid.
+2025-08-06 11:01:55,666 - INFO - Begginging to evaluate row 9, column 19 of likelihood grid.
+2025-08-06 11:01:55,825 - INFO - Begginging to evaluate row 9, column 20 of likelihood grid.
+2025-08-06 11:01:55,983 - INFO - Begginging to evaluate row 9, column 21 of likelihood grid.
+2025-08-06 11:01:56,143 - INFO - Begginging to evaluate row 9, column 22 of likelihood grid.
+2025-08-06 11:01:56,302 - INFO - Begginging to evaluate row 9, column 23 of likelihood grid.
+2025-08-06 11:01:56,462 - INFO - Begginging to evaluate row 9, column 24 of likelihood grid.
+2025-08-06 11:01:56,622 - INFO - Begginging to evaluate row 10, column 0 of likelihood grid.
+2025-08-06 11:01:56,777 - INFO - Begginging to evaluate row 10, column 1 of likelihood grid.
+2025-08-06 11:01:56,931 - INFO - Begginging to evaluate row 10, column 2 of likelihood grid.
+2025-08-06 11:01:57,086 - INFO - Begginging to evaluate row 10, column 3 of likelihood grid.
+2025-08-06 11:01:57,241 - INFO - Begginging to evaluate row 10, column 4 of likelihood grid.
+2025-08-06 11:01:57,396 - INFO - Begginging to evaluate row 10, column 5 of likelihood grid.
+2025-08-06 11:01:57,552 - INFO - Begginging to evaluate row 10, column 6 of likelihood grid.
+2025-08-06 11:01:57,707 - INFO - Begginging to evaluate row 10, column 7 of likelihood grid.
+2025-08-06 11:01:57,863 - INFO - Begginging to evaluate row 10, column 8 of likelihood grid.
+2025-08-06 11:01:58,018 - INFO - Begginging to evaluate row 10, column 9 of likelihood grid.
+2025-08-06 11:01:58,175 - INFO - Begginging to evaluate row 10, column 10 of likelihood grid.
+2025-08-06 11:01:58,331 - INFO - Begginging to evaluate row 10, column 11 of likelihood grid.
+2025-08-06 11:01:58,487 - INFO - Begginging to evaluate row 10, column 12 of likelihood grid.
+2025-08-06 11:01:58,644 - INFO - Begginging to evaluate row 10, column 13 of likelihood grid.
+2025-08-06 11:01:58,801 - INFO - Begginging to evaluate row 10, column 14 of likelihood grid.
+2025-08-06 11:01:58,959 - INFO - Begginging to evaluate row 10, column 15 of likelihood grid.
+2025-08-06 11:01:59,117 - INFO - Begginging to evaluate row 10, column 16 of likelihood grid.
+2025-08-06 11:01:59,274 - INFO - Begginging to evaluate row 10, column 17 of likelihood grid.
+2025-08-06 11:01:59,432 - INFO - Begginging to evaluate row 10, column 18 of likelihood grid.
+2025-08-06 11:01:59,591 - INFO - Begginging to evaluate row 10, column 19 of likelihood grid.
+2025-08-06 11:01:59,749 - INFO - Begginging to evaluate row 10, column 20 of likelihood grid.
+2025-08-06 11:01:59,908 - INFO - Begginging to evaluate row 10, column 21 of likelihood grid.
+2025-08-06 11:02:00,067 - INFO - Begginging to evaluate row 10, column 22 of likelihood grid.
+2025-08-06 11:02:00,226 - INFO - Begginging to evaluate row 10, column 23 of likelihood grid.
+2025-08-06 11:02:00,385 - INFO - Begginging to evaluate row 10, column 24 of likelihood grid.
+2025-08-06 11:02:00,545 - INFO - Begginging to evaluate row 11, column 0 of likelihood grid.
+2025-08-06 11:02:00,699 - INFO - Begginging to evaluate row 11, column 1 of likelihood grid.
+2025-08-06 11:02:00,853 - INFO - Begginging to evaluate row 11, column 2 of likelihood grid.
+2025-08-06 11:02:01,008 - INFO - Begginging to evaluate row 11, column 3 of likelihood grid.
+2025-08-06 11:02:01,163 - INFO - Begginging to evaluate row 11, column 4 of likelihood grid.
+2025-08-06 11:02:01,321 - INFO - Begginging to evaluate row 11, column 5 of likelihood grid.
+2025-08-06 11:02:01,479 - INFO - Begginging to evaluate row 11, column 6 of likelihood grid.
+2025-08-06 11:02:01,635 - INFO - Begginging to evaluate row 11, column 7 of likelihood grid.
+2025-08-06 11:02:01,791 - INFO - Begginging to evaluate row 11, column 8 of likelihood grid.
+2025-08-06 11:02:01,949 - INFO - Begginging to evaluate row 11, column 9 of likelihood grid.
+2025-08-06 11:02:02,108 - INFO - Begginging to evaluate row 11, column 10 of likelihood grid.
+2025-08-06 11:02:02,267 - INFO - Begginging to evaluate row 11, column 11 of likelihood grid.
+2025-08-06 11:02:02,426 - INFO - Begginging to evaluate row 11, column 12 of likelihood grid.
+2025-08-06 11:02:02,583 - INFO - Begginging to evaluate row 11, column 13 of likelihood grid.
+2025-08-06 11:02:02,740 - INFO - Begginging to evaluate row 11, column 14 of likelihood grid.
+2025-08-06 11:02:02,896 - INFO - Begginging to evaluate row 11, column 15 of likelihood grid.
+2025-08-06 11:02:03,053 - INFO - Begginging to evaluate row 11, column 16 of likelihood grid.
+2025-08-06 11:02:03,210 - INFO - Begginging to evaluate row 11, column 17 of likelihood grid.
+2025-08-06 11:02:03,367 - INFO - Begginging to evaluate row 11, column 18 of likelihood grid.
+2025-08-06 11:02:03,525 - INFO - Begginging to evaluate row 11, column 19 of likelihood grid.
+2025-08-06 11:02:03,683 - INFO - Begginging to evaluate row 11, column 20 of likelihood grid.
+2025-08-06 11:02:03,841 - INFO - Begginging to evaluate row 11, column 21 of likelihood grid.
+2025-08-06 11:02:04,000 - INFO - Begginging to evaluate row 11, column 22 of likelihood grid.
+2025-08-06 11:02:04,161 - INFO - Begginging to evaluate row 11, column 23 of likelihood grid.
+2025-08-06 11:02:04,319 - INFO - Begginging to evaluate row 11, column 24 of likelihood grid.
+2025-08-06 11:02:04,479 - INFO - Begginging to evaluate row 12, column 0 of likelihood grid.
+2025-08-06 11:02:04,633 - INFO - Begginging to evaluate row 12, column 1 of likelihood grid.
+2025-08-06 11:02:04,788 - INFO - Begginging to evaluate row 12, column 2 of likelihood grid.
+2025-08-06 11:02:04,942 - INFO - Begginging to evaluate row 12, column 3 of likelihood grid.
+2025-08-06 11:02:05,097 - INFO - Begginging to evaluate row 12, column 4 of likelihood grid.
+2025-08-06 11:02:05,251 - INFO - Begginging to evaluate row 12, column 5 of likelihood grid.
+2025-08-06 11:02:05,406 - INFO - Begginging to evaluate row 12, column 6 of likelihood grid.
+2025-08-06 11:02:05,561 - INFO - Begginging to evaluate row 12, column 7 of likelihood grid.
+2025-08-06 11:02:05,716 - INFO - Begginging to evaluate row 12, column 8 of likelihood grid.
+2025-08-06 11:02:05,871 - INFO - Begginging to evaluate row 12, column 9 of likelihood grid.
+2025-08-06 11:02:06,027 - INFO - Begginging to evaluate row 12, column 10 of likelihood grid.
+2025-08-06 11:02:06,182 - INFO - Begginging to evaluate row 12, column 11 of likelihood grid.
+2025-08-06 11:02:06,338 - INFO - Begginging to evaluate row 12, column 12 of likelihood grid.
+2025-08-06 11:02:06,494 - INFO - Begginging to evaluate row 12, column 13 of likelihood grid.
+2025-08-06 11:02:06,650 - INFO - Begginging to evaluate row 12, column 14 of likelihood grid.
+2025-08-06 11:02:06,806 - INFO - Begginging to evaluate row 12, column 15 of likelihood grid.
+2025-08-06 11:02:06,963 - INFO - Begginging to evaluate row 12, column 16 of likelihood grid.
+2025-08-06 11:02:07,120 - INFO - Begginging to evaluate row 12, column 17 of likelihood grid.
+2025-08-06 11:02:07,278 - INFO - Begginging to evaluate row 12, column 18 of likelihood grid.
+2025-08-06 11:02:07,436 - INFO - Begginging to evaluate row 12, column 19 of likelihood grid.
+2025-08-06 11:02:07,593 - INFO - Begginging to evaluate row 12, column 20 of likelihood grid.
+2025-08-06 11:02:07,751 - INFO - Begginging to evaluate row 12, column 21 of likelihood grid.
+2025-08-06 11:02:07,908 - INFO - Begginging to evaluate row 12, column 22 of likelihood grid.
+2025-08-06 11:02:08,067 - INFO - Begginging to evaluate row 12, column 23 of likelihood grid.
+2025-08-06 11:02:08,226 - INFO - Begginging to evaluate row 12, column 24 of likelihood grid.
+2025-08-06 11:02:08,384 - INFO - Begginging to evaluate row 13, column 0 of likelihood grid.
+2025-08-06 11:02:08,538 - INFO - Begginging to evaluate row 13, column 1 of likelihood grid.
+2025-08-06 11:02:08,692 - INFO - Begginging to evaluate row 13, column 2 of likelihood grid.
+2025-08-06 11:02:08,847 - INFO - Begginging to evaluate row 13, column 3 of likelihood grid.
+2025-08-06 11:02:09,001 - INFO - Begginging to evaluate row 13, column 4 of likelihood grid.
+2025-08-06 11:02:09,156 - INFO - Begginging to evaluate row 13, column 5 of likelihood grid.
+2025-08-06 11:02:09,311 - INFO - Begginging to evaluate row 13, column 6 of likelihood grid.
+2025-08-06 11:02:09,466 - INFO - Begginging to evaluate row 13, column 7 of likelihood grid.
+2025-08-06 11:02:09,621 - INFO - Begginging to evaluate row 13, column 8 of likelihood grid.
+2025-08-06 11:02:09,776 - INFO - Begginging to evaluate row 13, column 9 of likelihood grid.
+2025-08-06 11:02:09,931 - INFO - Begginging to evaluate row 13, column 10 of likelihood grid.
+2025-08-06 11:02:10,087 - INFO - Begginging to evaluate row 13, column 11 of likelihood grid.
+2025-08-06 11:02:10,243 - INFO - Begginging to evaluate row 13, column 12 of likelihood grid.
+2025-08-06 11:02:10,399 - INFO - Begginging to evaluate row 13, column 13 of likelihood grid.
+2025-08-06 11:02:10,555 - INFO - Begginging to evaluate row 13, column 14 of likelihood grid.
+2025-08-06 11:02:10,712 - INFO - Begginging to evaluate row 13, column 15 of likelihood grid.
+2025-08-06 11:02:10,868 - INFO - Begginging to evaluate row 13, column 16 of likelihood grid.
+2025-08-06 11:02:11,025 - INFO - Begginging to evaluate row 13, column 17 of likelihood grid.
+2025-08-06 11:02:11,182 - INFO - Begginging to evaluate row 13, column 18 of likelihood grid.
+2025-08-06 11:02:11,340 - INFO - Begginging to evaluate row 13, column 19 of likelihood grid.
+2025-08-06 11:02:11,498 - INFO - Begginging to evaluate row 13, column 20 of likelihood grid.
+2025-08-06 11:02:11,656 - INFO - Begginging to evaluate row 13, column 21 of likelihood grid.
+2025-08-06 11:02:11,814 - INFO - Begginging to evaluate row 13, column 22 of likelihood grid.
+2025-08-06 11:02:11,972 - INFO - Begginging to evaluate row 13, column 23 of likelihood grid.
+2025-08-06 11:02:12,130 - INFO - Begginging to evaluate row 13, column 24 of likelihood grid.
+2025-08-06 11:02:12,289 - INFO - Begginging to evaluate row 14, column 0 of likelihood grid.
+2025-08-06 11:02:12,443 - INFO - Begginging to evaluate row 14, column 1 of likelihood grid.
+2025-08-06 11:02:12,597 - INFO - Begginging to evaluate row 14, column 2 of likelihood grid.
+2025-08-06 11:02:12,751 - INFO - Begginging to evaluate row 14, column 3 of likelihood grid.
+2025-08-06 11:02:12,906 - INFO - Begginging to evaluate row 14, column 4 of likelihood grid.
+2025-08-06 11:02:13,063 - INFO - Begginging to evaluate row 14, column 5 of likelihood grid.
+2025-08-06 11:02:13,218 - INFO - Begginging to evaluate row 14, column 6 of likelihood grid.
+2025-08-06 11:02:13,373 - INFO - Begginging to evaluate row 14, column 7 of likelihood grid.
+2025-08-06 11:02:13,528 - INFO - Begginging to evaluate row 14, column 8 of likelihood grid.
+2025-08-06 11:02:13,683 - INFO - Begginging to evaluate row 14, column 9 of likelihood grid.
+2025-08-06 11:02:13,839 - INFO - Begginging to evaluate row 14, column 10 of likelihood grid.
+2025-08-06 11:02:13,996 - INFO - Begginging to evaluate row 14, column 11 of likelihood grid.
+2025-08-06 11:02:14,155 - INFO - Begginging to evaluate row 14, column 12 of likelihood grid.
+2025-08-06 11:02:14,316 - INFO - Begginging to evaluate row 14, column 13 of likelihood grid.
+2025-08-06 11:02:14,473 - INFO - Begginging to evaluate row 14, column 14 of likelihood grid.
+2025-08-06 11:02:14,631 - INFO - Begginging to evaluate row 14, column 15 of likelihood grid.
+2025-08-06 11:02:14,788 - INFO - Begginging to evaluate row 14, column 16 of likelihood grid.
+2025-08-06 11:02:14,945 - INFO - Begginging to evaluate row 14, column 17 of likelihood grid.
+2025-08-06 11:02:15,102 - INFO - Begginging to evaluate row 14, column 18 of likelihood grid.
+2025-08-06 11:02:15,260 - INFO - Begginging to evaluate row 14, column 19 of likelihood grid.
+2025-08-06 11:02:15,418 - INFO - Begginging to evaluate row 14, column 20 of likelihood grid.
+2025-08-06 11:02:15,576 - INFO - Begginging to evaluate row 14, column 21 of likelihood grid.
+2025-08-06 11:02:15,734 - INFO - Begginging to evaluate row 14, column 22 of likelihood grid.
+2025-08-06 11:02:15,893 - INFO - Begginging to evaluate row 14, column 23 of likelihood grid.
+2025-08-06 11:02:16,052 - INFO - Begginging to evaluate row 14, column 24 of likelihood grid.
+2025-08-06 11:02:16,210 - INFO - Begginging to evaluate row 15, column 0 of likelihood grid.
+2025-08-06 11:02:16,365 - INFO - Begginging to evaluate row 15, column 1 of likelihood grid.
+2025-08-06 11:02:16,519 - INFO - Begginging to evaluate row 15, column 2 of likelihood grid.
+2025-08-06 11:02:16,674 - INFO - Begginging to evaluate row 15, column 3 of likelihood grid.
+2025-08-06 11:02:16,828 - INFO - Begginging to evaluate row 15, column 4 of likelihood grid.
+2025-08-06 11:02:16,982 - INFO - Begginging to evaluate row 15, column 5 of likelihood grid.
+2025-08-06 11:02:17,136 - INFO - Begginging to evaluate row 15, column 6 of likelihood grid.
+2025-08-06 11:02:17,289 - INFO - Begginging to evaluate row 15, column 7 of likelihood grid.
+2025-08-06 11:02:17,443 - INFO - Begginging to evaluate row 15, column 8 of likelihood grid.
+2025-08-06 11:02:17,598 - INFO - Begginging to evaluate row 15, column 9 of likelihood grid.
+2025-08-06 11:02:17,751 - INFO - Begginging to evaluate row 15, column 10 of likelihood grid.
+2025-08-06 11:02:17,906 - INFO - Begginging to evaluate row 15, column 11 of likelihood grid.
+2025-08-06 11:02:18,062 - INFO - Begginging to evaluate row 15, column 12 of likelihood grid.
+2025-08-06 11:02:18,218 - INFO - Begginging to evaluate row 15, column 13 of likelihood grid.
+2025-08-06 11:02:18,372 - INFO - Begginging to evaluate row 15, column 14 of likelihood grid.
+2025-08-06 11:02:18,526 - INFO - Begginging to evaluate row 15, column 15 of likelihood grid.
+2025-08-06 11:02:18,680 - INFO - Begginging to evaluate row 15, column 16 of likelihood grid.
+2025-08-06 11:02:18,835 - INFO - Begginging to evaluate row 15, column 17 of likelihood grid.
+2025-08-06 11:02:18,990 - INFO - Begginging to evaluate row 15, column 18 of likelihood grid.
+2025-08-06 11:02:19,146 - INFO - Begginging to evaluate row 15, column 19 of likelihood grid.
+2025-08-06 11:02:19,302 - INFO - Begginging to evaluate row 15, column 20 of likelihood grid.
+2025-08-06 11:02:19,458 - INFO - Begginging to evaluate row 15, column 21 of likelihood grid.
+2025-08-06 11:02:19,613 - INFO - Begginging to evaluate row 15, column 22 of likelihood grid.
+2025-08-06 11:02:19,769 - INFO - Begginging to evaluate row 15, column 23 of likelihood grid.
+2025-08-06 11:02:19,924 - INFO - Begginging to evaluate row 15, column 24 of likelihood grid.
+2025-08-06 11:02:20,081 - INFO - Begginging to evaluate row 16, column 0 of likelihood grid.
+2025-08-06 11:02:20,233 - INFO - Begginging to evaluate row 16, column 1 of likelihood grid.
+2025-08-06 11:02:20,386 - INFO - Begginging to evaluate row 16, column 2 of likelihood grid.
+2025-08-06 11:02:20,539 - INFO - Begginging to evaluate row 16, column 3 of likelihood grid.
+2025-08-06 11:02:20,693 - INFO - Begginging to evaluate row 16, column 4 of likelihood grid.
+2025-08-06 11:02:20,846 - INFO - Begginging to evaluate row 16, column 5 of likelihood grid.
+2025-08-06 11:02:20,999 - INFO - Begginging to evaluate row 16, column 6 of likelihood grid.
+2025-08-06 11:02:21,152 - INFO - Begginging to evaluate row 16, column 7 of likelihood grid.
+2025-08-06 11:02:21,305 - INFO - Begginging to evaluate row 16, column 8 of likelihood grid.
+2025-08-06 11:02:21,458 - INFO - Begginging to evaluate row 16, column 9 of likelihood grid.
+2025-08-06 11:02:21,612 - INFO - Begginging to evaluate row 16, column 10 of likelihood grid.
+2025-08-06 11:02:21,766 - INFO - Begginging to evaluate row 16, column 11 of likelihood grid.
+2025-08-06 11:02:21,920 - INFO - Begginging to evaluate row 16, column 12 of likelihood grid.
+2025-08-06 11:02:22,075 - INFO - Begginging to evaluate row 16, column 13 of likelihood grid.
+2025-08-06 11:02:22,229 - INFO - Begginging to evaluate row 16, column 14 of likelihood grid.
+2025-08-06 11:02:22,383 - INFO - Begginging to evaluate row 16, column 15 of likelihood grid.
+2025-08-06 11:02:22,538 - INFO - Begginging to evaluate row 16, column 16 of likelihood grid.
+2025-08-06 11:02:22,693 - INFO - Begginging to evaluate row 16, column 17 of likelihood grid.
+2025-08-06 11:02:22,848 - INFO - Begginging to evaluate row 16, column 18 of likelihood grid.
+2025-08-06 11:02:23,004 - INFO - Begginging to evaluate row 16, column 19 of likelihood grid.
+2025-08-06 11:02:23,163 - INFO - Begginging to evaluate row 16, column 20 of likelihood grid.
+2025-08-06 11:02:23,320 - INFO - Begginging to evaluate row 16, column 21 of likelihood grid.
+2025-08-06 11:02:23,476 - INFO - Begginging to evaluate row 16, column 22 of likelihood grid.
+2025-08-06 11:02:23,633 - INFO - Begginging to evaluate row 16, column 23 of likelihood grid.
+2025-08-06 11:02:23,789 - INFO - Begginging to evaluate row 16, column 24 of likelihood grid.
+2025-08-06 11:02:23,945 - INFO - Begginging to evaluate row 17, column 0 of likelihood grid.
+2025-08-06 11:02:24,098 - INFO - Begginging to evaluate row 17, column 1 of likelihood grid.
+2025-08-06 11:02:24,250 - INFO - Begginging to evaluate row 17, column 2 of likelihood grid.
+2025-08-06 11:02:24,403 - INFO - Begginging to evaluate row 17, column 3 of likelihood grid.
+2025-08-06 11:02:24,557 - INFO - Begginging to evaluate row 17, column 4 of likelihood grid.
+2025-08-06 11:02:24,710 - INFO - Begginging to evaluate row 17, column 5 of likelihood grid.
+2025-08-06 11:02:24,863 - INFO - Begginging to evaluate row 17, column 6 of likelihood grid.
+2025-08-06 11:02:25,017 - INFO - Begginging to evaluate row 17, column 7 of likelihood grid.
+2025-08-06 11:02:25,171 - INFO - Begginging to evaluate row 17, column 8 of likelihood grid.
+2025-08-06 11:02:25,326 - INFO - Begginging to evaluate row 17, column 9 of likelihood grid.
+2025-08-06 11:02:25,480 - INFO - Begginging to evaluate row 17, column 10 of likelihood grid.
+2025-08-06 11:02:25,635 - INFO - Begginging to evaluate row 17, column 11 of likelihood grid.
+2025-08-06 11:02:25,790 - INFO - Begginging to evaluate row 17, column 12 of likelihood grid.
+2025-08-06 11:02:25,945 - INFO - Begginging to evaluate row 17, column 13 of likelihood grid.
+2025-08-06 11:02:26,099 - INFO - Begginging to evaluate row 17, column 14 of likelihood grid.
+2025-08-06 11:02:26,254 - INFO - Begginging to evaluate row 17, column 15 of likelihood grid.
+2025-08-06 11:02:26,409 - INFO - Begginging to evaluate row 17, column 16 of likelihood grid.
+2025-08-06 11:02:26,564 - INFO - Begginging to evaluate row 17, column 17 of likelihood grid.
+2025-08-06 11:02:26,719 - INFO - Begginging to evaluate row 17, column 18 of likelihood grid.
+2025-08-06 11:02:26,874 - INFO - Begginging to evaluate row 17, column 19 of likelihood grid.
+2025-08-06 11:02:27,030 - INFO - Begginging to evaluate row 17, column 20 of likelihood grid.
+2025-08-06 11:02:27,186 - INFO - Begginging to evaluate row 17, column 21 of likelihood grid.
+2025-08-06 11:02:27,342 - INFO - Begginging to evaluate row 17, column 22 of likelihood grid.
+2025-08-06 11:02:27,498 - INFO - Begginging to evaluate row 17, column 23 of likelihood grid.
+2025-08-06 11:02:27,653 - INFO - Begginging to evaluate row 17, column 24 of likelihood grid.
+2025-08-06 11:02:27,809 - INFO - Begginging to evaluate row 18, column 0 of likelihood grid.
+2025-08-06 11:02:27,961 - INFO - Begginging to evaluate row 18, column 1 of likelihood grid.
+2025-08-06 11:02:28,116 - INFO - Begginging to evaluate row 18, column 2 of likelihood grid.
+2025-08-06 11:02:28,269 - INFO - Begginging to evaluate row 18, column 3 of likelihood grid.
+2025-08-06 11:02:28,422 - INFO - Begginging to evaluate row 18, column 4 of likelihood grid.
+2025-08-06 11:02:28,576 - INFO - Begginging to evaluate row 18, column 5 of likelihood grid.
+2025-08-06 11:02:28,729 - INFO - Begginging to evaluate row 18, column 6 of likelihood grid.
+2025-08-06 11:02:28,883 - INFO - Begginging to evaluate row 18, column 7 of likelihood grid.
+2025-08-06 11:02:29,037 - INFO - Begginging to evaluate row 18, column 8 of likelihood grid.
+2025-08-06 11:02:29,191 - INFO - Begginging to evaluate row 18, column 9 of likelihood grid.
+2025-08-06 11:02:29,345 - INFO - Begginging to evaluate row 18, column 10 of likelihood grid.
+2025-08-06 11:02:29,499 - INFO - Begginging to evaluate row 18, column 11 of likelihood grid.
+2025-08-06 11:02:29,654 - INFO - Begginging to evaluate row 18, column 12 of likelihood grid.
+2025-08-06 11:02:29,808 - INFO - Begginging to evaluate row 18, column 13 of likelihood grid.
+2025-08-06 11:02:29,963 - INFO - Begginging to evaluate row 18, column 14 of likelihood grid.
+2025-08-06 11:02:30,119 - INFO - Begginging to evaluate row 18, column 15 of likelihood grid.
+2025-08-06 11:02:30,274 - INFO - Begginging to evaluate row 18, column 16 of likelihood grid.
+2025-08-06 11:02:30,429 - INFO - Begginging to evaluate row 18, column 17 of likelihood grid.
+2025-08-06 11:02:30,585 - INFO - Begginging to evaluate row 18, column 18 of likelihood grid.
+2025-08-06 11:02:30,740 - INFO - Begginging to evaluate row 18, column 19 of likelihood grid.
+2025-08-06 11:02:30,895 - INFO - Begginging to evaluate row 18, column 20 of likelihood grid.
+2025-08-06 11:02:31,051 - INFO - Begginging to evaluate row 18, column 21 of likelihood grid.
+2025-08-06 11:02:31,208 - INFO - Begginging to evaluate row 18, column 22 of likelihood grid.
+2025-08-06 11:02:31,364 - INFO - Begginging to evaluate row 18, column 23 of likelihood grid.
+2025-08-06 11:02:31,521 - INFO - Begginging to evaluate row 18, column 24 of likelihood grid.
+2025-08-06 11:02:31,677 - INFO - Begginging to evaluate row 19, column 0 of likelihood grid.
+2025-08-06 11:02:31,832 - INFO - Begginging to evaluate row 19, column 1 of likelihood grid.
+2025-08-06 11:02:31,987 - INFO - Begginging to evaluate row 19, column 2 of likelihood grid.
+2025-08-06 11:02:32,142 - INFO - Begginging to evaluate row 19, column 3 of likelihood grid.
+2025-08-06 11:02:32,297 - INFO - Begginging to evaluate row 19, column 4 of likelihood grid.
+2025-08-06 11:02:32,452 - INFO - Begginging to evaluate row 19, column 5 of likelihood grid.
+2025-08-06 11:02:32,609 - INFO - Begginging to evaluate row 19, column 6 of likelihood grid.
+2025-08-06 11:02:32,764 - INFO - Begginging to evaluate row 19, column 7 of likelihood grid.
+2025-08-06 11:02:32,920 - INFO - Begginging to evaluate row 19, column 8 of likelihood grid.
+2025-08-06 11:02:33,075 - INFO - Begginging to evaluate row 19, column 9 of likelihood grid.
+2025-08-06 11:02:33,232 - INFO - Begginging to evaluate row 19, column 10 of likelihood grid.
+2025-08-06 11:02:33,388 - INFO - Begginging to evaluate row 19, column 11 of likelihood grid.
+2025-08-06 11:02:33,544 - INFO - Begginging to evaluate row 19, column 12 of likelihood grid.
+2025-08-06 11:02:33,700 - INFO - Begginging to evaluate row 19, column 13 of likelihood grid.
+2025-08-06 11:02:33,855 - INFO - Begginging to evaluate row 19, column 14 of likelihood grid.
+2025-08-06 11:02:34,011 - INFO - Begginging to evaluate row 19, column 15 of likelihood grid.
+2025-08-06 11:02:34,167 - INFO - Begginging to evaluate row 19, column 16 of likelihood grid.
+2025-08-06 11:02:34,322 - INFO - Begginging to evaluate row 19, column 17 of likelihood grid.
+2025-08-06 11:02:34,478 - INFO - Begginging to evaluate row 19, column 18 of likelihood grid.
+2025-08-06 11:02:34,634 - INFO - Begginging to evaluate row 19, column 19 of likelihood grid.
+2025-08-06 11:02:34,790 - INFO - Begginging to evaluate row 19, column 20 of likelihood grid.
+2025-08-06 11:02:34,947 - INFO - Begginging to evaluate row 19, column 21 of likelihood grid.
+2025-08-06 11:02:35,104 - INFO - Begginging to evaluate row 19, column 22 of likelihood grid.
+2025-08-06 11:02:35,261 - INFO - Begginging to evaluate row 19, column 23 of likelihood grid.
+2025-08-06 11:02:35,417 - INFO - Begginging to evaluate row 19, column 24 of likelihood grid.
+2025-08-06 11:02:35,574 - INFO - Begginging to evaluate row 20, column 0 of likelihood grid.
+2025-08-06 11:02:35,729 - INFO - Begginging to evaluate row 20, column 1 of likelihood grid.
+2025-08-06 11:02:35,883 - INFO - Begginging to evaluate row 20, column 2 of likelihood grid.
+2025-08-06 11:02:36,038 - INFO - Begginging to evaluate row 20, column 3 of likelihood grid.
+2025-08-06 11:02:36,192 - INFO - Begginging to evaluate row 20, column 4 of likelihood grid.
+2025-08-06 11:02:36,348 - INFO - Begginging to evaluate row 20, column 5 of likelihood grid.
+2025-08-06 11:02:36,503 - INFO - Begginging to evaluate row 20, column 6 of likelihood grid.
+2025-08-06 11:02:36,657 - INFO - Begginging to evaluate row 20, column 7 of likelihood grid.
+2025-08-06 11:02:36,813 - INFO - Begginging to evaluate row 20, column 8 of likelihood grid.
+2025-08-06 11:02:36,967 - INFO - Begginging to evaluate row 20, column 9 of likelihood grid.
+2025-08-06 11:02:37,122 - INFO - Begginging to evaluate row 20, column 10 of likelihood grid.
+2025-08-06 11:02:37,277 - INFO - Begginging to evaluate row 20, column 11 of likelihood grid.
+2025-08-06 11:02:37,431 - INFO - Begginging to evaluate row 20, column 12 of likelihood grid.
+2025-08-06 11:02:37,586 - INFO - Begginging to evaluate row 20, column 13 of likelihood grid.
+2025-08-06 11:02:37,740 - INFO - Begginging to evaluate row 20, column 14 of likelihood grid.
+2025-08-06 11:02:37,895 - INFO - Begginging to evaluate row 20, column 15 of likelihood grid.
+2025-08-06 11:02:38,050 - INFO - Begginging to evaluate row 20, column 16 of likelihood grid.
+2025-08-06 11:02:38,207 - INFO - Begginging to evaluate row 20, column 17 of likelihood grid.
+2025-08-06 11:02:38,363 - INFO - Begginging to evaluate row 20, column 18 of likelihood grid.
+2025-08-06 11:02:38,518 - INFO - Begginging to evaluate row 20, column 19 of likelihood grid.
+2025-08-06 11:02:38,674 - INFO - Begginging to evaluate row 20, column 20 of likelihood grid.
+2025-08-06 11:02:38,830 - INFO - Begginging to evaluate row 20, column 21 of likelihood grid.
+2025-08-06 11:02:38,985 - INFO - Begginging to evaluate row 20, column 22 of likelihood grid.
+2025-08-06 11:02:39,141 - INFO - Begginging to evaluate row 20, column 23 of likelihood grid.
+2025-08-06 11:02:39,296 - INFO - Begginging to evaluate row 20, column 24 of likelihood grid.
+2025-08-06 11:02:39,452 - INFO - Begginging to evaluate row 21, column 0 of likelihood grid.
+2025-08-06 11:02:39,605 - INFO - Begginging to evaluate row 21, column 1 of likelihood grid.
+2025-08-06 11:02:39,758 - INFO - Begginging to evaluate row 21, column 2 of likelihood grid.
+2025-08-06 11:02:39,912 - INFO - Begginging to evaluate row 21, column 3 of likelihood grid.
+2025-08-06 11:02:40,065 - INFO - Begginging to evaluate row 21, column 4 of likelihood grid.
+2025-08-06 11:02:40,219 - INFO - Begginging to evaluate row 21, column 5 of likelihood grid.
+2025-08-06 11:02:40,373 - INFO - Begginging to evaluate row 21, column 6 of likelihood grid.
+2025-08-06 11:02:40,527 - INFO - Begginging to evaluate row 21, column 7 of likelihood grid.
+2025-08-06 11:02:40,680 - INFO - Begginging to evaluate row 21, column 8 of likelihood grid.
+2025-08-06 11:02:40,834 - INFO - Begginging to evaluate row 21, column 9 of likelihood grid.
+2025-08-06 11:02:40,988 - INFO - Begginging to evaluate row 21, column 10 of likelihood grid.
+2025-08-06 11:02:41,143 - INFO - Begginging to evaluate row 21, column 11 of likelihood grid.
+2025-08-06 11:02:41,297 - INFO - Begginging to evaluate row 21, column 12 of likelihood grid.
+2025-08-06 11:02:41,451 - INFO - Begginging to evaluate row 21, column 13 of likelihood grid.
+2025-08-06 11:02:41,605 - INFO - Begginging to evaluate row 21, column 14 of likelihood grid.
+2025-08-06 11:02:41,759 - INFO - Begginging to evaluate row 21, column 15 of likelihood grid.
+2025-08-06 11:02:41,914 - INFO - Begginging to evaluate row 21, column 16 of likelihood grid.
+2025-08-06 11:02:42,069 - INFO - Begginging to evaluate row 21, column 17 of likelihood grid.
+2025-08-06 11:02:42,224 - INFO - Begginging to evaluate row 21, column 18 of likelihood grid.
+2025-08-06 11:02:42,378 - INFO - Begginging to evaluate row 21, column 19 of likelihood grid.
+2025-08-06 11:02:42,534 - INFO - Begginging to evaluate row 21, column 20 of likelihood grid.
+2025-08-06 11:02:42,689 - INFO - Begginging to evaluate row 21, column 21 of likelihood grid.
+2025-08-06 11:02:42,845 - INFO - Begginging to evaluate row 21, column 22 of likelihood grid.
+2025-08-06 11:02:43,000 - INFO - Begginging to evaluate row 21, column 23 of likelihood grid.
+2025-08-06 11:02:43,158 - INFO - Begginging to evaluate row 21, column 24 of likelihood grid.
+2025-08-06 11:02:43,318 - INFO - Begginging to evaluate row 22, column 0 of likelihood grid.
+2025-08-06 11:02:43,475 - INFO - Begginging to evaluate row 22, column 1 of likelihood grid.
+2025-08-06 11:02:43,632 - INFO - Begginging to evaluate row 22, column 2 of likelihood grid.
+2025-08-06 11:02:43,789 - INFO - Begginging to evaluate row 22, column 3 of likelihood grid.
+2025-08-06 11:02:43,943 - INFO - Begginging to evaluate row 22, column 4 of likelihood grid.
+2025-08-06 11:02:44,096 - INFO - Begginging to evaluate row 22, column 5 of likelihood grid.
+2025-08-06 11:02:44,254 - INFO - Begginging to evaluate row 22, column 6 of likelihood grid.
+2025-08-06 11:02:44,407 - INFO - Begginging to evaluate row 22, column 7 of likelihood grid.
+2025-08-06 11:02:44,561 - INFO - Begginging to evaluate row 22, column 8 of likelihood grid.
+2025-08-06 11:02:44,715 - INFO - Begginging to evaluate row 22, column 9 of likelihood grid.
+2025-08-06 11:02:44,869 - INFO - Begginging to evaluate row 22, column 10 of likelihood grid.
+2025-08-06 11:02:45,022 - INFO - Begginging to evaluate row 22, column 11 of likelihood grid.
+2025-08-06 11:02:45,176 - INFO - Begginging to evaluate row 22, column 12 of likelihood grid.
+2025-08-06 11:02:45,330 - INFO - Begginging to evaluate row 22, column 13 of likelihood grid.
+2025-08-06 11:02:45,484 - INFO - Begginging to evaluate row 22, column 14 of likelihood grid.
+2025-08-06 11:02:45,639 - INFO - Begginging to evaluate row 22, column 15 of likelihood grid.
+2025-08-06 11:02:45,793 - INFO - Begginging to evaluate row 22, column 16 of likelihood grid.
+2025-08-06 11:02:45,949 - INFO - Begginging to evaluate row 22, column 17 of likelihood grid.
+2025-08-06 11:02:46,103 - INFO - Begginging to evaluate row 22, column 18 of likelihood grid.
+2025-08-06 11:02:46,259 - INFO - Begginging to evaluate row 22, column 19 of likelihood grid.
+2025-08-06 11:02:46,413 - INFO - Begginging to evaluate row 22, column 20 of likelihood grid.
+2025-08-06 11:02:46,569 - INFO - Begginging to evaluate row 22, column 21 of likelihood grid.
+2025-08-06 11:02:46,724 - INFO - Begginging to evaluate row 22, column 22 of likelihood grid.
+2025-08-06 11:02:46,880 - INFO - Begginging to evaluate row 22, column 23 of likelihood grid.
+2025-08-06 11:02:47,036 - INFO - Begginging to evaluate row 22, column 24 of likelihood grid.
+2025-08-06 11:02:47,192 - INFO - Begginging to evaluate row 23, column 0 of likelihood grid.
+2025-08-06 11:02:47,349 - INFO - Begginging to evaluate row 23, column 1 of likelihood grid.
+2025-08-06 11:02:47,502 - INFO - Begginging to evaluate row 23, column 2 of likelihood grid.
+2025-08-06 11:02:47,656 - INFO - Begginging to evaluate row 23, column 3 of likelihood grid.
+2025-08-06 11:02:47,809 - INFO - Begginging to evaluate row 23, column 4 of likelihood grid.
+2025-08-06 11:02:47,963 - INFO - Begginging to evaluate row 23, column 5 of likelihood grid.
+2025-08-06 11:02:48,117 - INFO - Begginging to evaluate row 23, column 6 of likelihood grid.
+2025-08-06 11:02:48,273 - INFO - Begginging to evaluate row 23, column 7 of likelihood grid.
+2025-08-06 11:02:48,428 - INFO - Begginging to evaluate row 23, column 8 of likelihood grid.
+2025-08-06 11:02:48,582 - INFO - Begginging to evaluate row 23, column 9 of likelihood grid.
+2025-08-06 11:02:48,736 - INFO - Begginging to evaluate row 23, column 10 of likelihood grid.
+2025-08-06 11:02:48,890 - INFO - Begginging to evaluate row 23, column 11 of likelihood grid.
+2025-08-06 11:02:49,045 - INFO - Begginging to evaluate row 23, column 12 of likelihood grid.
+2025-08-06 11:02:49,200 - INFO - Begginging to evaluate row 23, column 13 of likelihood grid.
+2025-08-06 11:02:49,356 - INFO - Begginging to evaluate row 23, column 14 of likelihood grid.
+2025-08-06 11:02:49,511 - INFO - Begginging to evaluate row 23, column 15 of likelihood grid.
+2025-08-06 11:02:49,667 - INFO - Begginging to evaluate row 23, column 16 of likelihood grid.
+2025-08-06 11:02:49,824 - INFO - Begginging to evaluate row 23, column 17 of likelihood grid.
+2025-08-06 11:02:49,980 - INFO - Begginging to evaluate row 23, column 18 of likelihood grid.
+2025-08-06 11:02:50,136 - INFO - Begginging to evaluate row 23, column 19 of likelihood grid.
+2025-08-06 11:02:50,294 - INFO - Begginging to evaluate row 23, column 20 of likelihood grid.
+2025-08-06 11:02:50,451 - INFO - Begginging to evaluate row 23, column 21 of likelihood grid.
+2025-08-06 11:02:50,610 - INFO - Begginging to evaluate row 23, column 22 of likelihood grid.
+2025-08-06 11:02:50,771 - INFO - Begginging to evaluate row 23, column 23 of likelihood grid.
+2025-08-06 11:02:50,928 - INFO - Begginging to evaluate row 23, column 24 of likelihood grid.
+2025-08-06 11:02:51,083 - INFO - Begginging to evaluate row 24, column 0 of likelihood grid.
+2025-08-06 11:02:51,236 - INFO - Begginging to evaluate row 24, column 1 of likelihood grid.
+2025-08-06 11:02:51,391 - INFO - Begginging to evaluate row 24, column 2 of likelihood grid.
+2025-08-06 11:02:51,544 - INFO - Begginging to evaluate row 24, column 3 of likelihood grid.
+2025-08-06 11:02:51,697 - INFO - Begginging to evaluate row 24, column 4 of likelihood grid.
+2025-08-06 11:02:51,850 - INFO - Begginging to evaluate row 24, column 5 of likelihood grid.
+2025-08-06 11:02:52,004 - INFO - Begginging to evaluate row 24, column 6 of likelihood grid.
+2025-08-06 11:02:52,156 - INFO - Begginging to evaluate row 24, column 7 of likelihood grid.
+2025-08-06 11:02:52,310 - INFO - Begginging to evaluate row 24, column 8 of likelihood grid.
+2025-08-06 11:02:52,461 - INFO - Begginging to evaluate row 24, column 9 of likelihood grid.
+2025-08-06 11:02:52,614 - INFO - Begginging to evaluate row 24, column 10 of likelihood grid.
+2025-08-06 11:02:52,767 - INFO - Begginging to evaluate row 24, column 11 of likelihood grid.
+2025-08-06 11:02:52,919 - INFO - Begginging to evaluate row 24, column 12 of likelihood grid.
+2025-08-06 11:02:53,072 - INFO - Begginging to evaluate row 24, column 13 of likelihood grid.
+2025-08-06 11:02:53,225 - INFO - Begginging to evaluate row 24, column 14 of likelihood grid.
+2025-08-06 11:02:53,379 - INFO - Begginging to evaluate row 24, column 15 of likelihood grid.
+2025-08-06 11:02:53,533 - INFO - Begginging to evaluate row 24, column 16 of likelihood grid.
+2025-08-06 11:02:53,687 - INFO - Begginging to evaluate row 24, column 17 of likelihood grid.
+2025-08-06 11:02:53,845 - INFO - Begginging to evaluate row 24, column 18 of likelihood grid.
+2025-08-06 11:02:53,997 - INFO - Begginging to evaluate row 24, column 19 of likelihood grid.
+2025-08-06 11:02:54,150 - INFO - Begginging to evaluate row 24, column 20 of likelihood grid.
+2025-08-06 11:02:54,303 - INFO - Begginging to evaluate row 24, column 21 of likelihood grid.
+2025-08-06 11:02:54,456 - INFO - Begginging to evaluate row 24, column 22 of likelihood grid.
+2025-08-06 11:02:54,609 - INFO - Begginging to evaluate row 24, column 23 of likelihood grid.
+2025-08-06 11:02:54,762 - INFO - Begginging to evaluate row 24, column 24 of likelihood grid.
+2025-08-06 11:02:54,931 - INFO - Maximum likelihood computed to be: -2294.628972154507.
+2025-08-06 11:02:54,931 - INFO - Maximum likelihood found at ([0.01790779, 0.07366853]).
+2025-08-06 11:02:54,931 - INFO - Finished plotting likelihood surface.
+2025-08-06 11:02:54,931 - INFO - Pipeline executed succesfully.
