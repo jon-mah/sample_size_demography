@@ -529,30 +529,30 @@ class DemographicInference():
             elif model == 'three_epoch':
                 initial_guesses = []
                 initial_guesses.append([0.01, 0.01, 0.1, 0.1])
+                initial_guesses.append([0.025, 0.025, 0.1, 0.1])
+                initial_guesses.append([0.05, 0.05, 0.1, 0.1])
+                initial_guesses.append([0.075, 0.075, 0.1, 0.1])
                 initial_guesses.append([0.1, 0.1, 0.1, 0.1])
-                initial_guesses.append([0.5, 0.5, 0.1, 0.1])
+                initial_guesses.append([0.25, 0.25, 0.1, 0.1])
+                initial_guesses.append([0.5, 0.5, 0.51, 0.1])
+                initial_guesses.append([0.75, 0.75, 0.1, 0.1])
                 initial_guesses.append([1, 1, 0.1, 0.1])
+                initial_guesses.append([1.25, 1.25, 0.1, 0.1])
+                initial_guesses.append([1.5, 1.5, 0.1, 0.1])
+                initial_guesses.append([1.75, 1.75, 0.1, 0.1])
+                initial_guesses.append([2, 2, 0.1, 0.1])
+                initial_guesses.append([2.25, 2.25, 0.1, 0.1])
+                initial_guesses.append([2.5, 2.5, 0.1, 0.1])
+                initial_guesses.append([2.75, 2.75, 0.1, 0.1])
                 initial_guesses.append([3, 3, 0.1, 0.1])
+                initial_guesses.append([3.25, 3.25, 0.1, 0.1])
+                initial_guesses.append([3.5, 3.5, 0.1, 0.1])
+                initial_guesses.append([3.75, 3.75, 0.1, 0.1])
+                initial_guesses.append([4, 4, 0.1, 0.1])
+                initial_guesses.append([4.25, 4.25, 0.1, 0.1])
+                initial_guesses.append([4.5, 4.5, 0.1, 0.1])
+                initial_guesses.append([4.75, 4.75, 0.1, 0.1])
                 initial_guesses.append([5, 5, 0.1, 0.1])
-                initial_guesses.append([7, 7, 0.1, 0.1])
-                initial_guesses.append([8, 8, 0.1, 0.1])
-                initial_guesses.append([9, 9, 0.1, 0.1])
-                initial_guesses.append([10, 10, 0.1, 0.1])
-                initial_guesses.append([12.5, 12.5, 0.1, 0.1])
-                initial_guesses.append([15, 15, 0.1, 0.1])
-                initial_guesses.append([17.5, 17.5, 0.1, 0.1])
-                initial_guesses.append([20, 20, 0.1, 0.1])
-                initial_guesses.append([22.5, 22.5, 0.1, 0.1])
-                initial_guesses.append([25, 25, 0.1, 0.1])
-                initial_guesses.append([27.5, 27.5, 0.1, 0.1])
-                initial_guesses.append([30, 30, 0.1, 0.1])
-                initial_guesses.append([33.3, 33.3, 0.1, 0.1])
-                initial_guesses.append([36.6, 36.6, 0.1, 0.1])
-                initial_guesses.append([40, 40, 0.1, 0.1])
-                initial_guesses.append([50, 50, 0.1, 0.1])
-                initial_guesses.append([60, 60, 0.1, 0.1])
-                initial_guesses.append([70, 70, 0.1, 0.1])
-                initial_guesses.append([80, 80, 0.1, 0.1])
                 file = three_epoch_demography
                 func_ex = dadi.Numerics.make_extrap_log_func(self.three_epoch)
                 logger.info('Beginning demographic inference for three-epoch '
@@ -593,18 +593,19 @@ class DemographicInference():
                 max_likelihood = -1e25
                 for i in range(25):
                     # Start at initial guess
-                    p0 = initial_guesses[i]
+                    p0 = [3.24757474e+01, 2.51527076e-02]
+                    # p0 = initial_guesses[i]
                     # Randomly perturb parameters before optimization.
-                    # p0 = dadi.Misc.perturb_params(
-                    #     p0, fold=1, upper_bound=None,
-                    #     lower_bound=None)
+                    p0 = dadi.Misc.perturb_params(
+                        p0, fold=1, upper_bound=None,
+                        lower_bound=None)
                     logger.info(
                         'Beginning optimization with guess, {0}.'.format(p0))
-                    popt = dadi.Inference.optimize_log_fmin(
+                    popt = dadi.Inference.optimize_log_lbfgsb(
                         p0=p0, data=syn_data, model_func=func_ex, pts=pts_l,
                         lower_bound=None,
                         upper_bound=None,
-                        verbose=len(p0), maxiter=5)
+                        verbose=len(p0), maxiter=10)
                     logger.info(
                         'Finished optimization with guess, ' + str(p0) + '.')
                     logger.info('Best fit parameters: {0}.'.format(popt))

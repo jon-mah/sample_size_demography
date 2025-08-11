@@ -457,23 +457,17 @@ class PlotLikelihood():
         model_list = ['two_epoch']
         for model in model_list:
             if model == 'two_epoch':
-                file = output_plot
                 func_ex = dadi.Numerics.make_extrap_log_func(self.two_epoch)
                 logger.info('Beginning demographic inference for two-epoch '
                             'demographic model.')
-            with open(file, 'w') as f:
                 x = input_nu  # Initial x value
                 y = input_tau  # Initial y value
 
-                npts = 25
+                npts = 100
                 # set npts to 250 for high resolution (figure quality)
                 # set npts to 25 for decent resolution
                 # set npts to 5 for <5 minutes testing
-                if (x * 1.99) < 1.25:
-                    x_max = 1.25
-                else:
-                    x_max = x * 1.99
-                x_range = numpy.linspace(0.01 * x, x_max, npts)
+                x_range = numpy.linspace(x * 0.01, x * 1.99, npts)
                 y_range = numpy.linspace(y * 0.01, y * 1.99, npts)
 
                 X, Y = numpy.meshgrid(x_range, y_range)
