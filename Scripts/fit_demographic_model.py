@@ -593,12 +593,12 @@ class DemographicInference():
                 max_likelihood = -1e25
                 for i in range(25):
                     # Start at initial guess
-                    p0 = [3.24757474e+01, 2.51527076e-02]
-                    # p0 = initial_guesses[i]
+                    #  p0 = [nu, tau]
+                    p0 = initial_guesses[i]
                     # Randomly perturb parameters before optimization.
-                    p0 = dadi.Misc.perturb_params(
-                        p0, fold=1, upper_bound=None,
-                        lower_bound=None)
+                    # p0 = dadi.Misc.perturb_params(
+                    #     p0, fold=1, upper_bound=None,
+                    #     lower_bound=None)
                     logger.info(
                         'Beginning optimization with guess, {0}.'.format(p0))
                     popt = dadi.Inference.optimize_log_lbfgsb(

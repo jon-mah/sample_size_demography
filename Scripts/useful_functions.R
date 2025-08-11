@@ -1043,7 +1043,7 @@ plot_likelihood_surface = function(input) {
   MLE_label = paste(str_trunc(toString(MLE_minus_half), 6, ellipsis=''), ' <= ', str_trunc(toString(MLE), 6, ellipsis=''), sep='')
   color_breakpoints = cut(species_surface$likelihood, c(-Inf, MLE_minus_3, MLE_minus_1, MLE_minus_half, MLE))
   species_surface_scatter = ggplot(data=species_surface, aes(x=nu, y=tau), color=likelihood) + 
-    geom_point(aes(colour = color_breakpoints), size = 2, shape=15) +
+    geom_point(aes(colour = color_breakpoints), size = 6, shape=15) +
     # geom_point(aes(colour = color_breakpoints), size = 15, shape=15) +
     scale_color_manual(name='Log Likelihood',
                        values=c('#a6611a', '#dfc27d', '#80cdc1', '#018571'),
