@@ -66,6 +66,11 @@ class DemographicInference():
             help=('Sum of allele counts for synonymous SFS.'),
             default=100000000.0)
         parser.add_argument(
+            '--input_params', type=float,
+            dest='input_params', nargs='*',
+            help=('Input starting parameters for MLE search.'),
+            default=[])
+        parser.add_argument(
             'outprefix', type=str,
             help='The file prefix for the output files')
         return parser
@@ -342,6 +347,7 @@ class DemographicInference():
         mask_singletons = args['mask_singletons']
         mask_doubletons = args['mask_doubletons']
         L_syn = args['L_syn']
+        input_params = args['input_params']
 
         # Numpy options
         numpy.set_printoptions(linewidth=numpy.inf)
@@ -425,8 +431,8 @@ class DemographicInference():
         # First set parameter bounds for optimization
         # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
         # model_list = ['one_epoch']
-        model_list = ['two_epoch']
-        # model_list = ['three_epoch']
+        # model_list = ['two_epoch']
+        model_list = ['three_epoch']
         # model_list = ['one_epoch', 'two_epoch']
         # model_list = ['one_epoch', 'three_epoch']
         # model_list = ['two_epoch', 'three_epoch']
@@ -593,12 +599,14 @@ class DemographicInference():
                 max_likelihood = -1e25
                 for i in range(25):
                     # Start at initial guess
-                    #  p0 = [nu, tau]
-                    p0 = initial_guesses[i]
+                    if len(input_params) > 0:
+                        p0 = input_params
+                    else:
+                        p0 = initial_guesses[i]
                     # Randomly perturb parameters before optimization.
-                    # p0 = dadi.Misc.perturb_params(
-                    #     p0, fold=1, upper_bound=None,
-                    #     lower_bound=None)
+                    p0 = dadi.Misc.perturb_params(
+                        p0, fold=1, upper_bound=None,
+                        lower_bound=None)
                     logger.info(
                         'Beginning optimization with guess, {0}.'.format(p0))
                     popt = dadi.Inference.optimize_log_lbfgsb(
