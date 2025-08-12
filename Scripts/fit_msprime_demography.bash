@@ -3,12 +3,12 @@
 #$ -V
 #$ -l h_data=50G
 #$ -l h_rt=72:00:00
-#$ -l highp
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N msprime_demog
+#$ -t 10-800:10
 
-SGE_TASK_ID=150
+# SGE_TASK_ID=150
 
 sample_size=$SGE_TASK_ID
 

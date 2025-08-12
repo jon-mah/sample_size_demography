@@ -1,12 +1,12 @@
 #!/bin/bash
 #$ -cwd
 #$ -V
-#$ -l h_data=25G
-#$ -l h_rt=01:00:00
+#$ -l h_data=5G
+#$ -l h_rt=00:10:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N dadi_demog
-#$ -t 710
+#$ -t 10-800:10
 
 SGE_TASK_ID=710
 
