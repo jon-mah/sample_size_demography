@@ -1030,7 +1030,9 @@ compare_five_full_SFS = function(
 plot_likelihood_surface = function(input) {
   species_surface = read.csv(input, header=TRUE)
   names(species_surface) = c('index', 'nu', 'tau', 'likelihood')
-
+  
+  nu_min = min(species_surface[[2]])
+  nu_max = max(species_surface[[2]])
   species_surface = species_surface[order(species_surface$likelihood, decreasing=TRUE), ]
 
   MLE = max(species_surface$likelihood)
@@ -1043,16 +1045,186 @@ plot_likelihood_surface = function(input) {
   MLE_label = paste(str_trunc(toString(MLE_minus_half), 6, ellipsis=''), ' <= ', str_trunc(toString(MLE), 6, ellipsis=''), sep='')
   color_breakpoints = cut(species_surface$likelihood, c(-Inf, MLE_minus_3, MLE_minus_1, MLE_minus_half, MLE))
   species_surface_scatter = ggplot(data=species_surface, aes(x=nu, y=tau), color=likelihood) + 
-    geom_point(aes(colour = color_breakpoints), size = 6, shape=15) +
+    geom_point(aes(colour = color_breakpoints), size = 1, shape=15) +
     # geom_point(aes(colour = color_breakpoints), size = 15, shape=15) +
     scale_color_manual(name='Log Likelihood',
                        values=c('#a6611a', '#dfc27d', '#80cdc1', '#018571'),
                        labels=c('(-Inf, -3]', '(-3, -1]', '(-1, -0.5', '(-0,5, 0]')) +
-    geom_vline(xintercept=1.0, color='red', linewidth=2) +
     theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
     xlab('Nu') +
     ylab('Tau')
-
+  
+  if (nu_min < 1.0 && nu_max > 1.0) {
+    species_surface_scatter = species_surface_scatter +
+      geom_vline(xintercept=1.0, color='red', linewidth=2)
+  }
   return(species_surface_scatter)
+}
+
+plot_likelihood_contour <- function(input) {
+  species_surface <- read.csv(input, header = TRUE)
+  names(species_surface) <- c('index', 'nu', 'tau', 'likelihood')
+  
+  nu_min <- min(species_surface$nu)
+  nu_max <- max(species_surface$nu)
+  
+  # Calculate MLE cutoffs
+  MLE <- max(species_surface$likelihood)
+  MLE_minus_3 <- MLE - 3
+  MLE_minus_1 <- MLE - 1
+  MLE_minus_half <- MLE - 0.5
+  
+  # Create a factor for colour bins
+  species_surface$likelihood_bin <- cut(
+    species_surface$likelihood,
+    breaks = c(-Inf, MLE_minus_3, MLE_minus_1, MLE_minus_half, MLE),
+    include.lowest = TRUE
+  )
+  
+  # Contour fill based on likelihood, not density
+  p <- ggplot(species_surface, aes(x = nu, y = tau, z = likelihood)) +
+    geom_contour_filled(
+      breaks = c(-Inf, MLE_minus_3, MLE_minus_1, MLE_minus_half, MLE)
+    ) +
+    scale_fill_manual(
+      name = 'Log Likelihood',
+      values = c('#a6611a', '#dfc27d', '#80cdc1', '#018571'),
+      labels=c('(-Inf, -3]', '(-3, -1]', '(-1, -0.5', '(-0,5, 0]'),
+      drop = FALSE
+    ) +
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      panel.background = element_blank(),
+      axis.line = element_line(colour = "black")
+    ) +
+    xlab('Nu') +
+    ylab('Tau')
+  
+  if (nu_min < 1.0 && nu_max > 1.0) {
+    p <- p + geom_vline(xintercept = 1.0, color = 'red', linewidth = 2)
+  }
+  
+  return(p)
+}
+
+
+plot_likelihood_surface_contour = function(input) {
+  species_surface = read.csv(input, header=TRUE)
+  names(species_surface) = c('index', 'nu', 'tau', 'likelihood')
+  nu_min <- min(species_surface$nu)
+  nu_max <- max(species_surface$nu)
+  unique_nu = unique(species_surface$nu)
+  unique_tau = unique(species_surface$tau)
+  Z = matrix(data=NA, nrow=length(unique_nu), ncol=length(unique_tau))
+  count = 1
+  for (i in 1:length(unique_nu)) {
+    for (j in 1:length(unique_tau)) {
+      Z[i, j] = species_surface$likelihood[count]
+      if (species_surface$nu[count] != unique_nu[i]) {
+        print('break')
+      } else if (species_surface$tau[count] != unique_tau[j]) {
+        print('break')
+      }
+      count = count + 1
+    }
+ }
+  species_surface = species_surface[order(species_surface$likelihood, decreasing=TRUE), ]
+  best_params = c(species_surface$nu[1], species_surface$tau[1])
+  print(best_params)
+  MLE = max(species_surface$likelihood)
+  # print(MLE)
+  species_surface$likelihood = species_surface$likelihood - MLE
+  color_breakpoints = cut(species_surface$likelihood, c(-Inf, -3, -1, -0.5, 0))
+
+  likelihood_surface_title = paste('MLE @ [', str_trunc(toString(best_params[1]), 8, ellipsis=''), sep='')
+  likelihood_surface_title = paste(likelihood_surface_title, ', ', sep='')
+  likelihood_surface_title = paste(likelihood_surface_title, str_trunc(toString(best_params[2]), 8, ellipsis=''), sep='')
+  likelihood_surface_title = paste(likelihood_surface_title, ']', sep='')
+  
+  xlabel_text = expression(nu == frac(N[current], N[ancestral]))
+  ylabel_text = expression(tau == frac(generations, 2 * N[ancestral]))
+  fig = ggplot(species_surface) +
+    geom_contour_filled(aes(x=nu, y=tau, z=likelihood), 
+      # breaks = c(-Inf, -3, -1, -0.5, 0)) +
+      breaks = c(0, -0.5, -1, -3, -Inf)) +
+    scale_fill_brewer(palette = "YlGnBu", direction=1, name='Log Likelihood') +
+    # geom_vline(xintercept=1.0, color='red', linewidth=1, linetype='dashed') +
+    theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+    annotate('point', x=best_params[1], y=best_params[2], color='orange', size=2) +
+    xlab(xlabel_text)  +
+    ylab(ylabel_text)
+    # ggtitle(likelihood_surface_title)
+  
+  if (nu_min < 1.0 && nu_max > 1.0) {
+    fig <- fig + geom_vline(xintercept = 1.0, color = 'red', linewidth = 1, linetype='dashed')
+  }
+  return(fig)
+}
+
+find_CI_bounds <- function(input) {
+  # Read CSV and drop index column
+  df <- read.csv(input, header = TRUE)
+  df <- df[, c("X", "Y", "Z")]  # keep only relevant columns
+  
+  # Find MLE
+  MLE <- max(df$Z, na.rm = TRUE)
+  
+  # Filter for points within 3 units of MLE
+  df_MLE <- df[df$Z == MLE, ]
+  df_near_MLE <- subset(df, Z >= (MLE - 3))
+  
+  # Find min/max for nu and tau
+  CI_bounds <- list(
+    MLE = MLE,
+    nu_MLE = unique(df_MLE$X)[1],
+    tau_MLE= unique(df_MLE$Y)[1],
+    nu_min = min(df_near_MLE$X, na.rm = TRUE),
+    nu_max = max(df_near_MLE$X, na.rm = TRUE),
+    tau_min = min(df_near_MLE$Y, na.rm = TRUE),
+    tau_max = max(df_near_MLE$Y, na.rm = TRUE)
+  )
+  
+  return(CI_bounds)
+}
+
+compare_4_sample_size_sfs_cutoff = function(n_50, n_80, n_110, n_140) {
+  x_axis = 1:20
+  n_50 = proportional_sfs(n_50)[1:20]
+  n_80 = proportional_sfs(n_80)[1:20]
+  n_110 = proportional_sfs(n_110)[1:20]
+  n_140 = proportional_sfs(n_140)[1:20]
+  input_df = data.frame(n_50,
+                        n_80,
+                        n_110,
+                        n_140,
+                        x_axis)
+  
+  names(input_df) = c('N=50',
+                      'N=80',
+                      'N=110',
+                      'N=140',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                                                     aes(x=x_axis, 
+                                                         y=value,
+                                                         fill=variable)) +
+    geom_bar(position='dodge2', stat='identity') +
+    labs(x = "", fill = "") +
+    scale_fill_manual(name='Sample Size',
+                     breaks=c('N=50', 'N=80', 'N=110', 'N=140'),
+                     values=c('N=50'='#bfd3e6',
+                       'N=80'='#8c96c6',
+                       'N=110'='#88419d',
+                       'N=140'='#4d004b')) +
+    scale_x_continuous(name='Minor allele frequency in sample (up to 20)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
+    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
+  
+  return(p_input_comparison)
 }

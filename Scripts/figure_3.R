@@ -70,8 +70,8 @@ figure_3A_dataframe = data.frame(
 # figure_3A_dataframe$sample_size = sample_size
 
 plot_3A = ggplot(data=figure_3A_dataframe, aes(x=sample_size, y=mean_list)) + 
-  geom_line(linewidth=2) +
-  geom_errorbar(aes(ymin = mean_list - sd_list, ymax = mean_list + sd_list), width = 10) +
+  geom_line(linewidth=1) +
+  geom_ribbon(aes(ymin = mean_list - sd_list, ymax = mean_list + sd_list), alpha=0.2) +
   theme_bw() +
   xlab('Sample size') +
   ylab("Mean coalescent time (generations)") +
@@ -110,7 +110,8 @@ plot_3B = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y=value, color=var
                      values=c('dadi_contract'=15,
                        'dadi_expand'=22),
                      labels=c('Dadi, contraction',
-                       'Dadi, expansion'))
+                       'Dadi, expansion')) +
+  geom_vline(xintercept=115, size=1, linetype = 'dotted', color='#0C7BDC')
 
 plot_3C = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
   geom_point(size=2) +
@@ -133,7 +134,8 @@ plot_3C = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y=value, color=var
                        'msprime_expand'=22),
                      labels=c('MSPrime, contraction',
                        'MSPrime, expansion')) +
-  guides(color='none')
+  guides(color='none') +
+  geom_vline(xintercept=95, size=1, linetype = 'dotted', color='#FFC20A')
 
 figure_3D_dataframe = melt(data.frame(
   dadi_time,
@@ -158,6 +160,9 @@ plot_3D = ggplot(data=figure_3D_dataframe, aes(x=sample_size, y=value, color=var
                    msprime_time='#FFC20A'),
                  labels=c('Inferred dadi time',
                    'Inferred msprime time')
-                 )
+                 ) +
+  geom_vline(xintercept=115, size=1, linetype = 'dotted', color='#0C7BDC') +
+  geom_vline(xintercept=95, size=1, linetype = 'dotted', color='#FFC20A')
 
 plot_3A + plot_3B + plot_3C + plot_3D + plot_layout(nrow=4)
+
