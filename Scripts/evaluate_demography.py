@@ -421,8 +421,8 @@ class EvaluateDemography():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Construct initial Spectrum object from input synonymous sfs.
-        syn_data = dadi.Spectrum.from_file(syn_input_sfs).fold()
-        # syn_data = dadi.Spectrum.from_file(syn_input_sfs)
+        # syn_data = dadi.Spectrum.from_file(syn_input_sfs).fold()
+        syn_data = dadi.Spectrum.from_file(syn_input_sfs)
         #  syn_data = syn_data.fold()
         if mask_singletons:
             syn_data.mask[1] = True

@@ -4,9 +4,9 @@
 #$ -N dadi_likelihood
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -l h_rt=10:00:00
+#$ -l h_rt=12:00:00
 #$ -l h_data=30G
-#$ -t 800
+#$ -t 10-800:10
 
 # SGE_TASK_ID=50
 
