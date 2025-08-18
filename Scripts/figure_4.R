@@ -16,23 +16,23 @@ msprime_singleton_ratio = c()
 msprime_singleton_diff = c()
 
 for (i in sample_size) {
-  dadi_sfs = read_input_sfs(paste0(
-    "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '.sfs'))
-  dadi_snm_sfs = sfs_from_demography(paste0(
-    "../Analysis/dadi_3EpB_", i, '/two_epoch_demography.txt'))
+  dadi_sfs = proportional_sfs(read_input_sfs(paste0(
+    "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '.sfs')))
+  dadi_snm_sfs = proportional_sfs(sfs_from_demography(paste0(
+    "../Analysis/dadi_3EpB_", i, '/one_epoch_demography.txt')))
   dadi_sfs_singletons = c(dadi_sfs_singletons, dadi_sfs[1])
   dadi_snm_singletons = c(dadi_sfs_singletons, dadi_snm_sfs[1])
   dadi_singleton_ratio = c(dadi_singleton_ratio, dadi_sfs[1] / dadi_snm_sfs[1])
-  dadi_singleton_diff = c(dadi_singleton_diff, abs(dadi_sfs[1] - dadi_snm_sfs[1]))
+  dadi_singleton_diff = c(dadi_singleton_diff, (dadi_sfs[1] - dadi_snm_sfs[1]))
     
-  msprime_sfs = read_input_sfs(paste0(
-    "../Simulations/simple_simulations/ThreeEpochBottleneck_", i, '_concat.sfs'))
-  msprime_snm_sfs = sfs_from_demography(paste0(
-    "../Analysis/msprime_3EpB_", i, '/two_epoch_demography.txt'))
+  msprime_sfs = proportional_sfs(read_input_sfs(paste0(
+    "../Simulations/simple_simulations/ThreeEpochBottleneck_", i, '_concat.sfs')))
+  msprime_snm_sfs = proportional_sfs(sfs_from_demography(paste0(
+    "../Analysis/msprime_3EpB_", i, '/one_epoch_demography.txt')))
   msprime_sfs_singletons = c(msprime_sfs_singletons, msprime_sfs[1])
   msprime_snm_singletons = c(msprime_sfs_singletons, msprime_snm_sfs[1])
   msprime_singleton_ratio = c(msprime_singleton_ratio, msprime_sfs[1] / msprime_snm_sfs[1])
-  msprime_singleton_diff = c(msprime_singleton_diff, abs(msprime_sfs[1] - msprime_snm_sfs[1]))
+  msprime_singleton_diff = c(msprime_singleton_diff, (msprime_sfs[1] - msprime_snm_sfs[1]))
 }
 
 singleton_ratio_dataframe = melt(data.frame(
@@ -62,19 +62,18 @@ singleton_diff_dataframe = melt(data.frame(
 ))
 singleton_diff_dataframe$sample_size = sample_size
 
-diff_label_text = expression(abs(' Difference in proportion of singletons between data and SNM '))
+diff_label_text = expression('Difference in proportion of singletons between data and SNM')
 
 plot_B = ggplot(data=singleton_diff_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(linewidth=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   xlab('Sample size') +
   ylab(diff_label_text) +
-  ggtitle('Absolute difference in singleton proportion between data and SNM') +
+  ggtitle('Difference in singleton proportion between data and SNM') +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
     labels = c("Dadi", "MSPrime")
   ) +
-  scale_y_log10() +
-  geom_hline(yintercept = 1, size = 1, linetype = 'dotted') +
+  geom_hline(yintercept = 0, size = 1, linetype = 'dotted') +
   theme(legend.position='none')
 
 plot_A + plot_B + plot_layout(nrow=2)

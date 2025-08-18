@@ -102,6 +102,9 @@ class msPrimeSimulate():
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_ThreeEpB = '{0}{1}ThreeEpochBottleneck_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        branch_length_ThreeEpB = \
+           '{0}{1}ThreeEpochBottleneck_{2}_branch_length_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -228,7 +231,16 @@ class msPrimeSimulate():
                 # Retain coalescent events
                 if not tree_4.is_leaf(u):
                     g4.write(f"Node {u}, {tree_4.time(u)}\n")
-
+        self.ensure_parent_dir_exists(branch_length_ThreeEpB)
+        with open(branch_length_ThreeEpB, "w+") as h4:
+            logger.info('Writing branch lengths for ThreeEpB.')
+            h4.write('node_generations, branch_length\n')
+            for u in tree_4.nodes():
+                p = tree_4.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_4.node(p).time - tree_4.node(u).time
+                    h4.write(f"{tree_4.time(u)}, {branch_length}\n")
+                    
         # with open(output_TwoEpC, "w+") as f0:
         #     logger.info('Simulating two-epoch contraction.')
         #     mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)

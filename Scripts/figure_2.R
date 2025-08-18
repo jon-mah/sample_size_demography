@@ -87,7 +87,7 @@ for (i in sample_size) {
 
 nu_label_text = expression(nu == frac(N[current], N[ancestral]))
 tau_label_text = expression(tau == frac(generations, 2 * N[ancestral]))
-
+twoLambda_text = expression(2*Lambda)
 nu_dataframe = melt(data.frame(
   dadi_nu,
   msprime_nu
@@ -152,14 +152,13 @@ plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable))
     values = c("#0C7BDC","#FFC20A"),
     labels = c("Dadi", "MSPrime")
   ) +
-  scale_y_log10() +
   theme(legend.position='none')
 
 plot_C = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   xlab('Sample size') +
-  ylab("2*Lambda") +
-  ggtitle("2*Lambda demographic model fit criterion") +
+  ylab(twoLambda_text) +
+  ggtitle('Demographic model fit criterion by sample size') +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
     labels = c("Dadi", "MSPrime")
@@ -231,17 +230,16 @@ plot_A +
   plot_H +
   plot_layout(design=design)
 
-
-
-
-
-
 for (i in sample_size) {
   print(i)
   print('dadi')
   dadi_likelihood = paste0(
     "../Analysis/dadi_3EpB_", i, '/likelihood_surface.csv')
   plot_likelihood_surface_contour(dadi_likelihood)
+}
+
+for (i in sample_size) {
+  print(i)
   print('msprime')
   msprime_likelihood = paste0(
    "../Analysis/msprime_3EpB_", i, '/likelihood_surface.csv')
