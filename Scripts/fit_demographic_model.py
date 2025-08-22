@@ -58,13 +58,23 @@ class DemographicInference():
             '--mask_doubletons', dest='mask_doubletons',
             help=('Boolean flag for masking doublestons in Spectrum.'),
             action='store_true')
+        parser.add_argument(
+            '--sum_alleles', dest='sum_alleles',
+            help=('Boolean flag to determine if genome length should be '
+                  'determined by calculated sum of allele count.'),
+            action='store_true')
         parser.set_defaults(mask_singletons=False)
         parser.set_defaults(mask_doubletons=False)
+        parser.set_defaults(sum_alleles=False)
         parser.add_argument(
             '--L_syn', type=float,
             dest='L_syn',
             help=('Sum of allele counts for synonymous SFS.'),
             default=100000000.0)
+        parser.add_argument(
+            '--model_type', type=str,
+            dest='model_type',
+            help=('Type of demographic model.'))
         parser.add_argument(
             '--input_params', type=float,
             dest='input_params', nargs='*',
@@ -74,6 +84,17 @@ class DemographicInference():
             'outprefix', type=str,
             help='The file prefix for the output files')
         return parser
+
+    def compute_allele_sum(self, file_path):
+        """Return sum of allele counts from input SFS file.
+        """
+        with open(file_path, 'r') as file:
+             lines = file.readlines()
+             if len(lines) >= 2:
+                 second_line = lines[1].strip()
+                 values = list(map(float, second_line.split()))
+                 array_sum = sum(values)
+                 return array_sum
 
     def snm(self, notused, ns, pts):
         """Return a standard neutral model.
@@ -346,8 +367,10 @@ class DemographicInference():
         outprefix = args['outprefix']
         mask_singletons = args['mask_singletons']
         mask_doubletons = args['mask_doubletons']
+        sum_alleles = args['sum_alleles']
         L_syn = args['L_syn']
         input_params = args['input_params']
+        model_type = args['model_type']
 
         # Numpy options
         numpy.set_printoptions(linewidth=numpy.inf)
@@ -421,18 +444,27 @@ class DemographicInference():
             syn_data.mask[1] = True
         if mask_doubletons:
             syn_data.mask[2] = True
+        if sum_alleles:
+            L_syn = self.compute_allele_sum(syn_input_sfs)
+            logger.info('Calculating allele sum based on number of variants')
         syn_ns = syn_data.sample_sizes  # Number of samples.
         pts_l_1 = int(syn_ns * 2)
         pts_l_2 = int(syn_ns * 3)
         pts_l_3 = int(syn_ns * 4)
         pts_l = [pts_l_1, pts_l_2, pts_l_3]
 
+        if model_type:
+            model_list = [model_type]
+        else:
+            # model_list = ['one_epoch']
+            # model_list = ['two_epoch']
+            model_list = ['three_epoch']
         # Optomize parameters for this model.
         # First set parameter bounds for optimization
         # model_list = ['one_epoch', 'two_epoch', 'three_epoch']
         # model_list = ['one_epoch']
         # model_list = ['two_epoch']
-        model_list = ['three_epoch']
+        # model_list = ['three_epoch']
         # model_list = ['one_epoch', 'two_epoch']
         # model_list = ['one_epoch', 'three_epoch']
         # model_list = ['two_epoch', 'three_epoch']

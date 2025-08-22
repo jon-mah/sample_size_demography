@@ -12,7 +12,7 @@ import argparse
 import warnings
 
 import msprime
-
+import tskit
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
     """Like *argparse.ArgumentParser*, but prints help when no arguments."""
@@ -222,7 +222,7 @@ class msPrimeSimulate():
         ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
             demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
         tree_4 = ts4.first()
-        logger.info('First tree in ThreeEpB: {0}'.format(tree_4))
+        logger.info('First tree in ThreeEpB: \n{0}'.format(tree_4))
         self.ensure_parent_dir_exists(coalescent_ThreeEpB)
         with open(coalescent_ThreeEpB, "w+") as g4:
             logger.info('Writing coalescent times for ThreeEpB.')
@@ -238,7 +238,7 @@ class msPrimeSimulate():
             for u in tree_4.nodes():
                 p = tree_4.parent(u)
                 if p != tskit.NULL:
-                    branch_length = tree_4.node(p).time - tree_4.node(u).time
+                    branch_length = tree_4.time(p) - tree_4.time(u)
                     h4.write(f"{tree_4.time(u)}, {branch_length}\n")
                     
         # with open(output_TwoEpC, "w+") as f0:

@@ -7,9 +7,9 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N msprime_demog
-#$ -t 10-800:10
+#$ -t 210
 
-# SGE_TASK_ID=150
+# SGE_TASK_ID=770
 
 sample_size=$SGE_TASK_ID
 
