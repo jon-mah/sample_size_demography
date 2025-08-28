@@ -149,7 +149,7 @@ class msPrimeSimulate():
         # Three epoch double expansion, population 3
         dem3.add_population(name="ThreeEpE", description="Three epoch expansion", initial_size=40000)
         # Three epoch ancient bottleneck, population 4
-        dem4.add_population(name="ThreeEpB", description="Three epcoh bottleneck", initial_size=50000)
+        dem4.add_population(name="ThreeEpB", description="Three epoch bottleneck", initial_size=50000)
 
         # Demographic events
         dem0.add_population_parameters_change(time=2000, initial_size=10000, population=0)
@@ -220,7 +220,8 @@ class msPrimeSimulate():
         #             g3.write(f"Node {u}, {tree_3.time(u)}\n")
 
         ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
-            demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
+            demography=dem4, sequence_length=5000000, recombination_rate=1e-8,
+            random_seed=4)
         tree_4 = ts4.first()
         logger.info('First tree in ThreeEpB: \n{0}'.format(tree_4))
         self.ensure_parent_dir_exists(coalescent_ThreeEpB)
