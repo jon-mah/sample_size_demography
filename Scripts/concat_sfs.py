@@ -61,6 +61,7 @@ class concatSFS():
         outprefix = args['outprefix']
         outprefix_string = str(outprefix)
         matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
+        print(len(matching_files))
         # matching_files = glob.glob(outprefix_string + '*sfs.txt', recursive=True)
 
         # create output directory if needed
@@ -73,7 +74,10 @@ class concatSFS():
 
         # Output files: logfile
         # Remove output files if they already exist
-        underscore = '' if args['outprefix'][-1] == '/' else '_'
+        if args['outprefix'][-1] in ['/', '_']:
+            underscore = ''
+        else:
+            underscore = '_'
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
         output_sfs = '{0}{1}concat.sfs'.format(args['outprefix'], underscore)
         to_remove = [logfile]
