@@ -221,7 +221,7 @@ class msPrimeSimulate():
 
         ts4 = msprime.sim_ancestry(samples={"ThreeEpB": sample_size},
             demography=dem4, sequence_length=5000000, recombination_rate=1e-8,
-            random_seed=1)
+            random_seed=replicate)
         tree_4 = ts4.first()
         logger.info('First tree in ThreeEpB: \n{0}'.format(tree_4))
         self.ensure_parent_dir_exists(coalescent_ThreeEpB)
