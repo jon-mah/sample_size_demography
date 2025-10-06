@@ -9,7 +9,9 @@ EUR_2020_nu = c()
 EUR_2020_time = c()
 EUR_2020_tau = c()
 EUR_2020_tajima_D = c()
-EUR_2020_lambda = c()
+EUR_2020_lambda_32 = c()
+EUR_2020_lambda_21 = c()
+EUR_2020_one_LL = c()
 EUR_2020_two_LL = c()
 EUR_2020_three_LL = c()
 
@@ -18,34 +20,47 @@ EUR_2020_nu_max = c()
 EUR_2020_tau_min = c()
 EUR_2020_tau_max = c()
 
+EUR_2020_nu_b = c()
+EUR_2020_nu_f = c()
+
 for (i in sample_size) {
   EUR_2020_sfs = paste0(
     "../Analysis/1kg_EUR_2020_", i, 'syn_downsampled_sfs.txt')
   EUR_2020_demography = paste0(
     "../Analysis/1kg_EUR_2020_", i, '/two_epoch_demography.txt')
+  EUR_2020_demography_1 = paste0(
+    "../Analysis/1kg_EUR_2020_", i, '/one_epoch_demography.txt')
   EUR_2020_demography_3 = paste0(
     "../Analysis/1kg_EUR_2020_", i, '/three_epoch_demography.txt')
-  # EUR_2020_likelihood = paste0(
-  #   "../Analysis/1kg_EUR_2020_", i, '/likelihood_surface.csv')
-  EUR_2020_nu = c(EUR_2020_nu, nu_from_demography(EUR_2020_demography))
+  EUR_2020_likelihood = paste0(
+   "../Analysis/1kg_EUR_2020_", i, '/likelihood_surface.csv')
+  # EUR_2020_nu = c(EUR_2020_nu, nu_from_demography(EUR_2020_demography))
   EUR_2020_time = c(EUR_2020_time, time_from_demography(EUR_2020_demography))
+  # EUR_2020_tau = c(EUR_2020_tau, tau_from_demography(EUR_2020_demography))
   EUR_2020_summary = paste0(
     "../Analysis/1kg_EUR_2020_", i, '/syn_downsampled_sfs_summary.txt')
   
   EUR_2020_tajima_D = c(EUR_2020_tajima_D, read_summary_statistics(EUR_2020_summary)[3])
+  this_EUR_2020_one_LL = LL_from_demography(EUR_2020_demography_1)
   this_EUR_2020_two_LL = LL_from_demography(EUR_2020_demography)
   this_EUR_2020_three_LL = LL_from_demography(EUR_2020_demography_3)
+  EUR_2020_one_LL = c(EUR_2020_one_LL, this_EUR_2020_one_LL)
   EUR_2020_two_LL = c(EUR_2020_two_LL, this_EUR_2020_two_LL)
   EUR_2020_three_LL = c(EUR_2020_three_LL, this_EUR_2020_three_LL)
-  EUR_2020_LL_diff = this_EUR_2020_three_LL - this_EUR_2020_two_LL
-  EUR_2020_lambda = c(EUR_2020_lambda, 2 * EUR_2020_LL_diff)
+  EUR_2020_LL_diff_32 = this_EUR_2020_three_LL - this_EUR_2020_two_LL
+  EUR_2020_LL_diff_21 = this_EUR_2020_two_LL - this_EUR_2020_one_LL
+  EUR_2020_lambda_32 = c(EUR_2020_lambda_32, 2 * EUR_2020_LL_diff_32)
+  EUR_2020_lambda_21 = c(EUR_2020_lambda_21, 2 * EUR_2020_LL_diff_21)
   
-  # EUR_2020_nu = c(EUR_2020_nu, find_CI_bounds(EUR_2020_likelihood)$nu_MLE)
-  # EUR_2020_nu_min = c(EUR_2020_nu_min, find_CI_bounds(EUR_2020_likelihood)$nu_min)
-  # EUR_2020_nu_max = c(EUR_2020_nu_max, find_CI_bounds(EUR_2020_likelihood)$nu_max)
-  # EUR_2020_tau = c(EUR_2020_tau, find_CI_bounds(EUR_2020_likelihood)$tau_MLE)
-  # EUR_2020_tau_min = c(EUR_2020_tau_min, find_CI_bounds(EUR_2020_likelihood)$tau_min)  
-  # EUR_2020_tau_max = c(EUR_2020_tau_max, find_CI_bounds(EUR_2020_likelihood)$tau_max)
+  EUR_2020_nu = c(EUR_2020_nu, find_CI_bounds(EUR_2020_likelihood)$nu_MLE)
+  EUR_2020_nu_min = c(EUR_2020_nu_min, find_CI_bounds(EUR_2020_likelihood)$nu_min)
+  EUR_2020_nu_max = c(EUR_2020_nu_max, find_CI_bounds(EUR_2020_likelihood)$nu_max)
+  EUR_2020_tau = c(EUR_2020_tau, find_CI_bounds(EUR_2020_likelihood)$tau_MLE)
+  EUR_2020_tau_min = c(EUR_2020_tau_min, find_CI_bounds(EUR_2020_likelihood)$tau_min)  
+  EUR_2020_tau_max = c(EUR_2020_tau_max, find_CI_bounds(EUR_2020_likelihood)$tau_max)
+  
+  EUR_2020_nu_b = c(EUR_2020_nu_b, nuB_from_demography(EUR_2020_demography_3))
+  EUR_2020_nu_f = c(EUR_2020_nu_f, nuF_from_demography(EUR_2020_demography_3))
 }
 
 nu_label_text = expression(nu == frac(N[current], N[ancestral]))
@@ -55,15 +70,15 @@ nu_dataframe = melt(data.frame(
   EUR_2020_nu
 ))
 nu_dataframe$sample_size = sample_size
-# nu_dataframe$EUR_2020_min = EUR_2020_nu_min
-# nu_dataframe$EUR_2020_max = EUR_2020_nu_max
+nu_dataframe$EUR_2020_min = EUR_2020_nu_min
+nu_dataframe$EUR_2020_max = EUR_2020_nu_max
 
 tau_dataframe = melt(data.frame(
   EUR_2020_tau
 ))
 tau_dataframe$sample_size = sample_size
-# tau_dataframe$EUR_2020_min = EUR_2020_tau_min
-# tau_dataframe$EUR_2020_max = EUR_2020_tau_max
+tau_dataframe$EUR_2020_min = EUR_2020_tau_min
+tau_dataframe$EUR_2020_max = EUR_2020_tau_max
 
 tajima_D_dataframe = melt(data.frame(
   EUR_2020_tajima_D
@@ -71,162 +86,101 @@ tajima_D_dataframe = melt(data.frame(
 tajima_D_dataframe$sample_size = sample_size
 
 lambda_dataframe = melt(data.frame(
-  EUR_2020_lambda
+  EUR_2020_lambda_32,
+  EUR_2020_lambda_21
 ))
 lambda_dataframe$sample_size = sample_size
 
+twoLambda_text = expression(2*Lambda)
+
+EUR_2020_nuF_nuB = EUR_2020_nu_f / EUR_2020_nu_b
+
+epoch_ratio_dataframe = melt(data.frame(
+  EUR_2020_nu_b,
+  EUR_2020_nuF_nuB
+))
+epoch_ratio_dataframe$sample_size = sample_size
+
+
 plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  # geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
+  geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   # geom_ribbon(aes(ymin = snm_min, ymax = snm_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   xlab('Sample size') +
   ylab(nu_label_text) +
   ggtitle("Ratio of Ancestral to Effective population size") +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
-    labels = c("EUR_2020", "snm")
+    labels = c("1KG 2020, EUR", "snm")
   ) +
   scale_y_log10() +
-  geom_hline(yintercept = 1, size = 2, linetype = 'dashed')
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed')
 
 
 plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  # geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
+  geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   # geom_ribbon(aes(ymin = snm_min, ymax = snm_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   xlab('Sample size') +
   ylab(tau_label_text) +
   ggtitle('Timing of inferred instantaneous size change') +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
-    labels = c("EUR_2020", "snm")
+    labels = c("1kg 2020, EUR", "snm")
   ) +
   scale_y_log10() +
   theme(legend.position='none')
 
-plot_C = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  xlab('Sample size') +
-  ylab("2*Lambda") +
-  ggtitle("2*Lambda demographic model fit criterion") +
-  scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("EUR_2020", "snm")
-  ) +
-  theme(legend.position='none')
+# 2Lambda is approximately chi-squared distributed.
+# 80 comparisons for 10-300:10, so critical value is 12.79 with Bonferroni correction
+qchisq(1 - 0.05/30, df=2)
 
-plot_D = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   xlab('Sample size') +
   ylab("Tajima's D") +
-  ggtitle("Tajima's D for simulated SFS") +
+  ggtitle("Tajima's D for empirical SFS") +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
-    labels = c("EUR_2020", "snm")
+    labels = c("1kg 2020, EUR", "snm")
   ) +
-  geom_hline(yintercept = 0, size = 2, linetype = 'dashed') +
-  theme(legend.position='none')
+  geom_hline(yintercept = 0, size = 1, linetype = 'dashed') +
+  theme(legend.position='none') +
+  ylim(c(-1, 1))
 
-# dadi_sfs_50 = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_50.sfs')
-# dadi_sfs_80 = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_80.sfs')
-# dadi_sfs_110 = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_110.sfs')
-# dadi_sfs_140 = read_input_sfs('../Simulations/dadi_simulations/ThreeEpochBottleneck_140.sfs')
-# 
-# dadi_nu_50 = nu_from_demography('../Analysis/dadi_3EpB_50/two_epoch_demography.txt')
-# dadi_nu_80 = nu_from_demography('../Analysis/dadi_3EpB_80/two_epoch_demography.txt')
-# dadi_nu_110 = nu_from_demography('../Analysis/dadi_3EpB_110/two_epoch_demography.txt')
-# dadi_nu_140 = nu_from_demography('../Analysis/dadi_3EpB_140/two_epoch_demography.txt')
-# 
-# dadi_tau_50 = tau_from_demography('../Analysis/dadi_3EpB_50/two_epoch_demography.txt')
-# dadi_tau_80 = tau_from_demography('../Analysis/dadi_3EpB_80/two_epoch_demography.txt')
-# dadi_tau_110 = tau_from_demography('../Analysis/dadi_3EpB_110/two_epoch_demography.txt')
-# dadi_tau_140 = tau_from_demography('../Analysis/dadi_3EpB_140/two_epoch_demography.txt')
-# 
-# dadi_time_50 = time_from_demography('../Analysis/dadi_3EpB_50/two_epoch_demography.txt')
-# dadi_time_80 = time_from_demography('../Analysis/dadi_3EpB_80/two_epoch_demography.txt')
-# dadi_time_110 = time_from_demography('../Analysis/dadi_3EpB_110/two_epoch_demography.txt')
-# dadi_time_140 = time_from_demography('../Analysis/dadi_3EpB_140/two_epoch_demography.txt')
-# 
-# dadi_theta_50 = theta_from_demography('../Analysis/dadi_3EpB_50/two_epoch_demography.txt')
-# dadi_theta_80 = theta_from_demography('../Analysis/dadi_3EpB_80/two_epoch_demography.txt')
-# dadi_theta_110 = theta_from_demography('../Analysis/dadi_3EpB_110/two_epoch_demography.txt')
-# dadi_theta_140 = theta_from_demography('../Analysis/dadi_3EpB_140/two_epoch_demography.txt')
-# 
-# dadi_simulation_two_epoch_theta = c(dadi_theta_50, dadi_theta_80, dadi_theta_110, dadi_theta_140)
-# dadi_simulation_two_epoch_nu = c(dadi_nu_50, dadi_nu_80, dadi_nu_110, dadi_nu_140)
-# dadi_simulation_two_epoch_tau = c(dadi_nu_50, dadi_nu_80, dadi_nu_110, dadi_nu_140)
-# 
-# dadi_simulation_two_epoch_NAnc = dadi_simulation_two_epoch_theta / (4 * 80000000 * 1.5E-8)
-# dadi_simulation_two_epoch_NCurr = dadi_simulation_two_epoch_nu * dadi_simulation_two_epoch_NAnc
-# dadi_simulation_two_epoch_Time = c(dadi_time_50, dadi_time_80, dadi_time_110, dadi_time_140)
-# # ThreeEpochB_two_epoch_Time = 2 * ThreeEpochB_two_epoch_tau * ThreeEpochB_two_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_two_epoch_allele_sum)
-# 
-# 
-# two_epoch_max_time = max(dadi_simulation_two_epoch_Time)
-# dadi_simulation_two_epoch_max_time = rep(two_epoch_max_time * 1.05, 4)
-# dadi_simulation_two_epoch_current_time = rep(50, 4)
-# dadi_simulation_two_epoch_demography = data.frame(dadi_simulation_two_epoch_NAnc, dadi_simulation_two_epoch_max_time, 
-#   dadi_simulation_two_epoch_NCurr, dadi_simulation_two_epoch_Time, 
-#   dadi_simulation_two_epoch_NCurr, dadi_simulation_two_epoch_current_time)
-# 
-# dadi_simulation_two_epoch_NEffective_50 = c(dadi_simulation_two_epoch_demography[1, 1], dadi_simulation_two_epoch_demography[1, 3], dadi_simulation_two_epoch_demography[1, 5])
-# dadi_simulation_two_epoch_Time_50 = c(-dadi_simulation_two_epoch_demography[1, 2], -dadi_simulation_two_epoch_demography[1, 4], dadi_simulation_two_epoch_demography[1, 6])
-# dadi_simulation_two_epoch_demography_50 = data.frame(dadi_simulation_two_epoch_Time_50, dadi_simulation_two_epoch_NEffective_50)
-# dadi_simulation_two_epoch_NEffective_80 = c(dadi_simulation_two_epoch_demography[2, 1], dadi_simulation_two_epoch_demography[2, 3], dadi_simulation_two_epoch_demography[2, 5])
-# dadi_simulation_two_epoch_Time_80 = c(-dadi_simulation_two_epoch_demography[2, 2], -dadi_simulation_two_epoch_demography[2, 4], dadi_simulation_two_epoch_demography[2, 6])
-# dadi_simulation_two_epoch_demography_80 = data.frame(dadi_simulation_two_epoch_Time_80, dadi_simulation_two_epoch_NEffective_80)
-# dadi_simulation_two_epoch_NEffective_110 = c(dadi_simulation_two_epoch_demography[3, 1], dadi_simulation_two_epoch_demography[3, 3], dadi_simulation_two_epoch_demography[3, 5])
-# dadi_simulation_two_epoch_Time_110 = c(-dadi_simulation_two_epoch_demography[3, 2], -dadi_simulation_two_epoch_demography[3, 4], dadi_simulation_two_epoch_demography[3, 6])
-# dadi_simulation_two_epoch_demography_110 = data.frame(dadi_simulation_two_epoch_Time_110, dadi_simulation_two_epoch_NEffective_110)
-# dadi_simulation_two_epoch_NEffective_140 = c(dadi_simulation_two_epoch_demography[4, 1], dadi_simulation_two_epoch_demography[4, 3], dadi_simulation_two_epoch_demography[4, 5])
-# dadi_simulation_two_epoch_Time_140 = c(-dadi_simulation_two_epoch_demography[4, 2], -dadi_simulation_two_epoch_demography[4, 4], dadi_simulation_two_epoch_demography[4, 6])
-# dadi_simulation_two_epoch_demography_140 = data.frame(dadi_simulation_two_epoch_Time_140, dadi_simulation_two_epoch_NEffective_140)
-# 
-# ThreeEpochB_true_NAnc = 8000
-# ThreeEpochB_true_NBottle = 800
-# ThreeEpochB_true_NCurr = 50000
-# ThreeEpochB_true_TimeBottleEnd = 140
-# ThreeEpochB_true_TimeBottleStart = 800
-# # ThreeEpochB_three_epoch_TimeBottleEnd = 2 * ThreeEpochB_three_epoch_tauF * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum)
-# # ThreeEpochB_three_epoch_TimeBottleStart = 2 * ThreeEpochB_three_epoch_tauB * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum) + ThreeEpochB_three_epoch_TimeBottleEnd
-# 
-# ThreeEpochB_true_TimeTotal = 1400
-# ThreeEpochB_true_TimeCurrent = 50
-# 
-# ThreeEpochB_true_demography = data.frame(ThreeEpochB_true_NAnc, two_epoch_max_time * 1.05,
-#   ThreeEpochB_true_NBottle, ThreeEpochB_true_TimeBottleStart,
-#   ThreeEpochB_true_NCurr, ThreeEpochB_true_TimeBottleEnd,
-#   ThreeEpochB_true_NCurr, ThreeEpochB_true_TimeCurrent)
-# 
-# ThreeEpochB_true_NEffective_params = c(ThreeEpochB_true_demography[1, 1], ThreeEpochB_true_demography[1, 3], ThreeEpochB_true_demography[1, 5], ThreeEpochB_true_demography[1, 7])
-# ThreeEpochB_true_Time_params = c(-ThreeEpochB_true_demography[1, 2], -ThreeEpochB_true_demography[1, 4], -ThreeEpochB_true_demography[1, 6], ThreeEpochB_true_demography[1, 8])
-# ThreeEpochB_true_demography_params = data.frame(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params)
-# 
-# plot_A = compare_4_sample_size_sfs_cutoff(dadi_sfs_50, dadi_sfs_80, dadi_sfs_110, dadi_sfs_140) +
-#   ggtitle('Proportional Dadi-simulated SFS by sample size')
-# 
-# plot_B = ggplot(dadi_simulation_two_epoch_demography_50, aes(dadi_simulation_two_epoch_Time_50, dadi_simulation_two_epoch_NEffective_50, color='N=50')) + geom_step(linewidth=1, linetype='solid') + 
-#   geom_step(data=dadi_simulation_two_epoch_demography_80, aes(dadi_simulation_two_epoch_Time_80, dadi_simulation_two_epoch_NEffective_80, color='N=80'), linewidth=1, linetype='solid') +
-#   geom_step(data=dadi_simulation_two_epoch_demography_110, aes(dadi_simulation_two_epoch_Time_110, dadi_simulation_two_epoch_NEffective_110, color='N=110'), linewidth=1, linetype='solid') +
-#   geom_step(data=dadi_simulation_two_epoch_demography_140, aes(dadi_simulation_two_epoch_Time_140, dadi_simulation_two_epoch_NEffective_140, color='N=140'), linewidth=1, linetype='solid') +
-#   geom_step(data=ThreeEpochB_true_demography_params, aes(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params, color='True'), linewidth=1, linetype='solid') +
-#   scale_color_manual(name='Sample Size',
-#                      breaks=c('N=50', 'N=80', 'N=110', 'N=140', 'True'),
-#                      values=c('N=50'='#bfd3e6',
-#                        'N=80'='#8c96c6',
-#                        'N=110'='#88419d',
-#                        'N=140'='#4d004b',
-#                        'True'='#b30000')) +
-#   theme_bw() +
-#   ylab('Effective population size') +
-#   xlab('Approximate time in years relative to current time') +
-#   scale_y_log10() +
-#   ggtitle('Inferred two-epoch demographic model from Dadi simulated SFS')
-# 
-# plot_A + plot_B + plot_layout(nrow=2)
-# 
-# # * 4 sample sizes ranging from small to large (ancient to recent)
-# # * Just Dadi shown in main text, MSPrime for supplement
-# # * SFS on left-hand, demography plot on right hand [two-epoch fit, for now, best-fit later or in supplement]
-# # * Show true underlying simulated demography
-# 
+plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs") +
+  scale_colour_manual(
+    values = c("#0C7BDC", "#FFC20A"),
+    labels = c("1KG EUR 2020, Bottleneck vs. Ancestral", "1KG EUR 2020, Recent vs. Bottleneck")
+  ) +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab(twoLambda_text) +
+  ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
+  scale_colour_manual(
+    values = c("#0C7BDC","#FFC20A"),
+    labels = c("Three-epoch vs. two-epoch", "Two-epoch vs. one-epoch")
+  ) +
+  geom_hline(yintercept = 12.79386, size = 1, linetype = 'dashed', color='red') +
+  scale_y_log10()
+
+design = "
+  AADD
+  BBEE
+  CCEE
+"
+
+# 1200 x 800
+plot_A + 
+  plot_B + 
+  plot_C + 
+  plot_D + 
+  plot_E +
+  plot_layout(design=design)

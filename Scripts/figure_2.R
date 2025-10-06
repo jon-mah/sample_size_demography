@@ -9,7 +9,9 @@ dadi_nu = c()
 dadi_time = c()
 dadi_tau = c()
 dadi_tajima_D = c()
-dadi_lambda = c()
+dadi_lambda_32 = c()
+dadi_lambda_21 = c()
+dadi_one_LL = c()
 dadi_two_LL = c()
 dadi_three_LL = c()
 
@@ -18,23 +20,36 @@ dadi_nu_max = c()
 dadi_tau_min = c()
 dadi_tau_max = c()
 
+dadi_nu_b = c()
+dadi_nu_f = c()
+
 msprime_nu = c()
 msprime_time = c()
 msprime_tau = c()
 msprime_tajima_D = c()
-# msprime_lambda = c()
-msprime_lambda = rep(0, 80)
+msprime_lambda_32 = c()
+msprime_lambda_21 = c()
+msprime_one_LL = c()
+msprime_two_LL = c()
+msprime_three_LL = c()
+
+# msprime_lambda = rep(0, 80)
 
 msprime_nu_min = c()
 msprime_nu_max = c()
 msprime_tau_min = c()
 msprime_tau_max = c()
 
+msprime_nu_b = c()
+msprime_nu_f = c()
+
 for (i in sample_size) {
   dadi_sfs = paste0(
     "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '.sfs')
   dadi_demography = paste0(
     "../Analysis/dadi_3EpB_", i, '/two_epoch_demography.txt')
+  dadi_demography_1 = paste0(
+    "../Analysis/dadi_3EpB_", i, '/one_epoch_demography.txt')
   dadi_demography_3 = paste0(
     "../Analysis/dadi_3EpB_", i, '/three_epoch_demography.txt')
   dadi_likelihood = paste0(
@@ -45,12 +60,16 @@ for (i in sample_size) {
     "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '_summary.txt')
   
   dadi_tajima_D = c(dadi_tajima_D, read_summary_statistics(dadi_summary)[3])
+  this_dadi_one_LL = LL_from_demography(dadi_demography_1)
   this_dadi_two_LL = LL_from_demography(dadi_demography)
   this_dadi_three_LL = LL_from_demography(dadi_demography_3)
+  dadi_one_LL = c(dadi_one_LL, this_dadi_one_LL)
   dadi_two_LL = c(dadi_two_LL, this_dadi_two_LL)
   dadi_three_LL = c(dadi_three_LL, this_dadi_three_LL)
-  dadi_LL_diff = this_dadi_three_LL - this_dadi_two_LL
-  dadi_lambda = c(dadi_lambda, 2 * dadi_LL_diff)
+  dadi_LL_diff_32 = this_dadi_three_LL - this_dadi_two_LL
+  dadi_lambda_32 = c(dadi_lambda_32, 2 * dadi_LL_diff_32)
+  dadi_LL_diff_21 = this_dadi_two_LL - this_dadi_one_LL
+  dadi_lambda_21 = c(dadi_lambda_21, 2 * dadi_LL_diff_21)
   
   dadi_nu = c(dadi_nu, find_CI_bounds(dadi_likelihood)$nu_MLE)
   dadi_nu_min = c(dadi_nu_min, find_CI_bounds(dadi_likelihood)$nu_min)
@@ -58,11 +77,15 @@ for (i in sample_size) {
   dadi_tau = c(dadi_tau, find_CI_bounds(dadi_likelihood)$tau_MLE)
   dadi_tau_min = c(dadi_tau_min, find_CI_bounds(dadi_likelihood)$tau_min)  
   dadi_tau_max = c(dadi_tau_max, find_CI_bounds(dadi_likelihood)$tau_max)
-  
+  dadi_nu_b = c(dadi_nu_b, nuB_from_demography(dadi_demography_3))
+  dadi_nu_f = c(dadi_nu_f, nuF_from_demography(dadi_demography_3))
+
   msprime_sfs = paste0(
     "../Simulations/simple_simulations/ThreeEpochBottleneck_", i, '_concat.sfs')
   msprime_demography = paste0(
     "../Analysis/msprime_3EpB_", i, '/two_epoch_demography.txt')
+  msprime_demography_1 = paste0(
+    "../Analysis/msprime_3EpB_", i, '/one_epoch_demography.txt')
   msprime_demography_3 = paste0(
     "../Analysis/msprime_3EpB_", i, '/three_epoch_demography.txt')
   # msprime_nu = c(msprime_nu, nu_from_demography(msprime_demography))
@@ -78,11 +101,19 @@ for (i in sample_size) {
   msprime_tau_min = c(msprime_tau_min, find_CI_bounds(msprime_likelihood)$tau_min)  
   msprime_tau_max = c(msprime_tau_max, find_CI_bounds(msprime_likelihood)$tau_max)
   
-  msprime_tajima_D = c(msprime_tajima_D, read_summary_statistics(msprime_summary)[3])  
-  # msprime_two_epoch_LL = LL_from_demography(msprime_demography)
-  # msprime_three_epoch_LL = LL_from_demography(msprime_demography_3)
-  # msprime_LL_diff = msprime_three_epoch_LL - msprime_two_epoch_LL
-  # msprime_lambda = c(msprime_lambda, 2 * msprime_LL_diff)
+  msprime_tajima_D = c(msprime_tajima_D, read_summary_statistics(msprime_summary)[3])
+  this_msprime_one_LL = LL_from_demography(msprime_demography_1)
+  this_msprime_two_LL = LL_from_demography(msprime_demography)
+  this_msprime_three_LL = LL_from_demography(msprime_demography_3)
+  msprime_one_LL = c(msprime_one_LL, this_msprime_one_LL)
+  msprime_two_LL = c(msprime_two_LL, this_msprime_two_LL)
+  msprime_three_LL = c(msprime_three_LL, this_msprime_three_LL)
+  msprime_LL_diff_32 = this_msprime_three_LL - this_msprime_two_LL
+  msprime_lambda_32 = c(msprime_lambda_32, 2 * msprime_LL_diff_32)
+  msprime_LL_diff_21 = this_msprime_two_LL - this_msprime_one_LL
+  msprime_lambda_21 = c(msprime_lambda_21, 2 * msprime_LL_diff_21)
+  msprime_nu_b = c(msprime_nu_b, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f = c(msprime_nu_f, nuF_from_demography(msprime_demography_3))
 }
 
 nu_label_text = expression(nu == frac(N[current], N[ancestral]))
@@ -121,10 +152,35 @@ tajima_D_dataframe = melt(data.frame(
 tajima_D_dataframe$sample_size = sample_size
 
 lambda_dataframe = melt(data.frame(
-  dadi_lambda,
-  msprime_lambda
+  dadi_lambda_32,
+  dadi_lambda_21,
+  msprime_lambda_32,
+  msprime_lambda_21
 ))
 lambda_dataframe$sample_size = sample_size
+
+dadi_nuF_nuB = dadi_nu_f / dadi_nu_b
+msprime_nuF_nuB = msprime_nu_f / msprime_nu_b
+
+epoch_ratio_dataframe = melt(data.frame(
+  dadi_nu_b,
+  dadi_nuF_nuB,
+  msprime_nu_b,
+  msprime_nuF_nuB
+))
+epoch_ratio_dataframe$sample_size = sample_size
+
+epoch_ratio_dataframe_dadi = melt(data.frame(
+  dadi_nu_b,
+  dadi_nuF_nuB
+))
+epoch_ratio_dataframe_dadi$sample_size = sample_size
+
+epoch_ratio_dataframe_msprime = melt(data.frame(
+  msprime_nu_b,
+  msprime_nuF_nuB
+))
+epoch_ratio_dataframe_msprime$sample_size = sample_size
 
 plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
@@ -140,7 +196,6 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
   scale_y_log10() +
   geom_hline(yintercept = 1, size = 2, linetype = 'dashed')
 
-
 plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
@@ -148,24 +203,14 @@ plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable))
   xlab('Sample size') +
   ylab(tau_label_text) +
   ggtitle('Timing of inferred instantaneous size change') +
+  scale_y_log10() +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
     labels = c("Dadi", "MSPrime")
   ) +
   theme(legend.position='none')
 
-plot_C = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  xlab('Sample size') +
-  ylab(twoLambda_text) +
-  ggtitle('Demographic model fit criterion by sample size') +
-  scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("Dadi", "MSPrime")
-  ) +
-  theme(legend.position='none')
-
-plot_D = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   xlab('Sample size') +
   ylab("Tajima's D") +
@@ -177,71 +222,131 @@ plot_D = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=varia
   geom_hline(yintercept = 0, size = 2, linetype = 'dashed') +
   theme(legend.position='none')
 
-plot_E = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_50/likelihood_surface.csv') +
-  ggtitle('Likelihood surface for dadi-simulated SFS, k=50') +
-  theme(axis.title.x=element_blank()) 
+plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Demographic model comparison")) +
+  xlab('Sample size') +
+  ylab(twoLambda_text) +
+  ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
+  scale_colour_manual(
+    values = c("#0C7BDC", "#999ED9", "#FFC20A", "#CA5A08"),
+    labels = c("Dadi, three-epoch vs. two-epoch", "Dadi, two-epoch vs. one-epoch",
+      "MSPrime, three-epoch vs. two-epoch", "MSPrime, two-epoch vs. one-epoch")
+  ) +
+  geom_hline(yintercept = 14.75552, size = 1, linetype = 'dashed', color='red')
+
+# 2Lambda is approximately chi-squared distributed.
+# 80 comparisons for 10-800:10, so critical value is 14.76 with Bonferroni correction
+qchisq(1 - 0.05/80, df=2)
+
+plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs") +
+  scale_colour_manual(
+    values = c("#0C7BDC", "#999ED9", "#FFC20A", "#CA5A08"),
+    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Recent vs. Bottleneck",
+      "MSPrime, Bottleneck vs. Ancestral", "MSPrime, Recent vs. Bottleneck")
+  ) +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_1 = ggplot(data=epoch_ratio_dataframe_dadi, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs") +
+  scale_colour_manual(
+    values = c("#0C7BDC", "#999ED9"),
+    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Recent vs. Bottleneck")
+  ) +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_2 = ggplot(data=epoch_ratio_dataframe_msprime, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Recent vs. Bottleneck")
+  ) +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+# plot_E = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_50/likelihood_surface.csv') +
+#   ggtitle('Likelihood surface for dadi-simulated SFS, k=50') +
+#   theme(axis.title.x=element_blank()) 
 
 # find_CI_bounds('../Analysis/dadi_3EpB_50/likelihood_surface.csv')$nu_min
 
-plot_F = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_100/likelihood_surface.csv') +
-  ggtitle('Likelihood surface for dadi-simulated SFS, k=100') +
-  theme(axis.title.x=element_blank(), axis.title.y=element_blank()) 
+# plot_F = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_100/likelihood_surface.csv') +
+#   ggtitle('Likelihood surface for dadi-simulated SFS, k=100') +
+#   theme(axis.title.x=element_blank(), axis.title.y=element_blank()) 
 
-plot_G = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_200/likelihood_surface.csv') +
-  ggtitle('Likelihood surface for dadi-simulated SFS, k=200') +
-  theme(axis.title.x=element_blank(), axis.title.y=element_blank()) 
+# plot_G = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_200/likelihood_surface.csv') +
+#   ggtitle('Likelihood surface for dadi-simulated SFS, k=200') +
+#   theme(axis.title.x=element_blank(), axis.title.y=element_blank()) 
+# 
+# plot_H = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_300/likelihood_surface.csv') +
+#   ggtitle('Likelihood surface for dadi-simulated SFS, k=300') +
+#   theme(legend.position='none')
+# 
+# loglik_dataframe = melt(data.frame(
+#   dadi_two_LL,
+#   dadi_three_LL
+# ))
+# loglik_dataframe$sample_size = sample_size
 
-plot_H = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_300/likelihood_surface.csv') +
-  ggtitle('Likelihood surface for dadi-simulated SFS, k=300') +
-  theme(legend.position='none')
-
-loglik_dataframe = melt(data.frame(
-  dadi_two_LL,
-  dadi_three_LL
-))
-loglik_dataframe$sample_size = sample_size
-
-ggplot(data=loglik_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  xlab('Sample size') +
-  ylab("Log likelihood") +
-  ggtitle("Log likelihood for simulated SFS") +
-  scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("Two-epoch", "Three-epoch")
-  ) +
-  geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
-
-
+# ggplot(data=loglik_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+#   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+#   xlab('Sample size') +
+#   ylab("Log likelihood") +
+#   ggtitle("Log likelihood for simulated SFS") +
+#   scale_colour_manual(
+#     values = c("#0C7BDC","#FFC20A"),
+#     labels = c("Two-epoch", "Three-epoch")
+#   ) +
+#   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
+# 
 design = "
-  AAF
-  BBF
-  CCH
-  DDH
+  AADD
+  BBEE
+  CCEE
 "
 
+# 1000 x 1200
 plot_A + 
   plot_B + 
   plot_C + 
   plot_D + 
-  plot_E + 
-  # plot_F + 
-  # plot_G +
-  plot_H +
+  plot_E +
   plot_layout(design=design)
 
-for (i in sample_size) {
-  print(i)
-  print('dadi')
-  dadi_likelihood = paste0(
-    "../Analysis/dadi_3EpB_", i, '/likelihood_surface.csv')
-  plot_likelihood_surface_contour(dadi_likelihood)
-}
+design_2 = "
+  AADD
+  BBFF
+  CCGG
+"
 
-for (i in sample_size) {
-  print(i)
-  print('msprime')
-  msprime_likelihood = paste0(
-   "../Analysis/msprime_3EpB_", i, '/likelihood_surface.csv')
-  plot_likelihood_surface_contour(msprime_likelihood)
-}
+# 1200 x 800
+plot_A + 
+  plot_B + 
+  plot_C + 
+  plot_D + 
+  plot_E_1 + plot_E_2 +
+  plot_layout(design=design_2)
+
+# for (i in sample_size) {
+#   print(i)
+#   print('dadi')
+#   dadi_likelihood = paste0(
+#     "../Analysis/dadi_3EpB_", i, '/likelihood_surface.csv')
+#   plot_likelihood_surface_contour(dadi_likelihood)
+# }
+# 
+# for (i in sample_size) {
+#   print(i)
+#   print('msprime')
+#   msprime_likelihood = paste0(
+#    "../Analysis/msprime_3EpB_", i, '/likelihood_surface.csv')
+#   plot_likelihood_surface_contour(msprime_likelihood)
+# }

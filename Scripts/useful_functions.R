@@ -308,6 +308,45 @@ compare_null_sfs_proportional = function(empirical, one_epoch) {
   return(p_input_comparison)
 }
 
+compare_simulation_null_sfs_proportional = function(input_simulation, input_one_epoch, sim_color) {
+  x_axis = 1:11
+  simulation = proportional_sfs(input_simulation)[1:10]
+  simulation = c(simulation, sum(proportional_sfs(input_simulation)[11:length(input_simulation)]))
+  one_epoch = proportional_sfs(input_one_epoch)[1:10]
+  one_epoch = c(one_epoch, sum(proportional_sfs(input_one_epoch)[11:length(input_one_epoch)]))
+  input_df = data.frame(simulation,
+                        one_epoch,
+                        x_axis)
+  
+  names(input_df) = c('Simulated SFS',
+                      'SNM',
+                      'x_axis')
+  
+  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
+                               aes(x = x_axis, 
+                                   y = value,
+                                   fill = variable)) +
+    geom_bar(position = 'dodge2', stat = 'identity') +
+    labs(x = "", fill = "") +
+    scale_x_continuous(
+      name = 'Minor allele frequency in sample',
+      breaks = x_axis,
+      labels = c(as.character(1:10), ">=11"),
+      limits = c(0.5, length(x_axis) + 0.5)
+    ) +
+    scale_fill_manual(
+      values = c("SNM" = "black", "Simulated SFS" = sim_color),
+      breaks = "SNM"   # 👈 only include SNM in the legend
+    ) +
+    ylab('Proportion of segregating sites') +
+    theme_bw() + 
+    theme(panel.border = element_blank(),
+          panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(),
+          axis.line = element_line(colour = "black")) +
+    ylim(0, 0.6)
+}
+
 compare_1kg_gnomad_null_proportional_cutoff = function(empirical_1kg, empirical_gnomad, one_epoch) {
   x_axis = 1:10
   empirical_1kg = proportional_sfs(empirical_1kg)[1:10]
@@ -531,7 +570,7 @@ nu_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   nu_string = readLines(this_file)[1]
-  floats <- as.numeric(str_extract_all(nu_string, "\\d+\\.\\d+")[[1]])
+  floats <- as.numeric(str_extract_all(nu_string, "\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?")[[1]])
   nu = floats[1]
   return(nu)
 }
@@ -540,7 +579,7 @@ tau_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   tau_string = readLines(this_file)[1]
-  floats <- as.numeric(str_extract_all(tau_string, "\\d+\\.\\d+")[[1]])
+  floats <- as.numeric(str_extract_all(tau_string, "\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?")[[1]])
   tau = floats[2]
   return(tau)
 }
@@ -563,6 +602,7 @@ nuB_from_demography = function(input_file) {
   nuB_string = readLines(this_file)[1]
   floats <- as.numeric(str_extract_all(nuB_string, "\\d+\\.\\d+")[[1]])
   nuB = floats[1]
+  print(floats)
   return(nuB)
 }
 
@@ -1188,43 +1228,4 @@ find_CI_bounds <- function(input) {
   )
   
   return(CI_bounds)
-}
-
-compare_4_sample_size_sfs_cutoff = function(n_50, n_80, n_110, n_140) {
-  x_axis = 1:20
-  n_50 = proportional_sfs(n_50)[1:20]
-  n_80 = proportional_sfs(n_80)[1:20]
-  n_110 = proportional_sfs(n_110)[1:20]
-  n_140 = proportional_sfs(n_140)[1:20]
-  input_df = data.frame(n_50,
-                        n_80,
-                        n_110,
-                        n_140,
-                        x_axis)
-  
-  names(input_df) = c('N=50',
-                      'N=80',
-                      'N=110',
-                      'N=140',
-                      'x_axis')
-  
-  p_input_comparison <- ggplot(data = melt(input_df, id='x_axis'),
-                                                     aes(x=x_axis, 
-                                                         y=value,
-                                                         fill=variable)) +
-    geom_bar(position='dodge2', stat='identity') +
-    labs(x = "", fill = "") +
-    scale_fill_manual(name='Sample Size',
-                     breaks=c('N=50', 'N=80', 'N=110', 'N=140'),
-                     values=c('N=50'='#bfd3e6',
-                       'N=80'='#8c96c6',
-                       'N=110'='#88419d',
-                       'N=140'='#4d004b')) +
-    scale_x_continuous(name='Minor allele frequency in sample (up to 20)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
-    ylab('Proportion of segregating sites') +
-    theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
-                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
-    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
-  
-  return(p_input_comparison)
 }
