@@ -79,17 +79,31 @@ class msPrimeSimulate():
         logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
         output_ThreeEpB_1000_500 = '{0}{1}ThreeEpochBottleneck_1000_500_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        coalescent_1000_500 = '{0}{1}ThreeEpochBottleneck_1000_500_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_1000 = '{0}{1}ThreeEpochBottleneck_1000_1000_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        coalescent_1000_1000 = '{0}{1}ThreeEpochBottleneck_1000_1000_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_1500 = '{0}{1}ThreeEpochBottleneck_1000_1500_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        coalescent_1000_1500 = '{0}{1}ThreeEpochBottleneck_1000_1500_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_2000 = '{0}{1}ThreeEpochBottleneck_1000_2000_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        coalescent_1000_2000 = '{0}{1}ThreeEpochBottleneck_1000_2000_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_500_2000 = '{0}{1}ThreeEpochBottleneck_500_2000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        coalescent_500_2000 = '{0}{1}ThreeEpochBottleneck_500_2000_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1500_2000 = '{0}{1}ThreeEpochBottleneck_1500_2000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        coalescent_1500_2000 = '{0}{1}ThreeEpochBottleneck_1500_2000_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_2000_2000 = '{0}{1}ThreeEpochBottleneck_2000_2000_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        coalescent_2000_2000 = '{0}{1}ThreeEpochBottleneck_2000_2000_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
 
         to_remove = [logfile]
@@ -187,42 +201,98 @@ class msPrimeSimulate():
                 demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
             mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
             mts0.write_vcf(f0)
+            tree_0 = ts0.first()
+            with open(coalescent_1000_500, "w+") as g0:
+                g0.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_500.')
+                for u in tree_0.nodes():
+                    # Retain coalescent nodes
+                    if not tree_0.is_leaf(u):  # skip sample nodes
+                        g0.write(f"Node {u}, {tree_0.time(u)}\n")
 
         with open(output_ThreeEpB_1000_1000, "w+") as f1:
             ts1 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1000": sample_size},
                 demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
             mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
             mts1.write_vcf(f1)
+            tree_1 = ts1.first()
+            with open(coalescent_1000_1000, "w+") as g1:
+                g1.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_1000.')
+                for u in tree_1.nodes():
+                    # Retain coalescent nodes
+                    if not tree_1.is_leaf(u):  # skip sample nodes
+                        g1.write(f"Node {u}, {tree_1.time(u)}\n")
 
         with open(output_ThreeEpB_1000_1500, "w+") as f2:
             ts2 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1500": sample_size},
                 demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
             mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
             mts2.write_vcf(f2)
+            tree_2 = ts2.first()
+            with open(coalescent_1000_1500, "w+") as g2:
+                g2.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_1500.')
+                for u in tree_2.nodes():
+                    # Retain coalescent nodes
+                    if not tree_2.is_leaf(u):  # skip sample nodes
+                        g2.write(f"Node {u}, {tree_2.time(u)}\n")
 
         with open(output_ThreeEpB_1000_2000, "w+") as f3:
             ts3 = msprime.sim_ancestry(samples={"ThreeEpB_1000_2000": sample_size},
                 demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
             mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
             mts3.write_vcf(f3)
+            tree_3 = ts3.first()
+            with open(coalescent_1000_2000, "w+") as g3:
+                g3.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_2000.')
+                for u in tree_3.nodes():
+                    # Retain coalescent nodes
+                    if not tree_3.is_leaf(u):  # skip sample nodes
+                        g3.write(f"Node {u}, {tree_3.time(u)}\n")
 
         with open(output_ThreeEpB_500_2000, "w+") as f4:
             ts4 = msprime.sim_ancestry(samples={"ThreeEpB_500_2000": sample_size},
                 demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
             mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
             mts4.write_vcf(f4)
+            tree_4 = ts0.first()
+            with open(coalescent_1000_2000, "w+") as g4:
+                g4.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_2000.')
+                for u in tree_4.nodes():
+                    # Retain coalescent nodes
+                    if not tree_4.is_leaf(u):  # skip sample nodes
+                        g4.write(f"Node {u}, {tree_4.time(u)}\n")
 
         with open(output_ThreeEpB_1500_2000, "w+") as f5:
             ts5 = msprime.sim_ancestry(samples={"ThreeEpB_1500_2000": sample_size},
                 demography=dem5, sequence_length=5000000, recombination_rate=1e-8)
             mts5 = msprime.sim_mutations(ts5, rate=1.5E-8)
             mts5.write_vcf(f5)
+            tree_5 = ts5.first()
+            with open(coalescent_1500_2000, "w+") as g5:
+                g5.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1500_2000.')
+                for u in tree_5.nodes():
+                    # Retain coalescent nodes
+                    if not tree_5.is_leaf(u):  # skip sample nodes
+                        g5.write(f"Node {u}, {tree_5.time(u)}\n")
 
         with open(output_ThreeEpB_2000_2000, "w+") as f6:
             ts6 = msprime.sim_ancestry(samples={"ThreeEpB_2000_2000": sample_size},
                 demography=dem6, sequence_length=5000000, recombination_rate=1e-8)
             mts6 = msprime.sim_mutations(ts6, rate=1.5E-8)
             mts6.write_vcf(f6)
+            tree_6 = ts6.first()
+            with open(coalescent_2000_2000, "w+") as g6:
+                g6.write('Node, generations\n')
+                logger.info('Writing coalescent times for TwoEpC.')
+                for u in tree_6.nodes():
+                    # Retain coalescent nodes
+                    if not tree_6.is_leaf(u):  # skip sample nodes
+                        g6.write(f"Node {u}, {tree_6.time(u)}\n")
 
 
         logger.info('Pipeline executed succesfully.')
