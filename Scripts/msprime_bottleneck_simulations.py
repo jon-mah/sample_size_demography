@@ -81,29 +81,50 @@ class msPrimeSimulate():
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_1000_500 = '{0}{1}ThreeEpochBottleneck_1000_500_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        branch_length_1000_500 = \
+           '{0}{1}ThreeEpochBottleneck_1000_500_{2}_branch_length_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_1000 = '{0}{1}ThreeEpochBottleneck_1000_1000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_1000_1000 = '{0}{1}ThreeEpochBottleneck_1000_1000_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        branch_length_1000_1000 = \
+           '{0}{1}ThreeEpochBottleneck_1000_1000_{2}_branch_length_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_1500 = '{0}{1}ThreeEpochBottleneck_1000_1500_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_1000_1500 = '{0}{1}ThreeEpochBottleneck_1000_1500_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        branch_length_1000_1500 = \
+           '{0}{1}ThreeEpochBottleneck_1000_1500_{2}_branch_length_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_2000 = '{0}{1}ThreeEpochBottleneck_1000_2000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_1000_2000 = '{0}{1}ThreeEpochBottleneck_1000_2000_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        branch_length_1000_2000 = \
+           '{0}{1}ThreeEpochBottleneck_1000_2000_{2}_branch_length_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_500_2000 = '{0}{1}ThreeEpochBottleneck_500_2000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_500_2000 = '{0}{1}ThreeEpochBottleneck_500_2000_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        branch_length_500_2000 = \
+           '{0}{1}ThreeEpochBottleneck_500_2000_{2}_branch_length_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1500_2000 = '{0}{1}ThreeEpochBottleneck_1500_2000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_1500_2000 = '{0}{1}ThreeEpochBottleneck_1500_2000_{2}_coal_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+        branch_length_1500_2000 = \
+           '{0}{1}ThreeEpochBottleneck_1500_2000_{2}_branch_length_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_2000_2000 = '{0}{1}ThreeEpochBottleneck_2000_2000_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_2000_2000 = '{0}{1}ThreeEpochBottleneck_2000_2000_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        branch_length_2000_2000 = \
+           '{0}{1}ThreeEpochBottleneck_2000_2000_{2}_branch_length_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
 
         to_remove = [logfile]
@@ -209,6 +230,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_0.is_leaf(u):  # skip sample nodes
                         g0.write(f"Node {u}, {tree_0.time(u)}\n")
+        with open(branch_length_1000_500, "w+") as h0:
+            logger.info('Writing branch lengths for 1000_500.')
+            h0.write('node_generations, branch_length\n')
+            for u in tree_0.nodes():
+                p = tree_0.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_0.time(p) - tree_0.time(u)
+                    h0.write(f"{tree_0.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_1000_1000, "w+") as f1:
             ts1 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1000": sample_size},
@@ -223,6 +252,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_1.is_leaf(u):  # skip sample nodes
                         g1.write(f"Node {u}, {tree_1.time(u)}\n")
+        with open(branch_length_1000_1000, "w+") as h1:
+            logger.info('Writing branch lengths for 1000_1000.')
+            h1.write('node_generations, branch_length\n')
+            for u in tree_1.nodes():
+                p = tree_1.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_1.time(p) - tree_1.time(u)
+                    h1.write(f"{tree_1.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_1000_1500, "w+") as f2:
             ts2 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1500": sample_size},
@@ -237,6 +274,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_2.is_leaf(u):  # skip sample nodes
                         g2.write(f"Node {u}, {tree_2.time(u)}\n")
+        with open(branch_length_1000_1500, "w+") as h2:
+            logger.info('Writing branch lengths for 1000_1500.')
+            h2.write('node_generations, branch_length\n')
+            for u in tree_2.nodes():
+                p = tree_2.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_2.time(p) - tree_2.time(u)
+                    h2.write(f"{tree_2.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_1000_2000, "w+") as f3:
             ts3 = msprime.sim_ancestry(samples={"ThreeEpB_1000_2000": sample_size},
@@ -251,6 +296,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_3.is_leaf(u):  # skip sample nodes
                         g3.write(f"Node {u}, {tree_3.time(u)}\n")
+        with open(branch_length_1000_2000, "w+") as h3:
+            logger.info('Writing branch lengths for 1000_2000.')
+            h3.write('node_generations, branch_length\n')
+            for u in tree_3.nodes():
+                p = tree_3.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_3.time(p) - tree_3.time(u)
+                    h3.write(f"{tree_3.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_500_2000, "w+") as f4:
             ts4 = msprime.sim_ancestry(samples={"ThreeEpB_500_2000": sample_size},
@@ -265,6 +318,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_4.is_leaf(u):  # skip sample nodes
                         g4.write(f"Node {u}, {tree_4.time(u)}\n")
+        with open(branch_length_500_2000, "w+") as h4:
+            logger.info('Writing branch lengths for 500_2000.')
+            h4.write('node_generations, branch_length\n')
+            for u in tree_4.nodes():
+                p = tree_4.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_4.time(p) - tree_4.time(u)
+                    h4.write(f"{tree_4.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_1500_2000, "w+") as f5:
             ts5 = msprime.sim_ancestry(samples={"ThreeEpB_1500_2000": sample_size},
@@ -279,6 +340,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_5.is_leaf(u):  # skip sample nodes
                         g5.write(f"Node {u}, {tree_5.time(u)}\n")
+        with open(branch_length_1500_2000, "w+") as h5:
+            logger.info('Writing branch lengths for 1500_2000.')
+            h5.write('node_generations, branch_length\n')
+            for u in tree_5.nodes():
+                p = tree_5.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_5.time(p) - tree_5.time(u)
+                    h0.write(f"{tree_5.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_2000_2000, "w+") as f6:
             ts6 = msprime.sim_ancestry(samples={"ThreeEpB_2000_2000": sample_size},
@@ -293,6 +362,14 @@ class msPrimeSimulate():
                     # Retain coalescent nodes
                     if not tree_6.is_leaf(u):  # skip sample nodes
                         g6.write(f"Node {u}, {tree_6.time(u)}\n")
+        with open(branch_length_2000_2000, "w+") as h6:
+            logger.info('Writing branch lengths for 2000_2000.')
+            h4.write('node_generations, branch_length\n')
+            for u in tree_6.nodes():
+                p = tree_6.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_6.time(p) - tree_6.time(u)
+                    h6.write(f"{tree_6.time(u)}, {branch_length}\n")
 
 
         logger.info('Pipeline executed succesfully.')

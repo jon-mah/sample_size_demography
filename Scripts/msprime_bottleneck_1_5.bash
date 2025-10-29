@@ -14,7 +14,7 @@ sample_size=$SGE_TASK_ID
 
 # python generate_pops_file.py ${sample_size} ./
 
-for i in $(seq 1 2);
+for i in $(seq 1 5);
 do
     python msprime_bottleneck_simulations.py ${sample_size} ${i} ../Simulations/simple_simulations/
     easySFS.py -a -f -i ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_${sample_size}_${i}.vcf -p sample_${sample_size}_pops.txt -o ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_${sample_size}_${i} --proj ${sample_size}
