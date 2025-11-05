@@ -12,7 +12,7 @@ import argparse
 import warnings
 
 import msprime
-
+import tskit
 
 class ArgumentParserNoArgHelp(argparse.ArgumentParser):
     """Like *argparse.ArgumentParser*, but prints help when no arguments."""
@@ -347,7 +347,7 @@ class msPrimeSimulate():
                 p = tree_5.parent(u)
                 if p != tskit.NULL:
                     branch_length = tree_5.time(p) - tree_5.time(u)
-                    h0.write(f"{tree_5.time(u)}, {branch_length}\n")
+                    h5.write(f"{tree_5.time(u)}, {branch_length}\n")
 
         with open(output_ThreeEpB_2000_2000, "w+") as f6:
             ts6 = msprime.sim_ancestry(samples={"ThreeEpB_2000_2000": sample_size},
@@ -364,7 +364,7 @@ class msPrimeSimulate():
                         g6.write(f"Node {u}, {tree_6.time(u)}\n")
         with open(branch_length_2000_2000, "w+") as h6:
             logger.info('Writing branch lengths for 2000_2000.')
-            h4.write('node_generations, branch_length\n')
+            h6.write('node_generations, branch_length\n')
             for u in tree_6.nodes():
                 p = tree_6.parent(u)
                 if p != tskit.NULL:
