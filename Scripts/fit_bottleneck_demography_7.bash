@@ -8,7 +8,7 @@
 #$ -N bottle_demog_7
 #$ -t 10-800:10
 
-# SGE_TASK_ID=580
+SGE_TASK_ID=710
 
 sample_size=$SGE_TASK_ID
 

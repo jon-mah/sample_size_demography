@@ -6,9 +6,9 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N bottle_demog_4
-#$ -t 10-800:10
+#$ -t 790
 
-# SGE_TASK_ID=580
+# SGE_TASK_ID=120
 
 sample_size=$SGE_TASK_ID
 
