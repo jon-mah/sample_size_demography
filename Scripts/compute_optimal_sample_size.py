@@ -215,9 +215,29 @@ class ComputeOptimalSampleSize():
         # Read in the demographic history
         logger.info('Reading in the demographic history from {0}'.format(
             input_demography))
-        input_demography = pd.read_csv(input_demography, header=None)
-        epoch_time = input_demography[0].values
-        epoch_population = input_demography[1].values
+        df = pd.read_csv(input_demography, header=None)
+
+        # Support two common input formats:
+        # 1) absolute epoch start times in column 0 and population sizes in col 1
+        # 2) (nu, tau) rows where column 0 = population (nu) and column 1 = duration (tau)
+        #    when the --nu_tau flag is provided. In the nu/tau case we convert
+        #    durations to epoch start times (measured from the present) so the
+        #    rest of the code can use a consistent interpretation.
+        if nu_tau:
+            pops = df[0].values
+            durations = df[1].values
+            # epoch start times: epoch 0 starts at 0, epoch i starts after sum of previous durations
+            if len(durations) != len(pops):
+                raise ValueError('When using --nu_tau the input file must have the same number of nu and tau entries per row')
+            epoch_time = np.concatenate(([0.0], np.cumsum(durations)[:-1]))
+            epoch_population = pops
+            logger.info('Interpreting input as (nu, tau). epoch_time (start times): {0}'.format(epoch_time))
+            logger.info('Interpreting input as (nu, tau). epoch_population: {0}'.format(epoch_population))
+        else:
+            epoch_time = df[0].values
+            epoch_population = df[1].values
+            logger.info('Interpreting input as absolute epoch start times. epoch_time: {0}'.format(epoch_time))
+            logger.info('Interpreting input as absolute epoch start times. epoch_population: {0}'.format(epoch_population))
 
         notFoundOptimalSampleSize = True
         if target_sample_size >= 2:

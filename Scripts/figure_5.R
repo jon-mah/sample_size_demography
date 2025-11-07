@@ -108,7 +108,7 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
   # geom_ribbon(aes(ymin = snm_min, ymax = snm_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   xlab('Sample size') +
   ylab(nu_label_text) +
-  ggtitle("Ratio of Ancestral to Effective population size") +
+  ggtitle("Ratio of Effective to Ancestral population size") +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
     labels = c("1KG 2020, EUR", "snm")
@@ -184,3 +184,54 @@ plot_A +
   plot_D + 
   plot_E +
   plot_layout(design=design)
+
+### Scale figures
+nu_dataframe = melt(data.frame(
+  EUR_2020_nu
+))
+nu_dataframe$sample_size = sample_size
+nu_dataframe$EUR_2020_min = EUR_2020_nu_min
+nu_dataframe$EUR_2020_max = EUR_2020_nu_max
+
+tau_dataframe = melt(data.frame(
+  EUR_2020_tau
+))
+tau_dataframe$sample_size = sample_size
+tau_dataframe$EUR_2020_min = EUR_2020_tau_min
+tau_dataframe$EUR_2020_max = EUR_2020_tau_max
+
+plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + 
+  # guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab(nu_label_text) +
+  ggtitle("Ratio of Effective to Ancestral population size") +
+  scale_colour_manual(
+    values = c("#0C7BDC"),
+    labels = c("1KG 2020, EUR")
+  ) +
+  scale_y_log10() +
+  theme(legend.position='none') +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed') +
+  theme(axis.title.x = element_text(size = 20)) +
+  theme(axis.title.y = element_text(size = 16)) +
+  theme(axis.title.x = element_blank())
+
+
+
+plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + 
+  # guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab(tau_label_text) +
+  ggtitle('Timing of inferred instantaneous size change') +
+  scale_colour_manual(
+    values = c("#0C7BDC"),
+    labels = c("1kg 2020, EUR")
+  ) +
+  scale_y_log10() +
+  theme(legend.position='none') +
+  theme(axis.title.x = element_text(size = 20)) +
+  theme(axis.title.y = element_text(size = 16))
+
+plot_A + plot_B + plot_layout(nrow=2)

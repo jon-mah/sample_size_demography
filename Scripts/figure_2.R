@@ -188,7 +188,7 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
   geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   xlab('Sample size') +
   ylab(nu_label_text) +
-  ggtitle("Ratio of Ancestral to Effective population size") +
+  ggtitle("Ratio of Effective to Ancestral population size") +
   scale_colour_manual(
     values = c("#0C7BDC","#FFC20A"),
     labels = c("Dadi", "MSPrime")
@@ -350,3 +350,76 @@ plot_A +
 #    "../Analysis/msprime_3EpB_", i, '/likelihood_surface.csv')
 #   plot_likelihood_surface_contour(msprime_likelihood)
 # }
+
+
+#### SCalE Talk figures
+nu_dataframe = melt(data.frame(
+  msprime_nu
+))
+nu_dataframe$sample_size = sample_size
+nu_dataframe$msprime_min = msprime_nu_min
+nu_dataframe$msprime_max = msprime_nu_max
+
+nu_dataframe_CI_bounds = melt(data.frame(
+  msprime_nu_min,
+  msprime_nu_max
+))
+nu_dataframe_CI_bounds$sample_size = sample_size
+
+tau_dataframe = melt(data.frame(
+  msprime_tau
+))
+tau_dataframe$sample_size = sample_size
+tau_dataframe$msprime_min = msprime_tau_min
+tau_dataframe$msprime_max = msprime_tau_max
+
+tajima_D_dataframe = melt(data.frame(
+  msprime_tajima_D
+))
+tajima_D_dataframe$sample_size = sample_size
+
+plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab(nu_label_text) +
+  ggtitle("Ratio of Effective to Ancestral population size") +
+  scale_colour_manual(
+    values = c("#FFC20A"),
+    labels = c("MSPrime")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 2, linetype = 'dashed') +
+  theme(legend.position='none') +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_text(size = 16))
+
+plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab(tau_label_text) +
+  ggtitle('Timing of inferred instantaneous size change') +
+  # scale_y_log10() +
+  scale_colour_manual(
+    values = c("#FFC20A"),
+    labels = c("MSPrime")
+  ) +
+  theme(legend.position='none') +
+  theme(axis.title.x = element_text(size = 20)) +
+  theme(axis.title.y = element_text(size = 16))
+
+plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D for simulated SFS") +
+  scale_colour_manual(
+    values = c("#FFC20A"),
+    labels = c("MSPrime")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed') +
+  theme(legend.position='none') +
+  theme(axis.title.x = element_blank()) +
+  theme(axis.title.y = element_text(size = 16))
+
+plot_C + plot_A + plot_B + plot_layout(nrow=3)
+# 600 x 800
