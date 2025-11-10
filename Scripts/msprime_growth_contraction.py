@@ -89,6 +89,16 @@ class msPrimeSimulate():
         branch_length_ThreeEpB = \
            '{0}{1}ThreeEpochGrowthContraction_{2}_branch_length_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+
+        output_ThreeEpB_sm = '{0}{1}ThreeEpochGrowthContraction_small_magnitude_{2}_{3}.vcf'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        coalescent_ThreeEpB_sm = '{0}{1}ThreeEpochGrowthContraction_small_magnitude_{2}_coal_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+        branch_length_ThreeEpB_sm = \
+           '{0}{1}ThreeEpochGrowthContraction_small_magnitude_{2}_branch_length_dist_{3}.csv'.format(
+            args['outprefix'], underscore, sample_size, replicate)
+
+
         to_remove = [logfile]
         for f in to_remove:
             if os.path.isfile(f):
@@ -119,44 +129,80 @@ class msPrimeSimulate():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Initialize demography object
-        dem4 = msprime.Demography()
+        dem4 = msprime.Demography() # GC
+        dem5 = msprime.Demography() # GC_sm
         # Three epoch ancient growth, then contraction, population 4
         dem4.add_population(name="ThreeEpGC", 
                             description="Three epoch growth + contraction", initial_size=1000)
-
+        dem5.add_population(name="ThreeEpGC_sm",
+                            description="Three epoch growth + contraction, small magnitude",
+                            initial_size=1000)
         # Demographic events
         dem4.add_population_parameters_change(time=200, initial_size=50000, population=0)
         dem4.add_population_parameters_change(time=2000, initial_size=10000, population=0)
+        dem5.add_population_parameters_change(time=200, initial_size=5000, population=0)
+        dem5.add_population_parameters_change(time=2000, initial_size=2000, population=0)
 
         dem4.sort_events()
+        dem5.sort_events()
 
-        ts4 = msprime.sim_ancestry(samples={"ThreeEpGC": sample_size},
-            demography=dem4, sequence_length=5000000, recombination_rate=1e-8,
-            random_seed=replicate)
-        tree_4 = ts4.first()
-        logger.info('First tree in ThreeEpB: \n{0}'.format(tree_4))
-        self.ensure_parent_dir_exists(coalescent_ThreeEpB)
-        with open(coalescent_ThreeEpB, "w+") as g4:
-            logger.info('Writing coalescent times for ThreeEpB.')
-            g4.write('Node, generations\n')
-            for u in tree_4.nodes():
-                # Retain coalescent events
-                if not tree_4.is_leaf(u):
-                    g4.write(f"Node {u}, {tree_4.time(u)}\n")
-        self.ensure_parent_dir_exists(branch_length_ThreeEpB)
-        with open(branch_length_ThreeEpB, "w+") as h4:
-            logger.info('Writing branch lengths for ThreeEpB.')
-            h4.write('node_generations, branch_length\n')
-            for u in tree_4.nodes():
-                p = tree_4.parent(u)
-                if p != tskit.NULL:
-                    branch_length = tree_4.time(p) - tree_4.time(u)
-                    h4.write(f"{tree_4.time(u)}, {branch_length}\n")
+        # ts4 = msprime.sim_ancestry(samples={"ThreeEpGC": sample_size},
+        #     demography=dem4, sequence_length=5000000, recombination_rate=1e-8,
+        #     random_seed=replicate)
+        # tree_4 = ts4.first()
+        # logger.info('First tree in ThreeEpB: \n{0}'.format(tree_4))
+        # self.ensure_parent_dir_exists(coalescent_ThreeEpB)
+        # with open(coalescent_ThreeEpB, "w+") as g4:
+        #     logger.info('Writing coalescent times for ThreeEpB.')
+        #     g4.write('Node, generations\n')
+        #     for u in tree_4.nodes():
+        #         # Retain coalescent events
+        #         if not tree_4.is_leaf(u):
+        #             g4.write(f"Node {u}, {tree_4.time(u)}\n")
+        # self.ensure_parent_dir_exists(branch_length_ThreeEpB)
+        # with open(branch_length_ThreeEpB, "w+") as h4:
+        #     logger.info('Writing branch lengths for ThreeEpB.')
+        #     h4.write('node_generations, branch_length\n')
+        #     for u in tree_4.nodes():
+        #         p = tree_4.parent(u)
+        #         if p != tskit.NULL:
+        #             branch_length = tree_4.time(p) - tree_4.time(u)
+        #             h4.write(f"{tree_4.time(u)}, {branch_length}\n")
                     
-        with open(output_ThreeEpB, "w+") as f4:
+        # with open(output_ThreeEpB, "w+") as f4:
+        #     logger.info('Simulating three-epoch bottleneck.')
+        #     mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
+        #     mts4.write_vcf(f4)
+
+        ts5 = msprime.sim_ancestry(samples={"ThreeEpGC_sm": sample_size},
+            demography=dem5, sequence_length=5000000, recombination_rate=1e-8,
+            random_seed=replicate)
+        tree_5 = ts5.first()
+        logger.info('First tree in ThreeEpB_sm: \n{0}'.format(tree_5))
+        self.ensure_parent_dir_exists(coalescent_ThreeEpB_sm)
+        with open(coalescent_ThreeEpB_sm, "w+") as g5:
+            logger.info('Writing coalescent times for ThreeEpB_sm.')
+            g5.write('Node, generations\n')
+            for u in tree_5.nodes():
+                # Retain coalescent events
+                if not tree_5.is_leaf(u):
+                    g5.write(f"Node {u}, {tree_5.time(u)}\n")
+        self.ensure_parent_dir_exists(branch_length_ThreeEpB_sm)
+        with open(branch_length_ThreeEpB_sm, "w+") as h5:
+            logger.info('Writing branch lengths for ThreeEpB_sm.')
+            h5.write('node_generations, branch_length\n')
+            for u in tree_5.nodes():
+                p = tree_5.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_5.time(p) - tree_5.time(u)
+                    h5.write(f"{tree_5.time(u)}, {branch_length}\n")
+
+        with open(output_ThreeEpB_sm, "w+") as f5:
             logger.info('Simulating three-epoch bottleneck.')
-            mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
-            mts4.write_vcf(f4)
+            mts5 = msprime.sim_mutations(ts5, rate=1.5E-8)
+            mts5.write_vcf(f5)
+
+
 
         logger.info('Pipeline executed succesfully.')
 

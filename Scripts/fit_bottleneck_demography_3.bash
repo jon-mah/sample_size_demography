@@ -6,7 +6,7 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N bottle_demog_3
-#$ -t 760
+#$ -t 450
 
 # SGE_TASK_ID=580
 
@@ -31,8 +31,16 @@ sample_size=$SGE_TASK_ID
 # MSPrime Bottleneck
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_500_${sample_size}/ --model_type one_epoch
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1000_${sample_size}/ --model_type one_epoch
-python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1500_${sample_size}/ --model_type two_epoch
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1500_${sample_size}/ --model_type two_epoch
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_2000_${sample_size}/ --model_type one_epoch
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_500_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_500_2000_${sample_size}/ --model_type one_epoch
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1500_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1500_2000_${sample_size}/ --model_type one_epoch
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_200_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_2000_2000_${sample_size}/ --model_type one_epoch
+
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_100_50_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_100_50_${sample_size}/ --model_type two_epoch
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_100_100_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_100_100_${sample_size}/ --model_type two_epoch
+python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_100_150_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_100_150_${sample_size}/ --model_type two_epoch
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_100_200_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_100_200_${sample_size}/ --model_type two_epoch
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_50_200_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_50_200_${sample_size}/ --model_type two_epoch
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_150_200_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_150_200_${sample_size}/ --model_type two_epoch
+# python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_20_200_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_200_200_${sample_size}/ --model_type two_epoch

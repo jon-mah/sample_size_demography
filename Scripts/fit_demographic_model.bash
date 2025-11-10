@@ -29,10 +29,10 @@ sample_size=$SGE_TASK_ID
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochGrowthContraction_${sample_size}_concat.sfs ../Analysis/msprime_3EpBGC_${sample_size}/ --model_type two_epoch
 
 # MSPrime Bottleneck
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_500_${sample_size}/ --model_type one_epoch
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1000_${sample_size}/ --model_type one_epoch
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1500_${sample_size}/ --model_type one_epoch
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_2000_${sample_size}/ --model_type one_epoch
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_500_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_500_2000_${sample_size}/ --model_type one_epoch
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1500_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1500_2000_${sample_size}/ --model_type one_epoch
-python fit_demogrpahy_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_200_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_2000_2000_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_500_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1000_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_1500_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_2000_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_500_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_500_2000_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1500_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1500_2000_${sample_size}/ --model_type one_epoch
+python fit_demography_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_200_2000_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_2000_2000_${sample_size}/ --model_type one_epoch
