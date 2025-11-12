@@ -5,7 +5,7 @@
 #$ -l h_rt=23:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N bottle_demog_3
+#$ -N bottle_dem_3
 #$ -t 450
 
 # SGE_TASK_ID=580

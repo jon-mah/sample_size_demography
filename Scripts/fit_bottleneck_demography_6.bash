@@ -5,10 +5,10 @@
 #$ -l h_rt=23:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N bottle_demog_6
+#$ -N bottle_dem_6
 #$ -t 760
 
-# SGE_TASK_ID=670
+SGE_TASK_ID=540
 
 sample_size=$SGE_TASK_ID
 

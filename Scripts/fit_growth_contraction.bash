@@ -8,7 +8,7 @@
 #$ -N gc_sm
 #$ -t 10-800:10
 
-# SGE_TASK_ID=200
+SGE_TASK_ID=440
 
 sample_size=$SGE_TASK_ID
 
@@ -27,8 +27,7 @@ sample_size=$SGE_TASK_ID
 
 # MSPrime Growth Contraction
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochGrowthContraction_${sample_size}_concat.sfs ../Analysis/msprime_3EpBGC_${sample_size}/ --model_type two_epoch
-python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochGrowthContraction_small_magnitude_${sample_size}_concat.sfs ../Analysis/msprime_3EpBGCsm_${sample_size{/ --model_type two_epoch
-
+python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochGrowthContraction_small_magnitude_${sample_size}_concat.sfs ../Analysis/msprime_3EpBGCsm_${sample_size}/ --model_type two_epoch
 
 # MSPrime Bottleneck
 # python fit_demographic_model.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_1000_500_${sample_size}/ --model_type two_epoch
