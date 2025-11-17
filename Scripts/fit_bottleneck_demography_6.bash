@@ -1,14 +1,14 @@
 #!/bin/bash
 #$ -cwd
 #$ -V
-#$ -l h_data=10G
+#$ -l h_data=30G
 #$ -l h_rt=23:00:00
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
-#$ -N bottle_dem_6
-#$ -t 760
+#$ -N bot_dem_6
+#$ -t 10-800:10
 
-SGE_TASK_ID=540
+# SGE_TASK_ID=540
 
 sample_size=$SGE_TASK_ID
 
