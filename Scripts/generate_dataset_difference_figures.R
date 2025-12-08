@@ -543,6 +543,44 @@ ggplot(EUR_2017_10_three_epoch_demography_10, aes(EUR_2017_10_three_epoch_Time, 
   scale_y_log10() +
   ggtitle('Best-fit demography for European Human data')
 
+ggplot(EUR_2017_300_three_epoch_demography_300, aes(EUR_2017_300_three_epoch_Time, EUR_2017_300_three_epoch_NEffective, color='2017_n_300')) + geom_step(linewidth=1.1, linetype='solid') +
+  geom_step(data=EUR_2020_300_three_epoch_demography_300, aes(EUR_2020_300_three_epoch_Time, EUR_2020_300_three_epoch_NEffective, color='2020_n_300'), linewidth=1.1, linetype='solid') +
+  geom_step(data=gnomAD_300_three_epoch_demography_300, aes(gnomAD_300_three_epoch_Time, gnomAD_300_three_epoch_NEffective, color='gnomAD_n_300'), linewidth=1.1, linetype='dashed') +
+  scale_color_manual(name='Dataset and sample size',
+                     breaks=c('2017_n_10', 
+                       '2017_n_100', 
+                       '2017_n_300', 
+                       '2020_n_10', 
+                       '2020_n_100', 
+                       '2020_n_300', 
+                       'gnomAD_n_10', 
+                       'gnomAD_n_100', 
+                       'gnomAD_n_300'),
+                     values=c('2017_n_10'='#99d8c9',
+                       '2017_n_100'='#41ae76',
+                       '2017_n_300'='#006d2c',
+                       '2020_n_10'='#bcbddc',
+                       '2020_n_100'='#807dba',
+                       '2020_n_300'='#54278f',
+                       'gnomAD_n_10'='#fc9272',
+                       'gnomAD_n_100'='#ef3b2c',
+                       'gnomAD_n_300'='#a50f15'),
+                     labels=c('1KG (2017), n=10',
+                       '1KG (2017), n=100',
+                       '1KG (2017), n=300',
+                       '1KG (2020), n=10',
+                       '1KG (2020), n=100',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=10',
+                       'gnomAD, n=100',
+                       'gnomAD, n=300')) +
+  theme_bw() +
+  ylab('Effective Population Size (logscale)') +
+  xlab('Approximate Time in Years') +
+  scale_y_log10() +
+  ggtitle('Best-fit demography for European Human data')
+
+
 compare_demographic_models_proportional_cutoff(EUR_2017_10_three_epoch, EUR_2020_10_three_epoch, gnomAD_10_three_epoch) + 
   ggtitle('Best-fit models by data, n=10') +
   scale_fill_manual(values=c('#99d8c9', '#bcbddc', '#fc9272'))
@@ -552,6 +590,18 @@ compare_demographic_models_proportional_cutoff(EUR_2017_100_three_epoch, EUR_202
 compare_demographic_models_proportional_cutoff(EUR_2017_300_three_epoch, EUR_2020_300_three_epoch, gnomAD_300_three_epoch) +
   ggtitle('Best-fit models by data, n=300') +
   scale_fill_manual(values=c('#006d2c', '#54278f', '#a50f15'))
+
+compare_demographic_models_proportional_cutoff(EUR_2017_syn_300, EUR_2020_syn_300, gnomAD_syn_300) +
+  ggtitle('Synonymous SFS by dataset, n=300') +
+  scale_fill_manual(values=c('#006d2c', '#54278f', '#a50f15'),
+    labels=c('1KG (2017)', '1KG (2020)', 'gnomAD')) +
+  guides(fill = guide_legend(title = "Dataset"))
+
+compare_demographic_models_proportional_cutoff(EUR_2017_nonsyn_300, EUR_2020_nonsyn_300, gnomAD_nonsyn_300) +
+  ggtitle('Nonsynonymous SFS by dataset, n=300') +
+  scale_fill_manual(values=c('#006d2c', '#54278f', '#a50f15'),
+    labels=c('1KG (2017)', '1KG (2020)', 'gnomAD')) +
+  guides(fill = guide_legend(title = "Dataset"))
 
 # ## DFE SFS comparison
 # # 1KG (2017)
@@ -781,4 +831,122 @@ ggplot(neugamma_dfe_df[neugamma_dfe_df$variable == 'return_data_frame', ], aes(x
                        'gnomAD, n=100',
                        'gnomAD, n=300')) +
   ggtitle('Best-fit Neu-gamma DFE for European Human data')
+
+## DFE Comparison (Truncated)
+
+dataset_levels = c(
+  '1KG (2017), n=300',
+  '1KG (2020), n=300',
+  'gnomAD, n=300'
+)
+
+EUR_2017_300_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_300/inferred_DFE.txt'))
+EUR_2017_300_gamma_dfe_params$dataset = '1KG (2017), n=300'
+EUR_2017_300_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_300/inferred_DFE.txt'))
+EUR_2017_300_neugamma_dfe_params$dataset = '1KG (2017), n=300'
+
+EUR_2020_300_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt'))
+EUR_2020_300_gamma_dfe_params$dataset = '1KG (2020), n=300'
+EUR_2020_300_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/1kg_EUR_2020_300/inferred_DFE.txt'))
+EUR_2020_300_neugamma_dfe_params$dataset = '1KG (2020), n=300'
+
+gnomAD_300_gamma_dfe_params = read_gamma_dfe_params(('../Analysis/gnomAD_300/inferred_DFE.txt'))
+gnomAD_300_gamma_dfe_params$dataset = 'gnomAD, n=300'
+gnomAD_300_neugamma_dfe_params = read_neugamma_dfe_params(('../Analysis/gnomAD_300/inferred_DFE.txt'))
+gnomAD_300_neugamma_dfe_params$dataset = 'gnomAD, n=300'
+
+dfe_df = rbind(
+  melt(EUR_2017_300_gamma_dfe_params),
+  melt(EUR_2020_300_neugamma_dfe_params),
+  melt(gnomAD_300_gamma_dfe_params)
+)
+
+dfe_df$dataset = factor(dfe_df$dataset, levels=dataset_levels)
+
+dfe_df <- dfe_df[order(dfe_df$dataset), ]
+
+dfe_df$value[dfe_df$value <= 1e-11] = 1e-9
+dfe_df$value[dfe_df$value >= 0.5] = 0.5
+
+best_fit_dfe_300 = ggplot(dfe_df[dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
+  geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
+  theme_ridges() +
+  scale_x_log10(limits=c(1e-10, 1e1)) +
+  ylab('Proportion of Sites') +
+  theme(axis.text.y = element_text(face='italic', hjust=0, size=18)) +
+  theme(axis.text.x = element_text(size=18)) + 
+  theme(legend.position = "none") + 
+  xlab('Selection Coefficient') +
+  scale_fill_manual(values=c('1KG (2017), n=300'='#006d2c',
+                       '1KG (2020), n=300'='#54278f',
+                       'gnomAD, n=300'='#a50f15'),
+                     labels=c('1KG (2017), n=300',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=300')) +
+  ggtitle('Best-fit DFE for European Human data')
+
+gamma_dfe_df = rbind(
+  melt(EUR_2017_300_gamma_dfe_params),
+  melt(EUR_2020_300_gamma_dfe_params),
+  melt(gnomAD_300_gamma_dfe_params)
+)
+
+gamma_dfe_df$dataset = factor(gamma_dfe_df$dataset, levels=dataset_levels)
+
+gamma_dfe_df <- gamma_dfe_df[order(gamma_dfe_df$dataset), ]
+
+gamma_dfe_df$value[gamma_dfe_df$value <= 1e-11] = 1e-9
+gamma_dfe_df$value[gamma_dfe_df$value >= 0.5] = 0.5
+
+best_fit_gamma_300 = ggplot(gamma_dfe_df[gamma_dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
+  geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
+  theme_ridges() +
+  scale_x_log10(limits=c(1e-10, 1e1)) +
+  ylab('Proportion of Sites') +
+  theme(axis.text.y = element_text(face='italic', hjust=0, size=18)) +
+  theme(axis.text.x = element_text(size=18)) + 
+  theme(legend.position = "none") + 
+  xlab('Selection Coefficient') +
+  scale_fill_manual(values=c('1KG (2017), n=300'='#006d2c',
+                       '1KG (2020), n=300'='#54278f',
+                       'gnomAD, n=300'='#a50f15'),
+                     labels=c('1KG (2017), n=300',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=300')) +
+  ggtitle('Best-fit Gamma DFE for European Human data')
+
+neugamma_dfe_df = rbind(
+  melt(EUR_2017_300_neugamma_dfe_params),
+  melt(EUR_2020_300_neugamma_dfe_params),
+  melt(gnomAD_300_neugamma_dfe_params)
+)
+
+neugamma_dfe_df$dataset = factor(neugamma_dfe_df$dataset, levels=dataset_levels)
+
+neugamma_dfe_df <- neugamma_dfe_df[order(neugamma_dfe_df$dataset), ]
+
+neugamma_dfe_df$value[neugamma_dfe_df$value <= 1e-11] = 1e-9
+neugamma_dfe_df$value[neugamma_dfe_df$value >= 0.5] = 0.5
+
+best_fit_neugamma_300 = ggplot(neugamma_dfe_df[neugamma_dfe_df$variable == 'return_data_frame', ], aes(x=value, y=fct_rev(dataset))) +
+  geom_density_ridges2(aes(fill = dataset), stat = "binline", binwidth = 1, scale = 1) +
+  theme_ridges() +
+  scale_x_log10(limits=c(1e-10, 1e1)) +
+  ylab('Proportion of Sites') +
+  theme(axis.text.y = element_text(face='italic', hjust=0, size=18)) +
+  theme(axis.text.x = element_text(size=18)) + 
+  theme(legend.position = "none") + 
+  xlab('Selection Coefficient') +
+  scale_fill_manual(values=c('1KG (2017), n=300'='#006d2c',
+                       '1KG (2020), n=300'='#54278f',
+                       'gnomAD, n=300'='#a50f15'),
+                     labels=c('1KG (2017), n=100',
+                       '1KG (2017), n=300',
+                       '1KG (2020), n=300',
+                       'gnomAD, n=300')) +
+  ggtitle('Best-fit Neu-gamma DFE for European Human data')
+
+best_fit_gamma_300
+
+best_fit_neugamma_300
 

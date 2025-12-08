@@ -23,10 +23,10 @@ if (!require("BiocManager", quietly = TRUE))
 library(latex2exp)
 library(ggvis)
 library(pheatmap)
+# BiocManager::install("ComplexHeatmap")
 library(ComplexHeatmap)
 library(phytools)
-# BiocManager::install("ComplexHeatmap")
-library(mdthemes)
+# library(mdthemes)
 library(ggborderline)
 
 
@@ -411,10 +411,10 @@ compare_1kg_gnomad_null_proportional_cutoff = function(old_1kg, empirical_1kg, e
 }
 
 compare_demographic_models_proportional_cutoff = function(old_1kg, model_1kg, model_gnomad) {
-  x_axis = 1:10
-  old_1kg = proportional_sfs(old_1kg)[1:10]
-  model_1kg = proportional_sfs(model_1kg)[1:10]
-  model_gnomad = proportional_sfs(model_gnomad)[1:10]
+  x_axis = 1:11
+  old_1kg = c(proportional_sfs(old_1kg)[1:10], sum(proportional_sfs(old_1kg)[11:length(old_1kg)]))
+  model_1kg = c(proportional_sfs(model_1kg)[1:10], sum(proportional_sfs(model_1kg)[11:length(model_1kg)]))
+  model_gnomad = c(proportional_sfs(model_gnomad)[1:10], sum(proportional_sfs(model_gnomad)[11:length(model_gnomad)]))
   input_df = data.frame(old_1kg,
                         model_1kg,
                         model_gnomad,
@@ -431,8 +431,12 @@ compare_demographic_models_proportional_cutoff = function(old_1kg, model_1kg, mo
                                                          fill=variable)) +
     geom_bar(position='dodge2', stat='identity') +
     labs(x = "", fill = "") +
-    scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
-    ylab('Proportion of segregating sites') +
+    scale_x_continuous(
+      name = 'Minor allele frequency in sample',
+      breaks = x_axis,
+      labels = c(as.character(1:10), ">=11"),
+      limits = c(0.5, length(x_axis) + 0.5)
+    ) +    ylab('Proportion of segregating sites') +
     theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
                        panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
     ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))

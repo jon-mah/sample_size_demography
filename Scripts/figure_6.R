@@ -8,40 +8,40 @@ sample_size = seq(from=10, to=800, by=10)
 one_epoch_20 = sfs_from_demography('../Analysis/msprime_3EpB_20/one_epoch_demography.txt')
 one_epoch_90 = sfs_from_demography('../Analysis/msprime_3EpB_90/one_epoch_demography.txt')
 one_epoch_100 = sfs_from_demography('../Analysis/msprime_3EpB_100/one_epoch_demography.txt')
-one_epoch_110 = sfs_from_demography('../Analysis/msprime_3EpB_110/one_epoch_demography.txt')
+one_epoch_700 = sfs_from_demography('../Analysis/msprime_3EpB_700/one_epoch_demography.txt')
 
 msprime_sfs_20 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_20_concat.sfs')
 msprime_sfs_90 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_90_concat.sfs')
 msprime_sfs_100 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_100_concat.sfs')
-msprime_sfs_110 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_110_concat.sfs')
+msprime_sfs_700 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_700_concat.sfs')
 
 msprime_nu_20 = nu_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
 msprime_nu_90 = nu_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
 msprime_nu_100 = nu_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_nu_110 = nu_from_demography('../Analysis/msprime_3EpB_110/two_epoch_demography.txt')
+msprime_nu_700 = nu_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
 
 msprime_tau_20 = tau_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
 msprime_tau_90 = tau_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
 msprime_tau_100 = tau_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_tau_110 = tau_from_demography('../Analysis/msprime_3EpB_110/two_epoch_demography.txt')
+msprime_tau_700 = tau_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
 
 msprime_time_20 = time_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
 msprime_time_90 = time_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
 msprime_time_100 = time_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_time_110 = time_from_demography('../Analysis/msprime_3EpB_110/two_epoch_demography.txt')
+msprime_time_700 = time_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
 
 msprime_theta_20 = theta_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
 msprime_theta_90 = theta_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
 msprime_theta_100 = theta_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_theta_110 = theta_from_demography('../Analysis/msprime_3EpB_110/two_epoch_demography.txt')
+msprime_theta_700 = theta_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
 
-msprime_simulation_two_epoch_theta = c(msprime_theta_20, msprime_theta_90, msprime_theta_100, msprime_theta_110)
-msprime_simulation_two_epoch_nu = c(msprime_nu_20, msprime_nu_90, msprime_nu_100, msprime_nu_110)
-msprime_simulation_two_epoch_tau = c(msprime_nu_20, msprime_nu_90, msprime_nu_100, msprime_nu_110)
+msprime_simulation_two_epoch_theta = c(msprime_theta_20, msprime_theta_90, msprime_theta_100, msprime_theta_700)
+msprime_simulation_two_epoch_nu = c(msprime_nu_20, msprime_nu_90, msprime_nu_100, msprime_nu_700)
+msprime_simulation_two_epoch_tau = c(msprime_nu_20, msprime_nu_90, msprime_nu_100, msprime_nu_700)
 
 msprime_simulation_two_epoch_NAnc = 10000
 msprime_simulation_two_epoch_NCurr = msprime_simulation_two_epoch_nu * msprime_simulation_two_epoch_NAnc
-msprime_simulation_two_epoch_Time = c(msprime_time_20, msprime_time_90, msprime_time_100, msprime_time_110)
+msprime_simulation_two_epoch_Time = c(msprime_time_20, msprime_time_90, msprime_time_100, msprime_time_700)
 # ThreeEpochB_two_epoch_Time = 2 * ThreeEpochB_two_epoch_tau * ThreeEpochB_two_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_two_epoch_allele_sum)
 
 
@@ -61,19 +61,19 @@ msprime_simulation_two_epoch_demography_90 = data.frame(msprime_simulation_two_e
 msprime_simulation_two_epoch_NEffective_100 = c(msprime_simulation_two_epoch_demography[3, 1], msprime_simulation_two_epoch_demography[3, 3], msprime_simulation_two_epoch_demography[3, 5])
 msprime_simulation_two_epoch_Time_100 = c(-msprime_simulation_two_epoch_demography[3, 2], -msprime_simulation_two_epoch_demography[3, 4], msprime_simulation_two_epoch_demography[3, 6])
 msprime_simulation_two_epoch_demography_100 = data.frame(msprime_simulation_two_epoch_Time_100, msprime_simulation_two_epoch_NEffective_100)
-msprime_simulation_two_epoch_NEffective_110 = c(msprime_simulation_two_epoch_demography[4, 1], msprime_simulation_two_epoch_demography[4, 3], msprime_simulation_two_epoch_demography[4, 5])
-msprime_simulation_two_epoch_Time_110 = c(-msprime_simulation_two_epoch_demography[4, 2], -msprime_simulation_two_epoch_demography[4, 4], msprime_simulation_two_epoch_demography[4, 6])
-msprime_simulation_two_epoch_demography_110 = data.frame(msprime_simulation_two_epoch_Time_110, msprime_simulation_two_epoch_NEffective_110)
+msprime_simulation_two_epoch_NEffective_700 = c(msprime_simulation_two_epoch_demography[4, 1], msprime_simulation_two_epoch_demography[4, 3], msprime_simulation_two_epoch_demography[4, 5])
+msprime_simulation_two_epoch_Time_700 = c(-msprime_simulation_two_epoch_demography[4, 2], -msprime_simulation_two_epoch_demography[4, 4], msprime_simulation_two_epoch_demography[4, 6])
+msprime_simulation_two_epoch_demography_700 = data.frame(msprime_simulation_two_epoch_Time_700, msprime_simulation_two_epoch_NEffective_700)
 
 ThreeEpochB_true_NAnc = 8000
 ThreeEpochB_true_NBottle = 800
 ThreeEpochB_true_NCurr = 50000
-ThreeEpochB_true_TimeBottleEnd = 140
-ThreeEpochB_true_TimeBottleStart = 800
+ThreeEpochB_true_TimeBottleEnd = 200
+ThreeEpochB_true_TimeBottleStart = 2000
 # ThreeEpochB_three_epoch_TimeBottleEnd = 2 * ThreeEpochB_three_epoch_tauF * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum)
 # ThreeEpochB_three_epoch_TimeBottleStart = 2 * ThreeEpochB_three_epoch_tauB * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum) + ThreeEpochB_three_epoch_TimeBottleEnd
 
-ThreeEpochB_true_TimeTotal = 1400
+ThreeEpochB_true_TimeTotal = 2000
 ThreeEpochB_true_TimeCurrent = 50
 
 ThreeEpochB_true_demography = data.frame(ThreeEpochB_true_NAnc, two_epoch_max_time * 1.05,
@@ -85,14 +85,14 @@ ThreeEpochB_true_NEffective_params = c(ThreeEpochB_true_demography[1, 1], ThreeE
 ThreeEpochB_true_Time_params = c(-ThreeEpochB_true_demography[1, 2], -ThreeEpochB_true_demography[1, 4], -ThreeEpochB_true_demography[1, 6], ThreeEpochB_true_demography[1, 8])
 ThreeEpochB_true_demography_params = data.frame(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params)
 
-plot_A = compare_simulation_null_sfs_proportional(msprime_sfs_20, one_epoch_20, '#40004b') + 
+plot_A = compare_simulation_null_sfs_proportional(msprime_sfs_20, one_epoch_20, '#40008b') + 
   ggtitle('20 simulated individuals') + guides(fill='none')
 plot_B = compare_simulation_null_sfs_proportional(msprime_sfs_90, one_epoch_90, '#9970ab') + 
   ggtitle('90 simulated individuals') + guides(fill='none')
 plot_C = compare_simulation_null_sfs_proportional(msprime_sfs_100, one_epoch_100, '#5aae61') + 
   ggtitle('100 simulated individuals') + guides(fill='none')
-plot_D = compare_simulation_null_sfs_proportional(msprime_sfs_110, one_epoch_110, '#00441b') + 
-  ggtitle('110 simulated individuals')
+plot_D = compare_simulation_null_sfs_proportional(msprime_sfs_700, one_epoch_700, '#00441b') + 
+  ggtitle('700 simulated individuals')
 
 set.seed(101)
 df <- data.frame(x=rnorm(25000,0,5000))
@@ -100,23 +100,23 @@ weird <- scales::trans_new("signed_log",
        transform=function(x) sign(x)*log(abs(x)),
        inverse=function(x) sign(x)*exp(abs(x)))
 
-plot_E = ggplot(msprime_simulation_two_epoch_demography_20, aes(msprime_simulation_two_epoch_Time_20, msprime_simulation_two_epoch_NEffective_20, color='N=20')) + geom_step(linewidth=1, linetype='solid') +
-  geom_step(data=msprime_simulation_two_epoch_demography_90, aes(msprime_simulation_two_epoch_Time_90, msprime_simulation_two_epoch_NEffective_90, color='N=90'), linewidth=1, linetype='solid') +
-  geom_step(data=msprime_simulation_two_epoch_demography_100, aes(msprime_simulation_two_epoch_Time_100, msprime_simulation_two_epoch_NEffective_100, color='N=100'), linewidth=1, linetype='solid') +
-  geom_step(data=msprime_simulation_two_epoch_demography_110, aes(msprime_simulation_two_epoch_Time_110, msprime_simulation_two_epoch_NEffective_110, color='N=110'), linewidth=1, linetype='solid') +
-  geom_step(data=ThreeEpochB_true_demography_params, aes(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params, color='True'), linewidth=2, linetype='solid') +
+plot_E = ggplot(msprime_simulation_two_epoch_demography_20, aes(msprime_simulation_two_epoch_Time_20, msprime_simulation_two_epoch_NEffective_20, color='N=20')) + geom_step(linewidth=3, linetype='solid') +
+  geom_step(data=msprime_simulation_two_epoch_demography_90, aes(msprime_simulation_two_epoch_Time_90, msprime_simulation_two_epoch_NEffective_90, color='N=90'), linewidth=3, linetype='solid') +
+  geom_step(data=msprime_simulation_two_epoch_demography_100, aes(msprime_simulation_two_epoch_Time_100, msprime_simulation_two_epoch_NEffective_100, color='N=100'), linewidth=3, linetype='solid') +
+  geom_step(data=msprime_simulation_two_epoch_demography_700, aes(msprime_simulation_two_epoch_Time_700, msprime_simulation_two_epoch_NEffective_700, color='N=700'), linewidth=3, linetype='solid') +
+  geom_step(data=ThreeEpochB_true_demography_params, aes(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params, color='True'), linewidth=5, linetype='solid') +
   scale_color_manual(name='Sample Size',
-                     breaks=c('N=20', 'N=90', 'N=100', 'N=110', 'True'),
-                     values=c('N=20'='#40004b',
+                     breaks=c('N=20', 'N=90', 'N=100', 'N=700', 'True'),
+                     values=c('N=20'='#40008b',
                        'N=90'='#9970ab',
                        'N=100'='#5aae61',
-                       'N=110'='#00441b',
+                       'N=700'='#00441b',
                        'True'='#b30000')) +
   theme_bw() +
   ylab('Effective population size') +
-  xlab('Approximate time in years relative to current time') +
+  xlab('Generations relative to current time') +
   scale_y_log10() +
-  scale_x_continuous(trans=weird, breaks = c(-25000, -1000, -5000, -1000, -500, 0)) +
+  scale_x_continuous(trans=weird, breaks = c(-25000, -2000, -1000, -5000, -1000, -500, -200, 0)) +
   ggtitle('Inferred two-epoch demographic model from MSPrime simulated SFS')
 
 design = '

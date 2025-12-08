@@ -187,7 +187,7 @@ plot_1800_200_simplified = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y
   theme_bw() +
   xlab('Sample size') +
   ylab('Mean branch length') +
-  ggtitle('Proportion of branch length per epoch') +
+  ggtitle('Proportion of branch length per epoch, [Anc., 2000 g.a., 200 g.a.]') +
   scale_color_manual(name='Epoch',
                      breaks=c('growth_b_len_proportion_mean',
                        'bottleneck_b_len_proportion_mean',
@@ -195,15 +195,17 @@ plot_1800_200_simplified = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y
                      values=c('growth_b_len_proportion_mean'='#1b9e77',
                        'bottleneck_b_len_proportion_mean'='#d95f02',
                        'ancestral_b_len_proportion_mean'='#7570b3'),
-                     labels=c('Recent growth', 'Bottleneck', 'Ancestral population')) +
+                     labels=c('Recent growth [200 g.a.]', 
+                       'Bottleneck [2000 g.a.]', 
+                       'Ancestral population')) +
   scale_shape_manual(name='Inferred two-epoch model',
                      breaks=c('msprime_contract',
                        'msprime_expand'),
                      values=c('msprime_contract'=15,
                        'msprime_expand'=22),
                      labels=c('Contraction',
-                       'Expansion')) +
-  guides(shape='none', color='none')
+                       'Expansion'))
+  # guides(shape='none', color='none')
   # theme(axis.title.x = element_text(size = 20))  +
   # theme(axis.title.y = element_text(size = 20))  +
   # theme(plot.title = element_text(size = 32))  +
@@ -211,6 +213,7 @@ plot_1800_200_simplified = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y
   # theme(legend.text = element_text(size = 16))
 
 plot_3A + plot_1800_200_simplified + plot_layout(nrow=2)
+plot_1800_200_simplified
 
 # growth_contraction
 

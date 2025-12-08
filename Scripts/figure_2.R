@@ -159,6 +159,12 @@ lambda_dataframe = melt(data.frame(
 ))
 lambda_dataframe$sample_size = sample_size
 
+lambda_dataframe_msprime = melt(data.frame(
+  msprime_lambda_32,
+  msprime_lambda_21
+))
+lambda_dataframe_msprime$sample_size = sample_size
+
 dadi_nuF_nuB = dadi_nu_f / dadi_nu_b
 msprime_nuF_nuB = msprime_nu_f / msprime_nu_b
 
@@ -184,7 +190,7 @@ epoch_ratio_dataframe_msprime$sample_size = sample_size
 
 plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
+  # geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   xlab('Sample size') +
   ylab(nu_label_text) +
@@ -198,7 +204,7 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
 
 plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
+  # geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   xlab('Sample size') +
   ylab(tau_label_text) +
@@ -230,8 +236,20 @@ plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variabl
   scale_colour_manual(
     values = c("#0C7BDC", "#999ED9", "#FFC20A", "#CA5A08"),
     labels = c("Dadi, three-epoch vs. two-epoch", "Dadi, two-epoch vs. one-epoch",
-      "MSPrime, three-epoch vs. two-epoch", "MSPrime, two-epoch vs. one-epoch")
+               "MSPrime, three-epoch vs. two-epoch", "MSPrime, two-epoch vs. one-epoch")
   ) +
+  geom_hline(yintercept = 14.75552, size = 1, linetype = 'dashed', color='red')
+
+plot_D_2 = ggplot(data=lambda_dataframe_msprime, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Demographic model comparison")) +
+  xlab('Sample size') +
+  ylab(twoLambda_text) +
+  ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, three-epoch vs. two-epoch", "MSPrime, two-epoch vs. one-epoch")
+  ) +
+  scale_y_log10() +
   geom_hline(yintercept = 14.75552, size = 1, linetype = 'dashed', color='red')
 
 # 2Lambda is approximately chi-squared distributed.
@@ -270,6 +288,7 @@ plot_E_2 = ggplot(data=epoch_ratio_dataframe_msprime, aes(x=sample_size, y=value
     values = c("#FFC20A", "#CA5A08"),
     labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Recent vs. Bottleneck")
   ) +
+  scale_y_log10() +
   geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
 
 # plot_E = plot_likelihood_surface_contour('../Analysis/dadi_3EpB_50/likelihood_surface.csv') +
@@ -308,17 +327,17 @@ plot_E_2 = ggplot(data=epoch_ratio_dataframe_msprime, aes(x=sample_size, y=value
 #   geom_hline(yintercept = 0, size = 2, linetype = 'dashed')
 # 
 design = "
-  AADD
+  CCDD
+  AAEE
   BBEE
-  CCEE
 "
 
-# 1000 x 1200
+# 1200 x 800
 plot_A + 
   plot_B + 
   plot_C + 
-  plot_D + 
-  plot_E +
+  plot_D_2 + 
+  plot_E_2 +
   plot_layout(design=design)
 
 design_2 = "
@@ -387,6 +406,7 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
     values = c("#FFC20A"),
     labels = c("MSPrime")
   ) +
+  geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   scale_y_log10() +
   geom_hline(yintercept = 1, size = 2, linetype = 'dashed') +
   theme(legend.position='none') +
@@ -397,6 +417,7 @@ plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable))
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   xlab('Sample size') +
   ylab(tau_label_text) +
+  geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
   ggtitle('Timing of inferred instantaneous size change') +
   # scale_y_log10() +
   scale_colour_manual(
