@@ -287,26 +287,26 @@ class msPrimeSimulate():
 
 
         # Demographic events
-        # dem0.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        # dem0.add_population_parameters_change(time=1500, initial_size=10000, population=0)
+        dem0.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        dem0.add_population_parameters_change(time=1500, initial_size=10000, population=0)
 
-        # dem1.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        # dem1.add_population_parameters_change(time=2000, initial_size=10000, population=0)
+        dem1.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        dem1.add_population_parameters_change(time=2000, initial_size=10000, population=0)
 
-        # dem2.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        # dem2.add_population_parameters_change(time=2500, initial_size=10000, population=0)
+        dem2.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        dem2.add_population_parameters_change(time=2500, initial_size=10000, population=0)
 
-        # dem3.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        # dem3.add_population_parameters_change(time=3000, initial_size=10000, population=0)
+        dem3.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        dem3.add_population_parameters_change(time=3000, initial_size=10000, population=0)
 
-        # dem4.add_population_parameters_change(time=500, initial_size=1000, population=0)
-        # dem4.add_population_parameters_change(time=2500, initial_size=10000, population=0)
+        dem4.add_population_parameters_change(time=500, initial_size=1000, population=0)
+        dem4.add_population_parameters_change(time=2500, initial_size=10000, population=0)
 
-        # dem5.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        # dem5.add_population_parameters_change(time=3500, initial_size=10000, population=0)
+        dem5.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        dem5.add_population_parameters_change(time=3500, initial_size=10000, population=0)
 
-        # dem6.add_population_parameters_change(time=2000, initial_size=1000, population=0)
-        # dem6.add_population_parameters_change(time=4000, initial_size=10000, population=0)
+        dem6.add_population_parameters_change(time=2000, initial_size=1000, population=0)
+        dem6.add_population_parameters_change(time=4000, initial_size=10000, population=0)
 
         # dem7.add_population_parameters_change(time=100, initial_size=1000, population=0)
         # dem7.add_population_parameters_change(time=150, initial_size=10000, population=0)
@@ -320,14 +320,14 @@ class msPrimeSimulate():
         # dem10.add_population_parameters_change(time=100, initial_size=1000, population=0)
         # dem10.add_population_parameters_change(time=300, initial_size=10000, population=0)
 
-        dem11.add_population_parameters_change(time=50, initial_size=1000, population=0)
-        dem11.add_population_parameters_change(time=250, initial_size=10000, population=0)
+        # dem11.add_population_parameters_change(time=50, initial_size=1000, population=0)
+        # dem11.add_population_parameters_change(time=250, initial_size=10000, population=0)
 
-        dem12.add_population_parameters_change(time=100, initial_size=1000, population=0)
-        dem12.add_population_parameters_change(time=350, initial_size=10000, population=0)
+        # dem12.add_population_parameters_change(time=100, initial_size=1000, population=0)
+        # dem12.add_population_parameters_change(time=350, initial_size=10000, population=0)
 
-        dem13.add_population_parameters_change(time=200, initial_size=1000, population=0)
-        dem13.add_population_parameters_change(time=400, initial_size=10000, population=0)
+        # dem13.add_population_parameters_change(time=200, initial_size=1000, population=0)
+        # dem13.add_population_parameters_change(time=400, initial_size=10000, population=0)
 
         # dem14.add_population_parameters_change(time=200, initial_size=1000, population=0)
         # dem14.add_population_parameters_change(time=800, initial_size=10000, population=0)
@@ -335,197 +335,197 @@ class msPrimeSimulate():
         # dem15.add_population_parameters_change(time=200, initial_size=1000, population=0)
         # dem15.add_population_parameters_change(time=1200, initial_size=10000, population=0)
 
-        dem16.add_population_parameters_change(time=200, initial_size=1000, population=0)
-        dem16.add_population_parameters_change(time=1600, initial_size=10000, population=0)
+        # dem16.add_population_parameters_change(time=200, initial_size=1000, population=0)
+        # dem16.add_population_parameters_change(time=1600, initial_size=10000, population=0)
 
 
-        # dem0.sort_events()
-        # dem1.sort_events()
-        # dem2.sort_events()
-        # dem3.sort_events()
-        # dem4.sort_events()
-        # dem5.sort_events()
-        # dem6.sort_events()
+        dem0.sort_events()
+        dem1.sort_events()
+        dem2.sort_events()
+        dem3.sort_events()
+        dem4.sort_events()
+        dem5.sort_events()
+        dem6.sort_events()
         # dem7.sort_events()
         # dem8.sort_events()
         # dem9.sort_events()
         # dem10.sort_events()
-        dem11.sort_events()
-        dem12.sort_events()
-        dem13.sort_events()
+        # dem11.sort_events()
+        # dem12.sort_events()
+        # dem13.sort_events()
         # dem14.sort_events()
         # dem15.sort_events()
-        dem16.sort_events()
-        # print(dem0)
-        # print(dem1)
-        # print(dem2)
-        # print(dem3)
-        # print(dem4)
-        # print(dem5)
-        # print(dem6)
+        # dem16.sort_events()
+        print(dem0)
+        print(dem1)
+        print(dem2)
+        print(dem3)
+        print(dem4)
+        print(dem5)
+        print(dem6)
         # print(dem7)
         # print(dem8)
         # print(dem9)
         # print(dem10)
-        print(dem11)
-        print(dem12)
-        print(dem13)
+        # print(dem11)
+        # print(dem12)
+        # print(dem13)
         # print(dem14)
         # print(dem15)
-        print(dem16)
-        # with open(output_ThreeEpB_1000_500, "w+") as f0:
-        #     ts0 = msprime.sim_ancestry(samples={"ThreeEpB_1000_500": sample_size},
-        #         demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
-        #     mts0.write_vcf(f0)
-        #     tree_0 = ts0.first()
-        #     with open(coalescent_1000_500, "w+") as g0:
-        #         g0.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for 1000_500.')
-        #         for u in tree_0.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_0.is_leaf(u):  # skip sample nodes
-        #                 g0.write(f"Node {u}, {tree_0.time(u)}\n")
-        # with open(branch_length_1000_500, "w+") as h0:
-        #     logger.info('Writing branch lengths for 1000_500.')
-        #     h0.write('node_generations, branch_length\n')
-        #     for u in tree_0.nodes():
-        #         p = tree_0.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_0.time(p) - tree_0.time(u)
-        #             h0.write(f"{tree_0.time(u)}, {branch_length}\n")
+        # print(dem16)
+        with open(output_ThreeEpB_1000_500, "w+") as f0:
+            ts0 = msprime.sim_ancestry(samples={"ThreeEpB_1000_500": sample_size},
+                demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
+            mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
+            mts0.write_vcf(f0)
+            tree_0 = ts0.first()
+            with open(coalescent_1000_500, "w+") as g0:
+                g0.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_500.')
+                for u in tree_0.nodes():
+                    # Retain coalescent nodes
+                    if not tree_0.is_leaf(u):  # skip sample nodes
+                        g0.write(f"Node {u}, {tree_0.time(u)}\n")
+        with open(branch_length_1000_500, "w+") as h0:
+            logger.info('Writing branch lengths for 1000_500.')
+            h0.write('node_generations, branch_length\n')
+            for u in tree_0.nodes():
+                p = tree_0.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_0.time(p) - tree_0.time(u)
+                    h0.write(f"{tree_0.time(u)}, {branch_length}\n")
 
-        # with open(output_ThreeEpB_1000_1000, "w+") as f1:
-        #     ts1 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1000": sample_size},
-        #         demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
-        #     mts1.write_vcf(f1)
-        #     tree_1 = ts1.first()
-        #     with open(coalescent_1000_1000, "w+") as g1:
-        #         g1.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for 1000_1000.')
-        #         for u in tree_1.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_1.is_leaf(u):  # skip sample nodes
-        #                 g1.write(f"Node {u}, {tree_1.time(u)}\n")
-        # with open(branch_length_1000_1000, "w+") as h1:
-        #     logger.info('Writing branch lengths for 1000_1000.')
-        #     h1.write('node_generations, branch_length\n')
-        #     for u in tree_1.nodes():
-        #         p = tree_1.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_1.time(p) - tree_1.time(u)
-        #             h1.write(f"{tree_1.time(u)}, {branch_length}\n")
+        with open(output_ThreeEpB_1000_1000, "w+") as f1:
+            ts1 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1000": sample_size},
+                demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
+            mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
+            mts1.write_vcf(f1)
+            tree_1 = ts1.first()
+            with open(coalescent_1000_1000, "w+") as g1:
+                g1.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_1000.')
+                for u in tree_1.nodes():
+                    # Retain coalescent nodes
+                    if not tree_1.is_leaf(u):  # skip sample nodes
+                        g1.write(f"Node {u}, {tree_1.time(u)}\n")
+        with open(branch_length_1000_1000, "w+") as h1:
+            logger.info('Writing branch lengths for 1000_1000.')
+            h1.write('node_generations, branch_length\n')
+            for u in tree_1.nodes():
+                p = tree_1.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_1.time(p) - tree_1.time(u)
+                    h1.write(f"{tree_1.time(u)}, {branch_length}\n")
 
-        # with open(output_ThreeEpB_1000_1500, "w+") as f2:
-        #     ts2 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1500": sample_size},
-        #         demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
-        #     mts2.write_vcf(f2)
-        #     tree_2 = ts2.first()
-        #     with open(coalescent_1000_1500, "w+") as g2:
-        #         g2.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for 1000_1500.')
-        #         for u in tree_2.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_2.is_leaf(u):  # skip sample nodes
-        #                 g2.write(f"Node {u}, {tree_2.time(u)}\n")
-        # with open(branch_length_1000_1500, "w+") as h2:
-        #     logger.info('Writing branch lengths for 1000_1500.')
-        #     h2.write('node_generations, branch_length\n')
-        #     for u in tree_2.nodes():
-        #         p = tree_2.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_2.time(p) - tree_2.time(u)
-        #             h2.write(f"{tree_2.time(u)}, {branch_length}\n")
+        with open(output_ThreeEpB_1000_1500, "w+") as f2:
+            ts2 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1500": sample_size},
+                demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
+            mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
+            mts2.write_vcf(f2)
+            tree_2 = ts2.first()
+            with open(coalescent_1000_1500, "w+") as g2:
+                g2.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_1500.')
+                for u in tree_2.nodes():
+                    # Retain coalescent nodes
+                    if not tree_2.is_leaf(u):  # skip sample nodes
+                        g2.write(f"Node {u}, {tree_2.time(u)}\n")
+        with open(branch_length_1000_1500, "w+") as h2:
+            logger.info('Writing branch lengths for 1000_1500.')
+            h2.write('node_generations, branch_length\n')
+            for u in tree_2.nodes():
+                p = tree_2.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_2.time(p) - tree_2.time(u)
+                    h2.write(f"{tree_2.time(u)}, {branch_length}\n")
 
-        # with open(output_ThreeEpB_1000_2000, "w+") as f3:
-        #     ts3 = msprime.sim_ancestry(samples={"ThreeEpB_1000_2000": sample_size},
-        #         demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
-        #     mts3.write_vcf(f3)
-        #     tree_3 = ts3.first()
-        #     with open(coalescent_1000_2000, "w+") as g3:
-        #         g3.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for 1000_2000.')
-        #         for u in tree_3.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_3.is_leaf(u):  # skip sample nodes
-        #                 g3.write(f"Node {u}, {tree_3.time(u)}\n")
-        # with open(branch_length_1000_2000, "w+") as h3:
-        #     logger.info('Writing branch lengths for 1000_2000.')
-        #     h3.write('node_generations, branch_length\n')
-        #     for u in tree_3.nodes():
-        #         p = tree_3.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_3.time(p) - tree_3.time(u)
-        #             h3.write(f"{tree_3.time(u)}, {branch_length}\n")
+        with open(output_ThreeEpB_1000_2000, "w+") as f3:
+            ts3 = msprime.sim_ancestry(samples={"ThreeEpB_1000_2000": sample_size},
+                demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
+            mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
+            mts3.write_vcf(f3)
+            tree_3 = ts3.first()
+            with open(coalescent_1000_2000, "w+") as g3:
+                g3.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_2000.')
+                for u in tree_3.nodes():
+                    # Retain coalescent nodes
+                    if not tree_3.is_leaf(u):  # skip sample nodes
+                        g3.write(f"Node {u}, {tree_3.time(u)}\n")
+        with open(branch_length_1000_2000, "w+") as h3:
+            logger.info('Writing branch lengths for 1000_2000.')
+            h3.write('node_generations, branch_length\n')
+            for u in tree_3.nodes():
+                p = tree_3.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_3.time(p) - tree_3.time(u)
+                    h3.write(f"{tree_3.time(u)}, {branch_length}\n")
 
-        # with open(output_ThreeEpB_500_2000, "w+") as f4:
-        #     ts4 = msprime.sim_ancestry(samples={"ThreeEpB_500_2000": sample_size},
-        #         demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
-        #     mts4.write_vcf(f4)
-        #     tree_4 = ts4.first()
-        #     with open(coalescent_500_2000, "w+") as g4:
-        #         g4.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for 1000_2000.')
-        #         for u in tree_4.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_4.is_leaf(u):  # skip sample nodes
-        #                 g4.write(f"Node {u}, {tree_4.time(u)}\n")
-        # with open(branch_length_500_2000, "w+") as h4:
-        #     logger.info('Writing branch lengths for 500_2000.')
-        #     h4.write('node_generations, branch_length\n')
-        #     for u in tree_4.nodes():
-        #         p = tree_4.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_4.time(p) - tree_4.time(u)
-        #             h4.write(f"{tree_4.time(u)}, {branch_length}\n")
+        with open(output_ThreeEpB_500_2000, "w+") as f4:
+            ts4 = msprime.sim_ancestry(samples={"ThreeEpB_500_2000": sample_size},
+                demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
+            mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
+            mts4.write_vcf(f4)
+            tree_4 = ts4.first()
+            with open(coalescent_500_2000, "w+") as g4:
+                g4.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1000_2000.')
+                for u in tree_4.nodes():
+                    # Retain coalescent nodes
+                    if not tree_4.is_leaf(u):  # skip sample nodes
+                        g4.write(f"Node {u}, {tree_4.time(u)}\n")
+        with open(branch_length_500_2000, "w+") as h4:
+            logger.info('Writing branch lengths for 500_2000.')
+            h4.write('node_generations, branch_length\n')
+            for u in tree_4.nodes():
+                p = tree_4.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_4.time(p) - tree_4.time(u)
+                    h4.write(f"{tree_4.time(u)}, {branch_length}\n")
 
-        # with open(output_ThreeEpB_1500_2000, "w+") as f5:
-        #     ts5 = msprime.sim_ancestry(samples={"ThreeEpB_1500_2000": sample_size},
-        #         demography=dem5, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts5 = msprime.sim_mutations(ts5, rate=1.5E-8)
-        #     mts5.write_vcf(f5)
-        #     tree_5 = ts5.first()
-        #     with open(coalescent_1500_2000, "w+") as g5:
-        #         g5.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for 1500_2000.')
-        #         for u in tree_5.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_5.is_leaf(u):  # skip sample nodes
-        #                 g5.write(f"Node {u}, {tree_5.time(u)}\n")
-        # with open(branch_length_1500_2000, "w+") as h5:
-        #     logger.info('Writing branch lengths for 1500_2000.')
-        #     h5.write('node_generations, branch_length\n')
-        #     for u in tree_5.nodes():
-        #         p = tree_5.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_5.time(p) - tree_5.time(u)
-        #             h5.write(f"{tree_5.time(u)}, {branch_length}\n")
+        with open(output_ThreeEpB_1500_2000, "w+") as f5:
+            ts5 = msprime.sim_ancestry(samples={"ThreeEpB_1500_2000": sample_size},
+                demography=dem5, sequence_length=5000000, recombination_rate=1e-8)
+            mts5 = msprime.sim_mutations(ts5, rate=1.5E-8)
+            mts5.write_vcf(f5)
+            tree_5 = ts5.first()
+            with open(coalescent_1500_2000, "w+") as g5:
+                g5.write('Node, generations\n')
+                logger.info('Writing coalescent times for 1500_2000.')
+                for u in tree_5.nodes():
+                    # Retain coalescent nodes
+                    if not tree_5.is_leaf(u):  # skip sample nodes
+                        g5.write(f"Node {u}, {tree_5.time(u)}\n")
+        with open(branch_length_1500_2000, "w+") as h5:
+            logger.info('Writing branch lengths for 1500_2000.')
+            h5.write('node_generations, branch_length\n')
+            for u in tree_5.nodes():
+                p = tree_5.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_5.time(p) - tree_5.time(u)
+                    h5.write(f"{tree_5.time(u)}, {branch_length}\n")
 
-        # with open(output_ThreeEpB_2000_2000, "w+") as f6:
-        #     ts6 = msprime.sim_ancestry(samples={"ThreeEpB_2000_2000": sample_size},
-        #         demography=dem6, sequence_length=5000000, recombination_rate=1e-8)
-        #     mts6 = msprime.sim_mutations(ts6, rate=1.5E-8)
-        #     mts6.write_vcf(f6)
-        #     tree_6 = ts6.first()
-        #     with open(coalescent_2000_2000, "w+") as g6:
-        #         g6.write('Node, generations\n')
-        #         logger.info('Writing coalescent times for TwoEpC.')
-        #         for u in tree_6.nodes():
-        #             # Retain coalescent nodes
-        #             if not tree_6.is_leaf(u):  # skip sample nodes
-        #                 g6.write(f"Node {u}, {tree_6.time(u)}\n")
-        # with open(branch_length_2000_2000, "w+") as h6:
-        #     logger.info('Writing branch lengths for 2000_2000.')
-        #     h6.write('node_generations, branch_length\n')
-        #     for u in tree_6.nodes():
-        #         p = tree_6.parent(u)
-        #         if p != tskit.NULL:
-        #             branch_length = tree_6.time(p) - tree_6.time(u)
-        #             h6.write(f"{tree_6.time(u)}, {branch_length}\n")
+        with open(output_ThreeEpB_2000_2000, "w+") as f6:
+            ts6 = msprime.sim_ancestry(samples={"ThreeEpB_2000_2000": sample_size},
+                demography=dem6, sequence_length=5000000, recombination_rate=1e-8)
+            mts6 = msprime.sim_mutations(ts6, rate=1.5E-8)
+            mts6.write_vcf(f6)
+            tree_6 = ts6.first()
+            with open(coalescent_2000_2000, "w+") as g6:
+                g6.write('Node, generations\n')
+                logger.info('Writing coalescent times for TwoEpC.')
+                for u in tree_6.nodes():
+                    # Retain coalescent nodes
+                    if not tree_6.is_leaf(u):  # skip sample nodes
+                        g6.write(f"Node {u}, {tree_6.time(u)}\n")
+        with open(branch_length_2000_2000, "w+") as h6:
+            logger.info('Writing branch lengths for 2000_2000.')
+            h6.write('node_generations, branch_length\n')
+            for u in tree_6.nodes():
+                p = tree_6.parent(u)
+                if p != tskit.NULL:
+                    branch_length = tree_6.time(p) - tree_6.time(u)
+                    h6.write(f"{tree_6.time(u)}, {branch_length}\n")
 
         # with open(output_ThreeEpB_100_50, "w+") as f7:
         #     ts7 = msprime.sim_ancestry(samples={"ThreeEpB_100_50": sample_size},
@@ -615,71 +615,71 @@ class msPrimeSimulate():
         #             branch_length = tree_10.time(p) - tree_10.time(u)
         #             h10.write(f"{tree_10.time(u)}, {branch_length}\n")
 
-        with open(output_ThreeEpB_50_200, "w+") as f11:
-            ts11 = msprime.sim_ancestry(samples={"ThreeEpB_50_200": sample_size},
-                demography=dem11, sequence_length=5000000, recombination_rate=1e-8)
-            mts11 = msprime.sim_mutations(ts11, rate=1.5E-8)
-            mts11.write_vcf(f11)
-            tree_11 = ts11.first()
-            with open(coalescent_50_200, "w+") as g11:
-                g11.write('Node, generations\n')
-                logger.info('Writing coalescent times for 100_200.')
-                for u in tree_11.nodes():
-                    # Retain coalescent nodes
-                    if not tree_11.is_leaf(u):  # skip sample nodes
-                       g11.write(f"Node {u}, {tree_11.time(u)}\n")
-        with open(branch_length_50_200, "w+") as h11:
-            logger.info('Writing branch lengths for 50_200.')
-            h11.write('node_generations, branch_length\n')
-            for u in tree_11.nodes():
-                p = tree_11.parent(u)
-                if p != tskit.NULL:
-                    branch_length = tree_11.time(p) - tree_11.time(u)
-                    h11.write(f"{tree_11.time(u)}, {branch_length}\n")
+        # with open(output_ThreeEpB_50_200, "w+") as f11:
+        #     ts11 = msprime.sim_ancestry(samples={"ThreeEpB_50_200": sample_size},
+        #         demography=dem11, sequence_length=5000000, recombination_rate=1e-8)
+        #     mts11 = msprime.sim_mutations(ts11, rate=1.5E-8)
+        #     mts11.write_vcf(f11)
+        #     tree_11 = ts11.first()
+        #     with open(coalescent_50_200, "w+") as g11:
+        #         g11.write('Node, generations\n')
+        #         logger.info('Writing coalescent times for 100_200.')
+        #         for u in tree_11.nodes():
+        #             # Retain coalescent nodes
+        #             if not tree_11.is_leaf(u):  # skip sample nodes
+        #                g11.write(f"Node {u}, {tree_11.time(u)}\n")
+        # with open(branch_length_50_200, "w+") as h11:
+        #     logger.info('Writing branch lengths for 50_200.')
+        #     h11.write('node_generations, branch_length\n')
+        #     for u in tree_11.nodes():
+        #         p = tree_11.parent(u)
+        #         if p != tskit.NULL:
+        #             branch_length = tree_11.time(p) - tree_11.time(u)
+        #             h11.write(f"{tree_11.time(u)}, {branch_length}\n")
 
-        with open(output_ThreeEpB_150_200, "w+") as f12:
-            ts12 = msprime.sim_ancestry(samples={"ThreeEpB_150_200": sample_size},
-                demography=dem12, sequence_length=5000000, recombination_rate=1e-8)
-            mts12 = msprime.sim_mutations(ts12, rate=1.5E-8)
-            mts12.write_vcf(f12)
-            tree_12 = ts12.first()
-            with open(coalescent_150_200, "w+") as g12:
-                g12.write('Node, generations\n')
-                logger.info('Writing coalescent times for 150_200.')
-                for u in tree_12.nodes():
-                    # Retain coalescent nodes
-                    if not tree_12.is_leaf(u):  # skip sample nodes
-                        g12.write(f"Node {u}, {tree_12.time(u)}\n")
-        with open(branch_length_150_200, "w+") as h12:
-            logger.info('Writing branch lengths for 150_200.')
-            h12.write('node_generations, branch_length\n')
-            for u in tree_12.nodes():
-                p = tree_12.parent(u)
-                if p != tskit.NULL:
-                    branch_length = tree_12.time(p) - tree_12.time(u)
-                    h12.write(f"{tree_12.time(u)}, {branch_length}\n")
+        # with open(output_ThreeEpB_150_200, "w+") as f12:
+        #     ts12 = msprime.sim_ancestry(samples={"ThreeEpB_150_200": sample_size},
+        #         demography=dem12, sequence_length=5000000, recombination_rate=1e-8)
+        #     mts12 = msprime.sim_mutations(ts12, rate=1.5E-8)
+        #     mts12.write_vcf(f12)
+        #     tree_12 = ts12.first()
+        #     with open(coalescent_150_200, "w+") as g12:
+        #         g12.write('Node, generations\n')
+        #         logger.info('Writing coalescent times for 150_200.')
+        #         for u in tree_12.nodes():
+        #             # Retain coalescent nodes
+        #             if not tree_12.is_leaf(u):  # skip sample nodes
+        #                 g12.write(f"Node {u}, {tree_12.time(u)}\n")
+        # with open(branch_length_150_200, "w+") as h12:
+        #     logger.info('Writing branch lengths for 150_200.')
+        #     h12.write('node_generations, branch_length\n')
+        #     for u in tree_12.nodes():
+        #         p = tree_12.parent(u)
+        #         if p != tskit.NULL:
+        #             branch_length = tree_12.time(p) - tree_12.time(u)
+        #             h12.write(f"{tree_12.time(u)}, {branch_length}\n")
 
-        with open(output_ThreeEpB_200_200, "w+") as f13:
-            ts13 = msprime.sim_ancestry(samples={"ThreeEpB_200_200": sample_size},
-                demography=dem13, sequence_length=5000000, recombination_rate=1e-8)
-            mts13 = msprime.sim_mutations(ts13, rate=1.5E-8)
-            mts13.write_vcf(f13)
-            tree_13 = ts13.first()
-            with open(coalescent_200_200, "w+") as g13:
-                g13.write('Node, generations\n')
-                logger.info('Writing coalescent times for TwoEpC.')
-                for u in tree_13.nodes():
-                    # Retain coalescent nodes
-                    if not tree_13.is_leaf(u):  # skip sample nodes
-                        g13.write(f"Node {u}, {tree_13.time(u)}\n")
-        with open(branch_length_200_200, "w+") as h13:
-            logger.info('Writing branch lengths for 200_200.')
-            h13.write('node_generations, branch_length\n')
-            for u in tree_13.nodes():
-                p = tree_13.parent(u)
-                if p != tskit.NULL:
-                    branch_length = tree_13.time(p) - tree_13.time(u)
-                    h13.write(f"{tree_13.time(u)}, {branch_length}\n")
+        # with open(output_ThreeEpB_200_200, "w+") as f13:
+        #     ts13 = msprime.sim_ancestry(samples={"ThreeEpB_200_200": sample_size},
+        #         demography=dem13, sequence_length=5000000, recombination_rate=1e-8)
+        #     mts13 = msprime.sim_mutations(ts13, rate=1.5E-8)
+        #     mts13.write_vcf(f13)
+        #     tree_13 = ts13.first()
+        #     with open(coalescent_200_200, "w+") as g13:
+        #         g13.write('Node, generations\n')
+        #         logger.info('Writing coalescent times for TwoEpC.')
+        #         for u in tree_13.nodes():
+        #             # Retain coalescent nodes
+        #             if not tree_13.is_leaf(u):  # skip sample nodes
+        #                 g13.write(f"Node {u}, {tree_13.time(u)}\n")
+        # with open(branch_length_200_200, "w+") as h13:
+        #     logger.info('Writing branch lengths for 200_200.')
+        #     h13.write('node_generations, branch_length\n')
+        #     for u in tree_13.nodes():
+        #         p = tree_13.parent(u)
+        #         if p != tskit.NULL:
+        #             branch_length = tree_13.time(p) - tree_13.time(u)
+        #             h13.write(f"{tree_13.time(u)}, {branch_length}\n")
 
         # with open(output_ThreeEpB_600_200, "w+") as f14:
         #     ts14 = msprime.sim_ancestry(samples={"ThreeEpB_600_200": sample_size},
@@ -725,28 +725,27 @@ class msPrimeSimulate():
         #             branch_length = tree_15.time(p) - tree_15.time(u)
         #             h15.write(f"{tree_15.time(u)}, {branch_length}\n")
 
-        with open(output_ThreeEpB_1400_200, "w+") as f16:
-            ts16 = msprime.sim_ancestry(samples={"ThreeEpB_1400_200": sample_size},
-                demography=dem16, sequence_length=5000000, recombination_rate=1e-8)
-            mts16 = msprime.sim_mutations(ts16, rate=1.5E-8)
-            mts16.write_vcf(f16)
-            tree_16 = ts16.first()
-            with open(coalescent_1400_200, "w+") as g16:
-                g16.write('Node, generations\n')
-                logger.info('Writing coalescent times for TwoEpC.')
-                for u in tree_16.nodes():
-                    # Retain coalescent nodes
-                    if not tree_16.is_leaf(u):  # skip sample nodes
-                        g16.write(f"Node {u}, {tree_16.time(u)}\n")
-        with open(branch_length_1400_200, "w+") as h16:
-            logger.info('Writing branch lengths for 1400_200.')
-            h16.write('node_generations, branch_length\n')
-            for u in tree_16.nodes():
-                p = tree_16.parent(u)
-                if p != tskit.NULL:
-                    branch_length = tree_16.time(p) - tree_16.time(u)
-                    h16.write(f"{tree_16.time(u)}, {branch_length}\n")
-
+        # with open(output_ThreeEpB_1400_200, "w+") as f16:
+        #     ts16 = msprime.sim_ancestry(samples={"ThreeEpB_1400_200": sample_size},
+        #         demography=dem16, sequence_length=5000000, recombination_rate=1e-8)
+        #     mts16 = msprime.sim_mutations(ts16, rate=1.5E-8)
+        #     mts16.write_vcf(f16)
+        #     tree_16 = ts16.first()
+        #     with open(coalescent_1400_200, "w+") as g16:
+        #         g16.write('Node, generations\n')
+        #         logger.info('Writing coalescent times for TwoEpC.')
+        #         for u in tree_16.nodes():
+        #             # Retain coalescent nodes
+        #             if not tree_16.is_leaf(u):  # skip sample nodes
+        #                 g16.write(f"Node {u}, {tree_16.time(u)}\n")
+        # with open(branch_length_1400_200, "w+") as h16:
+        #     logger.info('Writing branch lengths for 1400_200.')
+        #     h16.write('node_generations, branch_length\n')
+        #     for u in tree_16.nodes():
+        #         p = tree_16.parent(u)
+        #         if p != tskit.NULL:
+        #             branch_length = tree_16.time(p) - tree_16.time(u)
+        #             h16.write(f"{tree_16.time(u)}, {branch_length}\n")
 
 
         logger.info('Pipeline executed succesfully.')
