@@ -76,7 +76,7 @@ class msPrimeSimulate():
         # Output files: logfile
         # Remove output files if they already exist
         underscore = '' if args['outprefix'][-1] == '/' else '_'
-        logfile = '{0}{1}log.log'.format(args['outprefix'], underscore)
+        logfile = '{0}{1}bottleneck_{2}_{3}.log'.format(args['outprefix'], underscore, sample_size, replicate)
         output_ThreeEpB_1000_500 = '{0}{1}ThreeEpochBottleneck_1000_500_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_1000_500 = '{0}{1}ThreeEpochBottleneck_1000_500_{2}_coal_dist_{3}.csv'.format(
@@ -169,6 +169,7 @@ class msPrimeSimulate():
         branch_length_150_200 = \
            '{0}{1}ThreeEpochBottleneck_150_200_{2}_branch_length_dist_{3}.csv'.format(
             args['outprefix'], underscore, sample_size, replicate)
+
         output_ThreeEpB_200_200 = '{0}{1}ThreeEpochBottleneck_200_200_{2}_{3}.vcf'.format(
             args['outprefix'], underscore, sample_size, replicate)
         coalescent_200_200 = '{0}{1}ThreeEpochBottleneck_200_200_{2}_coal_dist_{3}.csv'.format(
@@ -257,23 +258,23 @@ class msPrimeSimulate():
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
         # Initialize demography object
-        dem0 = msprime.Demography() # 1000_500
-        dem1 = msprime.Demography() # 1000_1000
-        dem2 = msprime.Demography() # 1000_1500
-        dem3 = msprime.Demography() # 1000_2000
-        dem4 = msprime.Demography() # 500_2000
-        dem5 = msprime.Demography() # 1500_2000
-        dem6 = msprime.Demography() # 2000_2000
+        # dem0 = msprime.Demography() # 1000_500
+        # dem1 = msprime.Demography() # 1000_1000
+        # dem2 = msprime.Demography() # 1000_1500
+        # dem3 = msprime.Demography() # 1000_2000
+        # dem4 = msprime.Demography() # 500_2000
+        # dem5 = msprime.Demography() # 1500_2000
+        # dem6 = msprime.Demography() # 2000_2000
 
-        dem7 = msprime.Demography() # 100_50
-        dem8 = msprime.Demography() # 100_100
-        dem9 = msprime.Demography() # 100_150
-        dem10 = msprime.Demography() # 100_200
-        dem11 = msprime.Demography() # 50_200
-        dem12 = msprime.Demography() # 150_200
+        # dem7 = msprime.Demography() # 100_50
+        # dem8 = msprime.Demography() # 100_100
+        # dem9 = msprime.Demography() # 100_150
+        # dem10 = msprime.Demography() # 100_200
+        # dem11 = msprime.Demography() # 50_200
+        # dem12 = msprime.Demography() # 150_200
         dem13 = msprime.Demography() # 200_200
         dem14 = msprime.Demography() # 400_200
-        dem15 = msprime.Demography() # 6000_200
+        dem15 = msprime.Demography() # 600_200
         dem16 = msprime.Demography() # 800_200
         dem17 = msprime.Demography() # 1000_200
         dem18 = msprime.Demography() # 1200_200
@@ -282,33 +283,33 @@ class msPrimeSimulate():
 
 
         # Three epoch ancient bottleneck, population
-        dem0.add_population(name="ThreeEpB_1000_500", 
-            description="Three epoch bottleneck, 1000, 500", initial_size=50000)
-        dem1.add_population(name="ThreeEpB_1000_1000",
-            description="Three epoch bottleneck, 1000, 1000", initial_size=50000)
-        dem2.add_population(name="ThreeEpB_1000_1500",
-            description="Three epoch bottleneck, 1000, 1500", initial_size=50000)
-        dem3.add_population(name="ThreeEpB_1000_2000",
-            description="Three epoch bottleneck, 1000, 2000", initial_size=50000)
-        dem4.add_population(name="ThreeEpB_500_2000",
-            description="Three epoch bottleneck, 500, 2000", initial_size=50000)
-        dem5.add_population(name="ThreeEpB_1500_2000",
-            description="Three epoch bottleneck, 1500, 2000", initial_size=50000)
-        dem6.add_population(name="ThreeEpB_2000_2000", 
-            description="Three epoch bottleneck, 2000, 2000", initial_size=50000)
+        # dem0.add_population(name="ThreeEpB_1000_500", 
+        #     description="Three epoch bottleneck, 1000, 500", initial_size=50000)
+        # dem1.add_population(name="ThreeEpB_1000_1000",
+        #     description="Three epoch bottleneck, 1000, 1000", initial_size=50000)
+        # dem2.add_population(name="ThreeEpB_1000_1500",
+        #     description="Three epoch bottleneck, 1000, 1500", initial_size=50000)
+        # dem3.add_population(name="ThreeEpB_1000_2000",
+        #     description="Three epoch bottleneck, 1000, 2000", initial_size=50000)
+        # dem4.add_population(name="ThreeEpB_500_2000",
+        #     description="Three epoch bottleneck, 500, 2000", initial_size=50000)
+        # dem5.add_population(name="ThreeEpB_1500_2000",
+        #     description="Three epoch bottleneck, 1500, 2000", initial_size=50000)
+        # dem6.add_population(name="ThreeEpB_2000_2000", 
+        #     description="Three epoch bottleneck, 2000, 2000", initial_size=50000)
 
-        dem7.add_population(name="ThreeEpB_100_50", 
-            description="Three epoch bottleneck, 100, 50", initial_size=50000)
-        dem8.add_population(name="ThreeEpB_100_100",
-            description="Three epoch bottleneck, 100, 100", initial_size=50000)
-        dem9.add_population(name="ThreeEpB_100_150",
-            description="Three epoch bottleneck, 100, 150", initial_size=50000)
-        dem10.add_population(name="ThreeEpB_100_200",
-            description="Three epoch bottleneck, 100, 200", initial_size=50000)
-        dem11.add_population(name="ThreeEpB_50_200",
-            description="Three epoch bottleneck, 50, 200", initial_size=50000)
-        dem12.add_population(name="ThreeEpB_150_200",
-            description="Three epoch bottleneck, 150, 200", initial_size=50000)
+        # dem7.add_population(name="ThreeEpB_100_50", 
+        #     description="Three epoch bottleneck, 100, 50", initial_size=50000)
+        # dem8.add_population(name="ThreeEpB_100_100",
+        #     description="Three epoch bottleneck, 100, 100", initial_size=50000)
+        # dem9.add_population(name="ThreeEpB_100_150",
+        #     description="Three epoch bottleneck, 100, 150", initial_size=50000)
+        # dem10.add_population(name="ThreeEpB_100_200",
+        #     description="Three epoch bottleneck, 100, 200", initial_size=50000)
+        # dem11.add_population(name="ThreeEpB_50_200",
+        #     description="Three epoch bottleneck, 50, 200", initial_size=50000)
+        # dem12.add_population(name="ThreeEpB_150_200",
+        #     description="Three epoch bottleneck, 150, 200", initial_size=50000)
         dem13.add_population(name="ThreeEpB_200_200", 
             description="Three epoch bottleneck, 200, 200", initial_size=50000)
         dem14.add_population(name="ThreeEpB_400_200", 
@@ -328,26 +329,26 @@ class msPrimeSimulate():
 
 
         # Demographic events
-        dem0.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        dem0.add_population_parameters_change(time=1500, initial_size=10000, population=0)
+        # dem0.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        # dem0.add_population_parameters_change(time=1500, initial_size=10000, population=0)
 
-        dem1.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        dem1.add_population_parameters_change(time=2000, initial_size=10000, population=0)
+        # dem1.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        # dem1.add_population_parameters_change(time=2000, initial_size=10000, population=0)
 
-        dem2.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        dem2.add_population_parameters_change(time=2500, initial_size=10000, population=0)
+        # dem2.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        # dem2.add_population_parameters_change(time=2500, initial_size=10000, population=0)
 
-        dem3.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        dem3.add_population_parameters_change(time=3000, initial_size=10000, population=0)
+        # dem3.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        # dem3.add_population_parameters_change(time=3000, initial_size=10000, population=0)
 
-        dem4.add_population_parameters_change(time=500, initial_size=1000, population=0)
-        dem4.add_population_parameters_change(time=2500, initial_size=10000, population=0)
+        # dem4.add_population_parameters_change(time=500, initial_size=1000, population=0)
+        # dem4.add_population_parameters_change(time=2500, initial_size=10000, population=0)
 
-        dem5.add_population_parameters_change(time=1000, initial_size=1000, population=0)
-        dem5.add_population_parameters_change(time=3500, initial_size=10000, population=0)
+        # dem5.add_population_parameters_change(time=1000, initial_size=1000, population=0)
+        # dem5.add_population_parameters_change(time=3500, initial_size=10000, population=0)
 
-        dem6.add_population_parameters_change(time=2000, initial_size=1000, population=0)
-        dem6.add_population_parameters_change(time=4000, initial_size=10000, population=0)
+        # dem6.add_population_parameters_change(time=2000, initial_size=1000, population=0)
+        # dem6.add_population_parameters_change(time=4000, initial_size=10000, population=0)
 
         # dem7.add_population_parameters_change(time=100, initial_size=1000, population=0)
         # dem7.add_population_parameters_change(time=150, initial_size=10000, population=0)
@@ -367,8 +368,8 @@ class msPrimeSimulate():
         # dem12.add_population_parameters_change(time=100, initial_size=1000, population=0)
         # dem12.add_population_parameters_change(time=350, initial_size=10000, population=0)
 
-        # dem13.add_population_parameters_change(time=200, initial_size=1000, population=0)
-        # dem13.add_population_parameters_change(time=400, initial_size=10000, population=0)
+        dem13.add_population_parameters_change(time=200, initial_size=1000, population=0)
+        dem13.add_population_parameters_change(time=400, initial_size=10000, population=0)
 
         dem14.add_population_parameters_change(time=200, initial_size=1000, population=0)
         dem14.add_population_parameters_change(time=600, initial_size=10000, population=0)
@@ -392,13 +393,13 @@ class msPrimeSimulate():
         dem20.add_population_parameters_change(time=1800, initial_size=10000, population=0)
 
 
-        dem0.sort_events()
-        dem1.sort_events()
-        dem2.sort_events()
-        dem3.sort_events()
-        dem4.sort_events()
-        dem5.sort_events()
-        dem6.sort_events()
+        # dem0.sort_events()
+        # dem1.sort_events()
+        # dem2.sort_events()
+        # dem3.sort_events()
+        # dem4.sort_events()
+        # dem5.sort_events()
+        # dem6.sort_events()
         # dem7.sort_events()
         # dem8.sort_events()
         # dem9.sort_events()
@@ -437,9 +438,10 @@ class msPrimeSimulate():
         # print(dem20)
         # with open(output_ThreeEpB_1000_500, "w+") as f0:
         #     ts0 = msprime.sim_ancestry(samples={"ThreeEpB_1000_500": sample_size},
-        #         demography=dem0, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem0, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts0 = msprime.sim_mutations(ts0, rate=1.5E-8)
-        #     mts0.write_vcf(f0)
+        #     mts0.write_vcf(f0, allow_position_zero=True)
         #     tree_0 = ts0.first()
         #     with open(coalescent_1000_500, "w+") as g0:
         #         g0.write('Node, generations\n')
@@ -459,9 +461,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_1000_1000, "w+") as f1:
         #     ts1 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1000": sample_size},
-        #         demography=dem1, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem1, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts1 = msprime.sim_mutations(ts1, rate=1.5E-8)
-        #     mts1.write_vcf(f1)
+        #     mts1.write_vcf(f1, allow_position_zero=True)
         #     tree_1 = ts1.first()
         #     with open(coalescent_1000_1000, "w+") as g1:
         #         g1.write('Node, generations\n')
@@ -481,9 +484,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_1000_1500, "w+") as f2:
         #     ts2 = msprime.sim_ancestry(samples={"ThreeEpB_1000_1500": sample_size},
-        #         demography=dem2, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem2, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts2 = msprime.sim_mutations(ts2, rate=1.5E-8)
-        #     mts2.write_vcf(f2)
+        #     mts2.write_vcf(f2, allow_position_zero=True)
         #     tree_2 = ts2.first()
         #     with open(coalescent_1000_1500, "w+") as g2:
         #         g2.write('Node, generations\n')
@@ -503,9 +507,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_1000_2000, "w+") as f3:
         #     ts3 = msprime.sim_ancestry(samples={"ThreeEpB_1000_2000": sample_size},
-        #         demography=dem3, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem3, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts3 = msprime.sim_mutations(ts3, rate=1.5E-8)
-        #     mts3.write_vcf(f3)
+        #     mts3.write_vcf(f3, allow_position_zero=True)
         #     tree_3 = ts3.first()
         #     with open(coalescent_1000_2000, "w+") as g3:
         #         g3.write('Node, generations\n')
@@ -525,9 +530,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_500_2000, "w+") as f4:
         #     ts4 = msprime.sim_ancestry(samples={"ThreeEpB_500_2000": sample_size},
-        #         demography=dem4, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem4, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts4 = msprime.sim_mutations(ts4, rate=1.5E-8)
-        #     mts4.write_vcf(f4)
+        #     mts4.write_vcf(f4, allow_position_zero=True)
         #     tree_4 = ts4.first()
         #     with open(coalescent_500_2000, "w+") as g4:
         #         g4.write('Node, generations\n')
@@ -547,9 +553,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_1500_2000, "w+") as f5:
         #     ts5 = msprime.sim_ancestry(samples={"ThreeEpB_1500_2000": sample_size},
-        #         demography=dem5, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem5, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts5 = msprime.sim_mutations(ts5, rate=1.5E-8)
-        #     mts5.write_vcf(f5)
+        #     mts5.write_vcf(f5, allow_position_zero=True)
         #     tree_5 = ts5.first()
         #     with open(coalescent_1500_2000, "w+") as g5:
         #         g5.write('Node, generations\n')
@@ -569,9 +576,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_2000_2000, "w+") as f6:
         #     ts6 = msprime.sim_ancestry(samples={"ThreeEpB_2000_2000": sample_size},
-        #         demography=dem6, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem6, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts6 = msprime.sim_mutations(ts6, rate=1.5E-8)
-        #     mts6.write_vcf(f6)
+        #     mts6.write_vcf(f6, allow_position_zero=True)
         #     tree_6 = ts6.first()
         #     with open(coalescent_2000_2000, "w+") as g6:
         #         g6.write('Node, generations\n')
@@ -591,9 +599,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_100_50, "w+") as f7:
         #     ts7 = msprime.sim_ancestry(samples={"ThreeEpB_100_50": sample_size},
-        #         demography=dem7, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem7, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts7 = msprime.sim_mutations(ts7, rate=1.5E-8)
-        #     mts7.write_vcf(f7)
+        #     mts7.write_vcf(f7, allow_position_zero=True)
         #     tree_7 = ts7.first()
         #     with open(coalescent_100_50, "w+") as g7:
         #         g7.write('Node, generations\n')
@@ -613,9 +622,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_100_100, "w+") as f8:
         #     ts8 = msprime.sim_ancestry(samples={"ThreeEpB_100_100": sample_size},
-        #         demography=dem8, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem8, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts8 = msprime.sim_mutations(ts8, rate=1.5E-8)
-        #     mts8.write_vcf(f8)
+        #     mts8.write_vcf(f8, allow_position_zero=True)
         #     tree_8 = ts8.first()
         #     with open(coalescent_100_100, "w+") as g8:
         #         g8.write('Node, generations\n')
@@ -635,9 +645,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_100_150, "w+") as f9:
         #     ts9 = msprime.sim_ancestry(samples={"ThreeEpB_100_150": sample_size},
-        #         demography=dem9, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem9, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts9 = msprime.sim_mutations(ts9, rate=1.5E-8)
-        #     mts9.write_vcf(f9)
+        #     mts9.write_vcf(f9, allow_position_zero=True)
         #     tree_9 = ts9.first()
         #     with open(coalescent_100_150, "w+") as g9:
         #         g9.write('Node, generations\n')
@@ -657,9 +668,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_100_200, "w+") as f10:
         #     ts10 = msprime.sim_ancestry(samples={"ThreeEpB_100_200": sample_size},
-        #         demography=dem10, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem10, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts10 = msprime.sim_mutations(ts10, rate=1.5E-8)
-        #     mts10.write_vcf(f10)
+        #     mts10.write_vcf(f10, allow_position_zero=True)
         #     tree_10 = ts10.first()
         #     with open(coalescent_100_200, "w+") as g10:
         #         g10.write('Node, generations\n')
@@ -679,9 +691,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_50_200, "w+") as f11:
         #     ts11 = msprime.sim_ancestry(samples={"ThreeEpB_50_200": sample_size},
-        #         demography=dem11, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem11, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts11 = msprime.sim_mutations(ts11, rate=1.5E-8)
-        #     mts11.write_vcf(f11)
+        #     mts11.write_vcf(f11, allow_position_zero=True)
         #     tree_11 = ts11.first()
         #     with open(coalescent_50_200, "w+") as g11:
         #         g11.write('Node, generations\n')
@@ -701,9 +714,10 @@ class msPrimeSimulate():
 
         # with open(output_ThreeEpB_150_200, "w+") as f12:
         #     ts12 = msprime.sim_ancestry(samples={"ThreeEpB_150_200": sample_size},
-        #         demography=dem12, sequence_length=5000000, recombination_rate=1e-8)
+        #         demography=dem12, sequence_length=5000000, recombination_rate=1e-8,
+        #         random_seed=replicate)
         #     mts12 = msprime.sim_mutations(ts12, rate=1.5E-8)
-        #     mts12.write_vcf(f12)
+        #     mts12.write_vcf(f12, allow_position_zero=True)
         #     tree_12 = ts12.first()
         #     with open(coalescent_150_200, "w+") as g12:
         #         g12.write('Node, generations\n')
@@ -723,9 +737,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_200_200, "w+") as f13:
             ts13 = msprime.sim_ancestry(samples={"ThreeEpB_200_200": sample_size},
-                demography=dem13, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem13, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts13 = msprime.sim_mutations(ts13, rate=1.5E-7)
-            mts13.write_vcf(f13)
+            mts13.write_vcf(f13, allow_position_zero=True)
             tree_13 = ts13.first()
             with open(coalescent_200_200, "w+") as g13:
                 g13.write('Node, generations\n')
@@ -745,9 +760,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_400_200, "w+") as f14:
             ts14 = msprime.sim_ancestry(samples={"ThreeEpB_400_200": sample_size},
-                demography=dem14, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem14, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts14 = msprime.sim_mutations(ts14, rate=1.5E-7)
-            mts14.write_vcf(f14)
+            mts14.write_vcf(f14, allow_position_zero=True)
             tree_14 = ts14.first()
             with open(coalescent_400_200, "w+") as g14:
                 g14.write('Node, generations\n')
@@ -767,9 +783,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_600_200, "w+") as f15:
             ts15 = msprime.sim_ancestry(samples={"ThreeEpB_600_200": sample_size},
-                demography=dem15, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem15, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts15 = msprime.sim_mutations(ts15, rate=1.5E-7)
-            mts15.write_vcf(f15)
+            mts15.write_vcf(f15, allow_position_zero=True)
             tree_15 = ts15.first()
             with open(coalescent_600_200, "w+") as g15:
                 g15.write('Node, generations\n')
@@ -789,9 +806,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_800_200, "w+") as f16:
             ts16 = msprime.sim_ancestry(samples={"ThreeEpB_800_200": sample_size},
-                demography=dem16, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem16, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts16 = msprime.sim_mutations(ts16, rate=1.5E-7)
-            mts16.write_vcf(f16)
+            mts16.write_vcf(f16, allow_position_zero=True)
             tree_16 = ts16.first()
             with open(coalescent_800_200, "w+") as g16:
                 g16.write('Node, generations\n')
@@ -811,9 +829,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_1000_200, "w+") as f17:
             ts17 = msprime.sim_ancestry(samples={"ThreeEpB_1000_200": sample_size},
-                demography=dem17, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem17, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts17 = msprime.sim_mutations(ts17, rate=1.5E-7)
-            mts17.write_vcf(f17)
+            mts17.write_vcf(f17, allow_position_zero=True)
             tree_17 = ts17.first()
             with open(coalescent_1000_200, "w+") as g17:
                 g17.write('Node, generations\n')
@@ -833,9 +852,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_1200_200, "w+") as f18:
             ts18 = msprime.sim_ancestry(samples={"ThreeEpB_1200_200": sample_size},
-                demography=dem18, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem18, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts18 = msprime.sim_mutations(ts18, rate=1.5E-7)
-            mts18.write_vcf(f18)
+            mts18.write_vcf(f18, allow_position_zero=True)
             tree_18 = ts18.first()
             with open(coalescent_1200_200, "w+") as g18:
                 g18.write('Node, generations\n')
@@ -855,9 +875,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_1400_200, "w+") as f19:
             ts19 = msprime.sim_ancestry(samples={"ThreeEpB_1400_200": sample_size},
-                demography=dem19, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem19, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts19 = msprime.sim_mutations(ts19, rate=1.5E-7)
-            mts19.write_vcf(f19)
+            mts19.write_vcf(f19, allow_position_zero=True)
             tree_19 = ts19.first()
             with open(coalescent_1400_200, "w+") as g19:
                 g19.write('Node, generations\n')
@@ -877,9 +898,10 @@ class msPrimeSimulate():
 
         with open(output_ThreeEpB_1600_200, "w+") as f20:
             ts20 = msprime.sim_ancestry(samples={"ThreeEpB_1600_200": sample_size},
-                demography=dem20, sequence_length=5000000, recombination_rate=1e-8)
+                demography=dem20, sequence_length=5000000, recombination_rate=1e-8,
+                random_seed=replicate)
             mts20 = msprime.sim_mutations(ts20, rate=1.5E-7)
-            mts20.write_vcf(f20)
+            mts20.write_vcf(f20, allow_position_zero=True)
             tree_20 = ts20.first()
             with open(coalescent_1600_200, "w+") as g20:
                 g20.write('Node, generations\n')
