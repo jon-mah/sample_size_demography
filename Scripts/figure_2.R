@@ -120,14 +120,20 @@ nu_label_text = expression(nu == frac(N[current], N[ancestral]))
 tau_label_text = expression(tau == frac(generations, 2 * N[ancestral]))
 twoLambda_text = expression(2*Lambda)
 nu_dataframe = melt(data.frame(
-  dadi_nu,
+  # dadi_nu,
   msprime_nu
 ))
 nu_dataframe$sample_size = sample_size
-nu_dataframe$dadi_min = dadi_nu_min
-nu_dataframe$dadi_max = dadi_nu_max
+# nu_dataframe$dadi_min = dadi_nu_min
+# nu_dataframe$dadi_max = dadi_nu_max
 nu_dataframe$msprime_min = msprime_nu_min
 nu_dataframe$msprime_max = msprime_nu_max
+
+# Min nu for contractions
+min(nu_dataframe[1:9, ]$value)
+# Max nu for expansions
+max(nu_dataframe[1:9, ]$value)
+
 
 nu_dataframe_CI_bounds = melt(data.frame(
   dadi_nu_min,
@@ -136,17 +142,22 @@ nu_dataframe_CI_bounds = melt(data.frame(
 nu_dataframe_CI_bounds$sample_size = sample_size
 
 tau_dataframe = melt(data.frame(
-  dadi_tau,
+  # dadi_tau,
   msprime_tau
 ))
 tau_dataframe$sample_size = sample_size
-tau_dataframe$dadi_min = dadi_tau_min
-tau_dataframe$dadi_max = dadi_tau_max
+# tau_dataframe$dadi_min = dadi_tau_min
+# tau_dataframe$dadi_max = dadi_tau_max
 tau_dataframe$msprime_min = msprime_tau_min
 tau_dataframe$msprime_max = msprime_tau_max
 
+# Min tau
+min(tau_dataframe[1:9, ]$value)
+# Max tau
+max(tau_dataframe[1:9, ]$value)
+
 tajima_D_dataframe = melt(data.frame(
-  dadi_tajima_D,
+  # dadi_tajima_D,
   msprime_tajima_D
 ))
 tajima_D_dataframe$sample_size = sample_size
@@ -191,13 +202,13 @@ epoch_ratio_dataframe_msprime$sample_size = sample_size
 plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   # geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
-  geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
+  geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   xlab('Sample size') +
   ylab(nu_label_text) +
   ggtitle("Ratio of Effective to Ancestral population size") +
   scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("Dadi", "MSPrime")
+    values = c("#0C7BDC"),
+    labels = c("MSPrime")
   ) +
   scale_y_log10() +
   geom_hline(yintercept = 1, size = 2, linetype = 'dashed')
@@ -205,25 +216,25 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
 plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   # geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
-  geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
+  geom_ribbon(aes(ymin = msprime_min, ymax = msprime_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   xlab('Sample size') +
   ylab(tau_label_text) +
   ggtitle('Timing of inferred instantaneous size change') +
   scale_y_log10() +
   scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("Dadi", "MSPrime")
+    values = c("#0C7BDC", "#FFC20A"),
+    labels = c("MSPrime", "Dadi")
   ) +
   theme(legend.position='none')
 
-plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   xlab('Sample size') +
   ylab("Tajima's D") +
   ggtitle("Tajima's D for simulated SFS") +
   scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("Dadi", "MSPrime")
+    values = c("#0C7BDC"),
+    labels = c("MSPrime")
   ) +
   geom_hline(yintercept = 0, size = 2, linetype = 'dashed') +
   theme(legend.position='none')
@@ -246,7 +257,7 @@ plot_D_2 = ggplot(data=lambda_dataframe_msprime, aes(x=sample_size, y=value, col
   ylab(twoLambda_text) +
   ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
   scale_colour_manual(
-    values = c("#FFC20A", "#CA5A08"),
+    values = c("#f768a1", "#ae017e"),
     labels = c("MSPrime, three-epoch vs. two-epoch", "MSPrime, two-epoch vs. one-epoch")
   ) +
   scale_y_log10() +
@@ -263,8 +274,8 @@ plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=va
   ggtitle("Effective population size between epochs") +
   scale_colour_manual(
     values = c("#0C7BDC", "#999ED9", "#FFC20A", "#CA5A08"),
-    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Recent vs. Bottleneck",
-      "MSPrime, Bottleneck vs. Ancestral", "MSPrime, Recent vs. Bottleneck")
+    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Current vs. Bottleneck",
+      "MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
   ) +
   geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
 
@@ -275,7 +286,7 @@ plot_E_1 = ggplot(data=epoch_ratio_dataframe_dadi, aes(x=sample_size, y=value, c
   ggtitle("Effective population size between epochs") +
   scale_colour_manual(
     values = c("#0C7BDC", "#999ED9"),
-    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Recent vs. Bottleneck")
+    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Current vs. Bottleneck")
   ) +
   geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
 
@@ -285,8 +296,8 @@ plot_E_2 = ggplot(data=epoch_ratio_dataframe_msprime, aes(x=sample_size, y=value
   ylab("Ratio of effective population size") +
   ggtitle("Effective population size between epochs") +
   scale_colour_manual(
-    values = c("#FFC20A", "#CA5A08"),
-    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Recent vs. Bottleneck")
+    values = c("#41ab5d", "#006837"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
   ) +
   scale_y_log10() +
   geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
@@ -331,6 +342,8 @@ design = "
   AAEE
   BBEE
 "
+
+## Figure 2
 
 # 1200 x 800
 plot_A + 
@@ -444,3 +457,278 @@ plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=varia
 
 plot_C + plot_A + plot_B + plot_layout(nrow=3)
 # 600 x 800
+
+
+#### Supplement
+
+# 200_200
+
+msprime_nu_b_200_200 = c()
+msprime_nu_f_200_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_200_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_200_200 = c(msprime_nu_b_200_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_200_200 = c(msprime_nu_f_200_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_200_200 = msprime_nu_f_200_200 / msprime_nu_b_200_200
+
+epoch_ratio_dataframe_msprime_200_200 = melt(data.frame(
+  msprime_nu_b_200_200,
+  msprime_nuF_nuB_200_200
+))
+epoch_ratio_dataframe_msprime_200_200$sample_size = sample_size
+
+plot_E_200_200 = ggplot(data=epoch_ratio_dataframe_msprime_200_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 400 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_200_200
+
+# 400_200
+
+msprime_nu_b_400_200 = c()
+msprime_nu_f_400_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_400_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_400_200 = c(msprime_nu_b_400_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_400_200 = c(msprime_nu_f_400_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_400_200 = msprime_nu_f_400_200 / msprime_nu_b_400_200
+
+epoch_ratio_dataframe_msprime_400_200 = melt(data.frame(
+  msprime_nu_b_400_200,
+  msprime_nuF_nuB_400_200
+))
+epoch_ratio_dataframe_msprime_400_200$sample_size = sample_size
+
+plot_E_400_200 = ggplot(data=epoch_ratio_dataframe_msprime_400_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 600 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_400_200
+
+# 600_200
+
+msprime_nu_b_600_200 = c()
+msprime_nu_f_600_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_600_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_600_200 = c(msprime_nu_b_600_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_600_200 = c(msprime_nu_f_600_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_600_200 = msprime_nu_f_600_200 / msprime_nu_b_600_200
+
+epoch_ratio_dataframe_msprime_600_200 = melt(data.frame(
+  msprime_nu_b_600_200,
+  msprime_nuF_nuB_600_200
+))
+epoch_ratio_dataframe_msprime_600_200$sample_size = sample_size
+
+plot_E_600_200 = ggplot(data=epoch_ratio_dataframe_msprime_600_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 800 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_600_200
+
+# 800_200
+
+msprime_nu_b_800_200 = c()
+msprime_nu_f_800_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_800_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_800_200 = c(msprime_nu_b_800_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_800_200 = c(msprime_nu_f_800_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_800_200 = msprime_nu_f_800_200 / msprime_nu_b_800_200
+
+epoch_ratio_dataframe_msprime_800_200 = melt(data.frame(
+  msprime_nu_b_800_200,
+  msprime_nuF_nuB_800_200
+))
+epoch_ratio_dataframe_msprime_800_200$sample_size = sample_size
+
+plot_E_800_200 = ggplot(data=epoch_ratio_dataframe_msprime_800_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 1000 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_800_200
+
+# 1000_200
+
+msprime_nu_b_1000_200 = c()
+msprime_nu_f_1000_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_1000_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_1000_200 = c(msprime_nu_b_1000_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_1000_200 = c(msprime_nu_f_1000_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_1000_200 = msprime_nu_f_1000_200 / msprime_nu_b_1000_200
+
+epoch_ratio_dataframe_msprime_1000_200 = melt(data.frame(
+  msprime_nu_b_1000_200,
+  msprime_nuF_nuB_1000_200
+))
+epoch_ratio_dataframe_msprime_1000_200$sample_size = sample_size
+
+plot_E_1000_200 = ggplot(data=epoch_ratio_dataframe_msprime_1000_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 1200 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_1000_200
+
+# 1200_200
+
+msprime_nu_b_1200_200 = c()
+msprime_nu_f_1200_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_1200_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_1200_200 = c(msprime_nu_b_1200_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_1200_200 = c(msprime_nu_f_1200_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_1200_200 = msprime_nu_f_1200_200 / msprime_nu_b_1200_200
+
+epoch_ratio_dataframe_msprime_1200_200 = melt(data.frame(
+  msprime_nu_b_1200_200,
+  msprime_nuF_nuB_1200_200
+))
+epoch_ratio_dataframe_msprime_1200_200$sample_size = sample_size
+
+plot_E_1200_200 = ggplot(data=epoch_ratio_dataframe_msprime_1200_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 1400 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_1200_200
+
+# 1400_200
+
+msprime_nu_b_1400_200 = c()
+msprime_nu_f_1400_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_1400_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_1400_200 = c(msprime_nu_b_1400_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_1400_200 = c(msprime_nu_f_1400_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_1400_200 = msprime_nu_f_1400_200 / msprime_nu_b_1400_200
+
+epoch_ratio_dataframe_msprime_1400_200 = melt(data.frame(
+  msprime_nu_b_1400_200,
+  msprime_nuF_nuB_1400_200
+))
+epoch_ratio_dataframe_msprime_1400_200$sample_size = sample_size
+
+plot_E_1400_200 = ggplot(data=epoch_ratio_dataframe_msprime_1400_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 1600 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_1400_200
+
+# 1600_200
+
+msprime_nu_b_1600_200 = c()
+msprime_nu_f_1600_200 = c()
+
+for (i in sample_size) {
+  msprime_demography_3 = paste0(
+    "../Analysis/msprime_3EpB_1600_200_", i, '/three_epoch_demography.txt')
+  msprime_nu_b_1600_200 = c(msprime_nu_b_1600_200, nuB_from_demography(msprime_demography_3))
+  msprime_nu_f_1600_200 = c(msprime_nu_f_1600_200, nuF_from_demography(msprime_demography_3))
+}
+
+msprime_nuF_nuB_1600_200 = msprime_nu_f_1600_200 / msprime_nu_b_1600_200
+
+epoch_ratio_dataframe_msprime_1600_200 = melt(data.frame(
+  msprime_nu_b_1600_200,
+  msprime_nuF_nuB_1600_200
+))
+epoch_ratio_dataframe_msprime_1600_200$sample_size = sample_size
+
+plot_E_1600_200 = ggplot(data=epoch_ratio_dataframe_msprime_1600_200, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs, [Anc., 1800 g.a., 200 g.a.]") +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("MSPrime, Bottleneck vs. Ancestral", "MSPrime, Current vs. Bottleneck")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_E_1600_200

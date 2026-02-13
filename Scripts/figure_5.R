@@ -106,7 +106,7 @@ plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) 
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
   geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
   # geom_ribbon(aes(ymin = snm_min, ymax = snm_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
-  xlab('Sample size') +
+  xlab('') +
   ylab(nu_label_text) +
   ggtitle("Ratio of Effective to Ancestral population size") +
   scale_colour_manual(
@@ -137,7 +137,7 @@ qchisq(1 - 0.05/30, df=2)
 
 plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  xlab('Sample size') +
+  xlab('') +
   ylab("Tajima's D") +
   ggtitle("Tajima's D for empirical SFS") +
   scale_colour_manual(
@@ -155,13 +155,13 @@ plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=va
   ggtitle("Effective population size between epochs") +
   scale_colour_manual(
     values = c("#0C7BDC", "#FFC20A"),
-    labels = c("1KG EUR 2020, Bottleneck vs. Ancestral", "1KG EUR 2020, Recent vs. Bottleneck")
+    labels = c("1KG EUR 2020, Bottleneck vs. Ancestral", "1KG EUR 2020, Current vs. Bottleneck")
   ) +
   geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
 
 plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
   theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  xlab('Sample size') +
+  xlab('') +
   ylab(twoLambda_text) +
   ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
   scale_colour_manual(
@@ -172,9 +172,9 @@ plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variabl
   scale_y_log10()
 
 design = "
-  AADD
+  CCDD
+  AAEE
   BBEE
-  CCEE
 "
 
 # 1200 x 800

@@ -604,7 +604,7 @@ nuB_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   nuB_string = readLines(this_file)[1]
-  floats <- as.numeric(str_extract_all(nuB_string, "\\d+\\.\\d+")[[1]])
+  floats <- as.numeric(str_extract_all(nuB_string, "\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?")[[1]])
   nuB = floats[1]
   print(floats)
   return(nuB)
@@ -614,7 +614,7 @@ nuF_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   nuF_string = readLines(this_file)[1]
-  floats <- as.numeric(str_extract_all(nuF_string, "\\d+\\.\\d+")[[1]])
+  floats <- as.numeric(str_extract_all(nuF_string, "\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?")[[1]])
   nuF = floats[2]
   return(nuF)
 }
@@ -623,7 +623,7 @@ tauB_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   tauB_string = readLines(this_file)[1]
-  floats <- as.numeric(str_extract_all(tauB_string, "\\d+\\.\\d+")[[1]])
+  floats <- as.numeric(str_extract_all(tauB_string, "\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?")[[1]])
   tauB = floats[3]
   return(tauB)
 }
@@ -632,7 +632,7 @@ tauF_from_demography = function(input_file) {
   this_file = file(input_file)
   on.exit(close(this_file))
   tauF_string = readLines(this_file)[1]
-  floats <- as.numeric(str_extract_all(tauF_string, "\\d+\\.\\d+")[[1]])
+  floats <- as.numeric(str_extract_all(tauF_string, "\\d+(?:\\.\\d+)?(?:[eE][+-]?\\d+)?")[[1]])
   tauF = floats[4]
   return(tauF)
 }

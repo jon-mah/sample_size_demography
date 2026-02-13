@@ -36,7 +36,7 @@ for (i in sample_size) {
 }
 
 singleton_ratio_dataframe = melt(data.frame(
-  dadi_singleton_ratio,
+  # dadi_singleton_ratio,
   msprime_singleton_ratio
 ))
 singleton_ratio_dataframe$sample_size = sample_size
@@ -45,14 +45,14 @@ nu_label_text = expression(nu == frac(N[current], N[ancestral]))
 ratio_label_text = expression(frac('Proportion of singletons in data', 'Proportion of singletons in SNM'))
 
 singleton_proportion_dataframe = melt(data.frame(
-  dadi_sfs_singletons,
+  # dadi_sfs_singletons,
   msprime_sfs_singletons,
   dadi_snm_singletons
 ))
 singleton_proportion_dataframe$sample_size = sample_size
 
 singleton_diff_dataframe = melt(data.frame(
-  dadi_singleton_diff,
+  # dadi_singleton_diff,
   msprime_singleton_diff
 ))
 singleton_diff_dataframe$sample_size = sample_size
@@ -63,8 +63,8 @@ plot_A = ggplot(data=singleton_proportion_dataframe, aes(x=sample_size, y=value,
   ylab('Proportion') +
   ggtitle('Proportion of SFS comprised of singletons') +
   scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A", 'black'),
-    labels = c("Dadi", "MSPrime", "SNM")
+    values = c("#0C7BDC",'black'),
+    labels = c("MSPrime", "SNM")
   ) 
 
 # plot_B = ggplot(data=singleton_diff_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(linewidth=1) +
@@ -85,8 +85,8 @@ plot_B = ggplot(data=singleton_ratio_dataframe, aes(x=sample_size, y=value, colo
   ylab(ratio_label_text) +
   ggtitle('Ratio of singleton proportion between data and SNM') +
   scale_colour_manual(
-    values = c("#0C7BDC","#FFC20A"),
-    labels = c("Dadi", "MSPrime")
+    values = c("#0C7BDC"),
+    labels = c("MSPrime")
   ) +
   scale_y_log10() +
   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dotted') +
