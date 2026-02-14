@@ -6,7 +6,7 @@
 #$ -e /u/home/j/jonmah/postproc_error
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -N fit_400_200
-#$ -t 10-800:10
+#$ -t 660
 
 # SGE_TASK_ID=100
 
