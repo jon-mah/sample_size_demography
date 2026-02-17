@@ -8,7 +8,7 @@
 #$ -N ThreeEpBGC
 #$ -t 770
 
-SGE_TASK_ID=160
+SGE_TASK_ID=570
 
 sample_size=$SGE_TASK_ID
 
