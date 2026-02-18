@@ -32,9 +32,6 @@ msprime_lambda_21 = c()
 msprime_one_LL = c()
 msprime_two_LL = c()
 msprime_three_LL = c()
-
-# msprime_lambda = rep(0, 80)
-
 msprime_nu_min = c()
 msprime_nu_max = c()
 msprime_tau_min = c()
