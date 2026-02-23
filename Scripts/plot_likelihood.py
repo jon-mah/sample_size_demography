@@ -463,7 +463,7 @@ class PlotLikelihood():
                 x = input_nu  # Initial x value
                 y = input_tau  # Initial y value
 
-                npts = 100
+                npts = 10
                 # set npts to 250 for high resolution (figure quality)
                 # set npts to 25 for decent resolution
                 # set npts to 5 for <5 minutes testing
