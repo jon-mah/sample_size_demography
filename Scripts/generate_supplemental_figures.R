@@ -201,6 +201,7 @@ plot_A +
 # 200_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_200_200 = c()
 growth_coal_proportion_200_200 = c()
 bottleneck_coal_proportion_200_200 = c()
@@ -208,17 +209,25 @@ ancestral_coal_proportion_200_200 = c()
 msprime_time_200_200 = c()
 msprime_nu_shape_200_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_200_200 = c()
 bottleneck_b_len_proportion_mean_200_200 = c()
 ancestral_b_len_proportion_mean_200_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_200_200 = paste0(
     "../Analysis/msprime_3EpB_200_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_200_200 = nu_from_demography(msprime_demography_200_200)
-  msprime_time_200_200 = c(msprime_time_200_200, time_from_demography(msprime_demography_200_200))
+
+  msprime_time_200_200 = c(
+    msprime_time_200_200,
+    time_from_demography(msprime_demography_200_200)
+  )
+
   if (is.na(msprime_nu_200_200)) {
     msprime_nu_shape_200_200 = c(msprime_nu_shape_200_200, NA)
   } else if (msprime_nu_200_200 > 1) {
@@ -226,53 +235,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_200_200 = c(msprime_nu_shape_200_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_200_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_200_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 400, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 400, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_200_200 = c(mean_list_200_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_200_200 = c(growth_coal_proportion_200_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_200_200 = c(bottleneck_coal_proportion_200_200,
-    mean(this_sample_size_distribution <= 400) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_200_200 = c(ancestral_coal_proportion_200_200,
-    mean(this_sample_size_distribution > 400))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_200_200 = c(growth_b_len_proportion_mean_200_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_200_200 = c(bottleneck_b_len_proportion_mean_200_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_200_200 = c(ancestral_b_len_proportion_mean_200_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–400
+    bottleneck_overlap <- pmax(0, pmin(end, 400) - pmax(start, 200))
+
+    # Ancestral: >400
+    ancestral_overlap <- pmax(0, end - pmax(start, 400))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_200_200 =
+    c(growth_b_len_proportion_mean_200_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_200_200 =
+    c(bottleneck_b_len_proportion_mean_200_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_200_200 =
+    c(ancestral_b_len_proportion_mean_200_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_200_200 =
+    c(mean_list_200_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_200_200 =
+    c(growth_coal_proportion_200_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_200_200 =
+    c(bottleneck_coal_proportion_200_200,
+      mean(this_sample_size_distribution <= 400) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_200_200 =
+    c(ancestral_coal_proportion_200_200,
+      mean(this_sample_size_distribution > 400))
 }
 
 figure_SX_dataframe = data.frame(
@@ -360,6 +409,7 @@ plot_3B_simplified_200_200 = ggplot(data=figure_3B_dataframe_200_200, aes(x=samp
 # 400_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_400_200 = c()
 growth_coal_proportion_400_200 = c()
 bottleneck_coal_proportion_400_200 = c()
@@ -367,17 +417,25 @@ ancestral_coal_proportion_400_200 = c()
 msprime_time_400_200 = c()
 msprime_nu_shape_400_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_400_200 = c()
 bottleneck_b_len_proportion_mean_400_200 = c()
 ancestral_b_len_proportion_mean_400_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_400_200 = paste0(
     "../Analysis/msprime_3EpB_400_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_400_200 = nu_from_demography(msprime_demography_400_200)
-  msprime_time_400_200 = c(msprime_time_400_200, time_from_demography(msprime_demography_400_200))
+
+  msprime_time_400_200 = c(
+    msprime_time_400_200,
+    time_from_demography(msprime_demography_400_200)
+  )
+
   if (is.na(msprime_nu_400_200)) {
     msprime_nu_shape_400_200 = c(msprime_nu_shape_400_200, NA)
   } else if (msprime_nu_400_200 > 1) {
@@ -385,53 +443,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_400_200 = c(msprime_nu_shape_400_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_400_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_400_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 400, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 400, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_400_200 = c(mean_list_400_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_400_200 = c(growth_coal_proportion_400_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_400_200 = c(bottleneck_coal_proportion_400_200,
-    mean(this_sample_size_distribution <= 400) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_400_200 = c(ancestral_coal_proportion_400_200,
-    mean(this_sample_size_distribution > 400))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_400_200 = c(growth_b_len_proportion_mean_400_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_400_200 = c(bottleneck_b_len_proportion_mean_400_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_400_200 = c(ancestral_b_len_proportion_mean_400_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–600
+    bottleneck_overlap <- pmax(0, pmin(end, 600) - pmax(start, 200))
+
+    # Ancestral: 600
+    ancestral_overlap <- pmax(0, end - pmax(start, 600))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_400_200 =
+    c(growth_b_len_proportion_mean_400_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_400_200 =
+    c(bottleneck_b_len_proportion_mean_400_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_400_200 =
+    c(ancestral_b_len_proportion_mean_400_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_400_200 =
+    c(mean_list_400_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_400_200 =
+    c(growth_coal_proportion_400_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_400_200 =
+    c(bottleneck_coal_proportion_400_200,
+      mean(this_sample_size_distribution <= 600) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_400_200 =
+    c(ancestral_coal_proportion_400_200,
+      mean(this_sample_size_distribution > 600))
 }
 
 figure_SX_dataframe = data.frame(
@@ -516,10 +614,10 @@ plot_3B_simplified_400_200 = ggplot(data=figure_3B_dataframe_400_200, aes(x=samp
 
 # plot_3A_400_200 + plot_3B_simplified_400_200 + plot_layout(nrow=2)
 
-
 # 600_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_600_200 = c()
 growth_coal_proportion_600_200 = c()
 bottleneck_coal_proportion_600_200 = c()
@@ -527,17 +625,25 @@ ancestral_coal_proportion_600_200 = c()
 msprime_time_600_200 = c()
 msprime_nu_shape_600_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_600_200 = c()
 bottleneck_b_len_proportion_mean_600_200 = c()
 ancestral_b_len_proportion_mean_600_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_600_200 = paste0(
     "../Analysis/msprime_3EpB_600_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_600_200 = nu_from_demography(msprime_demography_600_200)
-  msprime_time_600_200 = c(msprime_time_600_200, time_from_demography(msprime_demography_600_200))
+
+  msprime_time_600_200 = c(
+    msprime_time_600_200,
+    time_from_demography(msprime_demography_600_200)
+  )
+
   if (is.na(msprime_nu_600_200)) {
     msprime_nu_shape_600_200 = c(msprime_nu_shape_600_200, NA)
   } else if (msprime_nu_600_200 > 1) {
@@ -545,53 +651,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_600_200 = c(msprime_nu_shape_600_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_600_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_600_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 800, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 800, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_600_200 = c(mean_list_600_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_600_200 = c(growth_coal_proportion_600_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_600_200 = c(bottleneck_coal_proportion_600_200,
-    mean(this_sample_size_distribution <= 800) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_600_200 = c(ancestral_coal_proportion_600_200,
-    mean(this_sample_size_distribution > 800))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_600_200 = c(growth_b_len_proportion_mean_600_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_600_200 = c(bottleneck_b_len_proportion_mean_600_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_600_200 = c(ancestral_b_len_proportion_mean_600_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–800
+    bottleneck_overlap <- pmax(0, pmin(end, 800) - pmax(start, 200))
+
+    # Ancestral: >800
+    ancestral_overlap <- pmax(0, end - pmax(start, 800))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_600_200 =
+    c(growth_b_len_proportion_mean_600_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_600_200 =
+    c(bottleneck_b_len_proportion_mean_600_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_600_200 =
+    c(ancestral_b_len_proportion_mean_600_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_600_200 =
+    c(mean_list_600_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_600_200 =
+    c(growth_coal_proportion_600_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_600_200 =
+    c(bottleneck_coal_proportion_600_200,
+      mean(this_sample_size_distribution <= 800) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_600_200 =
+    c(ancestral_coal_proportion_600_200,
+      mean(this_sample_size_distribution > 800))
 }
 
 figure_SX_dataframe = data.frame(
@@ -679,6 +825,7 @@ plot_3B_simplified_600_200 = ggplot(data=figure_3B_dataframe_600_200, aes(x=samp
 # 800_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_800_200 = c()
 growth_coal_proportion_800_200 = c()
 bottleneck_coal_proportion_800_200 = c()
@@ -686,17 +833,25 @@ ancestral_coal_proportion_800_200 = c()
 msprime_time_800_200 = c()
 msprime_nu_shape_800_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_800_200 = c()
 bottleneck_b_len_proportion_mean_800_200 = c()
 ancestral_b_len_proportion_mean_800_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_800_200 = paste0(
     "../Analysis/msprime_3EpB_800_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_800_200 = nu_from_demography(msprime_demography_800_200)
-  msprime_time_800_200 = c(msprime_time_800_200, time_from_demography(msprime_demography_800_200))
+
+  msprime_time_800_200 = c(
+    msprime_time_800_200,
+    time_from_demography(msprime_demography_800_200)
+  )
+
   if (is.na(msprime_nu_800_200)) {
     msprime_nu_shape_800_200 = c(msprime_nu_shape_800_200, NA)
   } else if (msprime_nu_800_200 > 1) {
@@ -704,53 +859,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_800_200 = c(msprime_nu_shape_800_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_800_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_800_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 1000, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1000, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_800_200 = c(mean_list_800_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_800_200 = c(growth_coal_proportion_800_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_800_200 = c(bottleneck_coal_proportion_800_200,
-    mean(this_sample_size_distribution <= 1000) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_800_200 = c(ancestral_coal_proportion_800_200,
-    mean(this_sample_size_distribution > 1000))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_800_200 = c(growth_b_len_proportion_mean_800_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_800_200 = c(bottleneck_b_len_proportion_mean_800_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_800_200 = c(ancestral_b_len_proportion_mean_800_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–1000
+    bottleneck_overlap <- pmax(0, pmin(end, 1000) - pmax(start, 200))
+
+    # Ancestral: >1000
+    ancestral_overlap <- pmax(0, end - pmax(start, 1000))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_800_200 =
+    c(growth_b_len_proportion_mean_800_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_800_200 =
+    c(bottleneck_b_len_proportion_mean_800_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_800_200 =
+    c(ancestral_b_len_proportion_mean_800_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_800_200 =
+    c(mean_list_800_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_800_200 =
+    c(growth_coal_proportion_800_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_800_200 =
+    c(bottleneck_coal_proportion_800_200,
+      mean(this_sample_size_distribution <= 1000) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_800_200 =
+    c(ancestral_coal_proportion_800_200,
+      mean(this_sample_size_distribution > 1000))
 }
 
 figure_SX_dataframe = data.frame(
@@ -839,6 +1034,7 @@ plot_3B_simplified_800_200 = ggplot(data=figure_3B_dataframe_800_200, aes(x=samp
 # 1000_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_1000_200 = c()
 growth_coal_proportion_1000_200 = c()
 bottleneck_coal_proportion_1000_200 = c()
@@ -846,17 +1042,25 @@ ancestral_coal_proportion_1000_200 = c()
 msprime_time_1000_200 = c()
 msprime_nu_shape_1000_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_1000_200 = c()
 bottleneck_b_len_proportion_mean_1000_200 = c()
 ancestral_b_len_proportion_mean_1000_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_1000_200 = paste0(
     "../Analysis/msprime_3EpB_1000_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_1000_200 = nu_from_demography(msprime_demography_1000_200)
-  msprime_time_1000_200 = c(msprime_time_1000_200, time_from_demography(msprime_demography_1000_200))
+
+  msprime_time_1000_200 = c(
+    msprime_time_1000_200,
+    time_from_demography(msprime_demography_1000_200)
+  )
+
   if (is.na(msprime_nu_1000_200)) {
     msprime_nu_shape_1000_200 = c(msprime_nu_shape_1000_200, NA)
   } else if (msprime_nu_1000_200 > 1) {
@@ -864,53 +1068,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_1000_200 = c(msprime_nu_shape_1000_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 1200, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1200, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_1000_200 = c(mean_list_1000_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_1000_200 = c(growth_coal_proportion_1000_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_1000_200 = c(bottleneck_coal_proportion_1000_200,
-    mean(this_sample_size_distribution <= 1200) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_1000_200 = c(ancestral_coal_proportion_1000_200,
-    mean(this_sample_size_distribution > 1200))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_1000_200 = c(growth_b_len_proportion_mean_1000_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_1000_200 = c(bottleneck_b_len_proportion_mean_1000_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_1000_200 = c(ancestral_b_len_proportion_mean_1000_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–1200
+    bottleneck_overlap <- pmax(0, pmin(end, 1200) - pmax(start, 200))
+
+    # Ancestral: >1200
+    ancestral_overlap <- pmax(0, end - pmax(start, 1200))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_1000_200 =
+    c(growth_b_len_proportion_mean_1000_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_1000_200 =
+    c(bottleneck_b_len_proportion_mean_1000_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_1000_200 =
+    c(ancestral_b_len_proportion_mean_1000_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_1000_200 =
+    c(mean_list_1000_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_1000_200 =
+    c(growth_coal_proportion_1000_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_1000_200 =
+    c(bottleneck_coal_proportion_1000_200,
+      mean(this_sample_size_distribution <= 1200) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_1000_200 =
+    c(ancestral_coal_proportion_1000_200,
+      mean(this_sample_size_distribution > 1200))
 }
 
 figure_SX_dataframe = data.frame(
@@ -998,6 +1242,7 @@ plot_3B_simplified_1000_200 = ggplot(data=figure_3B_dataframe_1000_200, aes(x=sa
 # 1200_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_1200_200 = c()
 growth_coal_proportion_1200_200 = c()
 bottleneck_coal_proportion_1200_200 = c()
@@ -1005,17 +1250,25 @@ ancestral_coal_proportion_1200_200 = c()
 msprime_time_1200_200 = c()
 msprime_nu_shape_1200_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_1200_200 = c()
 bottleneck_b_len_proportion_mean_1200_200 = c()
 ancestral_b_len_proportion_mean_1200_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_1200_200 = paste0(
     "../Analysis/msprime_3EpB_1200_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_1200_200 = nu_from_demography(msprime_demography_1200_200)
-  msprime_time_1200_200 = c(msprime_time_1200_200, time_from_demography(msprime_demography_1200_200))
+
+  msprime_time_1200_200 = c(
+    msprime_time_1200_200,
+    time_from_demography(msprime_demography_1200_200)
+  )
+
   if (is.na(msprime_nu_1200_200)) {
     msprime_nu_shape_1200_200 = c(msprime_nu_shape_1200_200, NA)
   } else if (msprime_nu_1200_200 > 1) {
@@ -1023,53 +1276,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_1200_200 = c(msprime_nu_shape_1200_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1200_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1200_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 1400, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1400, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_1200_200 = c(mean_list_1200_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_1200_200 = c(growth_coal_proportion_1200_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_1200_200 = c(bottleneck_coal_proportion_1200_200,
-    mean(this_sample_size_distribution <= 1400) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_1200_200 = c(ancestral_coal_proportion_1200_200,
-    mean(this_sample_size_distribution > 1400))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_1200_200 = c(growth_b_len_proportion_mean_1200_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_1200_200 = c(bottleneck_b_len_proportion_mean_1200_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_1200_200 = c(ancestral_b_len_proportion_mean_1200_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–1400
+    bottleneck_overlap <- pmax(0, pmin(end, 1400) - pmax(start, 200))
+
+    # Ancestral: >1400
+    ancestral_overlap <- pmax(0, end - pmax(start, 1400))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_1200_200 =
+    c(growth_b_len_proportion_mean_1200_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_1200_200 =
+    c(bottleneck_b_len_proportion_mean_1200_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_1200_200 =
+    c(ancestral_b_len_proportion_mean_1200_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_1200_200 =
+    c(mean_list_1200_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_1200_200 =
+    c(growth_coal_proportion_1200_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_1200_200 =
+    c(bottleneck_coal_proportion_1200_200,
+      mean(this_sample_size_distribution <= 1400) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_1200_200 =
+    c(ancestral_coal_proportion_1200_200,
+      mean(this_sample_size_distribution > 1400))
 }
 
 figure_SX_dataframe = data.frame(
@@ -1157,6 +1450,7 @@ plot_3B_simplified_1200_200 = ggplot(data=figure_3B_dataframe_1200_200, aes(x=sa
 # 1400_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_1400_200 = c()
 growth_coal_proportion_1400_200 = c()
 bottleneck_coal_proportion_1400_200 = c()
@@ -1164,17 +1458,25 @@ ancestral_coal_proportion_1400_200 = c()
 msprime_time_1400_200 = c()
 msprime_nu_shape_1400_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_1400_200 = c()
 bottleneck_b_len_proportion_mean_1400_200 = c()
 ancestral_b_len_proportion_mean_1400_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_1400_200 = paste0(
     "../Analysis/msprime_3EpB_1400_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_1400_200 = nu_from_demography(msprime_demography_1400_200)
-  msprime_time_1400_200 = c(msprime_time_1400_200, time_from_demography(msprime_demography_1400_200))
+
+  msprime_time_1400_200 = c(
+    msprime_time_1400_200,
+    time_from_demography(msprime_demography_1400_200)
+  )
+
   if (is.na(msprime_nu_1400_200)) {
     msprime_nu_shape_1400_200 = c(msprime_nu_shape_1400_200, NA)
   } else if (msprime_nu_1400_200 > 1) {
@@ -1182,53 +1484,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_1400_200 = c(msprime_nu_shape_1400_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1400_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1400_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 1600, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1600, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_1400_200 = c(mean_list_1400_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_1400_200 = c(growth_coal_proportion_1400_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_1400_200 = c(bottleneck_coal_proportion_1400_200,
-    mean(this_sample_size_distribution <= 1600) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_1400_200 = c(ancestral_coal_proportion_1400_200,
-    mean(this_sample_size_distribution > 1600))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_1400_200 = c(growth_b_len_proportion_mean_1400_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_1400_200 = c(bottleneck_b_len_proportion_mean_1400_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_1400_200 = c(ancestral_b_len_proportion_mean_1400_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–1600
+    bottleneck_overlap <- pmax(0, pmin(end, 1600) - pmax(start, 200))
+
+    # Ancestral: >1600
+    ancestral_overlap <- pmax(0, end - pmax(start, 1600))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_1400_200 =
+    c(growth_b_len_proportion_mean_1400_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_1400_200 =
+    c(bottleneck_b_len_proportion_mean_1400_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_1400_200 =
+    c(ancestral_b_len_proportion_mean_1400_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_1400_200 =
+    c(mean_list_1400_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_1400_200 =
+    c(growth_coal_proportion_1400_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_1400_200 =
+    c(bottleneck_coal_proportion_1400_200,
+      mean(this_sample_size_distribution <= 1600) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_1400_200 =
+    c(ancestral_coal_proportion_1400_200,
+      mean(this_sample_size_distribution > 1600))
 }
 
 figure_SX_dataframe = data.frame(
@@ -1316,6 +1658,7 @@ plot_3B_simplified_1400_200 = ggplot(data=figure_3B_dataframe_1400_200, aes(x=sa
 # 1600_200
 
 sample_size = seq(from=10, to=800, by=10)
+
 mean_list_1600_200 = c()
 growth_coal_proportion_1600_200 = c()
 bottleneck_coal_proportion_1600_200 = c()
@@ -1323,17 +1666,25 @@ ancestral_coal_proportion_1600_200 = c()
 msprime_time_1600_200 = c()
 msprime_nu_shape_1600_200 = c()
 
+# Now these will store RATIO-OF-SUMS values
 growth_b_len_proportion_mean_1600_200 = c()
 bottleneck_b_len_proportion_mean_1600_200 = c()
 ancestral_b_len_proportion_mean_1600_200 = c()
 
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
+
+  this_sample_size_distribution = c()
+
   msprime_demography_1600_200 = paste0(
     "../Analysis/msprime_3EpB_1600_200_", i, '/two_epoch_demography.txt')
+
   msprime_nu_1600_200 = nu_from_demography(msprime_demography_1600_200)
-  msprime_time_1600_200 = c(msprime_time_1600_200, time_from_demography(msprime_demography_1600_200))
+
+  msprime_time_1600_200 = c(
+    msprime_time_1600_200,
+    time_from_demography(msprime_demography_1600_200)
+  )
+
   if (is.na(msprime_nu_1600_200)) {
     msprime_nu_shape_1600_200 = c(msprime_nu_shape_1600_200, NA)
   } else if (msprime_nu_1600_200 > 1) {
@@ -1341,53 +1692,93 @@ for (i in sample_size) {
   } else {
     msprime_nu_shape_1600_200 = c(msprime_nu_shape_1600_200, 'msprime_contract')
   }
-  for (j in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Coalescent distributions
+  # =============================
+  for (j in seq_len(20)) {
     this_replicate_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1600_200_",
       i, '_coal_dist_',
       j, '.csv')
-    # Read in the appropriate file
+
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
+
+    this_sample_size_distribution =
+      c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # =============================
+  # Branch-length (ratio-of-sums)
+  # =============================
+
+  sum_growth_total = 0
+  sum_bottleneck_total = 0
+  sum_ancestral_total = 0
+  sum_total_branch_length = 0
+
+  for (g in seq_len(20)) {
+
     this_branch_distribution = paste0(
       "../Simulations/simple_simulations/ThreeEpochBottleneck_1600_200_",
       i, '_branch_length_dist_',
       g, '.csv')
-    if (file.exists(this_branch_distribution)) {
-    } else {
-      next
-    }
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 &
-        this_b_len_csv$node_generations<= 1800, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1800, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_1600_200 = c(mean_list_1600_200, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_1600_200 = c(growth_coal_proportion_1600_200,
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_1600_200 = c(bottleneck_coal_proportion_1600_200,
-    mean(this_sample_size_distribution <= 1800) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_1600_200 = c(ancestral_coal_proportion_1600_200,
-    mean(this_sample_size_distribution > 1800))
 
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_1600_200 = c(growth_b_len_proportion_mean_1600_200, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_1600_200 = c(bottleneck_b_len_proportion_mean_1600_200, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_1600_200 = c(ancestral_b_len_proportion_mean_1600_200, mean(this_b_len_ancestral))
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Growth: 0–200
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+
+    # Bottleneck: 200–1800
+    bottleneck_overlap <- pmax(0, pmin(end, 1800) - pmax(start, 200))
+
+    # Ancestral: >1800
+    ancestral_overlap <- pmax(0, end - pmax(start, 1800))
+
+    # Accumulate raw sums across replicates
+    sum_growth_total     <- sum_growth_total     + sum(growth_overlap)
+    sum_bottleneck_total <- sum_bottleneck_total + sum(bottleneck_overlap)
+    sum_ancestral_total  <- sum_ancestral_total  + sum(ancestral_overlap)
+
+    sum_total_branch_length <-
+      sum_total_branch_length + sum(this_b_len_csv$branch_length)
+  }
+
+  # Ratio-of-sums calculation
+  growth_b_len_proportion_mean_1600_200 =
+    c(growth_b_len_proportion_mean_1600_200,
+      sum_growth_total / sum_total_branch_length)
+
+  bottleneck_b_len_proportion_mean_1600_200 =
+    c(bottleneck_b_len_proportion_mean_1600_200,
+      sum_bottleneck_total / sum_total_branch_length)
+
+  ancestral_b_len_proportion_mean_1600_200 =
+    c(ancestral_b_len_proportion_mean_1600_200,
+      sum_ancestral_total / sum_total_branch_length)
+
+  # =============================
+  # Coalescent summary statistics
+  # =============================
+
+  mean_list_1600_200 =
+    c(mean_list_1600_200, mean(this_sample_size_distribution))
+
+  growth_coal_proportion_1600_200 =
+    c(growth_coal_proportion_1600_200,
+      mean(this_sample_size_distribution <= 200))
+
+  bottleneck_coal_proportion_1600_200 =
+    c(bottleneck_coal_proportion_1600_200,
+      mean(this_sample_size_distribution <= 1800) -
+      mean(this_sample_size_distribution < 200))
+
+  ancestral_coal_proportion_1600_200 =
+    c(ancestral_coal_proportion_1600_200,
+      mean(this_sample_size_distribution > 1800))
 }
 
 figure_SX_dataframe = data.frame(
