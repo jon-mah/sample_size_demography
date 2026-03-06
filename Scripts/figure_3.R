@@ -11,13 +11,6 @@ ancestral_coal_proportion = c()
 msprime_time = c()
 msprime_nu_shape = c()
 
-growth_b_len_proportion_mean = c()
-growth_b_len_proportion_sd = c()
-bottleneck_b_len_proportion_mean = c()
-bottleneck_b_len_proportion_sd = c()
-ancestral_b_len_proportion_mean = c()
-ancestral_b_len_proportion_sd = c()
-
 # Iterate through sample size and replicate
 for (i in sample_size) {
   this_sample_size_distribution = c() # Initialize
@@ -41,28 +34,6 @@ for (i in sample_size) {
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
   }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
-    this_branch_distribution = paste0(
-      "../Simulations/simple_simulations/ThreeEpochBottleneck_",
-      i, '_branch_length_dist_',
-      g, '.csv')
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 & 
-        this_b_len_csv$node_generations<= 2000, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2000, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-  }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list = c(mean_list, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
   # Lastly find the proportion of coalescent events in each epoch
   growth_coal_proportion = c(growth_coal_proportion, 
     mean(this_sample_size_distribution <= 200))
@@ -70,30 +41,9 @@ for (i in sample_size) {
     mean(this_sample_size_distribution <= 2000) - mean(this_sample_size_distribution < 200))
   ancestral_coal_proportion = c(ancestral_coal_proportion, 
     mean(this_sample_size_distribution > 2000))
-  
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean = c(growth_b_len_proportion_mean, mean(this_b_len_growth))
-  growth_b_len_proportion_sd = c(growth_b_len_proportion_sd, sd(this_b_len_growth))
-  bottleneck_b_len_proportion_mean = c(bottleneck_b_len_proportion_mean, mean(this_b_len_bottleneck))
-  bottleneck_b_len_proportion_sd = c(bottleneck_b_len_proportion_sd, sd(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean = c(ancestral_b_len_proportion_mean, mean(this_b_len_ancestral))
-  ancestral_b_len_proportion_sd = c(ancestral_b_len_proportion_sd, sd(this_b_len_ancestral))
 }
 
-figure_SX_dataframe = data.frame(
-  mean_list,
-  sample_size
-)
-
 # figure_3A_dataframe$sample_size = sample_size
-
-plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) + 
-  geom_line(linewidth=1) +
-  theme_bw() +
-  xlab('Sample size') +
-  ylab("Mean coalescent time (generations)") +
-  ggtitle("Mean coalescent time by sample size") +
-  geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
 
 figure_3A_dataframe = melt(data.frame(
   growth_coal_proportion,
@@ -108,8 +58,8 @@ figure_3A_dataframe$sample_size = sample_size
 plot_3A = ggplot(data=figure_3A_dataframe, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
   geom_point(size=1.5) +
   theme_bw() +
-  xlab('Sample size') +
-  ylab('Proportion') +
+  # xlab('Sample size') +
+  ylab('Proportion of coalescent events') +
   # ggtitle('Coalescent events per epoch, [Anc., 2000 g.a., 200 g.a.]') +
   ggtitle('Coalescent events per epoch') +
   scale_color_manual(name='Epoch',
@@ -121,7 +71,7 @@ plot_3A = ggplot(data=figure_3A_dataframe, aes(x=sample_size, y=value, color=var
                        'ancestral_coal_proportion'='#7570b3'),
                      labels=c('Current [200 g.a.]', 
                        'Bottleneck [2000 g.a.]', 
-                       'Ancestral population')) +
+                       'Ancestral [>2000 g.a.]')) +
   scale_shape_manual(name='Inferred two-epoch model',
                      breaks=c('msprime_contract',
                        'msprime_expand'),
@@ -130,2325 +80,514 @@ plot_3A = ggplot(data=figure_3A_dataframe, aes(x=sample_size, y=value, color=var
                      labels=c('Contraction',
                        'Expansion'))
 
-figure_3B_dataframe = melt(data.frame(
-  growth_b_len_proportion_mean,
-  # growth_b_len_proportion_sd,
-  bottleneck_b_len_proportion_mean,
-  # bottleneck_b_len_proportion_sd,
-  ancestral_b_len_proportion_mean
-  # ancestral_b_len_proportion_sd
-))
-figure_3B_dataframe$sample_size = sample_size
-figure_3B_dataframe$msprime_shape = msprime_nu_shape
-figure_3B_dataframe$growth_min = growth_b_len_proportion_mean - growth_b_len_proportion_sd
-figure_3B_dataframe$growth_max = growth_b_len_proportion_mean + growth_b_len_proportion_sd
-figure_3B_dataframe$bottleneck_min = bottleneck_b_len_proportion_mean - bottleneck_b_len_proportion_sd
-figure_3B_dataframe$bottleneck_max = bottleneck_b_len_proportion_mean + bottleneck_b_len_proportion_sd
-figure_3B_dataframe$ancestral_min = ancestral_b_len_proportion_mean - ancestral_b_len_proportion_sd
-figure_3B_dataframe$ancestral_max = ancestral_b_len_proportion_mean + ancestral_b_len_proportion_sd
+sample_size = seq(10, 800, by=10)
 
-proportion_plus_minus_sd_label = expression('Mean proportion '%+-%' 1 s.d.')
+# Mean of proportions
+mean_prop_growth = c()
+mean_prop_bottleneck = c()
+mean_prop_ancestral = c()
 
-plot_3B = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y=value, color=variable)) +
-  geom_point(aes(shape=msprime_shape), size=1.5) +
-  theme_bw() +
-  geom_ribbon(aes(ymin = growth_min, ymax = growth_max), 
-    fill = "#1b9e77", color="#1b9e77", alpha = 0.1) +
-  geom_ribbon(aes(ymin = bottleneck_min, ymax = bottleneck_max), 
-    fill = "#d95f02", color="#d95f02", alpha = 0.1) +
-  geom_ribbon(aes(ymin = ancestral_min, ymax = ancestral_max), 
-    fill = "#7570b3", color="#7570b3", alpha = 0.1) +
-  xlab('Sample size') +
-  ylab(proportion_plus_minus_sd_label) +
-  ggtitle('Proportion of branch length per epoch') +
-  scale_color_manual(name='Epoch',
-                     breaks=c('growth_b_len_proportion_mean',
-                       'bottleneck_b_len_proportion_mean',
-                       'ancestral_b_len_proportion_mean'),
-                     values=c('growth_b_len_proportion_mean'='#1b9e77',
-                       'bottleneck_b_len_proportion_mean'='#d95f02',
-                       'ancestral_b_len_proportion_mean'='#7570b3'),
-                     labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-  scale_shape_manual(name='Inferred two-epoch model',
-                     breaks=c('msprime_contract',
-                       'msprime_expand'),
-                     values=c('msprime_contract'=15,
-                       'msprime_expand'=22),
-                     labels=c('Contraction',
-                       'Expansion')) +
-  guides(shape='none', color='none')
+# Ratio of sums
+prop_sum_growth = c()
+prop_sum_bottleneck = c()
+prop_sum_ancestral = c()
 
-# 700 x 600
-plot_3A + plot_3B + plot_layout(nrow=2)
-
-# 1800_200
-
-plot_1800_200_simplified = ggplot(data=figure_3B_dataframe, aes(x=sample_size, y=value, color=variable)) +
-  geom_point(aes(shape=msprime_shape), size=1.5) +
-  theme_bw() +
-  xlab('Sample size') +
-  ylab('Mean branch length') +
-  # ggtitle('Proportion of branch length per epoch, [Anc., 2000 g.a., 200 g.a.]') +
-  ggtitle('Proportion of branch length per epoch') +
-  scale_color_manual(name='Epoch',
-                     breaks=c('growth_b_len_proportion_mean',
-                       'bottleneck_b_len_proportion_mean',
-                       'ancestral_b_len_proportion_mean'),
-                     values=c('growth_b_len_proportion_mean'='#1b9e77',
-                       'bottleneck_b_len_proportion_mean'='#d95f02',
-                       'ancestral_b_len_proportion_mean'='#7570b3'),
-                     labels=c('Current [200 g.a.]', 
-                       'Bottleneck [2000 g.a.]', 
-                       'Ancestral population')) +
-  scale_shape_manual(name='Inferred two-epoch model',
-                     breaks=c('msprime_contract',
-                       'msprime_expand'),
-                     values=c('msprime_contract'=15,
-                       'msprime_expand'=22),
-                     labels=c('Contraction',
-                       'Expansion')) +
-  guides(shape='none', color='none')
-  # theme(axis.title.x = element_text(size = 20))  +
-  # theme(axis.title.y = element_text(size = 20))  +
-  # theme(plot.title = element_text(size = 32))  +
-  # theme(legend.title = element_text(size = 18)) +
-  # theme(legend.text = element_text(size = 16))
-
-# 700x600
-plot_3A + plot_1800_200_simplified + plot_layout(nrow=2)
-
-
-plot_1800_200_simplified
-
-# growth_contraction
-
-mean_list_growth_contraction = c()
-growth_coal_proportion_growth_contraction = c()
-bottleneck_coal_proportion_growth_contraction = c()
-ancestral_coal_proportion_growth_contraction = c()
-msprime_time_growth_contraction = c()
-msprime_nu_shape_growth_contraction = c()
-
-growth_b_len_proportion_mean_growth_contraction = c()
-bottleneck_b_len_proportion_mean_growth_contraction = c()
-ancestral_b_len_proportion_mean_growth_contraction = c()
-
-# Iterate through sample size and replicate
 for (i in sample_size) {
-  this_sample_size_distribution = c() # Initialize
-  msprime_demography_growth_contraction = paste0(
-    "../Analysis/msprime_3EpBGC_", i, '/two_epoch_demography.txt')
-  msprime_nu_growth_contraction = nu_from_demography(msprime_demography_growth_contraction)
-  msprime_time_growth_contraction = c(msprime_time_growth_contraction, time_from_demography(msprime_demography_growth_contraction))
-  if (is.na(msprime_nu_growth_contraction)) {
-    msprime_nu_shape_growth_contraction = c(msprime_nu_shape_growth_contraction, NA)
-  } else if (msprime_nu_growth_contraction > 1) {
-    msprime_nu_shape_growth_contraction = c(msprime_nu_shape_growth_contraction, 'msprime_expand')
-  } else {
-    msprime_nu_shape_growth_contraction = c(msprime_nu_shape_growth_contraction, 'msprime_contract')
-  }  
-  for (j in seq(from=1, to=20, by=1)) {
-    this_replicate_distribution = paste0(
-      "../Simulations/simple_simulations/ThreeEpochGrowthContraction_",
-      i, '_coal_dist_',
-      j, '.csv')
-    # Read in the appropriate file
-    this_csv = read.csv(this_replicate_distribution, header=TRUE)
-    this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-  }
-  this_b_len_growth = c()
-  this_b_len_bottleneck = c()
-  this_b_len_ancestral = c()
-  for (g in seq(from=1, to=20, by=1)) {
+
+  # Proportions for each replicate
+  prop_growth = numeric(20)
+  prop_bottleneck = numeric(20)
+  prop_ancestral = numeric(20)
+
+  # Sum across replicates
+  sum_growth = numeric(20)
+  sum_bottleneck = numeric(20)
+  sum_ancestral = numeric(20)
+  sum_total = numeric(20)
+
+  for (g in seq_len(20)) {
     this_branch_distribution = paste0(
-      "../Simulations/simple_simulations/ThreeEpochGrowthContraction_",
+      "../Simulations/simple_simulations/ThreeEpochBottleneck_",
       i, '_branch_length_dist_',
       g, '.csv')
-    # Read in the appropriate file
-    this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-    growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 200, ]$branch_length)
-    bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200 & 
-        this_b_len_csv$node_generations<= 2000, ]$branch_length)
-    ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2000, ]$branch_length)
-    total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-    this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-    this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-    this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
+
+    this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
+
+    start <- this_b_len_csv$node_generations
+    end   <- start + this_b_len_csv$branch_length
+
+    # Overlap
+
+    growth_overlap <- pmax(0, pmin(end, 200) - start)
+    bottleneck_overlap <- pmax(0, pmin(end, 2000) - pmax(start, 200))
+    ancestral_overlap <- pmax(0, end - pmax(start, 2000))
+
+    # Raw sums
+    sum_growth[g]      <- sum(growth_overlap)
+    sum_bottleneck[g]  <- sum(bottleneck_overlap)
+    sum_ancestral[g]   <- sum(ancestral_overlap)
+    sum_total[g]       <- sum(this_b_len_csv$branch_length)
+
+    # Per-replicate proportions
+    prop_growth[g]     <- sum_growth[g]     / sum_total[g]
+    prop_bottleneck[g] <- sum_bottleneck[g] / sum_total[g]
+    prop_ancestral[g]  <- sum_ancestral[g]  / sum_total[g]
   }
-  # Take the mean of coalescent times for this sample size's distribution
-  mean_list_growth_contraction = c(mean_list_growth_contraction, mean(this_sample_size_distribution))
-  # Similarly, take standard deviation
-  # Lastly find the proportion of coalescent events in each epoch
-  growth_coal_proportion_growth_contraction = c(growth_coal_proportion_growth_contraction, 
-    mean(this_sample_size_distribution <= 200))
-  bottleneck_coal_proportion_growth_contraction = c(bottleneck_coal_proportion_growth_contraction, 
-    mean(this_sample_size_distribution <= 2000) - mean(this_sample_size_distribution < 200))
-  ancestral_coal_proportion_growth_contraction = c(ancestral_coal_proportion_growth_contraction, 
-    mean(this_sample_size_distribution > 2000))
-  
-  # Mean and sd of branch length proportions by epoch
-  growth_b_len_proportion_mean_growth_contraction = c(growth_b_len_proportion_mean_growth_contraction, mean(this_b_len_growth))
-  bottleneck_b_len_proportion_mean_growth_contraction = c(bottleneck_b_len_proportion_mean_growth_contraction, mean(this_b_len_bottleneck))
-  ancestral_b_len_proportion_mean_growth_contraction = c(ancestral_b_len_proportion_mean_growth_contraction, mean(this_b_len_ancestral))
+
+  # Mean of proportions, calculation
+  mean_prop_growth      <- c(mean_prop_growth, mean(prop_growth))
+  mean_prop_bottleneck  <- c(mean_prop_bottleneck, mean(prop_bottleneck))
+  mean_prop_ancestral   <- c(mean_prop_ancestral, mean(prop_ancestral))
+
+  # Ratio of sums, calculation
+  prop_sum_growth      <- c(prop_sum_growth, sum(sum_growth)     / sum(sum_total))
+  prop_sum_bottleneck  <- c(prop_sum_bottleneck, sum(sum_bottleneck) / sum(sum_total))
+  prop_sum_ancestral   <- c(prop_sum_ancestral, sum(sum_ancestral)  / sum(sum_total))
 }
 
-figure_SX_dataframe = data.frame(
-  mean_list_growth_contraction,
-  sample_size
+branch_proportion_df = data.frame(
+  prop_sum_ancestral,
+  prop_sum_bottleneck,
+  prop_sum_growth
 )
 
-# figure_3A_dataframe$sample_size = sample_size
+names(branch_proportion_df) = c('Proportion of sums, Anc.', 
+  'Proportion of sums, Bot.',
+  'Proportion of sums, Cur.')
+branch_proportion_df = melt(branch_proportion_df)
+branch_proportion_df$sample_size = sample_size
+branch_proportion_df$shape = msprime_nu_shape
 
-plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) + 
-  geom_line(linewidth=1) +
+branch_proportion_df$epoch =
+  ifelse(grepl("Anc", branch_proportion_df$variable), "Ancestral",
+  ifelse(grepl("Bot", branch_proportion_df$variable), "Bottleneck", "Current"))
+
+figure_3B = ggplot(branch_proportion_df,
+                     aes(x = sample_size,
+                         y = value,
+                         color = epoch,
+                       shape=shape)) +
+  geom_point(size = 1.5) +
   theme_bw() +
-  xlab('Sample size') +
-  ylab("Mean coalescent time (generations)") +
-  ggtitle("Mean coalescent time by sample size") +
-  geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-
-figure_3A_dataframe_growth_contraction = melt(data.frame(
-  growth_coal_proportion_growth_contraction,
-  bottleneck_coal_proportion_growth_contraction,
-  ancestral_coal_proportion_growth_contraction
-))
-
-figure_3A_dataframe_growth_contraction$msprime_time = msprime_time_growth_contraction
-figure_3A_dataframe_growth_contraction$msprime_shape = msprime_nu_shape_growth_contraction
-figure_3A_dataframe_growth_contraction$sample_size = sample_size
-
-plot_3A_growth_contraction = ggplot(data=figure_3A_dataframe_growth_contraction, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-  geom_point(size=1.5) +
-  theme_bw() +
-  xlab('Sample size') +
-  ylab('Proportion') +
-  ggtitle('Coalescent events per epoch, [Anc., 2000 g.a., 200 g.a.]') +
-  scale_color_manual(name='Epoch',
-                     breaks=c('growth_coal_proportion_growth_contraction',
-                       'bottleneck_coal_proportion_growth_contraction',
-                       'ancestral_coal_proportion_growth_contraction'),
-                     values=c('growth_coal_proportion_growth_contraction'='#1b9e77',
-                       'bottleneck_coal_proportion_growth_contraction'='#d95f02',
-                       'ancestral_coal_proportion_growth_contraction'='#7570b3'),
-                     labels=c('Recent contraction [200 g.a.]', 'Ancient growth [2,000 g.a.]', 'Ancestral population')) +
-  scale_shape_manual(name='Inferred two-epoch model',
-                     breaks=c('msprime_contract',
-                       'msprime_expand'),
-                     values=c('msprime_contract'=15,
-                       'msprime_expand'=22),
-                     labels=c('Contraction',
-                       'Expansion'))
-
-figure_3B_dataframe_growth_contraction = melt(data.frame(
-  growth_b_len_proportion_mean_growth_contraction,
-  bottleneck_b_len_proportion_mean_growth_contraction,
-  ancestral_b_len_proportion_mean_growth_contraction
-))
-figure_3B_dataframe_growth_contraction$sample_size = sample_size
-figure_3B_dataframe_growth_contraction$msprime_shape = msprime_nu_shape_growth_contraction
-
-plot_3B_simplified_growth_contraction = ggplot(data=figure_3B_dataframe_growth_contraction, aes(x=sample_size, y=value, color=variable)) +
-  geom_point(aes(shape=msprime_shape), size=1.5) +
-  theme_bw() +
-  xlab('Sample size') +
-  ylab('Mean branch length') +
-  ggtitle('Branch length per epoch') +
-  scale_color_manual(name='Epoch',
-                     breaks=c('growth_b_len_proportion_mean_growth_contraction',
-                       'bottleneck_b_len_proportion_mean_growth_contraction',
-                       'ancestral_b_len_proportion_mean_growth_contraction'),
-                     values=c('growth_b_len_proportion_mean_growth_contraction'='#1b9e77',
-                       'bottleneck_b_len_proportion_mean_growth_contraction'='#d95f02',
-                       'ancestral_b_len_proportion_mean_growth_contraction'='#7570b3'),
-                     labels=c('Recent contraction', 'Ancient growth', 'Ancestral population')) +
-  scale_shape_manual(name='Inferred two-epoch model',
+  scale_color_manual(values = c(
+    "Ancestral" = '#7570b3',
+    "Bottleneck" = '#d95f02',
+    "Current" = '#1b9e77'
+  )) +
+    scale_shape_manual(name='Inferred two-epoch model',
                      breaks=c('msprime_contract',
                        'msprime_expand'),
                      values=c('msprime_contract'=15,
                        'msprime_expand'=22),
                      labels=c('Contraction',
                        'Expansion')) +
+  xlab('Sample size') +
+  ylab('Proportion of branch length') +
+  ggtitle('Distribution of branch lengths acoss epochs') +
   guides(shape='none', color='none')
+figure_3B
 
-plot_3A_growth_contraction + plot_3B_simplified_growth_contraction + plot_layout(nrow=2)
+# 700x600
+plot_3A + figure_3B + plot_layout(nrow=2)
 
-# 1000_500
-
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_1000_500 = c()
-# growth_coal_proportion_1000_500 = c()
-# bottleneck_coal_proportion_1000_500 = c()
-# ancestral_coal_proportion_1000_500 = c()
-# msprime_time_1000_500 = c()
-# msprime_nu_shape_1000_500 = c()
 # 
-# growth_b_len_proportion_mean_1000_500 = c()
-# bottleneck_b_len_proportion_mean_1000_500 = c()
-# ancestral_b_len_proportion_mean_1000_500 = c()
+# # Expectation (code from Kirk)
 # 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_1000_500 = paste0(
-#     "../Analysis/msprime_3EpB_1000_500_", i, '/two_epoch_demography.txt')
-#   msprime_nu_1000_500 = nu_from_demography(msprime_demography_1000_500)
-#   msprime_time_1000_500 = c(msprime_time_1000_500, time_from_demography(msprime_demography_1000_500))
-#   if (is.na(msprime_nu_1000_500)) {
-#     msprime_nu_shape_1000_500 = c(msprime_nu_shape_1000_500, NA)
-#   } else if (msprime_nu_1000_500 > 1) {
-#     msprime_nu_shape_1000_500 = c(msprime_nu_shape_1000_500, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_1000_500 = c(msprime_nu_shape_1000_500, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_500_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 500, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 500 &
-#         this_b_len_csv$node_generations<= 1500, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1500, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_1000_500 = c(mean_list_1000_500, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_1000_500 = c(growth_coal_proportion_1000_500,
-#     mean(this_sample_size_distribution <= 500))
-#   bottleneck_coal_proportion_1000_500 = c(bottleneck_coal_proportion_1000_500,
-#     mean(this_sample_size_distribution <= 1500) - mean(this_sample_size_distribution < 500))
-#   ancestral_coal_proportion_1000_500 = c(ancestral_coal_proportion_1000_500,
-#     mean(this_sample_size_distribution > 1500))
+# # =============================================================================
+# # Coalescent Branch Length Calculator: Three-Epoch Model (v2)
+# # =============================================================================
+# # Computes expected branch length in each of three epochs under Kingman's
+# # coalescent with piecewise-constant population sizes.
+# #
+# # Epoch 1: [0, t)        - population size N0 (reference)
+# # Epoch 2: [t, t+i)      - population size N1, rate scaled by rho1 = N0/N1
+# # Epoch 3: [t+i, t+i+j)  - population size N2, rate scaled by rho2 = N0/N2
+# #
+# # Time is in coalescent units scaled to N0 generations.
+# #
+# # APPROACH: Numerically integrate E[K(s)] over each epoch, where E[K(s)] is
+# # the expected number of lineages at time s. This satisfies the hard bound:
+# #   branch length in epoch <= (lineages entering epoch) * (epoch duration)
+# #
+# # E[K(s)] is obtained by solving the Kolmogorov forward ODE for P(K(s)=k)
+# # using RK4 with adaptive step sizes chosen to ensure numerical stability
+# # for any combination of n and epoch duration.
+# #
+# # Results are validated against the bound n * duration and can be checked
+# # against Monte Carlo simulation using the included verify_mc() function.
+# # =============================================================================
 # 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_1000_500 = c(growth_b_len_proportion_mean_1000_500, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_1000_500 = c(bottleneck_b_len_proportion_mean_1000_500, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_1000_500 = c(ancestral_b_len_proportion_mean_1000_500, mean(this_b_len_ancestral))
+# 
+# # -----------------------------------------------------------------------------
+# # RK4 step for the Kolmogorov forward ODE of the Kingman coalescent
+# #
+# # State: P = (P_1, ..., P_m) where P_k = P(K(t) = k), m = current max lineages
+# # ODE:  dP_k/dt = lam_{k+1}*P_{k+1} - lam_k*P_k   (k < m)
+# #       dP_m/dt = -lam_m * P_m
+# # where lam_k = rho * k*(k-1)/2
+# #
+# # Arguments:
+# #   P        : current probability vector (length m)
+# #   duration : time interval to integrate over
+# #   rho      : coalescent rate scaling factor for this epoch
+# #
+# # Returns: probability vector at time t + duration
+# # -----------------------------------------------------------------------------
+# rk4_coalescent <- function(P, duration, rho = 1) {
+#   
+#   m   <- length(P)
+#   lam <- rho * sapply(1:m, function(k) k * (k - 1) / 2)
+#   
+#   # Adaptive step size: ensure dt << 1 / lambda_max for stability
+#   lam_max <- lam[m]
+#   n_steps <- if (lam_max > 0) max(10L, ceiling(duration * lam_max * 20)) else 10L
+#   dt      <- duration / n_steps
+#   
+#   f <- function(P) {
+#     dP        <- -lam * P
+#     dP[1:m-1] <- dP[1:m-1] + lam[2:m] * P[2:m]
+#     return(dP)
+#   }
+#   
+#   for (step in seq_len(n_steps)) {
+#     k1 <- f(P)
+#     k2 <- f(P + 0.5 * dt * k1)
+#     k3 <- f(P + 0.5 * dt * k2)
+#     k4 <- f(P +       dt * k3)
+#     P  <- pmax(0, P + (dt / 6) * (k1 + 2*k2 + 2*k3 + k4))
+#   }
+#   
+#   return(P)
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_1000_500,
-#   sample_size
-# )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_1000_500 = melt(data.frame(
-#   growth_coal_proportion_1000_500,
-#   bottleneck_coal_proportion_1000_500,
-#   ancestral_coal_proportion_1000_500
-# ))
-# 
-# figure_3A_dataframe_1000_500$msprime_time = msprime_time_1000_500
-# figure_3A_dataframe_1000_500$msprime_shape = msprime_nu_shape_1000_500
-# figure_3A_dataframe_1000_500$sample_size = sample_size
-# 
-# plot_3A_1000_500 = ggplot(data=figure_3A_dataframe_1000_500, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 1500 g.a., 1000 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_1000_500',
-#                        'bottleneck_coal_proportion_1000_500',
-#                        'ancestral_coal_proportion_1000_500'),
-#                      values=c('growth_coal_proportion_1000_500'='#1b9e77',
-#                        'bottleneck_coal_proportion_1000_500'='#d95f02',
-#                        'ancestral_coal_proportion_1000_500'='#7570b3'),
-#                      labels=c('Current [1000 g.a.]', 
-#                        'Bottleneck [1500 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_1000_500 = melt(data.frame(
-#   growth_b_len_proportion_mean_1000_500,
-#   bottleneck_b_len_proportion_mean_1000_500,
-#   ancestral_b_len_proportion_mean_1000_500
-# ))
-# figure_3B_dataframe_1000_500$sample_size = sample_size
-# figure_3B_dataframe_1000_500$msprime_shape = msprime_nu_shape_1000_500
-# 
-# plot_3B_simplified_1000_500 = ggplot(data=figure_3B_dataframe_1000_500, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_1000_500',
-#                        'bottleneck_b_len_proportion_mean_1000_500',
-#                        'ancestral_b_len_proportion_mean_1000_500'),
-#                      values=c('growth_b_len_proportion_mean_1000_500'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_1000_500'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_1000_500'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_1000_500 + plot_3B_simplified_1000_500 + plot_layout(nrow=2)
-# 
-# 
-# # 1000_1000
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_1000_1000 = c()
-# growth_coal_proportion_1000_1000 = c()
-# bottleneck_coal_proportion_1000_1000 = c()
-# ancestral_coal_proportion_1000_1000 = c()
-# msprime_time_1000_1000 = c()
-# msprime_nu_shape_1000_1000 = c()
-# 
-# growth_b_len_proportion_mean_1000_1000 = c()
-# bottleneck_b_len_proportion_mean_1000_1000 = c()
-# ancestral_b_len_proportion_mean_1000_1000 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_1000_1000 = paste0(
-#     "../Analysis/msprime_3EpB_1000_1000_", i, '/two_epoch_demography.txt')
-#   msprime_nu_1000_1000 = nu_from_demography(msprime_demography_1000_1000)
-#   msprime_time_1000_1000 = c(msprime_time_1000_1000, time_from_demography(msprime_demography_1000_1000))
-#   if (is.na(msprime_nu_1000_1000)) {
-#     msprime_nu_shape_1000_1000 = c(msprime_nu_shape_1000_1000, NA)
-#   } else if (msprime_nu_1000_1000 > 1) {
-#     msprime_nu_shape_1000_1000 = c(msprime_nu_shape_1000_1000, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_1000_1000 = c(msprime_nu_shape_1000_1000, 'msprime_contract')
+# # -----------------------------------------------------------------------------
+# # Compute E[K(s)] on a grid and return the final lineage distribution
+# #
+# # Integrates the ODE forward across n_points grid points spanning [0, duration],
+# # recording E[K(s)] at each point. Also returns the final P vector so it can
+# # be passed directly as the initial distribution for the next epoch.
+# #
+# # Arguments:
+# #   P_init   : initial probability vector
+# #   duration : epoch duration
+# #   rho      : rate scaling factor for this epoch
+# #   n_points : number of grid points (odd recommended for Simpson's rule)
+# #
+# # Returns: list with
+# #   $Eks     : vector of E[K(s)] values at each grid point
+# #   $P_final : probability vector at end of epoch
+# # -----------------------------------------------------------------------------
+# ek_grid <- function(P_init, duration, rho = 1, n_points = 501) {
+#   
+#   m    <- length(P_init)
+#   ks   <- 1:m
+#   P    <- P_init
+#   Eks  <- numeric(n_points)
+#   Eks[1] <- sum(ks * P)
+#   
+#   dt_interval <- duration / (n_points - 1)
+#   
+#   for (g in 2:n_points) {
+#     P    <- rk4_coalescent(P, dt_interval, rho)
+#     Eks[g] <- sum(ks * P)
 #   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 1000, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1000 &
-#         this_b_len_csv$node_generations<= 2000, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2000, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_1000_1000 = c(mean_list_1000_1000, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_1000_1000 = c(growth_coal_proportion_1000_1000,
-#     mean(this_sample_size_distribution <= 1000))
-#   bottleneck_coal_proportion_1000_1000 = c(bottleneck_coal_proportion_1000_1000,
-#     mean(this_sample_size_distribution <= 2000) - mean(this_sample_size_distribution < 1000))
-#   ancestral_coal_proportion_1000_1000 = c(ancestral_coal_proportion_1000_1000,
-#     mean(this_sample_size_distribution > 2000))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_1000_1000 = c(growth_b_len_proportion_mean_1000_1000, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_1000_1000 = c(bottleneck_b_len_proportion_mean_1000_1000, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_1000_1000 = c(ancestral_b_len_proportion_mean_1000_1000, mean(this_b_len_ancestral))
+#   
+#   return(list(Eks = Eks, P_final = P))
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_1000_1000,
-#   sample_size
-# )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_1000_1000 = melt(data.frame(
-#   growth_coal_proportion_1000_1000,
-#   bottleneck_coal_proportion_1000_1000,
-#   ancestral_coal_proportion_1000_1000
-# ))
-# 
-# figure_3A_dataframe_1000_1000$msprime_time = msprime_time_1000_1000
-# figure_3A_dataframe_1000_1000$msprime_shape = msprime_nu_shape_1000_1000
-# figure_3A_dataframe_1000_1000$sample_size = sample_size
-# 
-# plot_3A_1000_1000 = ggplot(data=figure_3A_dataframe_1000_1000, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 2000 g.a., 1000 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_1000_1000',
-#                        'bottleneck_coal_proportion_1000_1000',
-#                        'ancestral_coal_proportion_1000_1000'),
-#                      values=c('growth_coal_proportion_1000_1000'='#1b9e77',
-#                        'bottleneck_coal_proportion_1000_1000'='#d95f02',
-#                        'ancestral_coal_proportion_1000_1000'='#7570b3'),
-#                      labels=c('Current [1000 g.a.]', 
-#                        'Bottleneck [2000 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_1000_1000 = melt(data.frame(
-#   growth_b_len_proportion_mean_1000_1000,
-#   bottleneck_b_len_proportion_mean_1000_1000,
-#   ancestral_b_len_proportion_mean_1000_1000
-# ))
-# figure_3B_dataframe_1000_1000$sample_size = sample_size
-# figure_3B_dataframe_1000_1000$msprime_shape = msprime_nu_shape_1000_1000
-# 
-# plot_3B_simplified_1000_1000 = ggplot(data=figure_3B_dataframe_1000_1000, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_1000_1000',
-#                        'bottleneck_b_len_proportion_mean_1000_1000',
-#                        'ancestral_b_len_proportion_mean_1000_1000'),
-#                      values=c('growth_b_len_proportion_mean_1000_1000'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_1000_1000'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_1000_1000'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_1000_1000 + plot_3B_simplified_1000_1000 + plot_layout(nrow=2)
-# 
-# 
-# # 1000_1500
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_1000_1500 = c()
-# growth_coal_proportion_1000_1500 = c()
-# bottleneck_coal_proportion_1000_1500 = c()
-# ancestral_coal_proportion_1000_1500 = c()
-# msprime_time_1000_1500 = c()
-# msprime_nu_shape_1000_1500 = c()
-# 
-# growth_b_len_proportion_mean_1000_1500 = c()
-# bottleneck_b_len_proportion_mean_1000_1500 = c()
-# ancestral_b_len_proportion_mean_1000_1500 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_1000_1500 = paste0(
-#     "../Analysis/msprime_3EpB_1000_1500_", i, '/two_epoch_demography.txt')
-#   msprime_nu_1000_1500 = nu_from_demography(msprime_demography_1000_1500)
-#   msprime_time_1000_1500 = c(msprime_time_1000_1500, time_from_demography(msprime_demography_1000_1500))
-#   if (is.na(msprime_nu_1000_1500)) {
-#     msprime_nu_shape_1000_1500 = c(msprime_nu_shape_1000_1500, NA)
-#   } else if (msprime_nu_1000_1500 > 1) {
-#     msprime_nu_shape_1000_1500 = c(msprime_nu_shape_1000_1500, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_1000_1500 = c(msprime_nu_shape_1000_1500, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1500_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1500_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 1500, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1500 &
-#         this_b_len_csv$node_generations<= 2500, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2500, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_1000_1500 = c(mean_list_1000_1500, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_1000_1500 = c(growth_coal_proportion_1000_1500,
-#     mean(this_sample_size_distribution <= 1500))
-#   bottleneck_coal_proportion_1000_1500 = c(bottleneck_coal_proportion_1000_1500,
-#     mean(this_sample_size_distribution <= 2500) - mean(this_sample_size_distribution < 1500))
-#   ancestral_coal_proportion_1000_1500 = c(ancestral_coal_proportion_1000_1500,
-#     mean(this_sample_size_distribution > 2500))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_1000_1500 = c(growth_b_len_proportion_mean_1000_1500, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_1000_1500 = c(bottleneck_b_len_proportion_mean_1000_1500, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_1000_1500 = c(ancestral_b_len_proportion_mean_1000_1500, mean(this_b_len_ancestral))
+# # -----------------------------------------------------------------------------
+# # Trim negligible probability mass from the tail of a lineage distribution
+# #
+# # After a period of coalescence, high-k states become negligible. Trimming
+# # the state vector speeds up subsequent ODE solves considerably.
+# #
+# # Arguments:
+# #   P      : probability vector
+# #   tol    : threshold below which tail probabilities are dropped
+# #
+# # Returns: trimmed probability vector
+# # -----------------------------------------------------------------------------
+# trim_distribution <- function(P, tol = 1e-10) {
+#   last <- max(which(P > tol), 1)
+#   return(P[1:last])
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_1000_1500,
-#   sample_size
-# )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_1000_1500 = melt(data.frame(
-#   growth_coal_proportion_1000_1500,
-#   bottleneck_coal_proportion_1000_1500,
-#   ancestral_coal_proportion_1000_1500
-# ))
-# 
-# figure_3A_dataframe_1000_1500$msprime_time = msprime_time_1000_1500
-# figure_3A_dataframe_1000_1500$msprime_shape = msprime_nu_shape_1000_1500
-# figure_3A_dataframe_1000_1500$sample_size = sample_size
-# 
-# plot_3A_1000_1500 = ggplot(data=figure_3A_dataframe_1000_1500, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 2500 g.a., 1000 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_1000_1500',
-#                        'bottleneck_coal_proportion_1000_1500',
-#                        'ancestral_coal_proportion_1000_1500'),
-#                      values=c('growth_coal_proportion_1000_1500'='#1b9e77',
-#                        'bottleneck_coal_proportion_1000_1500'='#d95f02',
-#                        'ancestral_coal_proportion_1000_1500'='#7570b3'),
-#                      labels=c('Current [1000 g.a.]', 
-#                        'Bottleneck [2500 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_1000_1500 = melt(data.frame(
-#   growth_b_len_proportion_mean_1000_1500,
-#   bottleneck_b_len_proportion_mean_1000_1500,
-#   ancestral_b_len_proportion_mean_1000_1500
-# ))
-# figure_3B_dataframe_1000_1500$sample_size = sample_size
-# figure_3B_dataframe_1000_1500$msprime_shape = msprime_nu_shape_1000_1500
-# 
-# plot_3B_simplified_1000_1500 = ggplot(data=figure_3B_dataframe_1000_1500, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_1000_1500',
-#                        'bottleneck_b_len_proportion_mean_1000_1500',
-#                        'ancestral_b_len_proportion_mean_1000_1500'),
-#                      values=c('growth_b_len_proportion_mean_1000_1500'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_1000_1500'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_1000_1500'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_1000_1500 + plot_3B_simplified_1000_1500 + plot_layout(nrow=2)
-# 
-# 
-# # 1000_2000
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_1000_2000 = c()
-# growth_coal_proportion_1000_2000 = c()
-# bottleneck_coal_proportion_1000_2000 = c()
-# ancestral_coal_proportion_1000_2000 = c()
-# msprime_time_1000_2000 = c()
-# msprime_nu_shape_1000_2000 = c()
-# 
-# growth_b_len_proportion_mean_1000_2000 = c()
-# bottleneck_b_len_proportion_mean_1000_2000 = c()
-# ancestral_b_len_proportion_mean_1000_2000 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_1000_2000 = paste0(
-#     "../Analysis/msprime_3EpB_1000_2000_", i, '/two_epoch_demography.txt')
-#   msprime_nu_1000_2000 = nu_from_demography(msprime_demography_1000_2000)
-#   msprime_time_1000_2000 = c(msprime_time_1000_2000, time_from_demography(msprime_demography_1000_2000))
-#   if (is.na(msprime_nu_1000_2000)) {
-#     msprime_nu_shape_1000_2000 = c(msprime_nu_shape_1000_2000, NA)
-#   } else if (msprime_nu_1000_2000 > 1) {
-#     msprime_nu_shape_1000_2000 = c(msprime_nu_shape_1000_2000, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_1000_2000 = c(msprime_nu_shape_1000_2000, 'msprime_contract')
+# # -----------------------------------------------------------------------------
+# # Simpson's rule numerical integration
+# # -----------------------------------------------------------------------------
+# simpsons_rule <- function(y, duration) {
+#   m <- length(y)
+#   if (m < 2) return(0)
+#   h <- duration / (m - 1)
+#   if (m %% 2 == 0) {
+#     return(h * (y[1]/2 + sum(y[2:(m-1)]) + y[m]/2))
 #   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_2000_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1000_2000_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 2000, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2000 &
-#         this_b_len_csv$node_generations<= 3000, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 3000, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_1000_2000 = c(mean_list_1000_2000, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_1000_2000 = c(growth_coal_proportion_1000_2000,
-#     mean(this_sample_size_distribution <= 2000))
-#   bottleneck_coal_proportion_1000_2000 = c(bottleneck_coal_proportion_1000_2000,
-#     mean(this_sample_size_distribution <= 3000) - mean(this_sample_size_distribution < 2000))
-#   ancestral_coal_proportion_1000_2000 = c(ancestral_coal_proportion_1000_2000,
-#     mean(this_sample_size_distribution > 3000))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_1000_2000 = c(growth_b_len_proportion_mean_1000_2000, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_1000_2000 = c(bottleneck_b_len_proportion_mean_1000_2000, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_1000_2000 = c(ancestral_b_len_proportion_mean_1000_2000, mean(this_b_len_ancestral))
+#   return((h/3) * (y[1] +
+#                   4 * sum(y[seq(2, m-1, 2)]) +
+#                   2 * sum(y[seq(3, m-2, 2)]) +
+#                   y[m]))
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_1000_2000,
-#   sample_size
-# )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
 # 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
 # 
-# figure_3A_dataframe_1000_2000 = melt(data.frame(
-#   growth_coal_proportion_1000_2000,
-#   bottleneck_coal_proportion_1000_2000,
-#   ancestral_coal_proportion_1000_2000
-# ))
-# 
-# figure_3A_dataframe_1000_2000$msprime_time = msprime_time_1000_2000
-# figure_3A_dataframe_1000_2000$msprime_shape = msprime_nu_shape_1000_2000
-# figure_3A_dataframe_1000_2000$sample_size = sample_size
-# 
-# plot_3A_1000_2000 = ggplot(data=figure_3A_dataframe_1000_2000, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 3000 g.a., 1000 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_1000_2000',
-#                        'bottleneck_coal_proportion_1000_2000',
-#                        'ancestral_coal_proportion_1000_2000'),
-#                      values=c('growth_coal_proportion_1000_2000'='#1b9e77',
-#                        'bottleneck_coal_proportion_1000_2000'='#d95f02',
-#                        'ancestral_coal_proportion_1000_2000'='#7570b3'),
-#                      labels=c('Current [1000 g.a.]', 
-#                        'Bottleneck [3000 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_1000_2000 = melt(data.frame(
-#   growth_b_len_proportion_mean_1000_2000,
-#   bottleneck_b_len_proportion_mean_1000_2000,
-#   ancestral_b_len_proportion_mean_1000_2000
-# ))
-# figure_3B_dataframe_1000_2000$sample_size = sample_size
-# figure_3B_dataframe_1000_2000$msprime_shape = msprime_nu_shape_1000_2000
-# 
-# plot_3B_simplified_1000_2000 = ggplot(data=figure_3B_dataframe_1000_2000, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_1000_2000',
-#                        'bottleneck_b_len_proportion_mean_1000_2000',
-#                        'ancestral_b_len_proportion_mean_1000_2000'),
-#                      values=c('growth_b_len_proportion_mean_1000_2000'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_1000_2000'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_1000_2000'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_1000_2000 + plot_3B_simplified_1000_2000 + plot_layout(nrow=2)
-
-# # 500_2000
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_500_2000 = c()
-# growth_coal_proportion_500_2000 = c()
-# bottleneck_coal_proportion_500_2000 = c()
-# ancestral_coal_proportion_500_2000 = c()
-# msprime_time_500_2000 = c()
-# msprime_nu_shape_500_2000 = c()
-# 
-# growth_b_len_proportion_mean_500_2000 = c()
-# bottleneck_b_len_proportion_mean_500_2000 = c()
-# ancestral_b_len_proportion_mean_500_2000 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_500_2000 = paste0(
-#     "../Analysis/msprime_3EpB_500_2000_", i, '/two_epoch_demography.txt')
-#   msprime_nu_500_2000 = nu_from_demography(msprime_demography_500_2000)
-#   msprime_time_500_2000 = c(msprime_time_500_2000, time_from_demography(msprime_demography_500_2000))
-#   if (is.na(msprime_nu_500_2000)) {
-#     msprime_nu_shape_500_2000 = c(msprime_nu_shape_500_2000, NA)
-#   } else if (msprime_nu_500_2000 > 1) {
-#     msprime_nu_shape_500_2000 = c(msprime_nu_shape_500_2000, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_500_2000 = c(msprime_nu_shape_500_2000, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_500_2000_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_500_2000_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
+# # -----------------------------------------------------------------------------
+# # Monte Carlo verification (optional — for checking results)
+# #
+# # Simulates the coalescent process directly and estimates branch lengths
+# # by averaging over n_sim independent realizations.
+# #
+# # Arguments:
+# #   n, t, i, j, rho1, rho2 : same as coalescent_epochs()
+# #   n_sim                  : number of simulations (default 50000)
+# #
+# # Returns: named list with A, B, C, total, p1, p2, p3 (MC estimates)
+# # -----------------------------------------------------------------------------
+# verify_mc <- function(n, t, i, j, rho1, rho2, n_sim = 50000) {
+#   
+#   cat(sprintf("Running Monte Carlo verification (n_sim = %d)...\n", n_sim))
+#   
+#   A_tot <- B_tot <- C_tot <- 0
+#   
+#   for (sim in seq_len(n_sim)) {
+#     
+#     k <- n
+#     
+#     # Epoch 1
+#     s <- 0; A <- 0
+#     while (k > 1) {
+#       rate <- k * (k - 1) / 2
+#       dt   <- rexp(1, rate)
+#       if (s + dt > t) { A <- A + k * (t - s); s <- t;   break }
+#       A <- A + k * dt;  s <- s + dt;  k <- k - 1
 #     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 500, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 500 &
-#         this_b_len_csv$node_generations<= 2500, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2500, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
+#     if (s < t) A <- A + k * (t - s)
+#     
+#     # Epoch 2
+#     s <- 0; B <- 0
+#     while (k > 1) {
+#       rate <- rho1 * k * (k - 1) / 2
+#       dt   <- rexp(1, rate)
+#       if (s + dt > i) { B <- B + k * (i - s); s <- i;   break }
+#       B <- B + k * dt;  s <- s + dt;  k <- k - 1
+#     }
+#     if (s < i) B <- B + k * (i - s)
+#     
+#     # Epoch 3
+#     s <- 0; C <- 0
+#     while (k > 1) {
+#       rate <- rho2 * k * (k - 1) / 2
+#       dt   <- rexp(1, rate)
+#       if (s + dt > j) { C <- C + k * (j - s); s <- j;   break }
+#       C <- C + k * dt;  s <- s + dt;  k <- k - 1
+#     }
+#     if (s < j) C <- C + k * (j - s)
+#     
+#     A_tot <- A_tot + A
+#     B_tot <- B_tot + B
+#     C_tot <- C_tot + C
 #   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_500_2000 = c(mean_list_500_2000, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_500_2000 = c(growth_coal_proportion_500_2000,
-#     mean(this_sample_size_distribution <= 500))
-#   bottleneck_coal_proportion_500_2000 = c(bottleneck_coal_proportion_500_2000,
-#     mean(this_sample_size_distribution <= 2500) - mean(this_sample_size_distribution < 500))
-#   ancestral_coal_proportion_500_2000 = c(ancestral_coal_proportion_500_2000,
-#     mean(this_sample_size_distribution > 2500))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_500_2000 = c(growth_b_len_proportion_mean_500_2000, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_500_2000 = c(bottleneck_b_len_proportion_mean_500_2000, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_500_2000 = c(ancestral_b_len_proportion_mean_500_2000, mean(this_b_len_ancestral))
+#   
+#   tot <- A_tot + B_tot + C_tot
+#   list(
+#     A = A_tot/n_sim,  B = B_tot/n_sim,  C = C_tot/n_sim,
+#     total = tot/n_sim,
+#     p1 = A_tot/tot,   p2 = B_tot/tot,   p3 = C_tot/tot
+#   )
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_500_2000,
-#   sample_size
-# )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
 # 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_500_2000 = melt(data.frame(
-#   growth_coal_proportion_500_2000,
-#   bottleneck_coal_proportion_500_2000,
-#   ancestral_coal_proportion_500_2000
-# ))
-# 
-# figure_3A_dataframe_500_2000$msprime_time = msprime_time_500_2000
-# figure_3A_dataframe_500_2000$msprime_shape = msprime_nu_shape_500_2000
-# figure_3A_dataframe_500_2000$sample_size = sample_size
-# 
-# plot_3A_500_2000 = ggplot(data=figure_3A_dataframe_500_2000, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 2500 g.a., 500 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_500_2000',
-#                        'bottleneck_coal_proportion_500_2000',
-#                        'ancestral_coal_proportion_500_2000'),
-#                      values=c('growth_coal_proportion_500_2000'='#1b9e77',
-#                        'bottleneck_coal_proportion_500_2000'='#d95f02',
-#                        'ancestral_coal_proportion_500_2000'='#7570b3'),
-#                      labels=c('Current [500 g.a.]',
-#                        'Bottleneck [2500 g.a.]',
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_500_2000 = melt(data.frame(
-#   growth_b_len_proportion_mean_500_2000,
-#   bottleneck_b_len_proportion_mean_500_2000,
-#   ancestral_b_len_proportion_mean_500_2000
-# ))
-# figure_3B_dataframe_500_2000$sample_size = sample_size
-# figure_3B_dataframe_500_2000$msprime_shape = msprime_nu_shape_500_2000
-# 
-# plot_3B_simplified_500_2000 = ggplot(data=figure_3B_dataframe_500_2000, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_500_2000',
-#                        'bottleneck_b_len_proportion_mean_500_2000',
-#                        'ancestral_b_len_proportion_mean_500_2000'),
-#                      values=c('growth_b_len_proportion_mean_500_2000'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_500_2000'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_500_2000'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_500_2000 + plot_3B_simplified_500_2000 + plot_layout(nrow=2)
-# 
-
-# 1500_2000
-
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_1500_2000 = c()
-# growth_coal_proportion_1500_2000 = c()
-# bottleneck_coal_proportion_1500_2000 = c()
-# ancestral_coal_proportion_1500_2000 = c()
-# msprime_time_1500_2000 = c()
-# msprime_nu_shape_1500_2000 = c()
-# 
-# growth_b_len_proportion_mean_1500_2000 = c()
-# bottleneck_b_len_proportion_mean_1500_2000 = c()
-# ancestral_b_len_proportion_mean_1500_2000 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_1500_2000 = paste0(
-#     "../Analysis/msprime_3EpB_1500_2000_", i, '/two_epoch_demography.txt')
-#   msprime_nu_1500_2000 = nu_from_demography(msprime_demography_1500_2000)
-#   msprime_time_1500_2000 = c(msprime_time_1500_2000, time_from_demography(msprime_demography_1500_2000))
-#   if (is.na(msprime_nu_1500_2000)) {
-#     msprime_nu_shape_1500_2000 = c(msprime_nu_shape_1500_2000, NA)
-#   } else if (msprime_nu_1500_2000 > 1) {
-#     msprime_nu_shape_1500_2000 = c(msprime_nu_shape_1500_2000, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_1500_2000 = c(msprime_nu_shape_1500_2000, 'msprime_contract')
+# # -----------------------------------------------------------------------------
+# # Epoch 3 (infinite duration): analytical expected branch length
+# #
+# # When the population remains at size rho2 indefinitely, all remaining
+# # lineages eventually coalesce and the total expected branch length
+# # has an exact closed form.
+# #
+# # C_inf = sum_{k=1}^{n} P2(k) * (2/rho2) * sum_{m=2}^{k} 1/(m-1)
+# #
+# # Arguments:
+# #   P_at_ti : lineage probability vector entering Epoch 3 (from epoch 2)
+# #   rho2    : rate scaling factor for Epoch 3 (N0/N2)
+# #
+# # Returns: scalar expected branch length in Epoch 3
+# # -----------------------------------------------------------------------------
+# epoch3_infinite <- function(P_at_ti, rho2) {
+#   
+#   if (rho2 <= 0) stop("rho2 must be positive")
+#   
+#   n <- length(P_at_ti)
+#   
+#   # Precompute the complete-coalescent branch length for each entry state k:
+#   # bl(k) = (2/rho2) * sum_{m=2}^{k} 1/(m-1)
+#   # bl(1) = 0 (single lineage, nothing left to coalesce)
+#   bl <- numeric(n)
+#   for (k in 2:n) {
+#     bl[k] <- (2 / rho2) * sum(1 / (1:(k-1)))
 #   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1500_2000_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_1500_2000_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 1500, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 1500 &
-#         this_b_len_csv$node_generations<= 3500, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 3500, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_1500_2000 = c(mean_list_1500_2000, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_1500_2000 = c(growth_coal_proportion_1500_2000,
-#     mean(this_sample_size_distribution <= 1500))
-#   bottleneck_coal_proportion_1500_2000 = c(bottleneck_coal_proportion_1500_2000,
-#     mean(this_sample_size_distribution <= 3500) - mean(this_sample_size_distribution < 1500))
-#   ancestral_coal_proportion_1500_2000 = c(ancestral_coal_proportion_1500_2000,
-#     mean(this_sample_size_distribution > 3500))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_1500_2000 = c(growth_b_len_proportion_mean_1500_2000, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_1500_2000 = c(bottleneck_b_len_proportion_mean_1500_2000, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_1500_2000 = c(ancestral_b_len_proportion_mean_1500_2000, mean(this_b_len_ancestral))
+#   
+#   # Weight by entry distribution
+#   C_inf <- sum(P_at_ti * bl)
+#   
+#   return(C_inf)
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_1500_2000,
-#   sample_size
-# )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_1500_2000 = melt(data.frame(
-#   growth_coal_proportion_1500_2000,
-#   bottleneck_coal_proportion_1500_2000,
-#   ancestral_coal_proportion_1500_2000
-# ))
-# 
-# figure_3A_dataframe_1500_2000$msprime_time = msprime_time_1500_2000
-# figure_3A_dataframe_1500_2000$msprime_shape = msprime_nu_shape_1500_2000
-# figure_3A_dataframe_1500_2000$sample_size = sample_size
-# 
-# plot_3A_1500_2000 = ggplot(data=figure_3A_dataframe_1500_2000, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 3500 g.a., 2000 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_1500_2000',
-#                        'bottleneck_coal_proportion_1500_2000',
-#                        'ancestral_coal_proportion_1500_2000'),
-#                      values=c('growth_coal_proportion_1500_2000'='#1b9e77',
-#                        'bottleneck_coal_proportion_1500_2000'='#d95f02',
-#                        'ancestral_coal_proportion_1500_2000'='#7570b3'),
-#                      labels=c('Current [2000 g.a.]', 
-#                        'Bottleneck [3500 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_1500_2000 = melt(data.frame(
-#   growth_b_len_proportion_mean_1500_2000,
-#   bottleneck_b_len_proportion_mean_1500_2000,
-#   ancestral_b_len_proportion_mean_1500_2000
-# ))
-# figure_3B_dataframe_1500_2000$sample_size = sample_size
-# figure_3B_dataframe_1500_2000$msprime_shape = msprime_nu_shape_1500_2000
-# 
-# plot_3B_simplified_1500_2000 = ggplot(data=figure_3B_dataframe_1500_2000, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_1500_2000',
-#                        'bottleneck_b_len_proportion_mean_1500_2000',
-#                        'ancestral_b_len_proportion_mean_1500_2000'),
-#                      values=c('growth_b_len_proportion_mean_1500_2000'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_1500_2000'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_1500_2000'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_1500_2000 + plot_3B_simplified_1500_2000 + plot_layout(nrow=2)
-
-
-
-# 2000_2000
-
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_2000_2000 = c()
-# growth_coal_proportion_2000_2000 = c()
-# bottleneck_coal_proportion_2000_2000 = c()
-# ancestral_coal_proportion_2000_2000 = c()
-# msprime_time_2000_2000 = c()
-# msprime_nu_shape_2000_2000 = c()
-# 
-# growth_b_len_proportion_mean_2000_2000 = c()
-# bottleneck_b_len_proportion_mean_2000_2000 = c()
-# ancestral_b_len_proportion_mean_2000_2000 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_2000_2000 = paste0(
-#     "../Analysis/msprime_3EpB_2000_2000_", i, '/two_epoch_demography.txt')
-#   msprime_nu_2000_2000 = nu_from_demography(msprime_demography_2000_2000)
-#   msprime_time_2000_2000 = c(msprime_time_2000_2000, time_from_demography(msprime_demography_2000_2000))
-#   if (is.na(msprime_nu_2000_2000)) {
-#     msprime_nu_shape_2000_2000 = c(msprime_nu_shape_2000_2000, NA)
-#   } else if (msprime_nu_2000_2000 > 1) {
-#     msprime_nu_shape_2000_2000 = c(msprime_nu_shape_2000_2000, 'msprime_expand')
+# # -----------------------------------------------------------------------------
+# # Updated wrapper with optional infinite Epoch 3
+# #
+# # Set j = Inf to use the analytical formula for the most ancient epoch.
+# # -----------------------------------------------------------------------------
+# coalescent_epochs <- function(n, t, i, j = Inf, rho1, rho2,
+#                               n_points = 501, verbose = TRUE) {
+#   
+#   if (n < 2)     stop("Sample size n must be at least 2")
+#   if (any(c(t, i) < 0)) stop("Epoch durations must be non-negative")
+#   if (!is.infinite(j) && j < 0) stop("j must be non-negative or Inf")
+#   if (rho1 <= 0) stop("rho1 must be positive")
+#   if (rho2 <= 0) stop("rho2 must be positive")
+#   
+#   if (verbose) cat("Computing Epoch 1 (A)...\n")
+#   P0  <- numeric(n); P0[n] <- 1.0
+#   ep1 <- ek_grid(P0, t, rho = 1, n_points)
+#   A   <- simpsons_rule(ep1$Eks, t)
+#   
+#   if (verbose) cat("Computing Epoch 2 (B)...\n")
+#   P1  <- trim_distribution(ep1$P_final)
+#   ep2 <- ek_grid(P1, i, rho = rho1, n_points)
+#   B   <- simpsons_rule(ep2$Eks, i)
+#   
+#   if (verbose) cat("Computing Epoch 3 (C)...\n")
+#   P2  <- trim_distribution(ep2$P_final)
+#   
+#   if (is.infinite(j)) {
+#     C     <- epoch3_infinite(P2, rho2)   # exact analytical result
+#     C_max <- Inf
 #   } else {
-#     msprime_nu_shape_2000_2000 = c(msprime_nu_shape_2000_2000, 'msprime_contract')
+#     ep3   <- ek_grid(P2, j, rho = rho2, n_points)
+#     C     <- simpsons_rule(ep3$Eks, j)
+#     C_max <- n * j
 #   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 2000, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 2000 &
-#         this_b_len_csv$node_generations<= 4000, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 4000, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_2000_2000 = c(mean_list_2000_2000, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_2000_2000 = c(growth_coal_proportion_2000_2000,
-#     mean(this_sample_size_distribution <= 2000))
-#   bottleneck_coal_proportion_2000_2000 = c(bottleneck_coal_proportion_2000_2000,
-#     mean(this_sample_size_distribution <= 4000) - mean(this_sample_size_distribution < 2000))
-#   ancestral_coal_proportion_2000_2000 = c(ancestral_coal_proportion_2000_2000,
-#     mean(this_sample_size_distribution > 4000))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_2000_2000 = c(growth_b_len_proportion_mean_2000_2000, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_2000_2000 = c(bottleneck_b_len_proportion_mean_2000_2000, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_2000_2000 = c(ancestral_b_len_proportion_mean_2000_2000, mean(this_b_len_ancestral))
+#   
+#   total <- A + B + C
+#   
+#   list(
+#     A     = A,      B     = B,      C     = C,
+#     total = total,
+#     p1    = A / total,
+#     p2    = B / total,
+#     p3    = C / total,
+#     A_max = n * t,
+#     B_max = n * i,
+#     C_max = C_max
+#   )
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_2000_2000,
-#   sample_size
+# 
+# 
+# # =============================================================================
+# # Example: Bottleneck from Jon's paper
+# # =============================================================================
+# 
+# cat("=== Three-Epoch Coalescent Branch Length Calculator (v2) ===\n\n")
+# 
+# N0<-50000*2 #this is the current popualtion size, in haploids
+# n    <- 800 #sample size in haploids
+# t    <- 200/(N0)   # length of growth epoch, in units of N0
+# rho1 <- N0/(2*1000) #size change in bottleneck
+# rho2 <- N0/(2*10000) #size change in ancestral
+# 
+# i<-1800/(N0) #length of bottleneck epoch, in units of N0
+# j<-Inf #set to Inf to use analytical calculation for infinite length of ancestral epoch
+# 
+# 
+# cat(sprintf("Parameters: n=%d, t=%.3f, i=%.2f, j=%.2f, rho1=%.2f, rho2=%.2f\n\n",
+#             n, t, i, j, rho1, rho2))
+# 
+# result <- coalescent_epochs(n, t, i, j, rho1, rho2)
+# 
+# cat("\n--- ODE Results ---\n")
+# cat(sprintf("Epoch 1 (A): %.4f  [upper bound n*t = %.4f  |  OK: %s]\n",
+#             result$A, result$A_max, result$A <= result$A_max))
+# cat(sprintf("Epoch 2 (B): %.4f  [upper bound n*i = %.4f  |  OK: %s]\n",
+#             result$B, result$B_max, result$B <= result$B_max))
+# cat(sprintf("Epoch 3 (C): %.4f  [upper bound n*j = %.4f  |  OK: %s]\n",
+#             result$C, result$C_max, result$C <= result$C_max))
+# cat(sprintf("Total:       %.4f\n\n", result$total))
+# cat(sprintf("p1 = %.4f,  p2 = %.4f,  p3 = %.4f  (sum = %.4f)\n\n",
+#             result$p1, result$p2, result$p3,
+#             result$p1 + result$p2 + result$p3))
+# 
+# ######################
+# #end here!
+# 
+# 
+# # Monte Carlo check
+# mc <- verify_mc(n, t, i, j, rho1, rho2, n_sim = 50000)
+# 
+# cat("\n--- Comparison: ODE vs Monte Carlo ---\n")
+# cat(sprintf("%-6s  %-10s  %-10s\n", "", "ODE", "MC"))
+# cat(strrep("-", 30), "\n")
+# cat(sprintf("%-6s  %-10.4f  %-10.4f\n", "A",  result$A,  mc$A))
+# cat(sprintf("%-6s  %-10.4f  %-10.4f\n", "B",  result$B,  mc$B))
+# cat(sprintf("%-6s  %-10.4f  %-10.4f\n", "C",  result$C,  mc$C))
+# cat(sprintf("%-6s  %-10.4f  %-10.4f\n", "p1", result$p1, mc$p1))
+# cat(sprintf("%-6s  %-10.4f  %-10.4f\n", "p2", result$p2, mc$p2))
+# cat(sprintf("%-6s  %-10.4f  %-10.4f\n", "p3", result$p3, mc$p3))
+# 
+# 
+# # =============================================================================
+# # Sensitivity analysis 1: vary sample size n
+# # =============================================================================
+# 
+# cat("\n\n=== Sensitivity to Sample Size n ===\n\n")
+# 
+# # n_values <- c(2, 5, 10, 20, 50, 100)
+# n_values = seq(10, 800, by=10)
+# 
+# sensitivity_n <- matrix(
+#   NA,
+#   nrow     = length(n_values),
+#   ncol     = 7,
+#   dimnames = list(paste0("n=", n_values),
+#                   c("A", "B", "C", "Total", "p1", "p2", "p3"))
 # )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_2000_2000 = melt(data.frame(
-#   growth_coal_proportion_2000_2000,
-#   bottleneck_coal_proportion_2000_2000,
-#   ancestral_coal_proportion_2000_2000
-# ))
-# 
-# figure_3A_dataframe_2000_2000$msprime_time = msprime_time_2000_2000
-# figure_3A_dataframe_2000_2000$msprime_shape = msprime_nu_shape_2000_2000
-# figure_3A_dataframe_2000_2000$sample_size = sample_size
-# 
-# plot_3A_2000_2000 = ggplot(data=figure_3A_dataframe_2000_2000, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 4000 g.a., 2000 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_2000_2000',
-#                        'bottleneck_coal_proportion_2000_2000',
-#                        'ancestral_coal_proportion_2000_2000'),
-#                      values=c('growth_coal_proportion_2000_2000'='#1b9e77',
-#                        'bottleneck_coal_proportion_2000_2000'='#d95f02',
-#                        'ancestral_coal_proportion_2000_2000'='#7570b3'),
-#                      labels=c('Current [2000 g.a.]', 
-#                        'Bottleneck [4000 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_2000_2000 = melt(data.frame(
-#   growth_b_len_proportion_mean_2000_2000,
-#   bottleneck_b_len_proportion_mean_2000_2000,
-#   ancestral_b_len_proportion_mean_2000_2000
-# ))
-# figure_3B_dataframe_2000_2000$sample_size = sample_size
-# figure_3B_dataframe_2000_2000$msprime_shape = msprime_nu_shape_2000_2000
-# 
-# plot_3B_simplified_2000_2000 = ggplot(data=figure_3B_dataframe_2000_2000, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_2000_2000',
-#                        'bottleneck_b_len_proportion_mean_2000_2000',
-#                        'ancestral_b_len_proportion_mean_2000_2000'),
-#                      values=c('growth_b_len_proportion_mean_2000_2000'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_2000_2000'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_2000_2000'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_2000_2000 + plot_3B_simplified_2000_2000 + plot_layout(nrow=2)
-
-
-# Smaller magnitude
-
-# 100_50
-
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_100_50 = c()
-# growth_coal_proportion_100_50 = c()
-# bottleneck_coal_proportion_100_50 = c()
-# ancestral_coal_proportion_100_50 = c()
-# msprime_time_100_50 = c()
-# msprime_nu_shape_100_50 = c()
-# 
-# growth_b_len_proportion_mean_100_50 = c()
-# bottleneck_b_len_proportion_mean_100_50 = c()
-# ancestral_b_len_proportion_mean_100_50 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_100_50 = paste0(
-#     "../Analysis/msprime_3EpB_100_50_", i, '/two_epoch_demography.txt')
-#   msprime_nu_100_50 = nu_from_demography(msprime_demography_100_50)
-#   msprime_time_100_50 = c(msprime_time_100_50, time_from_demography(msprime_demography_100_50))
-#   if (is.na(msprime_nu_100_50)) {
-#     msprime_nu_shape_100_50 = c(msprime_nu_shape_100_50, NA)
-#   } else if (msprime_nu_100_50 > 1) {
-#     msprime_nu_shape_100_50 = c(msprime_nu_shape_100_50, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_100_50 = c(msprime_nu_shape_100_50, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_50_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_50_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 100, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 100 &
-#         this_b_len_csv$node_generations<= 150, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 150, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_100_50 = c(mean_list_100_50, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_100_50 = c(growth_coal_proportion_100_50,
-#     mean(this_sample_size_distribution <= 50))
-#   bottleneck_coal_proportion_100_50 = c(bottleneck_coal_proportion_100_50,
-#     mean(this_sample_size_distribution <= 150) - mean(this_sample_size_distribution < 50))
-#   ancestral_coal_proportion_100_50 = c(ancestral_coal_proportion_100_50,
-#     mean(this_sample_size_distribution > 150))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_100_50 = c(growth_b_len_proportion_mean_100_50, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_100_50 = c(bottleneck_b_len_proportion_mean_100_50, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_100_50 = c(ancestral_b_len_proportion_mean_100_50, mean(this_b_len_ancestral))
+# for (idx in seq_along(n_values)) {
+#   cat(sprintf("  n = %d\n", n_values[idx]))
+#   r <- coalescent_epochs(n_values[idx], t, i, j, rho1, rho2, verbose = FALSE)
+#   sensitivity_n[idx, ] <- c(r$A, r$B, r$C, r$total, r$p1, r$p2, r$p3)
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_100_50,
-#   sample_size
+# cat("\n")
+# print(round(sensitivity_n, 4))
+# 
+# 
+# # =============================================================================
+# # Sensitivity analysis 2: vary rho1 (Epoch 2 bottleneck strength)
+# # =============================================================================
+# 
+# cat("\n=== Sensitivity to Epoch 2 Bottleneck Strength (rho1) ===\n\n")
+# 
+# rho1_values <- c(0.5, 1.0, 2.0, 5.0, 10.0)
+# 
+# sensitivity_rho1 <- matrix(
+#   NA,
+#   nrow     = length(rho1_values),
+#   ncol     = 7,
+#   dimnames = list(paste0("rho1=", rho1_values),
+#                   c("A", "B", "C", "Total", "p1", "p2", "p3"))
 # )
 # 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_100_50 = melt(data.frame(
-#   growth_coal_proportion_100_50,
-#   bottleneck_coal_proportion_100_50,
-#   ancestral_coal_proportion_100_50
-# ))
-# 
-# figure_3A_dataframe_100_50$msprime_time = msprime_time_100_50
-# figure_3A_dataframe_100_50$msprime_shape = msprime_nu_shape_100_50
-# figure_3A_dataframe_100_50$sample_size = sample_size
-# 
-# plot_3A_100_50 = ggplot(data=figure_3A_dataframe_100_50, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 150 g.a., 100 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_100_50',
-#                        'bottleneck_coal_proportion_100_50',
-#                        'ancestral_coal_proportion_100_50'),
-#                      values=c('growth_coal_proportion_100_50'='#1b9e77',
-#                        'bottleneck_coal_proportion_100_50'='#d95f02',
-#                        'ancestral_coal_proportion_100_50'='#7570b3'),
-#                      labels=c('Current [100 g.a.]', 
-#                        'Bottleneck [150 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_100_50 = melt(data.frame(
-#   growth_b_len_proportion_mean_100_50,
-#   bottleneck_b_len_proportion_mean_100_50,
-#   ancestral_b_len_proportion_mean_100_50
-# ))
-# figure_3B_dataframe_100_50$sample_size = sample_size
-# figure_3B_dataframe_100_50$msprime_shape = msprime_nu_shape_100_50
-# 
-# plot_3B_simplified_100_50 = ggplot(data=figure_3B_dataframe_100_50, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_100_50',
-#                        'bottleneck_b_len_proportion_mean_100_50',
-#                        'ancestral_b_len_proportion_mean_100_50'),
-#                      values=c('growth_b_len_proportion_mean_100_50'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_100_50'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_100_50'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_100_50 + plot_3B_simplified_100_50 + plot_layout(nrow=2)
-# 
-# 
-# # 100_100
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_100_100 = c()
-# growth_coal_proportion_100_100 = c()
-# bottleneck_coal_proportion_100_100 = c()
-# ancestral_coal_proportion_100_100 = c()
-# msprime_time_100_100 = c()
-# msprime_nu_shape_100_100 = c()
-# 
-# growth_b_len_proportion_mean_100_100 = c()
-# bottleneck_b_len_proportion_mean_100_100 = c()
-# ancestral_b_len_proportion_mean_100_100 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_100_100 = paste0(
-#     "../Analysis/msprime_3EpB_100_100_", i, '/two_epoch_demography.txt')
-#   msprime_nu_100_100 = nu_from_demography(msprime_demography_100_100)
-#   msprime_time_100_100 = c(msprime_time_100_100, time_from_demography(msprime_demography_100_100))
-#   if (is.na(msprime_nu_100_100)) {
-#     msprime_nu_shape_100_100 = c(msprime_nu_shape_100_100, NA)
-#   } else if (msprime_nu_100_100 > 1) {
-#     msprime_nu_shape_100_100 = c(msprime_nu_shape_100_100, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_100_100 = c(msprime_nu_shape_100_100, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_100_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_100_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 100, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 100 &
-#         this_b_len_csv$node_generations<= 200, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 200, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_100_100 = c(mean_list_100_100, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_100_100 = c(growth_coal_proportion_100_100,
-#     mean(this_sample_size_distribution <= 100))
-#   bottleneck_coal_proportion_100_100 = c(bottleneck_coal_proportion_100_100,
-#     mean(this_sample_size_distribution <= 200) - mean(this_sample_size_distribution < 100))
-#   ancestral_coal_proportion_100_100 = c(ancestral_coal_proportion_100_100,
-#     mean(this_sample_size_distribution > 200))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_100_100 = c(growth_b_len_proportion_mean_100_100, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_100_100 = c(bottleneck_b_len_proportion_mean_100_100, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_100_100 = c(ancestral_b_len_proportion_mean_100_100, mean(this_b_len_ancestral))
+# for (idx in seq_along(rho1_values)) {
+#   cat(sprintf("  rho1 = %.1f\n", rho1_values[idx]))
+#   r <- coalescent_epochs(n, t, i, j, rho1_values[idx], rho2, verbose = FALSE)
+#   sensitivity_rho1[idx, ] <- c(r$A, r$B, r$C, r$total, r$p1, r$p2, r$p3)
 # }
 # 
-# figure_SX_dataframe = data.frame(
-#   mean_list_100_100,
-#   sample_size
-# )
-# 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_100_100 = melt(data.frame(
-#   growth_coal_proportion_100_100,
-#   bottleneck_coal_proportion_100_100,
-#   ancestral_coal_proportion_100_100
-# ))
-# 
-# figure_3A_dataframe_100_100$msprime_time = msprime_time_100_100
-# figure_3A_dataframe_100_100$msprime_shape = msprime_nu_shape_100_100
-# figure_3A_dataframe_100_100$sample_size = sample_size
-# 
-# plot_3A_100_100 = ggplot(data=figure_3A_dataframe_100_100, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 200 g.a., 100 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_100_100',
-#                        'bottleneck_coal_proportion_100_100',
-#                        'ancestral_coal_proportion_100_100'),
-#                      values=c('growth_coal_proportion_100_100'='#1b9e77',
-#                        'bottleneck_coal_proportion_100_100'='#d95f02',
-#                        'ancestral_coal_proportion_100_100'='#7570b3'),
-#                      labels=c('Current [100 g.a.]', 
-#                        'Bottleneck [200 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_100_100 = melt(data.frame(
-#   growth_b_len_proportion_mean_100_100,
-#   bottleneck_b_len_proportion_mean_100_100,
-#   ancestral_b_len_proportion_mean_100_100
-# ))
-# figure_3B_dataframe_100_100$sample_size = sample_size
-# figure_3B_dataframe_100_100$msprime_shape = msprime_nu_shape_100_100
-# 
-# plot_3B_simplified_100_100 = ggplot(data=figure_3B_dataframe_100_100, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_100_100',
-#                        'bottleneck_b_len_proportion_mean_100_100',
-#                        'ancestral_b_len_proportion_mean_100_100'),
-#                      values=c('growth_b_len_proportion_mean_100_100'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_100_100'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_100_100'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_100_100 + plot_3B_simplified_100_100 + plot_layout(nrow=2)
-# 
-# 
-# # 100_150
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_100_150 = c()
-# growth_coal_proportion_100_150 = c()
-# bottleneck_coal_proportion_100_150 = c()
-# ancestral_coal_proportion_100_150 = c()
-# msprime_time_100_150 = c()
-# msprime_nu_shape_100_150 = c()
-# 
-# growth_b_len_proportion_mean_100_150 = c()
-# bottleneck_b_len_proportion_mean_100_150 = c()
-# ancestral_b_len_proportion_mean_100_150 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_100_150 = paste0(
-#     "../Analysis/msprime_3EpB_100_150_", i, '/two_epoch_demography.txt')
-#   msprime_nu_100_150 = nu_from_demography(msprime_demography_100_150)
-#   msprime_time_100_150 = c(msprime_time_100_150, time_from_demography(msprime_demography_100_150))
-#   if (is.na(msprime_nu_100_150)) {
-#     msprime_nu_shape_100_150 = c(msprime_nu_shape_100_150, NA)
-#   } else if (msprime_nu_100_150 > 1) {
-#     msprime_nu_shape_100_150 = c(msprime_nu_shape_100_150, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_100_150 = c(msprime_nu_shape_100_150, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_150_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_150_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 100, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 100 &
-#         this_b_len_csv$node_generations<= 250, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 250, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_100_150 = c(mean_list_100_150, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_100_150 = c(growth_coal_proportion_100_150,
-#     mean(this_sample_size_distribution <= 100))
-#   bottleneck_coal_proportion_100_150 = c(bottleneck_coal_proportion_100_150,
-#     mean(this_sample_size_distribution <= 250) - mean(this_sample_size_distribution < 100))
-#   ancestral_coal_proportion_100_150 = c(ancestral_coal_proportion_100_150,
-#     mean(this_sample_size_distribution > 250))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_100_150 = c(growth_b_len_proportion_mean_100_150, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_100_150 = c(bottleneck_b_len_proportion_mean_100_150, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_100_150 = c(ancestral_b_len_proportion_mean_100_150, mean(this_b_len_ancestral))
-# }
-# 
-# figure_SX_dataframe = data.frame(
-#   mean_list_100_150,
-#   sample_size
-# )
-# 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_100_150 = melt(data.frame(
-#   growth_coal_proportion_100_150,
-#   bottleneck_coal_proportion_100_150,
-#   ancestral_coal_proportion_100_150
-# ))
-# 
-# figure_3A_dataframe_100_150$msprime_time = msprime_time_100_150
-# figure_3A_dataframe_100_150$msprime_shape = msprime_nu_shape_100_150
-# figure_3A_dataframe_100_150$sample_size = sample_size
-# 
-# plot_3A_100_150 = ggplot(data=figure_3A_dataframe_100_150, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 250 g.a., 100 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_100_150',
-#                        'bottleneck_coal_proportion_100_150',
-#                        'ancestral_coal_proportion_100_150'),
-#                      values=c('growth_coal_proportion_100_150'='#1b9e77',
-#                        'bottleneck_coal_proportion_100_150'='#d95f02',
-#                        'ancestral_coal_proportion_100_150'='#7570b3'),
-#                      labels=c('Current [100 g.a.]', 
-#                        'Bottleneck [250 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_100_150 = melt(data.frame(
-#   growth_b_len_proportion_mean_100_150,
-#   bottleneck_b_len_proportion_mean_100_150,
-#   ancestral_b_len_proportion_mean_100_150
-# ))
-# figure_3B_dataframe_100_150$sample_size = sample_size
-# figure_3B_dataframe_100_150$msprime_shape = msprime_nu_shape_100_150
-# 
-# plot_3B_simplified_100_150 = ggplot(data=figure_3B_dataframe_100_150, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_100_150',
-#                        'bottleneck_b_len_proportion_mean_100_150',
-#                        'ancestral_b_len_proportion_mean_100_150'),
-#                      values=c('growth_b_len_proportion_mean_100_150'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_100_150'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_100_150'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_100_150 + plot_3B_simplified_100_150 + plot_layout(nrow=2)
-# 
-# 
-# # 100_200
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_100_200 = c()
-# growth_coal_proportion_100_200 = c()
-# bottleneck_coal_proportion_100_200 = c()
-# ancestral_coal_proportion_100_200 = c()
-# msprime_time_100_200 = c()
-# msprime_nu_shape_100_200 = c()
-# 
-# growth_b_len_proportion_mean_100_200 = c()
-# bottleneck_b_len_proportion_mean_100_200 = c()
-# ancestral_b_len_proportion_mean_100_200 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_100_200 = paste0(
-#     "../Analysis/msprime_3EpB_100_200_", i, '/two_epoch_demography.txt')
-#   msprime_nu_100_200 = nu_from_demography(msprime_demography_100_200)
-#   msprime_time_100_200 = c(msprime_time_100_200, time_from_demography(msprime_demography_100_200))
-#   if (is.na(msprime_nu_100_200)) {
-#     msprime_nu_shape_100_200 = c(msprime_nu_shape_100_200, NA)
-#   } else if (msprime_nu_100_200 > 1) {
-#     msprime_nu_shape_100_200 = c(msprime_nu_shape_100_200, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_100_200 = c(msprime_nu_shape_100_200, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_200_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_100_200_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 100, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 100 &
-#         this_b_len_csv$node_generations<= 300, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 300, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_100_200 = c(mean_list_100_200, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_100_200 = c(growth_coal_proportion_100_200,
-#     mean(this_sample_size_distribution <= 100))
-#   bottleneck_coal_proportion_100_200 = c(bottleneck_coal_proportion_100_200,
-#     mean(this_sample_size_distribution <= 300) - mean(this_sample_size_distribution < 100))
-#   ancestral_coal_proportion_100_200 = c(ancestral_coal_proportion_100_200,
-#     mean(this_sample_size_distribution > 300))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_100_200 = c(growth_b_len_proportion_mean_100_200, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_100_200 = c(bottleneck_b_len_proportion_mean_100_200, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_100_200 = c(ancestral_b_len_proportion_mean_100_200, mean(this_b_len_ancestral))
-# }
-# 
-# figure_SX_dataframe = data.frame(
-#   mean_list_100_200,
-#   sample_size
-# )
-# 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_100_200 = melt(data.frame(
-#   growth_coal_proportion_100_200,
-#   bottleneck_coal_proportion_100_200,
-#   ancestral_coal_proportion_100_200
-# ))
-# 
-# figure_3A_dataframe_100_200$msprime_time = msprime_time_100_200
-# figure_3A_dataframe_100_200$msprime_shape = msprime_nu_shape_100_200
-# figure_3A_dataframe_100_200$sample_size = sample_size
-# 
-# plot_3A_100_200 = ggplot(data=figure_3A_dataframe_100_200, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 300 g.a., 100 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_100_200',
-#                        'bottleneck_coal_proportion_100_200',
-#                        'ancestral_coal_proportion_100_200'),
-#                      values=c('growth_coal_proportion_100_200'='#1b9e77',
-#                        'bottleneck_coal_proportion_100_200'='#d95f02',
-#                        'ancestral_coal_proportion_100_200'='#7570b3'),
-#                      labels=c('Current [100 g.a.]', 
-#                        'Bottleneck [300 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_100_200 = melt(data.frame(
-#   growth_b_len_proportion_mean_100_200,
-#   bottleneck_b_len_proportion_mean_100_200,
-#   ancestral_b_len_proportion_mean_100_200
-# ))
-# figure_3B_dataframe_100_200$sample_size = sample_size
-# figure_3B_dataframe_100_200$msprime_shape = msprime_nu_shape_100_200
-# 
-# plot_3B_simplified_100_200 = ggplot(data=figure_3B_dataframe_100_200, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_100_200',
-#                        'bottleneck_b_len_proportion_mean_100_200',
-#                        'ancestral_b_len_proportion_mean_100_200'),
-#                      values=c('growth_b_len_proportion_mean_100_200'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_100_200'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_100_200'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_100_200 + plot_3B_simplified_100_200 + plot_layout(nrow=2)
-# 
-# # 50_200
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_50_200 = c()
-# growth_coal_proportion_50_200 = c()
-# bottleneck_coal_proportion_50_200 = c()
-# ancestral_coal_proportion_50_200 = c()
-# msprime_time_50_200 = c()
-# msprime_nu_shape_50_200 = c()
-# 
-# growth_b_len_proportion_mean_50_200 = c()
-# bottleneck_b_len_proportion_mean_50_200 = c()
-# ancestral_b_len_proportion_mean_50_200 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_50_200 = paste0(
-#     "../Analysis/msprime_3EpB_50_200_", i, '/two_epoch_demography.txt')
-#   msprime_nu_50_200 = nu_from_demography(msprime_demography_50_200)
-#   msprime_time_50_200 = c(msprime_time_50_200, time_from_demography(msprime_demography_50_200))
-#   if (is.na(msprime_nu_50_200)) {
-#     msprime_nu_shape_50_200 = c(msprime_nu_shape_50_200, NA)
-#   } else if (msprime_nu_50_200 > 1) {
-#     msprime_nu_shape_50_200 = c(msprime_nu_shape_50_200, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_50_200 = c(msprime_nu_shape_50_200, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_50_200_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_50_200_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 50, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 50 &
-#         this_b_len_csv$node_generations<= 250, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 250, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_50_200 = c(mean_list_50_200, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_50_200 = c(growth_coal_proportion_50_200,
-#     mean(this_sample_size_distribution <= 50))
-#   bottleneck_coal_proportion_50_200 = c(bottleneck_coal_proportion_50_200,
-#     mean(this_sample_size_distribution <= 250) - mean(this_sample_size_distribution < 50))
-#   ancestral_coal_proportion_50_200 = c(ancestral_coal_proportion_50_200,
-#     mean(this_sample_size_distribution > 250))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_50_200 = c(growth_b_len_proportion_mean_50_200, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_50_200 = c(bottleneck_b_len_proportion_mean_50_200, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_50_200 = c(ancestral_b_len_proportion_mean_50_200, mean(this_b_len_ancestral))
-# }
-# 
-# figure_SX_dataframe = data.frame(
-#   mean_list_50_200,
-#   sample_size
-# )
-# 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_50_200 = melt(data.frame(
-#   growth_coal_proportion_50_200,
-#   bottleneck_coal_proportion_50_200,
-#   ancestral_coal_proportion_50_200
-# ))
-# 
-# figure_3A_dataframe_50_200$msprime_time = msprime_time_50_200
-# figure_3A_dataframe_50_200$msprime_shape = msprime_nu_shape_50_200
-# figure_3A_dataframe_50_200$sample_size = sample_size
-# 
-# plot_3A_50_200 = ggplot(data=figure_3A_dataframe_50_200, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 250 g.a., 50 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_50_200',
-#                        'bottleneck_coal_proportion_50_200',
-#                        'ancestral_coal_proportion_50_200'),
-#                      values=c('growth_coal_proportion_50_200'='#1b9e77',
-#                        'bottleneck_coal_proportion_50_200'='#d95f02',
-#                        'ancestral_coal_proportion_50_200'='#7570b3'),
-#                      labels=c('Current [50 g.a.]',
-#                        'Bottleneck [250 g.a.]',
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_50_200 = melt(data.frame(
-#   growth_b_len_proportion_mean_50_200,
-#   bottleneck_b_len_proportion_mean_50_200,
-#   ancestral_b_len_proportion_mean_50_200
-# ))
-# figure_3B_dataframe_50_200$sample_size = sample_size
-# figure_3B_dataframe_50_200$msprime_shape = msprime_nu_shape_50_200
-# 
-# plot_3B_simplified_50_200 = ggplot(data=figure_3B_dataframe_50_200, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_50_200',
-#                        'bottleneck_b_len_proportion_mean_50_200',
-#                        'ancestral_b_len_proportion_mean_50_200'),
-#                      values=c('growth_b_len_proportion_mean_50_200'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_50_200'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_50_200'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_50_200 + plot_3B_simplified_50_200 + plot_layout(nrow=2)
-# 
-# 
-# # 150_200
-# 
-# sample_size = seq(from=10, to=800, by=10)
-# mean_list_150_200 = c()
-# growth_coal_proportion_150_200 = c()
-# bottleneck_coal_proportion_150_200 = c()
-# ancestral_coal_proportion_150_200 = c()
-# msprime_time_150_200 = c()
-# msprime_nu_shape_150_200 = c()
-# 
-# growth_b_len_proportion_mean_150_200 = c()
-# bottleneck_b_len_proportion_mean_150_200 = c()
-# ancestral_b_len_proportion_mean_150_200 = c()
-# 
-# # Iterate through sample size and replicate
-# for (i in sample_size) {
-#   this_sample_size_distribution = c() # Initialize
-#   msprime_demography_150_200 = paste0(
-#     "../Analysis/msprime_3EpB_150_200_", i, '/two_epoch_demography.txt')
-#   msprime_nu_150_200 = nu_from_demography(msprime_demography_150_200)
-#   msprime_time_150_200 = c(msprime_time_150_200, time_from_demography(msprime_demography_150_200))
-#   if (is.na(msprime_nu_150_200)) {
-#     msprime_nu_shape_150_200 = c(msprime_nu_shape_150_200, NA)
-#   } else if (msprime_nu_150_200 > 1) {
-#     msprime_nu_shape_150_200 = c(msprime_nu_shape_150_200, 'msprime_expand')
-#   } else {
-#     msprime_nu_shape_150_200 = c(msprime_nu_shape_150_200, 'msprime_contract')
-#   }
-#   for (j in seq(from=1, to=20, by=1)) {
-#     this_replicate_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_150_200_",
-#       i, '_coal_dist_',
-#       j, '.csv')
-#     # Read in the appropriate file
-#     this_csv = read.csv(this_replicate_distribution, header=TRUE)
-#     this_sample_size_distribution = c(this_sample_size_distribution, this_csv$generations)
-#   }
-#   this_b_len_growth = c()
-#   this_b_len_bottleneck = c()
-#   this_b_len_ancestral = c()
-#   for (g in seq(from=1, to=20, by=1)) {
-#     this_branch_distribution = paste0(
-#       "../Simulations/simple_simulations/ThreeEpochBottleneck_150_200_",
-#       i, '_branch_length_dist_',
-#       g, '.csv')
-#     if (file.exists(this_branch_distribution)) {
-#     } else {
-#       next
-#     }
-#     # Read in the appropriate file
-#     this_b_len_csv = read.csv(this_branch_distribution, header=TRUE)
-#     growth_sum = sum(this_b_len_csv[this_b_len_csv$node_generations <= 150, ]$branch_length)
-#     bottleneck_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 150 &
-#         this_b_len_csv$node_generations<= 350, ]$branch_length)
-#     ancestral_sum = sum(this_b_len_csv[this_b_len_csv$node_generations > 350, ]$branch_length)
-#     total_branch_length = growth_sum + bottleneck_sum + ancestral_sum
-#     this_b_len_growth = c(this_b_len_growth, growth_sum / total_branch_length)
-#     this_b_len_bottleneck = c(this_b_len_bottleneck, bottleneck_sum / total_branch_length)
-#     this_b_len_ancestral = c(this_b_len_ancestral, ancestral_sum / total_branch_length)
-#   }
-#   # Take the mean of coalescent times for this sample size's distribution
-#   mean_list_150_200 = c(mean_list_150_200, mean(this_sample_size_distribution))
-#   # Similarly, take standard deviation
-#   # Lastly find the proportion of coalescent events in each epoch
-#   growth_coal_proportion_150_200 = c(growth_coal_proportion_150_200,
-#     mean(this_sample_size_distribution <= 150))
-#   bottleneck_coal_proportion_150_200 = c(bottleneck_coal_proportion_150_200,
-#     mean(this_sample_size_distribution <= 350) - mean(this_sample_size_distribution < 150))
-#   ancestral_coal_proportion_150_200 = c(ancestral_coal_proportion_150_200,
-#     mean(this_sample_size_distribution > 350))
-# 
-#   # Mean and sd of branch length proportions by epoch
-#   growth_b_len_proportion_mean_150_200 = c(growth_b_len_proportion_mean_150_200, mean(this_b_len_growth))
-#   bottleneck_b_len_proportion_mean_150_200 = c(bottleneck_b_len_proportion_mean_150_200, mean(this_b_len_bottleneck))
-#   ancestral_b_len_proportion_mean_150_200 = c(ancestral_b_len_proportion_mean_150_200, mean(this_b_len_ancestral))
-# }
-# 
-# figure_SX_dataframe = data.frame(
-#   mean_list_150_200,
-#   sample_size
-# )
-# 
-# # figure_3A_dataframe$sample_size = sample_size
-# 
-# plot_SX = ggplot(data=figure_SX_dataframe, aes(x=sample_size, y=mean_list)) +
-#   geom_line(linewidth=1) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab("Mean coalescent time (generations)") +
-#   ggtitle("Mean coalescent time by sample size") +
-#   geom_hline(yintercept = 1, linewidth = 1, linetype = 'dashed')
-# 
-# figure_3A_dataframe_150_200 = melt(data.frame(
-#   growth_coal_proportion_150_200,
-#   bottleneck_coal_proportion_150_200,
-#   ancestral_coal_proportion_150_200
-# ))
-# 
-# figure_3A_dataframe_150_200$msprime_time = msprime_time_150_200
-# figure_3A_dataframe_150_200$msprime_shape = msprime_nu_shape_150_200
-# figure_3A_dataframe_150_200$sample_size = sample_size
-# 
-# plot_3A_150_200 = ggplot(data=figure_3A_dataframe_150_200, aes(x=sample_size, y=value, color=variable, shape=msprime_shape)) +
-#   geom_point(size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Proportion') +
-#   ggtitle('Coalescent events per epoch, [Anc., 350 g.a., 200 g.a.]') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_coal_proportion_150_200',
-#                        'bottleneck_coal_proportion_150_200',
-#                        'ancestral_coal_proportion_150_200'),
-#                      values=c('growth_coal_proportion_150_200'='#1b9e77',
-#                        'bottleneck_coal_proportion_150_200'='#d95f02',
-#                        'ancestral_coal_proportion_150_200'='#7570b3'),
-#                      labels=c('Current [200 g.a.]', 
-#                        'Bottleneck [350 g.a.]', 
-#                        'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion'))
-# 
-# figure_3B_dataframe_150_200 = melt(data.frame(
-#   growth_b_len_proportion_mean_150_200,
-#   bottleneck_b_len_proportion_mean_150_200,
-#   ancestral_b_len_proportion_mean_150_200
-# ))
-# figure_3B_dataframe_150_200$sample_size = sample_size
-# figure_3B_dataframe_150_200$msprime_shape = msprime_nu_shape_150_200
-# 
-# plot_3B_simplified_150_200 = ggplot(data=figure_3B_dataframe_150_200, aes(x=sample_size, y=value, color=variable)) +
-#   geom_point(aes(shape=msprime_shape), size=1.5) +
-#   theme_bw() +
-#   xlab('Sample size') +
-#   ylab('Mean branch length') +
-#   ggtitle('Branch length per epoch') +
-#   scale_color_manual(name='Epoch',
-#                      breaks=c('growth_b_len_proportion_mean_150_200',
-#                        'bottleneck_b_len_proportion_mean_150_200',
-#                        'ancestral_b_len_proportion_mean_150_200'),
-#                      values=c('growth_b_len_proportion_mean_150_200'='#1b9e77',
-#                        'bottleneck_b_len_proportion_mean_150_200'='#d95f02',
-#                        'ancestral_b_len_proportion_mean_150_200'='#7570b3'),
-#                      labels=c('Current', 'Bottleneck', 'Ancestral population')) +
-#   scale_shape_manual(name='Inferred two-epoch model',
-#                      breaks=c('msprime_contract',
-#                        'msprime_expand'),
-#                      values=c('msprime_contract'=15,
-#                        'msprime_expand'=22),
-#                      labels=c('Contraction',
-#                        'Expansion')) +
-#   guides(shape='none', color='none')
-# 
-# plot_3A_150_200 + plot_3B_simplified_150_200 + plot_layout(nrow=2)
-
+# cat("\n")
+# print(round(sensitivity_rho1, 4))

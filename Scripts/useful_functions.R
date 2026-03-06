@@ -1134,7 +1134,7 @@ plot_likelihood_contour <- function(input) {
     scale_fill_manual(
       name = 'Log Likelihood',
       values = c('#a6611a', '#dfc27d', '#80cdc1', '#018571'),
-      labels=c('(-Inf, -3]', '(-3, -1]', '(-1, -0.5', '(-0,5, 0]'),
+      labels=c('(-Inf, -3]', '(-3, -1]', '(-1, -0.5', '(-0.5, 0]'),
       drop = FALSE
     ) +
     theme(
@@ -1152,7 +1152,6 @@ plot_likelihood_contour <- function(input) {
   
   return(p)
 }
-
 
 plot_likelihood_surface_contour = function(input) {
   species_surface = read.csv(input, header=TRUE)
