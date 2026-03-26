@@ -1680,7 +1680,7 @@ figure_s1 = plot_3B_simplified_200_200 + plot_3B_simplified_1000_200 +
   plot_3B_simplified_800_200 + plot_3B_simplified_1600_200 +
   plot_layout(nrow=4, ncol=2)
 
-ggsave('../Supplement/figure_s1_output.svg', figure_6, width=16, height=16, units='in', dpi=100)
+ggsave('../Supplement/figure_s1_output.svg', figure_s1, width=16, height=16, units='in', dpi=100)
 
 ## Figure S2
 
@@ -1832,7 +1832,7 @@ plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variabl
   theme_bw() + guides(color=guide_legend(title="Demographic model comparison")) +
   xlab('Sample size') +
   ylab(twoLambda_text) +
-  ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
+  ggtitle("Demographic model fit criterion") +
   scale_colour_manual(
     values = c("#0C7BDC", "#999ED9"),
     labels = c("Dadi, three-epoch vs. two-epoch", "Dadi, two-epoch vs. one-epoch")
