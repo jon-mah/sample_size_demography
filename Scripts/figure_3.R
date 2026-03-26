@@ -188,7 +188,10 @@ figure_3B = ggplot(branch_proportion_df,
 figure_3B
 
 # 700x600
-plot_3A + figure_3B + plot_layout(nrow=2)
+figure_3 = plot_3A + figure_3B + plot_layout(nrow=2)
+
+ggsave('../Summary/figure_3_output.svg', figure_3, width=7, height=6, units='in', dpi=100)
+
 
 # 
 # # Expectation (code from Kirk)
@@ -591,3 +594,6 @@ plot_3A + figure_3B + plot_layout(nrow=2)
 # 
 # cat("\n")
 # print(round(sensitivity_rho1, 4))
+
+
+

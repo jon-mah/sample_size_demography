@@ -5,197 +5,6 @@ source('useful_functions.R')
 
 ## Figure S1
 
-
-sample_size = seq(from=10, to=800, by=10)
-
-dadi_nu = c()
-dadi_time = c()
-dadi_tau = c()
-dadi_tajima_D = c()
-dadi_lambda_32 = c()
-dadi_lambda_21 = c()
-dadi_one_LL = c()
-dadi_two_LL = c()
-dadi_three_LL = c()
-
-dadi_nu_min = c()
-dadi_nu_max = c()
-dadi_tau_min = c()
-dadi_tau_max = c()
-
-dadi_nu_b = c()
-dadi_nu_f = c()
-
-for (i in sample_size) {
-  dadi_sfs = paste0(
-    "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '.sfs')
-  dadi_demography = paste0(
-    "../Analysis/dadi_3EpB_", i, '/two_epoch_demography.txt')
-  dadi_demography_1 = paste0(
-    "../Analysis/dadi_3EpB_", i, '/one_epoch_demography.txt')
-  dadi_demography_3 = paste0(
-    "../Analysis/dadi_3EpB_", i, '/three_epoch_demography.txt')
-  dadi_likelihood = paste0(
-    "../Analysis/dadi_3EpB_", i, '/likelihood_surface.csv')
-  # dadi_nu = c(dadi_nu, nu_from_demography(dadi_demography))
-  dadi_time = c(dadi_time, time_from_demography(dadi_demography))
-  dadi_summary = paste0(
-    "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '_summary.txt')
-  
-  dadi_tajima_D = c(dadi_tajima_D, read_summary_statistics(dadi_summary)[3])
-  this_dadi_one_LL = LL_from_demography(dadi_demography_1)
-  this_dadi_two_LL = LL_from_demography(dadi_demography)
-  this_dadi_three_LL = LL_from_demography(dadi_demography_3)
-  dadi_one_LL = c(dadi_one_LL, this_dadi_one_LL)
-  dadi_two_LL = c(dadi_two_LL, this_dadi_two_LL)
-  dadi_three_LL = c(dadi_three_LL, this_dadi_three_LL)
-  dadi_LL_diff_32 = this_dadi_three_LL - this_dadi_two_LL
-  dadi_lambda_32 = c(dadi_lambda_32, 2 * dadi_LL_diff_32)
-  dadi_LL_diff_21 = this_dadi_two_LL - this_dadi_one_LL
-  dadi_lambda_21 = c(dadi_lambda_21, 2 * dadi_LL_diff_21)
-  
-  dadi_nu = c(dadi_nu, find_CI_bounds(dadi_likelihood)$nu_MLE)
-  dadi_nu_min = c(dadi_nu_min, find_CI_bounds(dadi_likelihood)$nu_min)
-  dadi_nu_max = c(dadi_nu_max, find_CI_bounds(dadi_likelihood)$nu_max)
-  dadi_tau = c(dadi_tau, find_CI_bounds(dadi_likelihood)$tau_MLE)
-  dadi_tau_min = c(dadi_tau_min, find_CI_bounds(dadi_likelihood)$tau_min)  
-  dadi_tau_max = c(dadi_tau_max, find_CI_bounds(dadi_likelihood)$tau_max)
-  dadi_nu_b = c(dadi_nu_b, nuB_from_demography(dadi_demography_3))
-  dadi_nu_f = c(dadi_nu_f, nuF_from_demography(dadi_demography_3))
-}
-
-nu_label_text = expression(nu == frac(N[current], N[ancestral]))
-tau_label_text = expression(tau == frac(generations, 2 * N[ancestral]))
-twoLambda_text = expression(2*Lambda)
-nu_dataframe = melt(data.frame(
-  dadi_nu
-))
-nu_dataframe$sample_size = sample_size
-nu_dataframe$dadi_min = dadi_nu_min
-nu_dataframe$dadi_max = dadi_nu_max
-
-# Min nu for contractions
-min(nu_dataframe[1:9, ]$value)
-# Max nu for expansions
-max(nu_dataframe[1:9, ]$value)
-
-
-nu_dataframe_CI_bounds = melt(data.frame(
-  dadi_nu_min,
-  dadi_nu_max
-))
-nu_dataframe_CI_bounds$sample_size = sample_size
-
-tau_dataframe = melt(data.frame(
-  dadi_tau
-))
-tau_dataframe$sample_size = sample_size
-tau_dataframe$dadi_min = dadi_tau_min
-tau_dataframe$dadi_max = dadi_tau_max
-
-tajima_D_dataframe = melt(data.frame(
-  dadi_tajima_D
-))
-tajima_D_dataframe$sample_size = sample_size
-
-lambda_dataframe = melt(data.frame(
-  dadi_lambda_32,
-  dadi_lambda_21
-))
-lambda_dataframe$sample_size = sample_size
-
-dadi_nuF_nuB = dadi_nu_f / dadi_nu_b
-
-epoch_ratio_dataframe = melt(data.frame(
-  dadi_nu_b,
-  dadi_nuF_nuB
-))
-epoch_ratio_dataframe$sample_size = sample_size
-
-plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#a6d96a", color="#a6d96a", alpha = 0.2) +
-  xlab('Sample size') +
-  ylab(nu_label_text) +
-  ggtitle("Ratio of Effective to Ancestral population size") +
-  scale_colour_manual(
-    values = c("#a6d96a"),
-    labels = c("Dadi")
-  ) +
-  scale_y_log10() +
-  geom_hline(yintercept = 1, size = 2, linetype = 'dashed')
-
-plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#a6d96a", color="#a6d96a", alpha = 0.2) +
-  xlab('Sample size') +
-  ylab(tau_label_text) +
-  ggtitle('Timing of inferred instantaneous size change') +
-  scale_y_log10() +
-  scale_colour_manual(
-    values = c("#a6d96a"),
-    labels = c("Dadi")
-  ) +
-  theme(legend.position='none')
-
-plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
-  xlab('Sample size') +
-  ylab("Tajima's D") +
-  ggtitle("Tajima's D for simulated SFS") +
-  scale_colour_manual(
-    values = c("#a6d96a"),
-    labels = c("Dadi")
-  ) +
-  geom_hline(yintercept = 0, size = 2, linetype = 'dashed') +
-  theme(legend.position='none')
-
-plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Demographic model comparison")) +
-  xlab('Sample size') +
-  ylab(twoLambda_text) +
-  ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
-  scale_colour_manual(
-    values = c("#0C7BDC", "#999ED9"),
-    labels = c("Dadi, three-epoch vs. two-epoch", "Dadi, two-epoch vs. one-epoch")
-  ) +
-  geom_hline(yintercept = 14.75552, size = 1, linetype = 'dashed', color='red')
-
-# 2Lambda is approximately chi-squared distributed.
-# 80 comparisons for 10-800:10, so critical value is 14.76 with Bonferroni correction
-qchisq(1 - 0.05/80, df=2)
-
-plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
-  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
-  xlab('Sample size') +
-  ylab("Ratio of effective population size") +
-  ggtitle("Effective population size between epochs") +
-  scale_y_log10() +
-  scale_colour_manual(
-    values = c("#FFC20A", "#CA5A08"),
-    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Current vs. Bottleneck")
-  ) +
-  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
-
-design = "
-  CCDD
-  AAEE
-  BBEE
-"
-
-## Figure S1
-
-# 1200 x 800
-plot_A + 
-  plot_B + 
-  plot_C + 
-  plot_D + 
-  plot_E +
-  plot_layout(design=design)
-
-
-## Figure S2
-
 ##### Supplement
 
 # 200_200
@@ -1865,11 +1674,204 @@ plot_3B_simplified_1600_200 = ggplot(data=figure_3B_dataframe_1600_200, aes(x=sa
 
 ### 1600 x 1600
 
-plot_3B_simplified_200_200 + plot_3B_simplified_1000_200 +
+figure_s1 = plot_3B_simplified_200_200 + plot_3B_simplified_1000_200 +
   plot_3B_simplified_400_200 + plot_3B_simplified_1200_200 +
   plot_3B_simplified_600_200 + plot_3B_simplified_1400_200 +
   plot_3B_simplified_800_200 + plot_3B_simplified_1600_200 +
   plot_layout(nrow=4, ncol=2)
+
+ggsave('../Supplement/figure_s1_output.svg', figure_6, width=16, height=16, units='in', dpi=100)
+
+## Figure S2
+
+sample_size = seq(from=10, to=800, by=10)
+
+dadi_nu = c()
+dadi_time = c()
+dadi_tau = c()
+dadi_tajima_D = c()
+dadi_lambda_32 = c()
+dadi_lambda_21 = c()
+dadi_one_LL = c()
+dadi_two_LL = c()
+dadi_three_LL = c()
+
+dadi_nu_min = c()
+dadi_nu_max = c()
+dadi_tau_min = c()
+dadi_tau_max = c()
+
+dadi_nu_b = c()
+dadi_nu_f = c()
+
+for (i in sample_size) {
+  dadi_sfs = paste0(
+    "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '.sfs')
+  dadi_demography = paste0(
+    "../Analysis/dadi_3EpB_", i, '/two_epoch_demography.txt')
+  dadi_demography_1 = paste0(
+    "../Analysis/dadi_3EpB_", i, '/one_epoch_demography.txt')
+  dadi_demography_3 = paste0(
+    "../Analysis/dadi_3EpB_", i, '/three_epoch_demography.txt')
+  dadi_likelihood = paste0(
+    "../Analysis/dadi_3EpB_", i, '/likelihood_surface.csv')
+  # dadi_nu = c(dadi_nu, nu_from_demography(dadi_demography))
+  dadi_time = c(dadi_time, time_from_demography(dadi_demography))
+  dadi_summary = paste0(
+    "../Simulations/dadi_simulations/ThreeEpochBottleneck_", i, '_summary.txt')
+  
+  dadi_tajima_D = c(dadi_tajima_D, read_summary_statistics(dadi_summary)[3])
+  this_dadi_one_LL = LL_from_demography(dadi_demography_1)
+  this_dadi_two_LL = LL_from_demography(dadi_demography)
+  this_dadi_three_LL = LL_from_demography(dadi_demography_3)
+  dadi_one_LL = c(dadi_one_LL, this_dadi_one_LL)
+  dadi_two_LL = c(dadi_two_LL, this_dadi_two_LL)
+  dadi_three_LL = c(dadi_three_LL, this_dadi_three_LL)
+  dadi_LL_diff_32 = this_dadi_three_LL - this_dadi_two_LL
+  dadi_lambda_32 = c(dadi_lambda_32, 2 * dadi_LL_diff_32)
+  dadi_LL_diff_21 = this_dadi_two_LL - this_dadi_one_LL
+  dadi_lambda_21 = c(dadi_lambda_21, 2 * dadi_LL_diff_21)
+  
+  dadi_nu = c(dadi_nu, find_CI_bounds(dadi_likelihood)$nu_MLE)
+  dadi_nu_min = c(dadi_nu_min, find_CI_bounds(dadi_likelihood)$nu_min)
+  dadi_nu_max = c(dadi_nu_max, find_CI_bounds(dadi_likelihood)$nu_max)
+  dadi_tau = c(dadi_tau, find_CI_bounds(dadi_likelihood)$tau_MLE)
+  dadi_tau_min = c(dadi_tau_min, find_CI_bounds(dadi_likelihood)$tau_min)  
+  dadi_tau_max = c(dadi_tau_max, find_CI_bounds(dadi_likelihood)$tau_max)
+  dadi_nu_b = c(dadi_nu_b, nuB_from_demography(dadi_demography_3))
+  dadi_nu_f = c(dadi_nu_f, nuF_from_demography(dadi_demography_3))
+}
+
+nu_label_text = expression(nu == frac(N[current], N[ancestral]))
+tau_label_text = expression(tau == frac(generations, 2 * N[ancestral]))
+twoLambda_text = expression(2*Lambda)
+nu_dataframe = melt(data.frame(
+  dadi_nu
+))
+nu_dataframe$sample_size = sample_size
+nu_dataframe$dadi_min = dadi_nu_min
+nu_dataframe$dadi_max = dadi_nu_max
+
+# Min nu for contractions
+min(nu_dataframe[1:9, ]$value)
+# Max nu for expansions
+max(nu_dataframe[1:9, ]$value)
+
+
+nu_dataframe_CI_bounds = melt(data.frame(
+  dadi_nu_min,
+  dadi_nu_max
+))
+nu_dataframe_CI_bounds$sample_size = sample_size
+
+tau_dataframe = melt(data.frame(
+  dadi_tau
+))
+tau_dataframe$sample_size = sample_size
+tau_dataframe$dadi_min = dadi_tau_min
+tau_dataframe$dadi_max = dadi_tau_max
+
+tajima_D_dataframe = melt(data.frame(
+  dadi_tajima_D
+))
+tajima_D_dataframe$sample_size = sample_size
+
+lambda_dataframe = melt(data.frame(
+  dadi_lambda_32,
+  dadi_lambda_21
+))
+lambda_dataframe$sample_size = sample_size
+
+dadi_nuF_nuB = dadi_nu_f / dadi_nu_b
+
+epoch_ratio_dataframe = melt(data.frame(
+  dadi_nu_b,
+  dadi_nuF_nuB
+))
+epoch_ratio_dataframe$sample_size = sample_size
+
+plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#a6d96a", color="#a6d96a", alpha = 0.2) +
+  xlab('Sample size') +
+  ylab(nu_label_text) +
+  ggtitle("Ratio of Effective to Ancestral population size") +
+  scale_colour_manual(
+    values = c("#a6d96a"),
+    labels = c("Dadi")
+  ) +
+  scale_y_log10() +
+  geom_hline(yintercept = 1, size = 2, linetype = 'dashed')
+
+plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  geom_ribbon(aes(ymin = dadi_min, ymax = dadi_max), fill = "#a6d96a", color="#a6d96a", alpha = 0.2) +
+  xlab('Sample size') +
+  ylab(tau_label_text) +
+  ggtitle('Timing of inferred instantaneous size change') +
+  scale_y_log10() +
+  scale_colour_manual(
+    values = c("#a6d96a"),
+    labels = c("Dadi")
+  ) +
+  theme(legend.position='none')
+
+plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('Sample size') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D for simulated SFS") +
+  scale_colour_manual(
+    values = c("#a6d96a"),
+    labels = c("Dadi")
+  ) +
+  geom_hline(yintercept = 0, size = 2, linetype = 'dashed') +
+  theme(legend.position='none')
+
+plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Demographic model comparison")) +
+  xlab('Sample size') +
+  ylab(twoLambda_text) +
+  ggtitle("Demographic model fit criterion, three-epoch vs. two-epoch") +
+  scale_colour_manual(
+    values = c("#0C7BDC", "#999ED9"),
+    labels = c("Dadi, three-epoch vs. two-epoch", "Dadi, two-epoch vs. one-epoch")
+  ) +
+  geom_hline(yintercept = 14.75552, size = 1, linetype = 'dashed', color='red')
+
+# 2Lambda is approximately chi-squared distributed.
+# 80 comparisons for 10-800:10, so critical value is 14.76 with Bonferroni correction
+qchisq(1 - 0.05/80, df=2)
+
+plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs") +
+  scale_y_log10() +
+  scale_colour_manual(
+    values = c("#FFC20A", "#CA5A08"),
+    labels = c("Dadi, Bottleneck vs. Ancestral", "Dadi, Current vs. Bottleneck")
+  ) +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+design = "
+  CCDD
+  AAEE
+  BBEE
+"
+
+## Figure S2
+
+# 1200 x 800
+figure_s2 = plot_A + 
+  plot_B + 
+  plot_C + 
+  plot_D + 
+  plot_E +
+  plot_layout(design=design)
+
+ggsave('../Supplement/figure_s2_output.svg', figure_s2, width=12, height=8, units='in', dpi=100)
 
 
 ### Figure S3 Singleton proportion (Dadi)
@@ -1934,5 +1936,6 @@ plot_S3B = ggplot(data=singleton_ratio_dataframe, aes(x=sample_size, y=value, co
   theme(legend.position='none')
 
 # 800 x 800
-plot_S3A + plot_S3B + plot_layout(nrow=2)
+figure_s3 = plot_S3A + plot_S3B + plot_layout(nrow=2)
 
+ggsave('../Supplement/figure_s3_output.svg', figure_s3, width=8, height=8, units='in', dpi=100)

@@ -3,6 +3,8 @@
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source('useful_functions.R')
 
+# Table S1
+
 sample_size = seq(from=10, to=800, by=10)
 
 msprime_nu = c()
@@ -127,23 +129,7 @@ names(table_s1) = c("Sample size", "Tajima's D", "One-epoch LL", "One-epoch Thet
 table_s1
 write.csv(table_s1, "../Supplement/table_s1.csv", row.names=FALSE)
 
-## Supplemental Table 2 (Dadi results)
-table_s2 = data.frame(sample_size, dadi_tajima_D, dadi_one_LL, 
-  dadi_one_theta, dadi_lambda_21,
-  dadi_two_LL, dadi_two_theta, dadi_nu,
-  dadi_tau, dadi_lambda_32, dadi_three_LL,
-  dadi_nu_b, dadi_nu_f, dadi_tau_b, dadi_tau_f)
-
-names(table_s2) = c("Sample size", "Tajima's D", "One-epoch LL", "One-epoch Theta",
-  "Lambda Two vs. One", "Two-epoch LL", "Two-epoch Theta", "Two-epoch Nu",
-  "Two-epoch Tau", "Lambda Three vs. Two", "Three-epoch LL", "Three-epoch NuB",
-  "Three-epoch NuF", "Three-epoch TauB", "Three-epoch TauF")
-
-table_s2
-write.csv(table_s2, "../Supplement/table_s2.csv", row.names=FALSE)
-
-
-## Supplmenetal Table 3
+## Supplmenetal Table 2
 
 sample_size = seq(from=10, to=800, by=10)
 
@@ -1527,7 +1513,7 @@ figure_3B_dataframe_1600_200 = melt(data.frame(
 figure_3B_dataframe_1600_200$sample_size = sample_size
 figure_3B_dataframe_1600_200$msprime_shape = msprime_nu_shape_1600_200
 
-table_s3 = data.frame(sample_size,
+table_s2 = data.frame(sample_size,
   msprime_nu_shape_200_200, ancestral_b_len_proportion_mean_200_200, 
   bottleneck_b_len_proportion_mean_200_200, growth_b_len_proportion_mean_200_200,
   msprime_nu_shape_400_200, ancestral_b_len_proportion_mean_400_200, 
@@ -1545,7 +1531,7 @@ table_s3 = data.frame(sample_size,
   msprime_nu_shape_1600_200, ancestral_b_len_proportion_mean_1600_200, 
   bottleneck_b_len_proportion_mean_1600_200, growth_b_len_proportion_mean_1600_200)
 
-names(table_s3) = c('Sample size',
+names(table_s2) = c('Sample size',
   "Two-epoch inference, [Anc, 200, 200]", "Ancestral branch proportion, [Anc, 200, 200]",
   "Bottleneck branch proportion, [Anc, 200, 200]", "Current branch proportion, [Anc, 200, 200]",
   "Two-epoch inference, [Anc, 400, 200]", "Ancestral branch proportion, [Anc, 400, 200]",
@@ -1563,9 +1549,10 @@ names(table_s3) = c('Sample size',
   "Two-epoch inference, [Anc, 1600, 200]", "Ancestral branch proportion, [Anc, 1600, 200]",
   "Bottleneck branch proportion, [Anc, 1600, 200]", "Current branch proportion, [Anc, 1600, 200]")
 
-table_s3
-write.csv(table_s3, "../Supplement/table_s3.csv", row.names=FALSE)
-## Supplemental Table 4
+table_s2
+write.csv(table_s2, "../Supplement/table_s2.csv", row.names=FALSE)
+
+## Supplemental Table 3
 sample_size = seq(from=10, to=800, by=10)
 
 msprime_sfs_singletons = c()
@@ -1622,13 +1609,29 @@ singleton_diff_dataframe = melt(data.frame(
 ))
 singleton_diff_dataframe$sample_size = sample_size
 
-table_s4 = data.frame(sample_size, dadi_snm_singletons,
+table_s3 = data.frame(sample_size, dadi_snm_singletons,
   msprime_sfs_singletons, msprime_singleton_ratio, msprime_singleton_diff,
   dadi_sfs_singletons, dadi_singleton_ratio, dadi_singleton_diff)
 
-names(table_s4) = c("Sample size", "SNM singleton proportion", "MSPrime singleton proportion",
+names(table_s3) = c("Sample size", "SNM singleton proportion", "MSPrime singleton proportion",
   "MSPrime singleton ratio", "MSPrime singleton difference", "Dadi singleton proportion",
   "Dadi singleton ratio", "Dadi singleton difference")
+
+table_s3
+write.csv(table_s3, "../Supplement/table_s3.csv", row.names=FALSE)
+
+## Supplemental Table 4
+## Supplemental Table 4 (Dadi results)
+table_s4 = data.frame(sample_size, dadi_tajima_D, dadi_one_LL, 
+  dadi_one_theta, dadi_lambda_21,
+  dadi_two_LL, dadi_two_theta, dadi_nu,
+  dadi_tau, dadi_lambda_32, dadi_three_LL,
+  dadi_nu_b, dadi_nu_f, dadi_tau_b, dadi_tau_f)
+
+names(table_s4) = c("Sample size", "Tajima's D", "One-epoch LL", "One-epoch Theta",
+  "Lambda Two vs. One", "Two-epoch LL", "Two-epoch Theta", "Two-epoch Nu",
+  "Two-epoch Tau", "Lambda Three vs. Two", "Three-epoch LL", "Three-epoch NuB",
+  "Three-epoch NuF", "Three-epoch TauB", "Three-epoch TauF")
 
 table_s4
 write.csv(table_s4, "../Supplement/table_s4.csv", row.names=FALSE)

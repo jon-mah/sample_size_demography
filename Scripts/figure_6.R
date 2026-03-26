@@ -1,132 +1,239 @@
-# figure_6.R
+# figure_5.R
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 source('useful_functions.R')
 
-sample_size = seq(from=10, to=800, by=10)
+sample_size = seq(from=10, to=300, by=10)
 
-one_epoch_20 = sfs_from_demography('../Analysis/msprime_3EpB_20/one_epoch_demography.txt')
-one_epoch_90 = sfs_from_demography('../Analysis/msprime_3EpB_90/one_epoch_demography.txt')
-one_epoch_100 = sfs_from_demography('../Analysis/msprime_3EpB_100/one_epoch_demography.txt')
-one_epoch_700 = sfs_from_demography('../Analysis/msprime_3EpB_700/one_epoch_demography.txt')
+EUR_2020_nu = c()
+EUR_2020_time = c()
+EUR_2020_tau = c()
+EUR_2020_tajima_D = c()
+EUR_2020_lambda_32 = c()
+EUR_2020_lambda_21 = c()
+EUR_2020_one_LL = c()
+EUR_2020_two_LL = c()
+EUR_2020_three_LL = c()
 
-msprime_sfs_20 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_20_concat.sfs')
-msprime_sfs_90 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_90_concat.sfs')
-msprime_sfs_100 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_100_concat.sfs')
-msprime_sfs_700 = read_input_sfs('../Simulations/simple_simulations/ThreeEpochBottleneck_700_concat.sfs')
+EUR_2020_nu_min = c()
+EUR_2020_nu_max = c()
+EUR_2020_tau_min = c()
+EUR_2020_tau_max = c()
 
-msprime_nu_20 = nu_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
-msprime_nu_90 = nu_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
-msprime_nu_100 = nu_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_nu_700 = nu_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
+EUR_2020_nu_b = c()
+EUR_2020_nu_f = c()
 
-msprime_tau_20 = tau_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
-msprime_tau_90 = tau_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
-msprime_tau_100 = tau_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_tau_700 = tau_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
+for (i in sample_size) {
+  EUR_2020_sfs = paste0(
+    "../Analysis/1kg_EUR_2020_", i, 'syn_downsampled_sfs.txt')
+  EUR_2020_demography = paste0(
+    "../Analysis/1kg_EUR_2020_", i, '/two_epoch_demography.txt')
+  EUR_2020_demography_1 = paste0(
+    "../Analysis/1kg_EUR_2020_", i, '/one_epoch_demography.txt')
+  EUR_2020_demography_3 = paste0(
+    "../Analysis/1kg_EUR_2020_", i, '/three_epoch_demography.txt')
+  EUR_2020_likelihood = paste0(
+   "../Analysis/1kg_EUR_2020_", i, '/likelihood_surface.csv')
+  # EUR_2020_nu = c(EUR_2020_nu, nu_from_demography(EUR_2020_demography))
+  EUR_2020_time = c(EUR_2020_time, time_from_demography(EUR_2020_demography))
+  # EUR_2020_tau = c(EUR_2020_tau, tau_from_demography(EUR_2020_demography))
+  EUR_2020_summary = paste0(
+    "../Analysis/1kg_EUR_2020_", i, '/syn_downsampled_sfs_summary.txt')
+  
+  EUR_2020_tajima_D = c(EUR_2020_tajima_D, read_summary_statistics(EUR_2020_summary)[3])
+  this_EUR_2020_one_LL = LL_from_demography(EUR_2020_demography_1)
+  this_EUR_2020_two_LL = LL_from_demography(EUR_2020_demography)
+  this_EUR_2020_three_LL = LL_from_demography(EUR_2020_demography_3)
+  EUR_2020_one_LL = c(EUR_2020_one_LL, this_EUR_2020_one_LL)
+  EUR_2020_two_LL = c(EUR_2020_two_LL, this_EUR_2020_two_LL)
+  EUR_2020_three_LL = c(EUR_2020_three_LL, this_EUR_2020_three_LL)
+  EUR_2020_LL_diff_32 = this_EUR_2020_three_LL - this_EUR_2020_two_LL
+  EUR_2020_LL_diff_21 = this_EUR_2020_two_LL - this_EUR_2020_one_LL
+  EUR_2020_lambda_32 = c(EUR_2020_lambda_32, 2 * EUR_2020_LL_diff_32)
+  EUR_2020_lambda_21 = c(EUR_2020_lambda_21, 2 * EUR_2020_LL_diff_21)
+  
+  EUR_2020_nu = c(EUR_2020_nu, find_CI_bounds(EUR_2020_likelihood)$nu_MLE)
+  EUR_2020_nu_min = c(EUR_2020_nu_min, find_CI_bounds(EUR_2020_likelihood)$nu_min)
+  EUR_2020_nu_max = c(EUR_2020_nu_max, find_CI_bounds(EUR_2020_likelihood)$nu_max)
+  EUR_2020_tau = c(EUR_2020_tau, find_CI_bounds(EUR_2020_likelihood)$tau_MLE)
+  EUR_2020_tau_min = c(EUR_2020_tau_min, find_CI_bounds(EUR_2020_likelihood)$tau_min)  
+  EUR_2020_tau_max = c(EUR_2020_tau_max, find_CI_bounds(EUR_2020_likelihood)$tau_max)
+  
+  EUR_2020_nu_b = c(EUR_2020_nu_b, nuB_from_demography(EUR_2020_demography_3))
+  EUR_2020_nu_f = c(EUR_2020_nu_f, nuF_from_demography(EUR_2020_demography_3))
+}
 
-msprime_time_20 = time_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
-msprime_time_90 = time_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
-msprime_time_100 = time_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_time_700 = time_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
+nu_label_text = expression(nu == frac(N[current], N[ancestral]))
+tau_label_text = expression(tau == frac(generations, 2 * N[ancestral]))
 
-msprime_theta_20 = theta_from_demography('../Analysis/msprime_3EpB_20/two_epoch_demography.txt')
-msprime_theta_90 = theta_from_demography('../Analysis/msprime_3EpB_90/two_epoch_demography.txt')
-msprime_theta_100 = theta_from_demography('../Analysis/msprime_3EpB_100/two_epoch_demography.txt')
-msprime_theta_700 = theta_from_demography('../Analysis/msprime_3EpB_700/two_epoch_demography.txt')
+nu_dataframe = melt(data.frame(
+  EUR_2020_nu
+))
+nu_dataframe$sample_size = sample_size
+nu_dataframe$EUR_2020_min = EUR_2020_nu_min
+nu_dataframe$EUR_2020_max = EUR_2020_nu_max
 
-msprime_simulation_two_epoch_theta = c(msprime_theta_20, msprime_theta_90, msprime_theta_100, msprime_theta_700)
-msprime_simulation_two_epoch_nu = c(msprime_nu_20, msprime_nu_90, msprime_nu_100, msprime_nu_700)
-msprime_simulation_two_epoch_tau = c(msprime_nu_20, msprime_nu_90, msprime_nu_100, msprime_nu_700)
+tau_dataframe = melt(data.frame(
+  EUR_2020_tau
+))
+tau_dataframe$sample_size = sample_size
+tau_dataframe$EUR_2020_min = EUR_2020_tau_min
+tau_dataframe$EUR_2020_max = EUR_2020_tau_max
 
-msprime_simulation_two_epoch_NAnc = 10000
-msprime_simulation_two_epoch_NCurr = msprime_simulation_two_epoch_nu * msprime_simulation_two_epoch_NAnc
-msprime_simulation_two_epoch_Time = c(msprime_time_20, msprime_time_90, msprime_time_100, msprime_time_700)
-# ThreeEpochB_two_epoch_Time = 2 * ThreeEpochB_two_epoch_tau * ThreeEpochB_two_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_two_epoch_allele_sum)
+tajima_D_dataframe = melt(data.frame(
+  EUR_2020_tajima_D
+))
+tajima_D_dataframe$sample_size = sample_size
+
+lambda_dataframe = melt(data.frame(
+  EUR_2020_lambda_32,
+  EUR_2020_lambda_21
+))
+lambda_dataframe$sample_size = sample_size
+
+twoLambda_text = expression(2*Lambda)
+
+EUR_2020_nuF_nuB = EUR_2020_nu_f / EUR_2020_nu_b
+
+epoch_ratio_dataframe = melt(data.frame(
+  EUR_2020_nu_b,
+  EUR_2020_nuF_nuB
+))
+epoch_ratio_dataframe$sample_size = sample_size
 
 
-two_epoch_max_time = max(msprime_simulation_two_epoch_Time)
-msprime_simulation_two_epoch_max_time = rep(two_epoch_max_time * 1.05, 4)
-msprime_simulation_two_epoch_current_time = rep(50, 4)
-msprime_simulation_two_epoch_demography = data.frame(msprime_simulation_two_epoch_NAnc, msprime_simulation_two_epoch_max_time,
-  msprime_simulation_two_epoch_NCurr, msprime_simulation_two_epoch_Time,
-  msprime_simulation_two_epoch_NCurr, msprime_simulation_two_epoch_current_time)
-
-msprime_simulation_two_epoch_NEffective_20 = c(msprime_simulation_two_epoch_demography[1, 1], msprime_simulation_two_epoch_demography[1, 3], msprime_simulation_two_epoch_demography[1, 5])
-msprime_simulation_two_epoch_Time_20 = c(-msprime_simulation_two_epoch_demography[1, 2], -msprime_simulation_two_epoch_demography[1, 4], msprime_simulation_two_epoch_demography[1, 6])
-msprime_simulation_two_epoch_demography_20 = data.frame(msprime_simulation_two_epoch_Time_20, msprime_simulation_two_epoch_NEffective_20)
-msprime_simulation_two_epoch_NEffective_90 = c(msprime_simulation_two_epoch_demography[2, 1], msprime_simulation_two_epoch_demography[2, 3], msprime_simulation_two_epoch_demography[2, 5])
-msprime_simulation_two_epoch_Time_90 = c(-msprime_simulation_two_epoch_demography[2, 2], -msprime_simulation_two_epoch_demography[2, 4], msprime_simulation_two_epoch_demography[2, 6])
-msprime_simulation_two_epoch_demography_90 = data.frame(msprime_simulation_two_epoch_Time_90, msprime_simulation_two_epoch_NEffective_90)
-msprime_simulation_two_epoch_NEffective_100 = c(msprime_simulation_two_epoch_demography[3, 1], msprime_simulation_two_epoch_demography[3, 3], msprime_simulation_two_epoch_demography[3, 5])
-msprime_simulation_two_epoch_Time_100 = c(-msprime_simulation_two_epoch_demography[3, 2], -msprime_simulation_two_epoch_demography[3, 4], msprime_simulation_two_epoch_demography[3, 6])
-msprime_simulation_two_epoch_demography_100 = data.frame(msprime_simulation_two_epoch_Time_100, msprime_simulation_two_epoch_NEffective_100)
-msprime_simulation_two_epoch_NEffective_700 = c(msprime_simulation_two_epoch_demography[4, 1], msprime_simulation_two_epoch_demography[4, 3], msprime_simulation_two_epoch_demography[4, 5])
-msprime_simulation_two_epoch_Time_700 = c(-msprime_simulation_two_epoch_demography[4, 2], -msprime_simulation_two_epoch_demography[4, 4], msprime_simulation_two_epoch_demography[4, 6])
-msprime_simulation_two_epoch_demography_700 = data.frame(msprime_simulation_two_epoch_Time_700, msprime_simulation_two_epoch_NEffective_700)
-
-ThreeEpochB_true_NAnc = 8000
-ThreeEpochB_true_NBottle = 800
-ThreeEpochB_true_NCurr = 50000
-ThreeEpochB_true_TimeBottleEnd = 200
-ThreeEpochB_true_TimeBottleStart = 2000
-# ThreeEpochB_three_epoch_TimeBottleEnd = 2 * ThreeEpochB_three_epoch_tauF * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum)
-# ThreeEpochB_three_epoch_TimeBottleStart = 2 * ThreeEpochB_three_epoch_tauB * ThreeEpochB_three_epoch_theta / (4 * ThreeEpochB_mu * ThreeEpochB_three_epoch_allele_sum) + ThreeEpochB_three_epoch_TimeBottleEnd
-
-ThreeEpochB_true_TimeTotal = 2000
-ThreeEpochB_true_TimeCurrent = 50
-
-ThreeEpochB_true_demography = data.frame(ThreeEpochB_true_NAnc, two_epoch_max_time * 1.05,
-  ThreeEpochB_true_NBottle, ThreeEpochB_true_TimeBottleStart,
-  ThreeEpochB_true_NCurr, ThreeEpochB_true_TimeBottleEnd,
-  ThreeEpochB_true_NCurr, ThreeEpochB_true_TimeCurrent)
-
-ThreeEpochB_true_NEffective_params = c(ThreeEpochB_true_demography[1, 1], ThreeEpochB_true_demography[1, 3], ThreeEpochB_true_demography[1, 5], ThreeEpochB_true_demography[1, 7])
-ThreeEpochB_true_Time_params = c(-ThreeEpochB_true_demography[1, 2], -ThreeEpochB_true_demography[1, 4], -ThreeEpochB_true_demography[1, 6], ThreeEpochB_true_demography[1, 8])
-ThreeEpochB_true_demography_params = data.frame(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params)
-
-plot_A = compare_simulation_null_sfs_proportional(msprime_sfs_20, one_epoch_20, '#40008b') + 
-  ggtitle('20 simulated individuals') + guides(fill='none')
-plot_B = compare_simulation_null_sfs_proportional(msprime_sfs_90, one_epoch_90, '#9970ab') + 
-  ggtitle('90 simulated individuals') + guides(fill='none')
-plot_C = compare_simulation_null_sfs_proportional(msprime_sfs_100, one_epoch_100, '#5aae61') + 
-  ggtitle('100 simulated individuals') + guides(fill='none')
-plot_D = compare_simulation_null_sfs_proportional(msprime_sfs_700, one_epoch_700, '#00441b') + 
-  ggtitle('700 simulated individuals')
-
-set.seed(101)
-df <- data.frame(x=rnorm(25000,0,5000))
-weird <- scales::trans_new("signed_log",
-       transform=function(x) sign(x)*log(abs(x)),
-       inverse=function(x) sign(x)*exp(abs(x)))
-
-plot_E = ggplot(msprime_simulation_two_epoch_demography_20, aes(msprime_simulation_two_epoch_Time_20, msprime_simulation_two_epoch_NEffective_20, color='N=20')) + geom_step(linewidth=3, linetype='solid') +
-  geom_step(data=msprime_simulation_two_epoch_demography_90, aes(msprime_simulation_two_epoch_Time_90, msprime_simulation_two_epoch_NEffective_90, color='N=90'), linewidth=3, linetype='solid') +
-  geom_step(data=msprime_simulation_two_epoch_demography_100, aes(msprime_simulation_two_epoch_Time_100, msprime_simulation_two_epoch_NEffective_100, color='N=100'), linewidth=3, linetype='solid') +
-  geom_step(data=msprime_simulation_two_epoch_demography_700, aes(msprime_simulation_two_epoch_Time_700, msprime_simulation_two_epoch_NEffective_700, color='N=700'), linewidth=3, linetype='solid') +
-  geom_step(data=ThreeEpochB_true_demography_params, aes(ThreeEpochB_true_Time_params, ThreeEpochB_true_NEffective_params, color='True'), linewidth=5, linetype='solid') +
-  scale_color_manual(name='Sample Size',
-                     breaks=c('N=20', 'N=90', 'N=100', 'N=700', 'True'),
-                     values=c('N=20'='#40008b',
-                       'N=90'='#9970ab',
-                       'N=100'='#5aae61',
-                       'N=700'='#00441b',
-                       'True'='#b30000')) +
-  theme_bw() +
-  ylab('Effective population size') +
-  xlab('Generations relative to current time') +
+plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
+  # geom_ribbon(aes(ymin = snm_min, ymax = snm_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
+  xlab('') +
+  ylab(nu_label_text) +
+  ggtitle("Ratio of Effective to Ancestral population size") +
+  scale_colour_manual(
+    values = c("#0C7BDC","#FFC20A"),
+    labels = c("1KG 2020, EUR", "snm")
+  ) +
   scale_y_log10() +
-  scale_x_continuous(trans=weird, breaks = c(-25000, -2000, -1000, -5000, -1000, -500, -200, 0)) +
-  ggtitle('Inferred two-epoch demographic model from MSPrime simulated SFS')
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed')
 
-design = '
-ABCD
-EEEE
-'
 
-plot_A + plot_B + plot_C + plot_D + plot_E + plot_layout(design=design)
+plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=1) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  geom_ribbon(aes(ymin = EUR_2020_min, ymax = EUR_2020_max), fill = "#0C7BDC", color="#0C7BDC", alpha = 0.2) +
+  # geom_ribbon(aes(ymin = snm_min, ymax = snm_max), fill = "#FFC20A", color="#FFC20A", alpha = 0.2) +
+  xlab('Sample size') +
+  ylab(tau_label_text) +
+  ggtitle('Timing of inferred instantaneous size change') +
+  scale_colour_manual(
+    values = c("#0C7BDC","#FFC20A"),
+    labels = c("1kg 2020, EUR", "snm")
+  ) +
+  scale_y_log10() +
+  theme(legend.position='none')
 
-# * 4 sample sizes ranging from small to large (ancient to recent)
-# * Just Dadi shown in main text, MSPrime for supplement
-# * SFS on left-hand, demography plot on right hand [two-epoch fit, for now, best-fit later or in supplement]
-# * Show true underlying simulated demography
+# 2Lambda is approximately chi-squared distributed.
+# 80 comparisons for 10-300:10, so critical value is 12.79 with Bonferroni correction
+qchisq(1 - 0.05/30, df=2)
+
+plot_C = ggplot(data=tajima_D_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('') +
+  ylab("Tajima's D") +
+  ggtitle("Tajima's D for empirical SFS") +
+  scale_colour_manual(
+    values = c("#0C7BDC","#FFC20A"),
+    labels = c("1kg 2020, EUR", "snm")
+  ) +
+  geom_hline(yintercept = 0, size = 1, linetype = 'dashed') +
+  theme(legend.position='none') +
+  ylim(c(-1, 1))
+
+plot_E = ggplot(data=epoch_ratio_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Epoch Comparison")) +
+  xlab('Sample size') +
+  ylab("Ratio of effective population size") +
+  ggtitle("Effective population size between epochs") +
+  scale_colour_manual(
+    values = c("#0C7BDC", "#FFC20A"),
+    labels = c("1KG EUR 2020, Bottleneck vs. Ancestral", "1KG EUR 2020, Current vs. Bottleneck")
+  ) +
+  geom_hline(yintercept = 1, size = 1, linetype = 'dashed', color='red')
+
+plot_D = ggplot(data=lambda_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+  theme_bw() + guides(color=guide_legend(title="Type of SFS")) +
+  xlab('') +
+  ylab(twoLambda_text) +
+  ggtitle("Demographic model fit criterion") +
+  scale_colour_manual(
+    values = c("#0C7BDC","#FFC20A"),
+    labels = c("Three-epoch vs. two-epoch", "Two-epoch vs. one-epoch")
+  ) +
+  geom_hline(yintercept = 12.79386, size = 1, linetype = 'dashed', color='red') +
+  scale_y_log10()
+
+design = "
+  CCDD
+  AAEE
+  BBEE
+"
+
+# 1200 x 800
+figure_6 = plot_A + 
+  plot_B + 
+  plot_C + 
+  plot_D + 
+  plot_E +
+  plot_layout(design=design)
+
+ggsave('../Summary/figure_6_output.svg', figure_6, width=12, height=8, units='in', dpi=100)
+
+
+# 
+# ### Scale figures
+# nu_dataframe = melt(data.frame(
+#   EUR_2020_nu
+# ))
+# nu_dataframe$sample_size = sample_size
+# nu_dataframe$EUR_2020_min = EUR_2020_nu_min
+# nu_dataframe$EUR_2020_max = EUR_2020_nu_max
+# 
+# tau_dataframe = melt(data.frame(
+#   EUR_2020_tau
+# ))
+# tau_dataframe$sample_size = sample_size
+# tau_dataframe$EUR_2020_min = EUR_2020_tau_min
+# tau_dataframe$EUR_2020_max = EUR_2020_tau_max
+# 
+# plot_A = ggplot(data=nu_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+#   theme_bw() + 
+#   # guides(color=guide_legend(title="Type of SFS")) +
+#   xlab('Sample size') +
+#   ylab(nu_label_text) +
+#   ggtitle("Ratio of Effective to Ancestral population size") +
+#   scale_colour_manual(
+#     values = c("#0C7BDC"),
+#     labels = c("1KG 2020, EUR")
+#   ) +
+#   scale_y_log10() +
+#   theme(legend.position='none') +
+#   geom_hline(yintercept = 1, size = 1, linetype = 'dashed') +
+#   theme(axis.title.x = element_text(size = 20)) +
+#   theme(axis.title.y = element_text(size = 16)) +
+#   theme(axis.title.x = element_blank())
+# 
+# plot_B = ggplot(data=tau_dataframe, aes(x=sample_size, y=value, color=variable)) + geom_line(size=2) +
+#   theme_bw() + 
+#   # guides(color=guide_legend(title="Type of SFS")) +
+#   xlab('Sample size') +
+#   ylab(tau_label_text) +
+#   ggtitle('Timing of inferred instantaneous size change') +
+#   scale_colour_manual(
+#     values = c("#0C7BDC"),
+#     labels = c("1kg 2020, EUR")
+#   ) +
+#   scale_y_log10() +
+#   theme(legend.position='none') +
+#   theme(axis.title.x = element_text(size = 20)) +
+#   theme(axis.title.y = element_text(size = 16))
+# 
+# plot_A + plot_B + plot_layout(nrow=2)
