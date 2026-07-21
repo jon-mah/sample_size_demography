@@ -465,8 +465,9 @@ compare_1kg_gnomad_proportional_cutoff = function(empirical_1kg, empirical_gnoma
     scale_x_continuous(name='Minor allele frequency in sample (up to 10)', breaks=x_axis, limits=c(0.5, length(x_axis) + 0.5)) +
     ylab('Proportion of segregating sites') +
     theme_bw() + theme(panel.border = element_blank(), panel.grid.major = element_blank(),
-                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black"))
-    ## scale_fill_manual(values=c("darkslateblue", "darkslategrey", "darkturquoise"))
+                       panel.grid.minor = element_blank(), axis.line = element_line(colour = "black")) +
+    scale_fill_manual(values=c("red", "pink")) +
+    theme(legend.position='none')
   
   return(p_input_comparison)
 }

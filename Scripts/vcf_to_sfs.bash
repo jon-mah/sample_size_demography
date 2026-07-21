@@ -12,5 +12,8 @@
 
 VCF=$SGE_TASK_ID
 
-python vcf_to_sfs.py ../Data/syn.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/syn_chr${VCF}
-python vcf_to_sfs.py ../Data/nonsyn.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/nonsyn_chr${VCF}
+# python vcf_to_sfs.py ../Data/syn.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/syn_chr${VCF}
+# python vcf_to_sfs.py ../Data/nonsyn.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_masked.txt ../Data/1KG_2020/nonsyn_chr${VCF}
+
+python vcf_to_sfs.py ../Data/syn.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_IBS_masked.txt ../Data/1KG_IBS/syn_chr${VCF}
+python vcf_to_sfs.py ../Data/nonsyn.bisnp.EUR.1kGP.chr${VCF}.vcf.gz ../Data/popfile_EUR_IBS_masked.txt ../Data/1KG_IBS/nonsyn_chr${VCF}
