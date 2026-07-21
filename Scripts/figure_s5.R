@@ -15,7 +15,7 @@ msprime_nu_shape = c()
 for (i in sample_size) {
   this_sample_size_distribution = c() # Initialize
   msprime_demography = paste0(
-    "../Analysis/msprime_3EpB_", i, '/two_epoch_demography.txt')
+    "../Analysis/tennessen_ooa", i, '/two_epoch_demography.txt')
   msprime_nu = nu_from_demography(msprime_demography)
   msprime_time = c(msprime_time, time_from_demography(msprime_demography))
   if (is.na(msprime_nu)) {
@@ -27,8 +27,8 @@ for (i in sample_size) {
   }  
   for (j in seq(from=1, to=20, by=1)) {
     this_replicate_distribution = paste0(
-      "../Simulations/simple_simulations/ThreeEpochBottleneck_",
-      i, '_coal_dist_',
+      "../Simulations/tennessen/ooa_",
+      i, '_sfs/coal_dist_',
       j, '.csv')
     # Read in the appropriate file
     this_csv = read.csv(this_replicate_distribution, header=TRUE)
@@ -107,8 +107,8 @@ for (i in sample_size) {
 
   for (g in seq_len(20)) {
     this_branch_distribution = paste0(
-      "../Simulations/simple_simulations/ThreeEpochBottleneck_",
-      i, '_branch_length_dist_',
+      "../Simulations/tennessen/ooa_",
+      i, '_sfs/branch_length_dist_',
       g, '.csv')
 
     this_b_len_csv = read.csv(this_branch_distribution, header = TRUE)
