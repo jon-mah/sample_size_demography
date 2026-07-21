@@ -20,10 +20,10 @@ sample_size=$SGE_TASK_ID
 # python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochContraction_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochContraction_${sample_size}_concat
 # python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/TwoEpochExpansion_${sample_size}_concat.sfs ../Simulations/simple_simulations/TwoEpochExpansion_${sample_size}_concat
 # python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochExpansion_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochExpansion_${sample_size}_concat
-python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat
+# python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat
 # python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}_concat
 # python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_${sample_size}_concat.sfs ../Simulations/simple_simulations/ThreeEpochBottleneck_2000_2000_${sample_size}_concat
-python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/ThreeEpochBottleneck_${sample_size}_concat.sfs ../Analysis/msprime_3EpB_${sample_size}/
 
 ## Lynch theoretical SFS
 # python compute_sfs_summary_statistics.py ../Simulations/lynch_theory/TwoEpochContraction_${sample_size}_expected_sfs.txt ../Simulations/lynch_theory/TwoEpochContraction_${sample_size}
@@ -38,8 +38,11 @@ python compute_sfs_summary_statistics.py ../Simulations/simple_simulations/Three
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochContraction_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochContraction_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/TwoEpochExpansion_${sample_size}.sfs ../Simulations/dadi_simulations/TwoEpochExpansion_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochExpansion_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochExpansion_${sample_size}
-python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}
+# python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/1000_1000_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_1000_1000_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/2000_2000_${sample_size}.sfs ../Simulations/dadi_simulations/ThreeEpochBottleneck_2000_2000_${sample_size}
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/snm_${sample_size}.sfs ../Simulations/dadi_simulations/snm_${sample_size}
-python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Analysis/dadi_3EpB_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Analysis/dadi_3EpB_${sample_size}/
+
+## Tennessen simulations
+python compute_sfs_summary_statistics.py ../Simulations/tennessen/ooa_${sample_size}_sfs/dadi/pop1.sfs ../Analysis/tennessen_ooa_${sample_size}/
