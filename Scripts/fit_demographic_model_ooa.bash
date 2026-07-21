@@ -8,8 +8,8 @@
 #$ -N fit_ooa
 #$ -t 10-800:10
 
-SGE_TASK_ID=770
+SGE_TASK_ID=610
 
 sample_size=$SGE_TASK_ID
 
-python fit_demographic_model.py ../Simulations/tennessen/ooa_${sample_size}_sfs/dadi/pop1.sfs ../Analysis/tennessen_ooa_${sample_size}/ --model_type two_epoch
+python fit_demographic_model.py ../Simulations/tennessen/ooa_${sample_size}_sfs/dadi/pop1.sfs ../Analysis/tennessen_ooa_${sample_size}/ --model_type three_epoch

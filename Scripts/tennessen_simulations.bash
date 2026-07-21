@@ -8,7 +8,7 @@
 #$ -l h_rt=02:00:00
 #$ -t 10-800:10
 
-# SGE_TASK_ID=10
+SGE_TASK_ID=610
 
 sample_size=$SGE_TASK_ID
 
