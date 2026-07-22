@@ -6,7 +6,7 @@
 #$ -o /u/home/j/jonmah/postproc_output
 #$ -l h_data=1G
 #$ -l h_rt=00:10:00
-#$ -t 10-800:10
+#$ -t 10-160:10
 
 # SGE_TASK_ID=10
 
@@ -45,4 +45,7 @@ sample_size=$SGE_TASK_ID
 # python compute_sfs_summary_statistics.py ../Simulations/dadi_simulations/ThreeEpochBottleneck_${sample_size}.sfs ../Analysis/dadi_3EpB_${sample_size}/
 
 ## Tennessen simulations
-python compute_sfs_summary_statistics.py ../Simulations/tennessen/ooa_${sample_size}_sfs/dadi/pop1.sfs ../Analysis/tennessen_ooa_${sample_size}/
+# python compute_sfs_summary_statistics.py ../Simulations/tennessen/ooa_${sample_size}_sfs/dadi/pop1.sfs ../Analysis/tennessen_ooa_${sample_size}/
+
+## EUR (IBS) data
+python compute_sfs_summary_statistics.py ../Analysis/1KG_IBS_${sample_size}/syn_downsampled_sfs.txt ../Analysis/1KG_IBS_${sample_size}/

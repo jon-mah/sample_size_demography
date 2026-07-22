@@ -12,5 +12,7 @@
 # python concat_sfs.py ../Simulations/simple_simulations/ThreeEpochContraction
 # python concat_sfs.py ../Simulations/simple_simulations/ThreeEpochExpansion
 # python concat_sfs.py ../Simulations/simple_simulations/ThreeEpochBottleneck
-python concat_sfs.py ../Data/1KG_2020/syn_chr
-python concat_sfs.py ../Data/1KG_2020/nonsyn_chr
+# python concat_sfs.py ../Data/1KG_2020/syn_chr
+# python concat_sfs.py ../Data/1KG_2020/nonsyn_chr
+python concat_sfs.py 162 ../Data/1KG_IBS/syn_chr
+python concat_sfs.py 162 ../Data/1KG_IBS/nonsyn_chr

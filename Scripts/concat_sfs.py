@@ -60,9 +60,9 @@ class concatSFS():
         sample_size = args['sample_size']
         outprefix = args['outprefix']
         outprefix_string = str(outprefix)
-        matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
+        # matching_files = glob.glob(outprefix_string + '**/*/pop1.sfs', recursive=True)
+        matching_files = glob.glob(outprefix_string + '*sfs.txt', recursive=True)
         print(len(matching_files))
-        # matching_files = glob.glob(outprefix_string + '*sfs.txt', recursive=True)
 
         # create output directory if needed
         outdir = os.path.dirname(args['outprefix'])

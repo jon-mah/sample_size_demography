@@ -121,8 +121,8 @@ class ConvertVCFtoSFS():
         logger.info('Parsed the following arguments:\n{0}\n'.format(
             '\n'.join(['\t{0} = {1}'.format(*tup) for tup in args.items()])))
 
-        pop_ids = ['EUR']
-        projection_num = 305
+        pop_ids = ['IBS']
+        projection_num = 162
         dd = dadi.Misc.make_data_dict_vcf(input_vcf, input_popfile)
         output_spectrum = dadi.Spectrum.from_data_dict(dd, pop_ids,
             projections = [projection_num], polarized = False)
